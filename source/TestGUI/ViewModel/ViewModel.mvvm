@@ -1,0 +1,23 @@
+﻿vm SearchViewModel:
+	data Query as string
+	command Search
+	command Clear
+	command Save	
+
+vm LoginViewModel:
+	data Username as string
+	data Password as string
+	data IsVisible as bool
+	data Status as string
+	data Domain as string
+	data ReadOnly as bool
+	
+	command Login
+	command Cancel
+
+vm AddressBookViewModel:
+	data Contacts as string
+	
+	command Add
+	command Delete
+	

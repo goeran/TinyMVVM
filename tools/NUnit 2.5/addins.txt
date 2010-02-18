@@ -1,0 +1,16 @@
+================
+NUnit Extensions
+================
+
+NUnit extensions can be placed in the 'addins' directory
+of an installed version of NUnit:
+\Program Files (x86)\NUnit 2.5.x\bin\net-2.0\addins
+
+Example extensions can be found in the NUnit source distribution:
+src\samples\Extensibility\Core\CoreExtensibility.sln
+
+For more information you can contact:
+Jamie Cansdale <jamie.cansdale@testdriven.net>
+
+or the 'nunit-developer' mailing list:
+http://sourceforge.net/mail?group_id=10749

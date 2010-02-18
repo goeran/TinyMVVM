@@ -1,0 +1,79 @@
+﻿<#@ template language="C#v3.5" hostspecific="True"#>
+<#@ assembly name="TinyMVVM.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel" #>
+<#
+	var parser = new Parser();
+	var filePath = @"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm";
+	var modelSpec = parser.Parse(Code.FromFile(@"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm"));
+#>
+using System;
+using Moq;
+using NUnit.Framework;
+using TestGUI.ViewModel;
+using TinyMVVM.Framework;
+
+namespace TestGUI.Tests.ViewModel
+{
+<#foreach (ViewModel viewModel in modelSpec.ViewModels){#>
+	public abstract class <#= viewModel.Name #>Context
+	{
+		protected <#= viewModel.Name#> viewModel;
+
+		[SetUp]
+		public void Setup()
+		{
+			Bootstrapper.FromProject.Initialize(null);
+			
+			Context();
+		}
+		
+		protected abstract void Context();
+		
+		protected Mock<T> GetFakeFor<T>() where T: class
+		{
+			return ServiceLocator.Instance.GetInstance<Mock<T>>();
+		}
+	
+		public void Given_<#= viewModel.Name#>_is_created()
+		{
+			viewModel = new <#= viewModel.Name#>();
+		}
+		
+		public void And_data_is_entered()
+		{
+		}
+		
+	<#foreach (var data in viewModel.Data){#>
+	public void And_<#= data.Name#>_is_entered(<#= data.Type#> value)
+		{
+			viewModel.<#= data.Name#> = value;
+		}
+		
+	<#}#>	
+	<#foreach (var data in viewModel.Data){#>
+	public void When_<#= data.Name#>_is_entered(<#= data.Type#> value)
+		{
+			viewModel.<#= data.Name#> = value;
+		}
+		
+	<#}#>
+
+	
+		public void When_<#= viewModel.Name#>_is_spawned()
+		{
+			viewModel = new <#= viewModel.Name#>();
+		} 
+		
+	<#foreach (var command in viewModel.Commands) {#>
+	public void When_execute_<#= command.Name#>_Command()
+		{
+			viewModel.<#= command.Name#>.Execute(null);
+		}
+		
+	<#}#>
+}
+
+<#}#>
+}

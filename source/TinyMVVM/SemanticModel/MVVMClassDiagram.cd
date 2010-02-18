@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TinyMVVM.SemanticModel.ViewModel">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAABAAAAAAAAAIAAAQBAAAAABAAAIAAABAAAAA=</HashCode>
+      <FileName>SemanticModel\ViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Data" />
+      <Property Name="Commands" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.ViewModelCommand">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\ViewModelCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.ViewModelData">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\ViewModelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.ModelSpecification">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\ModelSpecification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

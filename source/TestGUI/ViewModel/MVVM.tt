@@ -1,0 +1,41 @@
+﻿<#@ template language="C#v3.5" hostspecific="True"#>
+<#@ assembly name="TinyMVVM.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel" #>
+<#
+	var parser = new Parser();
+	var filePath = @"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm";
+	var modelSpec = parser.Parse(Code.FromFile(@"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm"));
+#>
+using System;
+using TinyMVVM.Framework;
+
+namespace TestGUI.ViewModel
+{
+<#foreach (ViewModel viewModel in modelSpec.ViewModels) {#>
+	public partial class <#= viewModel.Name#> : ViewModelBase
+	{
+		//State
+	<#foreach (ViewModelData vmData in viewModel.Data) {#>
+	public <#= vmData.Type#> <#= vmData.Name#> { get; set; }
+	<#}#>
+		
+		//Commands
+	<#foreach (ViewModelCommand command in viewModel.Commands) {#>
+	public DelegateCommand <#= command.Name#> { get; set; }
+	<#}#>
+	
+		public <#= viewModel.Name#>()
+		{
+	<#foreach (var command in viewModel.Commands) {#>
+		<#= command.Name#> = new DelegateCommand(On<#= command.Name#>, Can<#= command.Name#>);
+	<#}#>
+		
+			OnInitialize();
+		}
+	}
+		
+<#}#>
+}
+
