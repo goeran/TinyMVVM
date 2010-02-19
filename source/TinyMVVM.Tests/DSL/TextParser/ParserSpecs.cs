@@ -32,8 +32,6 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
     [TestFixture]
     public class When_Parse : ParserContext
     {
-        private string code;
-
         [SetUp]
         public void Setup()
         {
@@ -102,6 +100,61 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
                 var vmSearch = semanticModel.ViewModels[1];
                 vmSearch.Commands[0].Name.ShouldBe("Search");
             });
+        }
+    }
+
+    [TestFixture]
+    public class When_Parse_and_checking_grammar : ParserContext
+    {
+        [SetUp]
+        public void Setup()
+        {
+            Given(Parser_is_created);
+        }
+
+        [Test]
+        public void assure_it_checks_if_Type_is_specified_for_property()
+        {
+            And("dsl code is described", () =>
+                code = "viewmodel Login:\n" +
+                    "\tproperty Username");
+
+            When("parse");
+
+            Then(() =>
+                this.ShouldThrowException<InvalidSyntaxException>(() =>
+                    parser.Parse(new InlineCode(code)), ex =>
+                        ex.Message.ShouldBe("Type must be specified for Property")));
+        }
+
+        [Test]
+        public void assure_it_checks_if_Name_is_specified_for_property()
+        {
+            And("dsl code is described", () =>
+                code = "viewmodel Login:\n" +
+                    "\tproperty as string");
+
+            When("parse");
+
+            Then(() =>
+                this.ShouldThrowException<InvalidSyntaxException>(() =>
+                    parser.Parse(new InlineCode(code)), ex =>
+                        ex.Message.ShouldBe("Name must be specified for Property")));
+        }
+
+        [Test]
+        public void assure_it_checks_if_Name_is_specified_for_ViewModel()
+        {
+            And("dsl code is described", () =>
+                code = "viewmodel:\n" +
+                    "\tproperty as string");
+
+            When("parse");
+
+            Then(() =>
+                this.ShouldThrowException<InvalidSyntaxException>(() =>
+                    parser.Parse(new InlineCode(code)), ex =>
+                        ex.Message.ShouldBe("Name must be specified for ViewModel")));
         }
     }
 

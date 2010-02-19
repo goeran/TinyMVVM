@@ -75,13 +75,17 @@ namespace TinyMVVM.DSL.TextParser
 
         private void ParseViewModel()
         {
+            var nameToken = NextToken();
+            if (nameToken.Kind != Kind.Name)
+                throw new InvalidSyntaxException("Name must be specified for ViewModel");
+
             ParseViewModelName();
             ParseViewModelBody();
         }
 
         private void ParseViewModelName()
         {
-            var nameToken = NextToken();
+            var nameToken = CurrentToken();
             semanticModel = new ViewModel(nameToken.Value);
             modelSpecification.AddViewModel(semanticModel);
         }
@@ -109,14 +113,22 @@ namespace TinyMVVM.DSL.TextParser
 
         private void ParseViewModelData()
         {
-            //Name
-            var name = NextToken().Value;
+            var nameToken = NextToken();
+            var asToken = NextToken();
+            var typeToken = NextToken();
 
-            //is
-            NextToken();
+            if (nameToken.Kind != Kind.Name)
+                throw new InvalidSyntaxException("Name must be specified for Property");
+
+            if (asToken.Kind != Kind.AS ||
+                typeToken.Kind != Kind.Name)
+                throw new InvalidSyntaxException("Type must be specified for Property");
+
+            //Name
+            var name = nameToken.Value;
 
             //Type
-            var type = NextToken().Value;
+            var type = typeToken.Value;
 
             semanticModel.AddViewModelData(
                 new ViewModelProperty(name, typeConversionTable[type.ToLower()]));

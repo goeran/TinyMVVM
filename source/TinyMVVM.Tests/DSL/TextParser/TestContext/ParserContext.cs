@@ -13,6 +13,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.TestContext
     {
         public static Parser parser;
         protected static ModelSpecification semanticModel;
+        protected string code;
 
         protected Context Parser_is_created = () =>
         {

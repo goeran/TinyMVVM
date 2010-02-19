@@ -66,6 +66,7 @@
     <Compile Include="DSL\TextParser\ICodeLoader.cs" />
     <Compile Include="DSL\TextParser\ILexicalAnalyzer.cs" />
     <Compile Include="DSL\TextParser\InlineCode.cs" />
+    <Compile Include="DSL\TextParser\InvalidSyntaxException.cs" />
     <Compile Include="DSL\TextParser\Parser.cs" />
     <Compile Include="DSL\TextParser\Scanner.cs" />
     <Compile Include="DSL\TextParser\Token.cs" />
