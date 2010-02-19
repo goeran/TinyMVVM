@@ -1,12 +1,12 @@
-﻿vm LoginViewModel:
-	data Username as string
-	data Password as string
+﻿viewmodel LoginViewModel:
+	oproperty Username as string
+	oproperty Password as string
 	
 	command Login
 	command Cancel
 
-vm SearchViewModel:
-	data Expression as ExpressionViewModel
+viewmodel SearchViewModel:
+	property Expression as ExpressionViewModel
 	
 	command Search
 	command Clear

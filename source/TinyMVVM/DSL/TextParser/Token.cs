@@ -8,8 +8,9 @@ namespace TinyMVVM.DSL.TextParser
     public enum Kind
     {
         Name,
-        vm,
-        data,
+        viewmodel,
+        property,
+        oproperty,
         command,
         AS,
         EOF
@@ -51,12 +52,17 @@ namespace TinyMVVM.DSL.TextParser
 
         public static Token ViewModel
         {
-            get { return new Token(TextParser.Kind.vm); }
+            get { return new Token(TextParser.Kind.viewmodel); }
         }
 
-        public static Token Data
+        public static Token Property
         {
-            get { return new Token(TextParser.Kind.data); }
+            get { return new Token(TextParser.Kind.property); }
+        }
+
+        public static Token OProperty
+        {
+            get{ return new Token(TextParser.Kind.oproperty); }
         }
 
         public static Token Command

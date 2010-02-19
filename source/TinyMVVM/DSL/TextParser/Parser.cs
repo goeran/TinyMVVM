@@ -92,7 +92,8 @@ namespace TinyMVVM.DSL.TextParser
                 CurrentToken() != Token.EOF)
             {
                 var token = tokensEnumerator.Current;
-                if (token == Token.Data)
+                if (token == Token.Property ||
+                    token == Token.OProperty)
                     ParseViewModelData();
                 else if (token == Token.Command)
                     ParseViewModelCommand();

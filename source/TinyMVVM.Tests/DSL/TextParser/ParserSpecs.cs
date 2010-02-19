@@ -30,18 +30,6 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
     }
 
     [TestFixture]
-    public class When_Parse_before_code_is_loaded : ParserContext
-    {
-        [SetUp]
-        public void Setup()
-        {
-            Given(Parser_is_created);
-
-            When("parse");
-        }
-    }
-
-    [TestFixture]
     public class When_Parse : ParserContext
     {
         private string code;
@@ -49,17 +37,17 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         [SetUp]
         public void Setup()
         {
-            Given("a simple vm is described with the MVVM dsl", () =>
+            Given("a simple viewmodel is described with the MVVM dsl", () =>
             {
-                code = "vm LoginViewModel:\n" +
-                       "\tdata Username as string\n\r" +
-                       "\tdata Password as string\n" +
+                code = "viewmodel LoginViewModel:\n" +
+                       "\tproperty Username as string\n\r" +
+                       "\tproperty Password as string\n" +
                        "\t\tcommand Login\n" +
                        "\tcommand Cancel\n" +
                        "" +
-                       "vm Search:\n" +
+                       "viewmodel Search:\n" +
                        "\tcommand Search" +
-                       "\tdata Query as string\n";
+                       "\toproperty Query as string\n";
             });
             And(Parser_is_created);
 
@@ -87,7 +75,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         }
 
         [Test]
-        public void assure_ViewModelData_is_parsed()
+        public void assure_ViewModel_Properties_is_parsed()
         {
             Then(() =>
             {

@@ -58,15 +58,15 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
         [SetUp]
         public void Setup()
         {
-            When("vm Token is spawned", () =>
-                token = Token.Keyword(Kind.vm));
+            When("viewmodel Token is spawned", () =>
+                token = Token.Keyword(Kind.viewmodel));
         }
 
         [Test]
         public void assure_Kind_is_set_to_ViewModel()
         {
             Then(() =>
-                 token.Kind.ShouldBe(Kind.vm));
+                 token.Kind.ShouldBe(Kind.viewmodel));
         }
     }
 
@@ -87,8 +87,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
         [Test]
         public void compare_equals_Keyword_tokens()
         {
-            var tokenA = Token.Keyword(Kind.vm);
-            var tokenB = Token.Keyword(Kind.vm);
+            var tokenA = Token.Keyword(Kind.viewmodel);
+            var tokenB = Token.Keyword(Kind.viewmodel);
 
             tokenA.Equals(tokenB).ShouldBeTrue();
             (tokenA == tokenB).ShouldBeTrue();
@@ -110,7 +110,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
         [Test]
         public void compare_non_equals_Keyword_tokens()
         {
-            var tokenA = Token.Keyword(Kind.vm);
+            var tokenA = Token.Keyword(Kind.viewmodel);
             var tokenB = Token.Keyword(Kind.EOF);
 
             tokenA.Equals(tokenB).ShouldBeFalse();
@@ -136,21 +136,31 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
         [Test]
         public void assure_its_a_ViewModel_token()
         {
-            When("spawning vm token", () =>
+            When("spawning viewmodel token", () =>
                 token = Token.ViewModel);
 
             Then(() =>
-                token.ShouldBe(Token.Keyword(Kind.vm)));
+                token.ShouldBe(Token.Keyword(Kind.viewmodel)));
         }
 
         [Test]
-        public void assure_its_a_Data_token()
+        public void assure_its_a_property_token()
         {
-            When("spawning a data token", () =>
-                token = Token.Data);
+            When("spawning a property token", () =>
+                token = Token.Property);
 
             Then(() =>
-                 token.ShouldBe(Token.Keyword(Kind.data)));
+                 token.ShouldBe(Token.Keyword(Kind.property)));
+        }
+
+        [Test]
+        public void assure_its_a_oproperty_token()
+        {
+            When("spawning a property token", () =>
+                token = Token.OProperty);
+
+            Then(() =>
+                token.ShouldBe(Token.Keyword(Kind.oproperty)));
         }
 
         [Test]

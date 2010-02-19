@@ -17,8 +17,11 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
         public void Setup()
         {
             Given(Scanner_is_created);
-            And("simple vm is described with the MVVM DSL", () =>
-                code = "vm LoginViewModel:\n\tdata Username\n\r\t\t\r\ncommand Login");
+            And("simple viewmodel is described with the MVVM DSL", () =>
+                code = "viewmodel LoginViewModel:\n" +
+                "\tproperty Username\n\r" +
+                "\toproperty IsVisible\n" +
+                "\t\t\r\ncommand Login");
 
             When("scan", () =>
                 tokens = scanner.Scan(code));
@@ -58,17 +61,31 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
         }
 
         [Test]
-        public void assure_Data_Token_is_found()
+        public void assure_Property_Token_is_found()
         {
             Then(() =>
-                 tokens.Where(t => t == Token.Data).Count().ShouldBe(1));
+                 tokens.Where(t => t == Token.Property).Count().ShouldBe(1));
         }
 
         [Test]
-        public void assure_Data_Name_Token_is_found()
+        public void assure_Property_Name_Token_is_found()
         {
             Then(() =>
                  tokens.Where(t => t == Token.Name("Username")).Count().ShouldBe(1));
+        }
+
+        [Test]
+        public void assure_OProperty_Token_is_found()
+        {
+            Then(() =>
+                 tokens.Where(t => t == Token.OProperty).Count().ShouldBe(1));
+        }
+
+        [Test]
+        public void assure_OProperty_Name_Token_is_found()
+        {
+            Then(() =>
+                 tokens.Where(t => t == Token.Name("IsVisible")).Count().ShouldBe(1));
         }
 
         [Test]

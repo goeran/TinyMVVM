@@ -5,8 +5,8 @@
 <#@ import namespace="TinyMVVM.SemanticModel" #>
 <#
 	var parser = new Parser();
-	var filePath = @"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm";
-	var modelSpec = parser.Parse(Code.FromFile(@"C:\Documents and Settings\goeran\My Documents\Software Projects\git\TinyMVVM\source\TestGUI\ViewModel\ViewModel.mvvm"));
+	var filePath = Host.ResolvePath(@"..\..\TestGUI\ViewModel\ViewModel.mvvm");
+	var modelSpec = parser.Parse(Code.FromFile(filePath));
 #>
 using System;
 using Moq;

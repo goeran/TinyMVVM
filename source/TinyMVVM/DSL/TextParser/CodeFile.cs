@@ -26,6 +26,7 @@ namespace TinyMVVM.DSL.TextParser
             using (var reader = new StreamReader(filePath))
             {
                 return reader.ReadToEnd();
+                reader.Close();
             }
         }
     }
