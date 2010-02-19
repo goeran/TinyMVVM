@@ -82,7 +82,7 @@
     <Compile Include="SemanticModel\ModelSpecification.cs" />
     <Compile Include="SemanticModel\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\ViewModel.cs" />
-    <Compile Include="SemanticModel\ViewModelData.cs" />
+    <Compile Include="SemanticModel\ViewModelProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MVVM.dsl" />

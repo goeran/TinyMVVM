@@ -45,17 +45,17 @@ namespace TestGUI.Tests.ViewModel
 		{
 		}
 		
-	<#foreach (var data in viewModel.Data){#>
-	public void And_<#= data.Name#>_is_entered(<#= data.Type#> value)
+	<#foreach (var property in viewModel.Properties){#>
+	public void And_<#= property.Name#>_is_entered(<#= property.Type#> value)
 		{
-			viewModel.<#= data.Name#> = value;
+			viewModel.<#= property.Name#> = value;
 		}
 		
 	<#}#>	
-	<#foreach (var data in viewModel.Data){#>
-	public void When_<#= data.Name#>_is_entered(<#= data.Type#> value)
+	<#foreach (var property in viewModel.Properties){#>
+	public void When_<#= property.Name#>_is_entered(<#= property.Type#> value)
 		{
-			viewModel.<#= data.Name#> = value;
+			viewModel.<#= property.Name#> = value;
 		}
 		
 	<#}#>

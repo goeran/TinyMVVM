@@ -17,8 +17,8 @@ namespace TestGUI.ViewModel
 	public partial class <#= viewModel.Name#> : ViewModelBase
 	{
 		//State
-	<# foreach (ViewModelData vmData in viewModel.Data) {#>
-	public <#= vmData.Type#> <#= vmData.Name#> { get; set; }
+	<# foreach (ViewModelProperty property in viewModel.Properties) {#>
+	public <#= property.Type#> <#= property.Name#> { get; set; }
 	<#}#>
 		
 		//Commands

@@ -8,12 +8,12 @@ namespace TinyMVVM.SemanticModel
 {
     public class ViewModel
     {
-        private List<ViewModelData> _data;
+        private List<ViewModelProperty> _data;
         private List<ViewModelCommand> _commands;
 
         public string Name { get; protected set; }
         
-        public ReadOnlyCollection<ViewModelData> Data 
+        public ReadOnlyCollection<ViewModelProperty> Properties 
         {
             get { return _data.AsReadOnly(); } 
         }
@@ -27,13 +27,13 @@ namespace TinyMVVM.SemanticModel
         {
             ThrowExceptionIfNull(name, "name");
 
-            _data = new List<ViewModelData>();
+            _data = new List<ViewModelProperty>();
             _commands = new List<ViewModelCommand>();
 
             Name = name;
         }
 
-        public void AddViewModelData(ViewModelData data)
+        public void AddViewModelData(ViewModelProperty data)
         {
             ThrowExceptionIfNull(data, "data");
 

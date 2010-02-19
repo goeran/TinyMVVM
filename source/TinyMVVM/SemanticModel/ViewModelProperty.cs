@@ -5,12 +5,12 @@ using System.Text;
 
 namespace TinyMVVM.SemanticModel
 {
-    public class ViewModelData
+    public class ViewModelProperty
     {
         public string Name { get; protected set; }
         public Type Type { get; protected set; } 
 
-        public ViewModelData(string name, Type type)
+        public ViewModelProperty(string name, Type type)
         {
             if (name == null || type == null)
                 throw new ArgumentNullException();

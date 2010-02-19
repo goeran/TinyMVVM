@@ -47,7 +47,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
         public void assure_it_Data()
         {
             Then(() =>
-                 viewModel.Data.ShouldNotBeNull());
+                 viewModel.Properties.ShouldNotBeNull());
         }
 
         [Test]
@@ -80,13 +80,13 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
         [Test]
         public void assure_its_added()
         {
-            var viewModelData = new ViewModelData("Username", typeof(string));
+            var viewModelData = new ViewModelProperty("Username", typeof(string));
 
             When("adding ViewModelData", () =>
                 viewModel.AddViewModelData(viewModelData));
 
             Then(() =>
-                 viewModel.Data.ShouldContain(viewModelData));
+                 viewModel.Properties.ShouldContain(viewModelData));
         }
     }
 

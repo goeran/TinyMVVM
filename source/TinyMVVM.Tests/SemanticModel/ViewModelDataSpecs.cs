@@ -23,7 +23,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         {
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    new ViewModelData(null, typeof(string))));
+                    new ViewModelProperty(null, typeof(string))));
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         {
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    new ViewModelData("Username", null)));
+                    new ViewModelProperty("Username", null)));
         }
     }
 
