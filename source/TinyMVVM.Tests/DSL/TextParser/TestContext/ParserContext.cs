@@ -13,11 +13,22 @@ namespace TinyMVVM.Tests.DSL.TextParser.TestContext
     {
         public static Parser parser;
         protected static ModelSpecification semanticModel;
-        protected string code;
+        protected static string code;
 
         protected Context Parser_is_created = () =>
         {
             parser = new Parser();
+        };
+
+        protected AndSemantics dsl_code_is_described(string dslCode)
+        {
+            return And("dsl code is described", () =>
+                code = dslCode);
+        }
+
+        protected When parse = () =>
+        {
+            semanticModel = parser.Parse(new InlineCode(code));
         };
     }
 }

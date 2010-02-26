@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TinyMVVM.SemanticModel;
 
 namespace TinyMVVM.DSL.TextParser
@@ -14,7 +15,6 @@ namespace TinyMVVM.DSL.TextParser
         private ViewModel semanticModel;
         private TokenEnumerator tokensEnumerator;
         private string loadedCode;
-        private Dictionary<string, Type> typeConversionTable = new Dictionary<string, Type>();
 
         public Parser() : 
             this(new Scanner())
@@ -28,16 +28,6 @@ namespace TinyMVVM.DSL.TextParser
                 throw new ArgumentNullException("scanner");
 
             this.scanner = scanner;
-
-            DefinePrimitiveTypeConversion();
-        }
-
-        private void DefinePrimitiveTypeConversion()
-        {
-            typeConversionTable.Add("string", typeof(string));
-            typeConversionTable.Add("int", typeof (int));
-            typeConversionTable.Add("bool", typeof (bool));
-            typeConversionTable.Add("float", typeof (float));
         }
 
         public ModelSpecification Parse(ICodeLoader loadingStrategy)
@@ -77,7 +67,7 @@ namespace TinyMVVM.DSL.TextParser
         {
             var nameToken = NextToken();
             if (nameToken.Kind != Kind.Name)
-                throw new InvalidSyntaxException("Name must be specified for ViewModel");
+                throw new InvalidSyntaxException("Name must be specified when using the 'viewmodel' keyword");
 
             ParseViewModelName();
             ParseViewModelBody();
@@ -118,11 +108,11 @@ namespace TinyMVVM.DSL.TextParser
             var typeToken = NextToken();
 
             if (nameToken.Kind != Kind.Name)
-                throw new InvalidSyntaxException("Name must be specified for Property");
+                throw new InvalidSyntaxException("Name must be specified when using the 'property' keyword");
 
             if (asToken.Kind != Kind.AS ||
                 typeToken.Kind != Kind.Name)
-                throw new InvalidSyntaxException("Type must be specified for Property");
+                throw new InvalidSyntaxException("Type must be specified when using the 'property' keyword");
 
             //Name
             var name = nameToken.Value;
@@ -131,12 +121,16 @@ namespace TinyMVVM.DSL.TextParser
             var type = typeToken.Value;
 
             semanticModel.AddViewModelData(
-                new ViewModelProperty(name, typeConversionTable[type.ToLower()]));
+                new ViewModelProperty(name, type));
         }
 
         private void ParseViewModelCommand()
         {
             var nameToken = NextToken();
+
+            if (nameToken.Kind != Kind.Name)
+                throw new InvalidSyntaxException("Name must be specified when using the 'command' keyword");
+
             semanticModel.AddViewModelCommand(
                 new ViewModelCommand(nameToken.Value));
         }

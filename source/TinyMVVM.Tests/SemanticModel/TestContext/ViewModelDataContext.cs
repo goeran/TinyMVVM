@@ -13,7 +13,7 @@ namespace TinyMVVM.Tests.SemanticModel.TestContext
 
         protected When ViewModelData_is_spawned = () =>
         {
-            viewModelData = new ViewModelProperty("Username", typeof(string));
+            viewModelData = new ViewModelProperty("Username", typeof(string).Name);
         };
     }
 }

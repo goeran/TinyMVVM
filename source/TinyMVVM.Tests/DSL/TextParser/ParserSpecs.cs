@@ -43,9 +43,13 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
                        "\t\tcommand Login\n" +
                        "\tcommand Cancel\n" +
                        "" +
+                       "viewmodel SearchQuery:\n" +
+                       "\tproperty Query as string\n" +
+                       "\tproperty Length as int\n" +
+                       "" +
                        "viewmodel Search:\n" +
                        "\tcommand Search" +
-                       "\toproperty Query as string\n";
+                       "\toproperty Query as SearchQuery\n";
             });
             And(Parser_is_created);
 
@@ -57,8 +61,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         public void assure_ViewModels_are_parsed()
         {
             Then(() =>
-            {
-                semanticModel.ViewModels.ShouldHave(2);
+            {   
+                semanticModel.ViewModels.ShouldHave(3);
             });
         }
 
@@ -68,7 +72,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             Then(() =>
             {
                 semanticModel.ViewModels[0].Name.ShouldBe("LoginViewModel");
-                semanticModel.ViewModels[1].Name.ShouldBe("Search");
+                semanticModel.ViewModels[1].Name.ShouldBe("SearchQuery");
+                semanticModel.ViewModels[2].Name.ShouldBe("Search");
             });
         }
 
@@ -79,11 +84,11 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             {
                 var vm = semanticModel.ViewModels.First();
                 vm.Properties[0].Name.ShouldBe("Username");
-                vm.Properties[0].Type.ShouldBe(typeof(string));
+                vm.Properties[0].Type.ShouldBe("string");
                 vm.Properties[1].Name.ShouldBe("Password");
-                vm.Properties[1].Type.ShouldBe(typeof(string));
+                vm.Properties[1].Type.ShouldBe("string");
 
-                var vmSearch = semanticModel.ViewModels[1];
+                var vmSearch = semanticModel.ViewModels[2];
                 vmSearch.Properties[0].Name.ShouldBe("Query");
             });
         }
@@ -97,7 +102,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
                 vm.Commands[0].Name.ShouldBe("Login");
                 vm.Commands[1].Name.ShouldBe("Cancel");
 
-                var vmSearch = semanticModel.ViewModels[1];
+                var vmSearch = semanticModel.ViewModels[2];
                 vmSearch.Commands[0].Name.ShouldBe("Search");
             });
         }
@@ -113,48 +118,63 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         }
 
         [Test]
-        public void assure_it_checks_if_Type_is_specified_for_property()
+        public void assure_it_checks_if_Name_is_specified_for_ViewModel()
         {
-            And("dsl code is described", () =>
-                code = "viewmodel Login:\n" +
-                    "\tproperty Username");
+            And(dsl_code_is_described(
+                "viewmodel:\n" +
+                "\tproperty as string"));
 
             When("parse");
 
             Then(() =>
                 this.ShouldThrowException<InvalidSyntaxException>(() =>
                     parser.Parse(new InlineCode(code)), ex =>
-                        ex.Message.ShouldBe("Type must be specified for Property")));
+                        ex.Message.ShouldBe("Name must be specified when using the 'viewmodel' keyword")));
         }
 
         [Test]
         public void assure_it_checks_if_Name_is_specified_for_property()
         {
-            And("dsl code is described", () =>
-                code = "viewmodel Login:\n" +
-                    "\tproperty as string");
+            And(dsl_code_is_described(
+                "viewmodel Login:\n" +
+                "\tproperty"));
 
             When("parse");
 
             Then(() =>
                 this.ShouldThrowException<InvalidSyntaxException>(() =>
                     parser.Parse(new InlineCode(code)), ex =>
-                        ex.Message.ShouldBe("Name must be specified for Property")));
+                        ex.Message.ShouldBe("Name must be specified when using the 'property' keyword")));
         }
 
         [Test]
-        public void assure_it_checks_if_Name_is_specified_for_ViewModel()
+        public void assure_it_checks_if_Type_is_specified_for_property()
         {
-            And("dsl code is described", () =>
-                code = "viewmodel:\n" +
-                    "\tproperty as string");
+            And(dsl_code_is_described(
+                "viewmodel Login:\n" +
+                "\tproperty Username"));
 
             When("parse");
 
             Then(() =>
                 this.ShouldThrowException<InvalidSyntaxException>(() =>
                     parser.Parse(new InlineCode(code)), ex =>
-                        ex.Message.ShouldBe("Name must be specified for ViewModel")));
+                        ex.Message.ShouldBe("Type must be specified when using the 'property' keyword")));
+        }
+
+        [Test]
+        public void assure_it_checks_if_Name_is_specified_for_command()
+        {
+            And(dsl_code_is_described(
+                "viewmodel Login:\n" +
+                "\tcommand"));
+
+            When("parse");
+
+            Then(() =>
+                this.ShouldThrowException<InvalidSyntaxException>(() =>
+                    parser.Parse(new InlineCode(code)), ex =>
+                        ex.Message.ShouldBe("Name must be specified when using the 'command' keyword")));
         }
     }
 

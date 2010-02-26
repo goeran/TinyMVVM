@@ -8,9 +8,9 @@ namespace TinyMVVM.SemanticModel
     public class ViewModelProperty
     {
         public string Name { get; protected set; }
-        public Type Type { get; protected set; } 
+        public string Type { get; protected set; } 
 
-        public ViewModelProperty(string name, Type type)
+        public ViewModelProperty(string name, string type)
         {
             if (name == null || type == null)
                 throw new ArgumentNullException();

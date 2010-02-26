@@ -80,7 +80,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
         [Test]
         public void assure_its_added()
         {
-            var viewModelData = new ViewModelProperty("Username", typeof(string));
+            var viewModelData = new ViewModelProperty("Username", typeof(string).Name);
 
             When("adding ViewModelData", () =>
                 viewModel.AddViewModelData(viewModelData));
