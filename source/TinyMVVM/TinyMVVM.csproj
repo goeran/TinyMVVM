@@ -77,6 +77,7 @@
     <Compile Include="Framework\ServiceLocator.cs" />
     <Compile Include="Framework\IServiceLocator.cs" />
     <Compile Include="Framework\Services\IBackgroundWorker.cs" />
+    <Compile Include="Framework\Services\Impl\BackgroundWorker.cs" />
     <Compile Include="Framework\Services\Impl\BackgroundWorkerForTesting.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

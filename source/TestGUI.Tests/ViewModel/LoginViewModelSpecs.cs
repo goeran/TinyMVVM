@@ -42,12 +42,17 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Username_is_entered : LoginViewModelContext
     {
+        protected int loginCommandStateChanges;
+
         protected override void  Context()
         {
             Given_LoginViewModel_is_created();
+            viewModel.Login.CanExecuteChanged += (o, e) =>
+                loginCommandStateChanges++;
 
             When_Username_is_entered("goeran");
         }
+
 
         [Test]
         public void Then_assure_Cancel_Command_is_enabled()
@@ -59,6 +64,12 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public void Then_assure_Login_Command_is_still_disabled()
         {
             viewModel.Login.CanExecute(null).ShouldBeFalse();
+        }
+
+        [Test]
+        public void assure_Observers_are_notified_that_Login_Command_is_enabled()
+        {
+            loginCommandStateChanges.ShouldBe(1);
         }
     }
 

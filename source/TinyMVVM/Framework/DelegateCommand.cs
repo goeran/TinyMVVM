@@ -36,6 +36,12 @@ namespace TinyMVVM.Framework
             return canExecuteDelegate();
         }
 
+        public void TriggerCanExecuteChanged()
+        {
+            if (CanExecuteChanged != null)
+                CanExecuteChanged(this, EventArgs.Empty);
+        }
+
         public event EventHandler CanExecuteChanged;
     }
 }

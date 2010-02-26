@@ -6,7 +6,7 @@ namespace TestGUI.ViewModel
 	public partial class SearchViewModel : ViewModelBase
 	{
 		//State
-		public System.String Query { get; set; }
+		public string Query { get; set; }
 			
 		//Commands
 		public DelegateCommand Search { get; set; }
@@ -26,12 +26,11 @@ namespace TestGUI.ViewModel
 	public partial class LoginViewModel : ViewModelBase
 	{
 		//State
-		public System.String Username { get; set; }
-		public System.String Password { get; set; }
-		public System.Boolean IsVisible { get; set; }
-		public System.String Status { get; set; }
-		public System.String Domain { get; set; }
-		public System.Boolean ReadOnly { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
+		public bool IsVisible { get; set; }
+		public string Status { get; set; }
+		public bool ReadOnly { get; set; }
 			
 		//Commands
 		public DelegateCommand Login { get; set; }
@@ -49,7 +48,7 @@ namespace TestGUI.ViewModel
 	public partial class AddressBookViewModel : ViewModelBase
 	{
 		//State
-		public System.String Contacts { get; set; }
+		public string Contacts { get; set; }
 			
 		//Commands
 		public DelegateCommand Add { get; set; }

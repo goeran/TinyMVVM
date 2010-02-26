@@ -9,7 +9,6 @@ viewmodel LoginViewModel:
 	property Password as string
 	property IsVisible as bool
 	property Status as string
-	property Domain as string
 	property ReadOnly as bool
 	
 	command Login

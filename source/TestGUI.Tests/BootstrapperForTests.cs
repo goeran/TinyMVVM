@@ -35,7 +35,7 @@ namespace TestGUI.Tests
                 var authServiceFake = new Mock<IAuthenticationService>();
                 m.Bind<Mock<IAuthenticationService>>().ToConstant(authServiceFake);
                 m.Bind<IAuthenticationService>().ToConstant(authServiceFake.Object);
-
+                        
                 var backgroundWorkerFake = new Mock<IBackgroundWorker>();
                 m.Bind<Mock<IBackgroundWorker>>().ToConstant(backgroundWorkerFake);
                 m.Bind<IBackgroundWorker>().ToConstant(backgroundWorkerFake.Object);

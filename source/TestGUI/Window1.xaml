@@ -1,8 +1,11 @@
-﻿<Window x:Class="TestGUI.Window1"
+﻿<Window
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:TestGUI_Views="clr-namespace:TestGUI.Views" x:Class="TestGUI.Window1"
     Title="Window1" Height="300" Width="300">
     <Grid>
+        
+    	<TestGUI_Views:LoginView/>
         
     </Grid>
 </Window>

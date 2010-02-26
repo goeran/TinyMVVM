@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using TestGUI.Services;
@@ -17,7 +18,15 @@ namespace TestGUI.ViewModel
             backgroundWorker = GetInstance<IBackgroundWorker>();
             authService = GetInstance<IAuthenticationService>();
 
+            this.PropertyChanged += propertyChanged;
             IsVisible = true;
+        }
+
+        void propertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Username" ||
+                e.PropertyName == "Password")
+                Login.TriggerCanExecuteChanged();
         }
 
         private void OnLogin()

@@ -34,13 +34,13 @@ namespace TestGUI.Tests.ViewModel
 		{
 		}
 		
-		public void And_Query_is_entered(System.String value)
+		public void And_Query_is_entered(string value)
 		{
 			viewModel.Query = value;
 		}
 		
 		
-		public void When_Query_is_entered(System.String value)
+		public void When_Query_is_entered(string value)
 		{
 			viewModel.Query = value;
 		}
@@ -97,63 +97,53 @@ namespace TestGUI.Tests.ViewModel
 		{
 		}
 		
-		public void And_Username_is_entered(System.String value)
+		public void And_Username_is_entered(string value)
 		{
 			viewModel.Username = value;
 		}
 		
-		public void And_Password_is_entered(System.String value)
+		public void And_Password_is_entered(string value)
 		{
 			viewModel.Password = value;
 		}
 		
-		public void And_IsVisible_is_entered(System.Boolean value)
+		public void And_IsVisible_is_entered(bool value)
 		{
 			viewModel.IsVisible = value;
 		}
 		
-		public void And_Status_is_entered(System.String value)
+		public void And_Status_is_entered(string value)
 		{
 			viewModel.Status = value;
 		}
 		
-		public void And_Domain_is_entered(System.String value)
-		{
-			viewModel.Domain = value;
-		}
-		
-		public void And_ReadOnly_is_entered(System.Boolean value)
+		public void And_ReadOnly_is_entered(bool value)
 		{
 			viewModel.ReadOnly = value;
 		}
 		
 		
-		public void When_Username_is_entered(System.String value)
+		public void When_Username_is_entered(string value)
 		{
 			viewModel.Username = value;
 		}
 		
-		public void When_Password_is_entered(System.String value)
+		public void When_Password_is_entered(string value)
 		{
 			viewModel.Password = value;
 		}
 		
-		public void When_IsVisible_is_entered(System.Boolean value)
+		public void When_IsVisible_is_entered(bool value)
 		{
 			viewModel.IsVisible = value;
 		}
 		
-		public void When_Status_is_entered(System.String value)
+		public void When_Status_is_entered(string value)
 		{
 			viewModel.Status = value;
 		}
 		
-		public void When_Domain_is_entered(System.String value)
-		{
-			viewModel.Domain = value;
-		}
-		
-		public void When_ReadOnly_is_entered(System.Boolean value)
+		public void When_ReadOnly_is_entered(bool value)
 		{
 			viewModel.ReadOnly = value;
 		}
@@ -205,13 +195,13 @@ namespace TestGUI.Tests.ViewModel
 		{
 		}
 		
-		public void And_Contacts_is_entered(System.String value)
+		public void And_Contacts_is_entered(string value)
 		{
 			viewModel.Contacts = value;
 		}
 		
 		
-		public void When_Contacts_is_entered(System.String value)
+		public void When_Contacts_is_entered(string value)
 		{
 			viewModel.Contacts = value;
 		}

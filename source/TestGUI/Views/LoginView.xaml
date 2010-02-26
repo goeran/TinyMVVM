@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="TestGUI.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModel="clr-namespace:TestGUI.ViewModel"
+    Height="300" Width="300">
+    <UserControl.DataContext>
+        <ViewModel:LoginViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+    	<TextBox Margin="32,52,91,0" VerticalAlignment="Top" Height="24" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=Default}" TextWrapping="Wrap"/>
+    	<Button Margin="86,125,149,148" Content="Button" Command="{Binding Login, Mode=Default}"/>
+    	<TextBox Margin="32,80,91,0" VerticalAlignment="Top" Height="24" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=Default}" TextWrapping="Wrap"/>
+            
+    </Grid>
+</UserControl>
