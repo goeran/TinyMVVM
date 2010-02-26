@@ -9,11 +9,11 @@ namespace TinyMVVM.Tests.SemanticModel.TestContext
 {
     public class ViewModelDataContext : NUnitScenarioClass
     {
-        protected static ViewModelProperty viewModelData;
+        protected static ViewModelProperty viewModelProperty;
 
         protected When ViewModelData_is_spawned = () =>
         {
-            viewModelData = new ViewModelProperty("Username", typeof(string).Name);
+            viewModelProperty = new ViewModelProperty("Username", typeof(string).Name, false);
         };
     }
 }

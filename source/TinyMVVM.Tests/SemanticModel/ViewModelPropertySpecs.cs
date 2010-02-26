@@ -23,7 +23,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         {
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    new ViewModelProperty(null, typeof(string).Name)));
+                    new ViewModelProperty(null, typeof(string).Name, false)));
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         {
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    new ViewModelProperty("Username", null)));
+                    new ViewModelProperty("Username", null, false)));
         }
     }
 
@@ -48,14 +48,21 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         public void assure_it_has_a_Name()
         {
             Then(() =>
-                 viewModelData.Name.ShouldNotBeNull());
+                 viewModelProperty.Name.ShouldNotBeNull());
         }
 
         [Test]
         public void assure_it_has_a_Type()
         {
             Then(() =>
-                viewModelData.Type.ShouldBe(typeof(string).Name));
+                viewModelProperty.Type.ShouldBe(typeof(string).Name));
+        }
+
+        [Test]
+        public void assure_it_has_a_IsObservable_flag()
+        {
+            Then(() =>
+                viewModelProperty.IsObservable.ShouldBeFalse());
         }
     }
 }

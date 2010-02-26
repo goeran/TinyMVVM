@@ -121,7 +121,7 @@ namespace TinyMVVM.DSL.TextParser
             var type = typeToken.Value;
 
             semanticModel.AddViewModelData(
-                new ViewModelProperty(name, type));
+                new ViewModelProperty(name, type, false));
         }
 
         private void ParseViewModelCommand()
