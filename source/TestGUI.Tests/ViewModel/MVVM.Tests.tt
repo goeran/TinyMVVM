@@ -67,9 +67,9 @@ namespace TestGUI.Tests.ViewModel
 		}
 	<#}#>	
 	
-		public void And_<#= viewModel.Name#>_Recording_is_Started()
+		public void And_<#= viewModel.Name#>_PropertyChangeRecording_is_Started()
 		{
-			viewModel.Recorder.Start();
+			viewModel.PropertyChangeRecorder.Start();
 		}
 
 	<#foreach (var property in viewModel.Properties){#>

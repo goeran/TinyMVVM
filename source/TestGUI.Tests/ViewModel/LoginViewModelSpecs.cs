@@ -204,7 +204,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         protected override void Context()
         {
             Given_LoginViewModel_is_created();
-            And_LoginViewModel_Recording_is_Started();
+            And_LoginViewModel_PropertyChangeRecording_is_Started();
 
             And_Username_is_entered("goeran");
             And_Password_is_entered("hansen");
@@ -215,7 +215,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         [Test]
         public void Then_assure_its_in_ReadOnly_state()
         {
-            var readOnlyChanges = viewModel.Recorder.Data.Where(r => r.PropertyName == "ReadOnly").ToList();
+            var readOnlyChanges = viewModel.PropertyChangeRecorder.Data.Where(r => r.PropertyName == "ReadOnly").ToList();
             readOnlyChanges.ShouldHave(2);
             readOnlyChanges[0].Value.ShouldBe(true);
             readOnlyChanges[1].Value.ShouldBe(false);

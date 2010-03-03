@@ -55,9 +55,9 @@ namespace TestGUI.Tests.ViewModel
 		}
 		
 	
-		public void And_SearchViewModel_Recording_is_Started()
+		public void And_SearchViewModel_PropertyChangeRecording_is_Started()
 		{
-			viewModel.Recorder.Start();
+			viewModel.PropertyChangeRecorder.Start();
 		}
 
 		public void When_Query_is_entered(string value)
@@ -153,9 +153,9 @@ namespace TestGUI.Tests.ViewModel
 		}
 		
 	
-		public void And_LoginViewModel_Recording_is_Started()
+		public void And_LoginViewModel_PropertyChangeRecording_is_Started()
 		{
-			viewModel.Recorder.Start();
+			viewModel.PropertyChangeRecorder.Start();
 		}
 
 		public void When_Username_is_entered(string value)
@@ -250,9 +250,9 @@ namespace TestGUI.Tests.ViewModel
 		}
 		
 	
-		public void And_AddressBookViewModel_Recording_is_Started()
+		public void And_AddressBookViewModel_PropertyChangeRecording_is_Started()
 		{
-			viewModel.Recorder.Start();
+			viewModel.PropertyChangeRecorder.Start();
 		}
 
 		public void When_Contacts_is_entered(string value)
