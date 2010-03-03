@@ -85,11 +85,14 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
                 var vm = semanticModel.ViewModels.First();
                 vm.Properties[0].Name.ShouldBe("Username");
                 vm.Properties[0].Type.ShouldBe("string");
+                vm.Properties[0].IsObservable.ShouldBeFalse();
                 vm.Properties[1].Name.ShouldBe("Password");
                 vm.Properties[1].Type.ShouldBe("string");
+                vm.Properties[1].IsObservable.ShouldBeFalse();
 
                 var vmSearch = semanticModel.ViewModels[2];
                 vmSearch.Properties[0].Name.ShouldBe("Query");
+                vmSearch.Properties[0].IsObservable.ShouldBeTrue();
             });
         }
 

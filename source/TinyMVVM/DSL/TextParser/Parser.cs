@@ -88,7 +88,7 @@ namespace TinyMVVM.DSL.TextParser
                 var token = tokensEnumerator.Current;
                 if (token == Token.Property ||
                     token == Token.OProperty)
-                    ParseViewModelData();
+                    ParseViewModelProperties();
                 else if (token == Token.Command)
                     ParseViewModelCommand();
 
@@ -101,8 +101,9 @@ namespace TinyMVVM.DSL.TextParser
             return tokensEnumerator.Current;   
         }
 
-        private void ParseViewModelData()
+        private void ParseViewModelProperties()
         {
+            var propertyToken = CurrentToken();
             var nameToken = NextToken();
             var asToken = NextToken();
             var typeToken = NextToken();
@@ -120,8 +121,11 @@ namespace TinyMVVM.DSL.TextParser
             //Type
             var type = typeToken.Value;
 
+            //IsObservable
+            var isObservable = (propertyToken == Token.OProperty) ? true : false;
+
             semanticModel.AddViewModelData(
-                new ViewModelProperty(name, type, false));
+                new ViewModelProperty(name, type, isObservable));
         }
 
         private void ParseViewModelCommand()
