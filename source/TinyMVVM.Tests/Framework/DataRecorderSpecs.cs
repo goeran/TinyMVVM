@@ -73,28 +73,47 @@ namespace TinyMVVM.Tests.Framework
                 And(DataRecorder_is_created);
                 And("Recording is started", () =>
                     dataRecorder.Start());
-
-                When("Subject changes", () =>
-                {
-                    subject.Name = "Gøran";
-                    subject.Age = 28;
-                });
             }
 
             [Test]
             public void assure_changes_are_recorded()
             {
+                When("Subject changes", () =>
+                {
+                    subject.Name = "Gøran";
+                    subject.Age = 28;
+                });
+
                 changeTable.Add("Name", "Gøran");
                 changeTable.Add("Age", 28);
-
                 foreach (var row in changeTable)
                 {
                     Then("assure change in '" + row.Key + "' is recorded", () =>
                     {
-                        dataRecorder.Data.ContainsKey(row.Key).ShouldBeTrue();
-                        dataRecorder.Data[row.Key].ShouldBe(row.Value);
+                        var record = dataRecorder.Data.Where(r => r.PropertyName == row.Key).SingleOrDefault();
+                        record.ShouldNotBeNull();
+                        record.PropertyName.ShouldBe(row.Key);
+                        record.Value.ShouldBe(row.Value);
                     });
                 }
+            }
+
+            [Test]
+            public void assure_multiple_changes_in_on_Property_can_be_recorded()
+            {
+                When("Subject changes", () =>
+                {
+                    subject.Name = "Gøran";
+                    subject.Name = "Gøran Hansen";
+                });
+
+                Then(() =>
+                {
+                    dataRecorder.Data.Where(r => r.PropertyName == "Name").
+                        Count().ShouldBe(2);
+                    dataRecorder.Data[0].Value.ShouldBe("Gøran");
+                    dataRecorder.Data[1].Value.ShouldBe("Gøran Hansen");
+                });
             }
         }
 
@@ -136,7 +155,8 @@ namespace TinyMVVM.Tests.Framework
                     subject.Age = 28);
 
                 Then(() =>
-                     dataRecorder.Data.ContainsKey("Age").ShouldBeFalse());
+                     dataRecorder.Data.Where(r => r.PropertyName == "Age").
+                        Count().ShouldBe(0));
             }
 
         }
@@ -160,15 +180,17 @@ namespace TinyMVVM.Tests.Framework
             public void assure_changes_are_recorded_but_without_value()
             {
                 Then(() =>
-                     dataRecorder.Data.ContainsKey("DoesNotExist").ShouldBeTrue());
+                     dataRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
+                         Count().ShouldBe(1));
             }
 
             [Test]
             public void assure_value_for_recording_is_a_custom_NullObj()
             {
                 Then(() =>
-                     dataRecorder.Data["DoesNotExist"].ShouldBeInstanceOfType<DataRecorder.CouldNotExtractValueFromProperty>());
+                     dataRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
+                        Single().Value.ShouldBeInstanceOfType<DataRecorder.CouldNotExtractValueFromProperty>());
             }
         }
-    }
+   }
 }

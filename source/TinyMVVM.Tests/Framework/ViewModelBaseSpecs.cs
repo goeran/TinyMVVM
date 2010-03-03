@@ -25,5 +25,12 @@ namespace TinyMVVM.Tests.Framework.ViewModelBaseSpecs
             Then(() => 
                 (viewModel is INotifyPropertyChanged).ShouldBeTrue());
         }
+
+        [Test]
+        public void assure_it_has_a_DataRecorder()
+        {
+            Then(() =>
+                 viewModel.Recorder.ShouldNotBeNull());
+        }
     }
 }

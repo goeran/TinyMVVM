@@ -11,8 +11,11 @@ namespace TinyMVVM.Framework
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        static ViewModelBase()
+        public DataRecorder Recorder { get; protected set; }
+
+        public ViewModelBase()
         {
+            Recorder = new DataRecorder(this);
         }
 
         protected T GetInstance<T>() where T: class

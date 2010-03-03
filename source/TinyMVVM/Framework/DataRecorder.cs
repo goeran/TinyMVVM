@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
@@ -10,8 +11,15 @@ namespace TinyMVVM.Framework
     {
         private bool recording_flag;
         private INotifyPropertyChanged subject;
+        private List<Record> data = new List<Record>();
 
-        public Dictionary<string, Object> Data { get; private set; }
+        public ReadOnlyCollection<Record> Data
+        {
+            get
+            {
+                return new ReadOnlyCollection<Record>(data);
+            }
+        }
 
         public DataRecorder(INotifyPropertyChanged subject)
         {
@@ -20,15 +28,15 @@ namespace TinyMVVM.Framework
 
             this.subject = subject;
             this.subject.PropertyChanged += subject_PropertyChanged;
-
-            Data = new Dictionary<string, object>();
         }
 
         void subject_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (IsRecording())
             {
-                Data.Add(e.PropertyName, TryGetPropertyValueFromSubject(e.PropertyName));
+                data.Add(new Record(
+                    e.PropertyName,
+                    TryGetPropertyValueFromSubject(e.PropertyName)));
             }
         }
 
@@ -65,6 +73,18 @@ namespace TinyMVVM.Framework
         private void IsRecording(bool val)
         {
             recording_flag = val;
+        }
+
+        public class Record
+        {
+            public string PropertyName { get; private set; }
+            public Object Value { get; private set; }
+
+            internal Record(string propertyName, Object value)
+            {
+                PropertyName = propertyName;
+                Value = value;
+            }
         }
 
         public class CouldNotExtractValueFromProperty
