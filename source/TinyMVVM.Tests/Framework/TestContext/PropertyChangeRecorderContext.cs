@@ -8,24 +8,24 @@ using TinyMVVM.Framework;
 
 namespace TinyMVVM.Tests.Framework.TestContext
 {
-    public class DataRecorderContext : NUnitScenarioClass
+    public class PropertyChangeRecorderContext : NUnitScenarioClass
     {
         protected static Contact subject;
-        protected static DataRecorder dataRecorder;
+        protected static PropertyChangeRecorder propertyChangeRecorder;
 
         protected Context Subject_is_created = () =>
         {
             subject = new Contact();
         };
 
-        protected Context DataRecorder_is_created = () =>
+        protected Context PropertyChangeRecorder_is_created = () =>
         {
-            dataRecorder = new DataRecorder(subject);
+            propertyChangeRecorder = new PropertyChangeRecorder(subject);
         };
 
-        protected When DataRecorder_is_spawned = () =>
+        protected When PropertyChangeRecorder_is_spawned = () =>
         {
-            dataRecorder = new DataRecorder(subject);
+            propertyChangeRecorder = new PropertyChangeRecorder(subject);
         };
 
         protected class Contact : INotifyPropertyChanged

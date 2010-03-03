@@ -10,10 +10,10 @@ using System.ComponentModel;
 
 namespace TinyMVVM.Tests.Framework
 {
-    public class DataRecorderSpecs
+    public class PropertyChangeRecorderSpecs
     {
         [TestFixture]
-        public class When_spawning : DataRecorderContext
+        public class When_spawning : PropertyChangeRecorderContext
         {
             [SetUp]
             public void Setup()
@@ -26,12 +26,12 @@ namespace TinyMVVM.Tests.Framework
             {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        new DataRecorder(null)));
+                        new PropertyChangeRecorder(null)));
             }
         }
 
         [TestFixture]
-        public class When_spawned : DataRecorderContext
+        public class When_spawned : PropertyChangeRecorderContext
         {
             [SetUp]
             public void Setup()
@@ -42,27 +42,27 @@ namespace TinyMVVM.Tests.Framework
             [Test]
             public void assure_it_has_Data()
             {
-                When(DataRecorder_is_spawned);
+                When(PropertyChangeRecorder_is_spawned);
 
                 Then(() =>
-                    dataRecorder.Data.ShouldNotBeNull());
+                    propertyChangeRecorder.Data.ShouldNotBeNull());
             }
 
             [Test]
             public void assure_it_doesnt_Record_changes()
             {
-                And(DataRecorder_is_created);
+                And(PropertyChangeRecorder_is_created);
     
                 When("Subject is changed", () =>
                     subject.Name = "Gøran");
 
                 Then(() =>
-                     dataRecorder.Data.Count.ShouldBe(0));
+                     propertyChangeRecorder.Data.Count.ShouldBe(0));
             }
         }
             
         [TestFixture]
-        public class When_Recording_and_Subject_changes : DataRecorderContext
+        public class When_Recording_and_Subject_changes : PropertyChangeRecorderContext
         {
             Dictionary<string, object> changeTable = new Dictionary<string, object>();
 
@@ -70,9 +70,9 @@ namespace TinyMVVM.Tests.Framework
             public void Setup()
             {
                 Given(Subject_is_created);
-                And(DataRecorder_is_created);
+                And(PropertyChangeRecorder_is_created);
                 And("Recording is started", () =>
-                    dataRecorder.Start());
+                    propertyChangeRecorder.Start());
             }
 
             [Test]
@@ -90,7 +90,7 @@ namespace TinyMVVM.Tests.Framework
                 {
                     Then("assure change in '" + row.Key + "' is recorded", () =>
                     {
-                        var record = dataRecorder.Data.Where(r => r.PropertyName == row.Key).SingleOrDefault();
+                        var record = propertyChangeRecorder.Data.Where(r => r.PropertyName == row.Key).SingleOrDefault();
                         record.ShouldNotBeNull();
                         record.PropertyName.ShouldBe(row.Key);
                         record.Value.ShouldBe(row.Value);
@@ -109,22 +109,22 @@ namespace TinyMVVM.Tests.Framework
 
                 Then(() =>
                 {
-                    dataRecorder.Data.Where(r => r.PropertyName == "Name").
+                    propertyChangeRecorder.Data.Where(r => r.PropertyName == "Name").
                         Count().ShouldBe(2);
-                    dataRecorder.Data[0].Value.ShouldBe("Gøran");
-                    dataRecorder.Data[1].Value.ShouldBe("Gøran Hansen");
+                    propertyChangeRecorder.Data[0].Value.ShouldBe("Gøran");
+                    propertyChangeRecorder.Data[1].Value.ShouldBe("Gøran Hansen");
                 });
             }
         }
 
         [TestFixture]
-        public class When_not_Recording_and_Subject_changes : DataRecorderContext
+        public class When_not_Recording_and_Subject_changes : PropertyChangeRecorderContext
         {
             [SetUp]
             public void Setup()
             {
                 Given(Subject_is_created);
-                And(DataRecorder_is_created);
+                And(PropertyChangeRecorder_is_created);
             }
 
             [Test]
@@ -137,7 +137,7 @@ namespace TinyMVVM.Tests.Framework
                 });
 
                 Then(() =>
-                     dataRecorder.Data.Count.ShouldBe(0));
+                     propertyChangeRecorder.Data.Count.ShouldBe(0));
             }
 
             [Test]
@@ -145,32 +145,32 @@ namespace TinyMVVM.Tests.Framework
             {
                 And("Recording is started and Subject changes", () =>
                 {
-                    dataRecorder.Start();
+                    propertyChangeRecorder.Start();
                     subject.Name = "Gøran";
                 });
                 And("Recording is stopped", () =>
-                    dataRecorder.Stop());
+                    propertyChangeRecorder.Stop());
 
                 When("Subject change", () =>
                     subject.Age = 28);
 
                 Then(() =>
-                     dataRecorder.Data.Where(r => r.PropertyName == "Age").
+                     propertyChangeRecorder.Data.Where(r => r.PropertyName == "Age").
                         Count().ShouldBe(0));
             }
 
         }
 
         [TestFixture]
-        public class When_Subject_changes_and_changed_Property_does_not_exists : DataRecorderContext
+        public class When_Subject_changes_and_changed_Property_does_not_exists : PropertyChangeRecorderContext
         {
             [SetUp]
             public void Setup()
             {
                 Given(Subject_is_created);
-                And(DataRecorder_is_created);
+                And(PropertyChangeRecorder_is_created);
                 And("Recording is started", () =>
-                    dataRecorder.Start());
+                    propertyChangeRecorder.Start());
 
                 When("Subject change and report about change in a property that does not exist", () =>
                     subject.TriggerPropertyChanged("DoesNotExist"));
@@ -180,7 +180,7 @@ namespace TinyMVVM.Tests.Framework
             public void assure_changes_are_recorded_but_without_value()
             {
                 Then(() =>
-                     dataRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
+                     propertyChangeRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
                          Count().ShouldBe(1));
             }
 
@@ -188,8 +188,8 @@ namespace TinyMVVM.Tests.Framework
             public void assure_value_for_recording_is_a_custom_NullObj()
             {
                 Then(() =>
-                     dataRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
-                        Single().Value.ShouldBeInstanceOfType<DataRecorder.CouldNotExtractValueFromProperty>());
+                     propertyChangeRecorder.Data.Where(r => r.PropertyName == "DoesNotExist").
+                        Single().Value.ShouldBeInstanceOfType<PropertyChangeRecorder.CouldNotExtractValueFromProperty>());
             }
         }
    }

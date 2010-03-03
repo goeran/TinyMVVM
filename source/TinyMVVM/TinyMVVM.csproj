@@ -71,7 +71,7 @@
     <Compile Include="DSL\TextParser\Scanner.cs" />
     <Compile Include="DSL\TextParser\Token.cs" />
     <Compile Include="Framework\Bootstrapper.cs" />
-    <Compile Include="Framework\DataRecorder.cs" />
+    <Compile Include="Framework\PropertyChangeRecorder.cs" />
     <Compile Include="Framework\DelegateCommand.cs" />
     <Compile Include="Framework\IBootstrapper.cs" />
     <Compile Include="Framework\Internal\ServiceLocatorForTesting.cs" />

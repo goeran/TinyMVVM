@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace TinyMVVM.Framework
 {
-    public class DataRecorder
+    public class PropertyChangeRecorder
     {
         private bool recording_flag;
         private INotifyPropertyChanged subject;
@@ -21,7 +21,7 @@ namespace TinyMVVM.Framework
             }
         }
 
-        public DataRecorder(INotifyPropertyChanged subject)
+        public PropertyChangeRecorder(INotifyPropertyChanged subject)
         {
             if (subject == null) 
                 throw new ArgumentNullException("subject");

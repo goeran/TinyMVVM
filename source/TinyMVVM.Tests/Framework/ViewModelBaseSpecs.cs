@@ -27,10 +27,17 @@ namespace TinyMVVM.Tests.Framework.ViewModelBaseSpecs
         }
 
         [Test]
-        public void assure_it_has_a_DataRecorder()
+        public void assure_it_has_a_PropertyChangeRecorder()
         {
             Then(() =>
                  viewModel.PropertyChangeRecorder.ShouldNotBeNull());
+        }
+
+        [Test]
+        public void assure_it_has_a_CommandStateChangeRecorder()
+        {
+            Then(() =>
+                 viewModel.CmdStateChangeRecorder.ShouldNotBeNull());
         }
     }
 }
