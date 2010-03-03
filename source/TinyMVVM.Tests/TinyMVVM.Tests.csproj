@@ -77,9 +77,11 @@
     <Compile Include="DSL\TextParser\TestContext\TokenContext.cs" />
     <Compile Include="DSL\TextParser\TokenSpecs.cs" />
     <Compile Include="Framework\BootStrapperSpecs.cs" />
+    <Compile Include="Framework\DataRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />
     <Compile Include="Framework\ServiceLocatorSpecs.cs" />
     <Compile Include="Framework\TestContext\BootstrapperContext.cs" />
+    <Compile Include="Framework\TestContext\DataRecorderContext.cs" />
     <Compile Include="Framework\TestContext\DelegateCommandContext.cs" />
     <Compile Include="Framework\TestContext\ServiceLocatorContext.cs" />
     <Compile Include="Framework\TestContext\ViewModelBaseContext.cs" />
