@@ -215,7 +215,10 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         [Test]
         public void Then_assure_its_in_ReadOnly_state()
         {
-            viewModel.ReadOnly.ShouldBeTrue();
+            var readOnlyChanges = viewModel.Recorder.Data.Where(r => r.PropertyName == "ReadOnly").ToList();
+            readOnlyChanges.ShouldHave(2);
+            readOnlyChanges[0].Value.ShouldBe(true);
+            readOnlyChanges[1].Value.ShouldBe(false);
         }
     }
 

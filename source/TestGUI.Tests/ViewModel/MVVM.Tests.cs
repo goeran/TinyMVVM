@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using TestGUI.ViewModel;
 using TinyMVVM.Framework;
+using TinyMVVM.Framework.Services;
 
 namespace TestGUI.Tests.ViewModel
 {
@@ -15,7 +16,21 @@ namespace TestGUI.Tests.ViewModel
 		{
 			Bootstrapper.FromProject.Initialize(null);
 			
+			EnableBackgroundWorkFakeForTesting();
+			
 			Context();
+		}
+		
+		private void EnableBackgroundWorkFakeForTesting()
+		{
+			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
+			
+		    backgroundWorkerFake.Setup(
+		        w => w.Invoke(It.IsAny<Action>())).
+		            Callback((Action a) =>
+		            {
+                        a.Invoke();
+		            });
 		}
 		
 		protected abstract void Context();
@@ -83,7 +98,21 @@ namespace TestGUI.Tests.ViewModel
 		{
 			Bootstrapper.FromProject.Initialize(null);
 			
+			EnableBackgroundWorkFakeForTesting();
+			
 			Context();
+		}
+		
+		private void EnableBackgroundWorkFakeForTesting()
+		{
+			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
+			
+		    backgroundWorkerFake.Setup(
+		        w => w.Invoke(It.IsAny<Action>())).
+		            Callback((Action a) =>
+		            {
+                        a.Invoke();
+		            });
 		}
 		
 		protected abstract void Context();
@@ -182,7 +211,21 @@ namespace TestGUI.Tests.ViewModel
 		{
 			Bootstrapper.FromProject.Initialize(null);
 			
+			EnableBackgroundWorkFakeForTesting();
+			
 			Context();
+		}
+		
+		private void EnableBackgroundWorkFakeForTesting()
+		{
+			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
+			
+		    backgroundWorkerFake.Setup(
+		        w => w.Invoke(It.IsAny<Action>())).
+		            Callback((Action a) =>
+		            {
+                        a.Invoke();
+		            });
 		}
 		
 		protected abstract void Context();

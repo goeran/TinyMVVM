@@ -33,18 +33,18 @@ namespace TestGUI.ViewModel
         {
             backgroundWorker.Invoke(() =>
             {
+                ReadOnly = true;
+                var isAuthenticated = authService.Authenticate(
+                    Username, Password);
+
+                if (isAuthenticated == false)
+                    Status = "Invalid credentials";
+                else
+                {
+                    IsVisible = false;
+                }
+                ReadOnly = false;
             });
-
-            var isAuthenticated = authService.Authenticate(
-                Username, Password);
-
-            if (isAuthenticated == false)
-                Status = "Invalid credentials";
-            else
-            {
-                IsVisible = false;
-
-            }
         }
 
         private bool CanLogin()
