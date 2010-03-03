@@ -5,11 +5,11 @@
 	command Save	
 
 viewmodel LoginViewModel:
-	property Username as string
-	property Password as string
-	property IsVisible as bool
-	property Status as string
-	property ReadOnly as bool
+	oproperty Username as string
+	oproperty Password as string
+	oproperty IsVisible as bool
+	oproperty Status as string
+	oproperty ReadOnly as bool
 	
 	command Login
 	command Cancel

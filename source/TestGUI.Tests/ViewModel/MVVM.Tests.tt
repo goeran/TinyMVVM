@@ -50,8 +50,13 @@ namespace TestGUI.Tests.ViewModel
 		{
 			viewModel.<#= property.Name#> = value;
 		}
-		
 	<#}#>	
+	
+		public void And_<#= viewModel.Name#>_Recording_is_Started()
+		{
+			viewModel.Recorder.Start();
+		}
+
 	<#foreach (var property in viewModel.Properties){#>
 	public void When_<#= property.Name#>_is_entered(<#= property.Type#> value)
 		{

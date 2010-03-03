@@ -18,6 +18,12 @@ namespace TinyMVVM.Framework
             Recorder = new DataRecorder(this);
         }
 
+        protected void TriggerPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         protected T GetInstance<T>() where T: class
         {
             return ServiceLocator.Instance.GetInstance<T>();

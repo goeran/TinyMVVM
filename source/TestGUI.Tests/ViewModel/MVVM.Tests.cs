@@ -39,7 +39,12 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.Query = value;
 		}
 		
-		
+	
+		public void And_SearchViewModel_Recording_is_Started()
+		{
+			viewModel.Recorder.Start();
+		}
+
 		public void When_Query_is_entered(string value)
 		{
 			viewModel.Query = value;
@@ -101,28 +106,29 @@ namespace TestGUI.Tests.ViewModel
 		{
 			viewModel.Username = value;
 		}
-		
 		public void And_Password_is_entered(string value)
 		{
 			viewModel.Password = value;
 		}
-		
 		public void And_IsVisible_is_entered(bool value)
 		{
 			viewModel.IsVisible = value;
 		}
-		
 		public void And_Status_is_entered(string value)
 		{
 			viewModel.Status = value;
 		}
-		
 		public void And_ReadOnly_is_entered(bool value)
 		{
 			viewModel.ReadOnly = value;
 		}
 		
-		
+	
+		public void And_LoginViewModel_Recording_is_Started()
+		{
+			viewModel.Recorder.Start();
+		}
+
 		public void When_Username_is_entered(string value)
 		{
 			viewModel.Username = value;
@@ -200,7 +206,12 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.Contacts = value;
 		}
 		
-		
+	
+		public void And_AddressBookViewModel_Recording_is_Started()
+		{
+			viewModel.Recorder.Start();
+		}
+
 		public void When_Contacts_is_entered(string value)
 		{
 			viewModel.Contacts = value;

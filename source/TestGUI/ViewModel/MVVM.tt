@@ -18,8 +18,23 @@ namespace TestGUI.ViewModel
 	{
 		//State
 	<# foreach (ViewModelProperty property in viewModel.Properties) {#>
-	public <#= property.Type#> <#= property.Name#> { get; set; }
+	<# if (property.IsObservable) {#>private <#= property.Type#> _<#= property.Name#>;
+		public <#= property.Type#> <#= property.Name#>
+		{
+			get { return _<#= property.Name#>; }
+			set
+			{
+				if (value != _<#= property.Name#>)
+				{
+					_<#= property.Name#> = value;
+					TriggerPropertyChanged("<#= property.Name#>");
+				}
+			}
+		}
 	<#}#>
+<# if (!property.IsObservable) {#>public <#= property.Type#> <#= property.Name#> { get; set; }<#}#>
+<#}#>
+
 		
 		//Commands
 	<#foreach (ViewModelCommand command in viewModel.Commands) {#>

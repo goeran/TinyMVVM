@@ -44,8 +44,10 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     {
         protected int loginCommandStateChanges;
 
-        protected override void  Context()
+        protected override void Context()
         {
+            loginCommandStateChanges = 0;
+
             Given_LoginViewModel_is_created();
             viewModel.Login.CanExecuteChanged += (o, e) =>
                 loginCommandStateChanges++;
@@ -202,6 +204,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         protected override void Context()
         {
             Given_LoginViewModel_is_created();
+            And_LoginViewModel_Recording_is_Started();
+
             And_Username_is_entered("goeran");
             And_Password_is_entered("hansen");
 
