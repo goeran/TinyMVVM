@@ -10,11 +10,11 @@ namespace TinyMVVM.Tests.Framework.TestContext
     public class CommandStateChangeRecorderContext : NUnitScenarioClass
     {
         protected static CommandStateChangeRecorder cmdStateChangeRecorder;
-        protected static object viewModel;
+        protected static LoginViewModel viewModel;
 
         protected Context ViewModel_is_created = () =>
         {
-            viewModel = new object();
+            viewModel = new LoginViewModel();
         };
 
         protected Context CmdStateChangeRecorder_is_created = () =>
@@ -26,5 +26,22 @@ namespace TinyMVVM.Tests.Framework.TestContext
         {
             cmdStateChangeRecorder = new CommandStateChangeRecorder(viewModel);
         };
+
+        protected class LoginViewModel
+        {
+            public DelegateCommand LoginCommand { get; private set; }
+            public DelegateCommand CancelCommand { get; private set; }
+
+            public LoginViewModel()
+            {
+                LoginCommand = new DelegateCommand(() => {});
+                CancelCommand = new DelegateCommand(() => {});
+            }
+        }
+
+        protected class WebLoginViewModel : LoginViewModel
+        {
+            public DelegateCommand ForgotPassword { get; set; }
+        }
     }
 }
