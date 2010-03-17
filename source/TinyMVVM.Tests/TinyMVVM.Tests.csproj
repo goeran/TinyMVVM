@@ -76,7 +76,6 @@
     <Compile Include="DSL\TextParser\TestContext\ScannerContext.cs" />
     <Compile Include="DSL\TextParser\TestContext\TokenContext.cs" />
     <Compile Include="DSL\TextParser\TokenSpecs.cs" />
-    <Compile Include="Framework\BootStrapperSpecs.cs" />
     <Compile Include="Framework\CommmandStateChangeRecorderSpecs.cs" />
     <Compile Include="Framework\PropertyChangeRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />

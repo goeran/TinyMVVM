@@ -70,7 +70,6 @@
     <Compile Include="DSL\TextParser\Parser.cs" />
     <Compile Include="DSL\TextParser\Scanner.cs" />
     <Compile Include="DSL\TextParser\Token.cs" />
-    <Compile Include="Framework\Bootstrapper.cs" />
     <Compile Include="Framework\CommandStateChangeRecorder.cs" />
     <Compile Include="Framework\PropertyChangeRecorder.cs" />
     <Compile Include="Framework\DelegateCommand.cs" />

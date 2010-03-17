@@ -14,7 +14,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			Bootstrapper.FromProject.Initialize(null);
+			ServiceLocator.SetLocator(new ServiceLocatorForTests());
 			
 			EnableBackgroundWorkFakeForTesting();
 			
@@ -96,7 +96,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			Bootstrapper.FromProject.Initialize(null);
+			ServiceLocator.SetLocator(new ServiceLocatorForTests());
 			
 			EnableBackgroundWorkFakeForTesting();
 			
@@ -209,7 +209,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			Bootstrapper.FromProject.Initialize(null);
+			ServiceLocator.SetLocator(new ServiceLocatorForTests());
 			
 			EnableBackgroundWorkFakeForTesting();
 			

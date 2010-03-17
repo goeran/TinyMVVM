@@ -90,7 +90,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BootstrapperForClient.cs" />
+    <Compile Include="ServiceLocatorForClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
