@@ -9,7 +9,7 @@ using TinyMVVM.Tests.Framework.Conventions.TestContext;
 
 namespace TinyMVVM.Tests.Framework.Conventions
 {
-	class AutoBindCommandDelegatesSpecs
+	class BindCommandsDelegatesToMethodsSpecs
 	{
 		[TestFixture]
 		public class When_spawned : ConventionsTestContext
@@ -17,14 +17,14 @@ namespace TinyMVVM.Tests.Framework.Conventions
 			[SetUp]
 			public void Setup()
 			{
-				When(AutoBindCommandDelegates_is_spawned);
+				When(BindCommandsDelegatesToMethods_is_spawned);
 			}
 
 			[Test]
 			public void assure_its_a_IViewModelConvention()
 			{
 				Then(() =>
-				     (autoBindCommandDelegates is IViewModelConvention).ShouldBeTrue());
+				     (BindCommandsDelegatesToMethodsConvention is IViewModelConvention).ShouldBeTrue());
 			}
 		}
 
@@ -35,20 +35,35 @@ namespace TinyMVVM.Tests.Framework.Conventions
 			public void Setup()
 			{
 				Given(LoginViewModel_is_created);
-				And(AutoBindCommandDelegates_is_created);
+				And(BindCommandsExecuteDelegateToMethodConvention_is_created);
 
 				When("convention is applied to ViewModel", () =>
-					autoBindCommandDelegates.ApplyTo(loginViewModel));
+					BindCommandsDelegatesToMethodsConvention.ApplyTo(loginViewModel));
 			}
 
 			[Test]
-			public void assure_ExecuteDelegate_is_set()
+			public void assure_Commands_execute_Delegate_is_bound_to_matching_instance_methods()
 			{
 				Then(() =>
 				{
 					loginViewModel.Login.Execute(null);
-
 					loginViewModel.LoginIsExecuted.ShouldBeTrue();
+
+					loginViewModel.Cancel.Execute(null);
+					loginViewModel.CancelIsExecuted.ShouldBeTrue();
+				});
+			}
+
+			[Test]
+			public void assure_Commands_CanExecute_delegate_is_bound_to_matching_instance_methods()
+			{
+				Then(() =>
+				{
+					loginViewModel.Login.CanExecute(null);
+					loginViewModel.LoginCanExecuteIsExecuted.ShouldBeTrue();
+
+					loginViewModel.Cancel.CanExecute(null);
+					loginViewModel.CancelCanExecuteIsExecuted.ShouldBeTrue();
 				});
 			}
 		}

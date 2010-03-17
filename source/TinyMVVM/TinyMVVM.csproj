@@ -71,7 +71,7 @@
     <Compile Include="DSL\TextParser\Scanner.cs" />
     <Compile Include="DSL\TextParser\Token.cs" />
     <Compile Include="Framework\CommandStateChangeRecorder.cs" />
-    <Compile Include="Framework\Conventions\AutoBindCommandDelegates.cs" />
+    <Compile Include="Framework\Conventions\BindCommandsDelegatesToMethods.cs" />
     <Compile Include="Framework\Conventions\IViewModelConvention.cs" />
     <Compile Include="Framework\PropertyChangeRecorder.cs" />
     <Compile Include="Framework\DelegateCommand.cs" />
