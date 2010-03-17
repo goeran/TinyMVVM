@@ -15,12 +15,12 @@ namespace TestGUI.ViewModel
 		
 		public SearchViewModel()
 		{
-			Search = new DelegateCommand(OnSearch, CanSearch);
-			Clear = new DelegateCommand(OnClear, CanClear);
-			Save = new DelegateCommand(OnSave, CanSave);
+			Search = new DelegateCommand();
+			Clear = new DelegateCommand();
+			Save = new DelegateCommand();
 				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
-			OnInitialize();
+			ApplyDefaultConventions();
 		}
 	}
 		
@@ -100,11 +100,11 @@ namespace TestGUI.ViewModel
 		
 		public LoginViewModel()
 		{
-			Login = new DelegateCommand(OnLogin, CanLogin);
-			Cancel = new DelegateCommand(OnCancel, CanCancel);
+			Login = new DelegateCommand();
+			Cancel = new DelegateCommand();
 				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
-			OnInitialize();
+			ApplyDefaultConventions();
 		}
 	}
 		
@@ -119,11 +119,11 @@ namespace TestGUI.ViewModel
 		
 		public AddressBookViewModel()
 		{
-			Add = new DelegateCommand(OnAdd, CanAdd);
-			Delete = new DelegateCommand(OnDelete, CanDelete);
+			Add = new DelegateCommand();
+			Delete = new DelegateCommand();
 				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
-			OnInitialize();
+			ApplyDefaultConventions();
 		}
 	}
 		

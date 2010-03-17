@@ -26,22 +26,45 @@
 #endregion
 
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using TinyMVVM.Framework.Conventions;
+using System.Collections.Generic;
 
 namespace TinyMVVM.Framework
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+    	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
 
-        public PropertyChangeRecorder PropertyChangeRecorder { get; protected set; }
-        public Object CmdStateChangeRecorder { get; protected set; }
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        public ViewModelBase()
+		public PropertyChangeRecorder PropertyChangeRecorder { get; protected set; }
+		public Object CmdStateChangeRecorder { get; protected set; }
+		protected ReadOnlyCollection<IViewModelConvention> AppliedConventions
+		{
+			get { return new ReadOnlyCollection<IViewModelConvention>(appliedConventions); }
+		}
+
+    	protected ViewModelBase()
         {
             PropertyChangeRecorder = new PropertyChangeRecorder(this);
             CmdStateChangeRecorder = new object();
         }
+
+    	protected void ApplyDefaultConventions()
+    	{
+			ApplyConvention(new InvokeOnInitialize());
+			ApplyConvention(new BindCommandsDelegatesToMethods());
+    	}
+
+    	public void ApplyConvention(IViewModelConvention convention)
+		{
+			if (convention == null) throw new ArgumentNullException();
+
+			convention.ApplyTo(this);
+			appliedConventions.Add(convention);
+		}
 
         protected void TriggerPropertyChanged(string propertyName)
         {

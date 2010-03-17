@@ -11,7 +11,8 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 	public class ConventionsTestContext : NUnitScenarioClass
 	{
 		protected static BindCommandsDelegatesToMethods BindCommandsDelegatesToMethodsConvention;
-		protected static LoginViewModel loginViewModel;
+		protected static InvokeOnInitialize invokeOnInitializeConvention; 
+		protected static LoginViewModel viewModel;
 
 		protected Context BindCommandsExecuteDelegateToMethodConvention_is_created = () =>
 		{
@@ -20,7 +21,12 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 
 		protected Context LoginViewModel_is_created = () =>
 		{
-			loginViewModel = new LoginViewModel();
+			viewModel = new LoginViewModel();
+		};
+
+		protected Context InvokeOnInitializeConvention_is_created = () =>
+		{
+			invokeOnInitializeConvention = new InvokeOnInitialize();
 		};
 
 
@@ -31,6 +37,8 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 
 		protected class LoginViewModel : ViewModelBase
 		{
+			public bool OnInitializedIsExecuted { get; set; }
+
 			public bool LoginIsExecuted { get; private set; }
 			public bool LoginCanExecuteIsExecuted { get; private set; }
 			public DelegateCommand Login { get; private set; }
@@ -46,6 +54,11 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 				Login = new DelegateCommand();
 				Cancel = new DelegateCommand();
 				Clear = new DelegateCommand();
+			}
+
+			private void OnInitialize()
+			{
+				OnInitializedIsExecuted = true;
 			}
 
 			private void OnLogin()

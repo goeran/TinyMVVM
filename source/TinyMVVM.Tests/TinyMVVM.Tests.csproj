@@ -78,6 +78,7 @@
     <Compile Include="DSL\TextParser\TokenSpecs.cs" />
     <Compile Include="Framework\CommmandStateChangeRecorderSpecs.cs" />
     <Compile Include="Framework\Conventions\BindCommandsDelegatesToMethodsSpecs.cs" />
+    <Compile Include="Framework\Conventions\InvokeOnInitializeSpecs.cs" />
     <Compile Include="Framework\Conventions\TestContext\ConventionsTestContext.cs" />
     <Compile Include="Framework\PropertyChangeRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />

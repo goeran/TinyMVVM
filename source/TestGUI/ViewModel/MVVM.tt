@@ -44,11 +44,11 @@ namespace TestGUI.ViewModel
 		public <#= viewModel.Name#>()
 		{
 	<#foreach (var command in viewModel.Commands) {#>
-		<#= command.Name#> = new DelegateCommand(On<#= command.Name#>, Can<#= command.Name#>);
+		<#= command.Name#> = new DelegateCommand();
 	<#}#>
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
-			OnInitialize();
+			ApplyDefaultConventions();
 		}
 	}
 		

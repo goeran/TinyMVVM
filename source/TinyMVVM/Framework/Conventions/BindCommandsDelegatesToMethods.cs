@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using TinyMVVM.Framework.Internal;
 
 namespace TinyMVVM.Framework.Conventions
 {
@@ -10,29 +11,29 @@ namespace TinyMVVM.Framework.Conventions
 	{
 		public void ApplyTo(ViewModelBase viewModel)
 		{
-			var properties = viewModel.GetType().GetProperties();
-			var methods = viewModel.GetType().GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+			var dynamicObject = new DynamicObject(viewModel);
 
-			var commands = properties.Where(p => p.PropertyType == typeof (DelegateCommand));
+			var commands = dynamicObject.GetProperties().Where(p => p.PropertyType == typeof (DelegateCommand));
 
-			foreach (var command in commands)
+			foreach (var c in commands)
 			{
-				var executeMethod = methods.Where(m => m.Name.Equals(string.Format("On{0}", command.Name))).SingleOrDefault();
-				var canExecuteMethod = methods.Where(m => m.Name.Equals(string.Format("Can{0}", command.Name))).SingleOrDefault();
+				var command = c;
+				var executeMethodName = string.Format("On{0}", command.Name);
+				var canExecuteMethodName = string.Format("Can{0}", command.Name);
 				
-				if (executeMethod != null)
+				if (dynamicObject.MethodExist(executeMethodName))
 				{
 					((DelegateCommand)command.GetValue(viewModel, null)).ExecuteDelegate = () =>
 					{
-						executeMethod.Invoke(viewModel, null);
+						dynamicObject.InvokeMethod(executeMethodName);
 					};
 				}
 
-				if (canExecuteMethod != null)
+				if (dynamicObject.MethodExist(canExecuteMethodName))
 				{
 					((DelegateCommand) command.GetValue(viewModel, null)).CanExecuteDelegate = () =>
 					{
-						return (bool) canExecuteMethod.Invoke(viewModel, null);
+						return (bool) dynamicObject.InvokeMethod(canExecuteMethodName);
 					};
 				}
 			}

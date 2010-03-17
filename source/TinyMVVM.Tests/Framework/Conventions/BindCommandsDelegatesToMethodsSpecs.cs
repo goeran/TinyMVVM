@@ -34,11 +34,11 @@ namespace TinyMVVM.Tests.Framework.Conventions
 			[SetUp]
 			public void Setup()
 			{
-				Given(LoginViewModel_is_created);
+				Given(LoginViewModel_is_created);	
 				And(BindCommandsExecuteDelegateToMethodConvention_is_created);
 
 				When("convention is applied to ViewModel", () =>
-					BindCommandsDelegatesToMethodsConvention.ApplyTo(loginViewModel));
+					BindCommandsDelegatesToMethodsConvention.ApplyTo(viewModel));
 			}
 
 			[Test]
@@ -46,11 +46,11 @@ namespace TinyMVVM.Tests.Framework.Conventions
 			{
 				Then(() =>
 				{
-					loginViewModel.Login.Execute(null);
-					loginViewModel.LoginIsExecuted.ShouldBeTrue();
+					viewModel.Login.Execute(null);
+					viewModel.LoginIsExecuted.ShouldBeTrue();
 
-					loginViewModel.Cancel.Execute(null);
-					loginViewModel.CancelIsExecuted.ShouldBeTrue();
+					viewModel.Cancel.Execute(null);
+					viewModel.CancelIsExecuted.ShouldBeTrue();
 				});
 			}
 
@@ -59,11 +59,11 @@ namespace TinyMVVM.Tests.Framework.Conventions
 			{
 				Then(() =>
 				{
-					loginViewModel.Login.CanExecute(null);
-					loginViewModel.LoginCanExecuteIsExecuted.ShouldBeTrue();
+					viewModel.Login.CanExecute(null);
+					viewModel.LoginCanExecuteIsExecuted.ShouldBeTrue();
 
-					loginViewModel.Cancel.CanExecute(null);
-					loginViewModel.CancelCanExecuteIsExecuted.ShouldBeTrue();
+					viewModel.Cancel.CanExecute(null);
+					viewModel.CancelCanExecuteIsExecuted.ShouldBeTrue();
 				});
 			}
 		}

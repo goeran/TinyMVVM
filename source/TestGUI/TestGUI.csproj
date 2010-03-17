@@ -109,14 +109,12 @@
     </Compile>
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\Impl\AuthenticationService.cs" />
-    <Compile Include="ViewModel\AddressBookViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MVVM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MVVM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
