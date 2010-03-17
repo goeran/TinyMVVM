@@ -36,13 +36,35 @@ namespace TinyMVVM.Framework
 {
     public class DelegateCommand : ICommand
     {
-        private Action executeDelegate;
-        private Func<bool> canExecuteDelegate;
+		private Action executeDelegate;
 
 		public DelegateCommand() :
 			this(() => { }, () => true)
 		{
 		}
+
+    	public Action ExecuteDelegate
+    	{
+    		get { return executeDelegate; } 
+			set
+			{
+				if (value == null) throw new ArgumentNullException();
+
+				executeDelegate = value;
+			}
+    	}
+
+    	private Func<bool> canExecuteDelegate;
+    	public Func<bool> CanExecuteDelegate
+    	{
+    		get { return canExecuteDelegate; } 
+			set
+			{
+				if (value == null) throw new ArgumentNullException();
+
+				canExecuteDelegate = value;
+			}
+    	}
 
         public DelegateCommand(Action executeDelegate) :
             this(executeDelegate, () => true)
@@ -54,19 +76,19 @@ namespace TinyMVVM.Framework
             if (executeDelegate == null || canExecuteDelegate == null)
                 throw new ArgumentNullException();
 
-            this.executeDelegate = executeDelegate;
-            this.canExecuteDelegate = canExecuteDelegate;
+            ExecuteDelegate = executeDelegate;
+            CanExecuteDelegate = canExecuteDelegate;
         }
 
         public void Execute(object parameter)
         {
             if (CanExecute(parameter))
-                executeDelegate();
+                ExecuteDelegate();
         }
 
         public bool CanExecute(object parameter)
         {
-            return canExecuteDelegate();
+            return CanExecuteDelegate();
         }
 
         public void TriggerCanExecuteChanged()
@@ -76,10 +98,5 @@ namespace TinyMVVM.Framework
         }
 
         public event EventHandler CanExecuteChanged;
-
-    	public void SetExecuteDelegate(Action delFunc)
-    	{
-    		executeDelegate = delFunc;
-    	}
     }
 }

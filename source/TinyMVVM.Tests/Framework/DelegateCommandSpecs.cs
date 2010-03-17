@@ -123,18 +123,66 @@ namespace TinyMVVM.Tests.Framework.DelegateCommandSpecs
 		{
 			Given(DelegateCommand_is_created);
 
-			When("set Execute delegate", () =>
-				delegateCommand.SetExecuteDelegate(() => customExecuteDelegateIsCalled = true));
 		}
 
 		[Test]
 		public void assure_delegate_is_set()
 		{
+			When("set Execute delegate", () =>
+				delegateCommand.ExecuteDelegate = () => customExecuteDelegateIsCalled = true);
+
 			Then(() =>
 			{
 				delegateCommand.Execute(null);
 				customExecuteDelegateIsCalled.ShouldBeTrue();
 			});
+		}
+
+		[Test]
+		public void assure_value_is_validated()
+		{
+			When("set Execute delegate");
+
+			Then(() =>
+				this.ShouldThrowException<ArgumentNullException>(() =>
+					delegateCommand.ExecuteDelegate = null));
+		}
+	}
+
+	[TestFixture]
+	public class When_set_CanExecute_delegate : DelegateCommandContext
+	{
+		[SetUp]
+		public void Setup()
+		{
+			Given(DelegateCommand_is_created);
+		}
+
+		[Test]
+		public void assure_delegate_is_set()
+		{
+			When("set CanExecute delegate", () =>
+				delegateCommand.CanExecuteDelegate = () =>
+				{
+					customCanExecuteDelegateIsCalled = true;
+					return true;
+				});
+
+			Then(() =>
+			{
+				delegateCommand.CanExecute(null);
+				customCanExecuteDelegateIsCalled.ShouldBeTrue();
+			});
+		}
+
+		[Test]
+		public void assure_value_is_validated()
+		{
+			When("set CanExecute delegate");
+
+			Then(() =>
+				this.ShouldThrowException<ArgumentNullException>(() =>
+					delegateCommand.CanExecuteDelegate = null));
 		}
 	}
 

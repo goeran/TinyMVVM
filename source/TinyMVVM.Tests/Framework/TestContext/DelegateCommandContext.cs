@@ -13,6 +13,7 @@ namespace TinyMVVM.Tests.Framework.TestContext
         protected static bool executeDelegateIsCalled;
         protected static bool canExecuteDelegateIsCalled;
     	protected static bool customExecuteDelegateIsCalled;
+    	protected static bool customCanExecuteDelegateIsCalled;
 
         protected Context DelegateCommand_is_created = () =>
         {
