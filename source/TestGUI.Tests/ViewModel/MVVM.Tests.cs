@@ -4,6 +4,7 @@ using NUnit.Framework;
 using TestGUI.ViewModel;
 using TinyMVVM.Framework;
 using TinyMVVM.Framework.Services;
+using TinyMVVM.Framework.Testing;
 
 namespace TestGUI.Tests.ViewModel
 {
@@ -14,7 +15,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
@@ -82,7 +83,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
@@ -181,7 +182,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}

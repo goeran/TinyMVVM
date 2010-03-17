@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using Moq;
 using Ninject.Core;
-using TinyMVVM.Framework;
 using TestGUI.Services;
-using TinyMVVM.Framework.Services;
-using TinyMVVM.Framework.Services.Impl;
+using TinyMVVM.Framework.Testing;
 
 namespace TestGUI.Tests
 {
