@@ -115,4 +115,27 @@ namespace TinyMVVM.Tests.Framework.DelegateCommandSpecs
         }
     }
 
+	[TestFixture]
+	public class When_set_Execute_delegate : DelegateCommandContext
+	{
+		[SetUp]
+		public void Setup()
+		{
+			Given(DelegateCommand_is_created);
+
+			When("set Execute delegate", () =>
+				delegateCommand.SetExecuteDelegate(() => customExecuteDelegateIsCalled = true));
+		}
+
+		[Test]
+		public void assure_delegate_is_set()
+		{
+			Then(() =>
+			{
+				delegateCommand.Execute(null);
+				customExecuteDelegateIsCalled.ShouldBeTrue();
+			});
+		}
+	}
+
 }

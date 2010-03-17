@@ -77,6 +77,8 @@
     <Compile Include="DSL\TextParser\TestContext\TokenContext.cs" />
     <Compile Include="DSL\TextParser\TokenSpecs.cs" />
     <Compile Include="Framework\CommmandStateChangeRecorderSpecs.cs" />
+    <Compile Include="Framework\Conventions\AutoBindCommandDelegatesSpecs.cs" />
+    <Compile Include="Framework\Conventions\TestContext\ConventionsTestContext.cs" />
     <Compile Include="Framework\PropertyChangeRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />
     <Compile Include="Framework\ServiceLocatorSpecs.cs" />

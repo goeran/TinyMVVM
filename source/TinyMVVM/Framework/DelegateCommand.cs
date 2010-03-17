@@ -39,6 +39,11 @@ namespace TinyMVVM.Framework
         private Action executeDelegate;
         private Func<bool> canExecuteDelegate;
 
+		public DelegateCommand() :
+			this(() => { }, () => true)
+		{
+		}
+
         public DelegateCommand(Action executeDelegate) :
             this(executeDelegate, () => true)
         {
@@ -71,5 +76,10 @@ namespace TinyMVVM.Framework
         }
 
         public event EventHandler CanExecuteChanged;
+
+    	public void SetExecuteDelegate(Action delFunc)
+    	{
+    		executeDelegate = delFunc;
+    	}
     }
 }
