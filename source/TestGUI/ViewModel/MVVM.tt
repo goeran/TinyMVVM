@@ -46,6 +46,7 @@ namespace TestGUI.ViewModel
 	<#foreach (var command in viewModel.Commands) {#>
 		<#= command.Name#> = new DelegateCommand(On<#= command.Name#>, Can<#= command.Name#>);
 	<#}#>
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
 			OnInitialize();
 		}

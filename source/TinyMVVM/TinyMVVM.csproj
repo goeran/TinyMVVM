@@ -73,7 +73,6 @@
     <Compile Include="Framework\CommandStateChangeRecorder.cs" />
     <Compile Include="Framework\PropertyChangeRecorder.cs" />
     <Compile Include="Framework\DelegateCommand.cs" />
-    <Compile Include="Framework\IBootstrapper.cs" />
     <Compile Include="Framework\ServiceLocator.cs" />
     <Compile Include="Framework\IServiceLocator.cs" />
     <Compile Include="Framework\Services\IBackgroundWorker.cs" />

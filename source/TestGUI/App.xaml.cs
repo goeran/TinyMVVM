@@ -15,10 +15,7 @@ namespace TestGUI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-          	ServiceLocator.SetLocator(new ServiceLocatorForClient());
-
             base.OnStartup(e);
-            
         }
     }
 }

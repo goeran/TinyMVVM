@@ -18,7 +18,8 @@ namespace TestGUI.ViewModel
 			Search = new DelegateCommand(OnSearch, CanSearch);
 			Clear = new DelegateCommand(OnClear, CanClear);
 			Save = new DelegateCommand(OnSave, CanSave);
-			
+				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
 			OnInitialize();
 		}
 	}
@@ -101,7 +102,8 @@ namespace TestGUI.ViewModel
 		{
 			Login = new DelegateCommand(OnLogin, CanLogin);
 			Cancel = new DelegateCommand(OnCancel, CanCancel);
-			
+				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
 			OnInitialize();
 		}
 	}
@@ -119,7 +121,8 @@ namespace TestGUI.ViewModel
 		{
 			Add = new DelegateCommand(OnAdd, CanAdd);
 			Delete = new DelegateCommand(OnDelete, CanDelete);
-			
+				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
 			OnInitialize();
 		}
 	}

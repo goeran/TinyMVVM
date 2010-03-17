@@ -27,6 +27,9 @@
 
 
 using System;
+using System.Linq;
+using System.Reflection;
+using Ninject.Core;
 
 namespace TinyMVVM.Framework
 {
@@ -47,6 +50,25 @@ namespace TinyMVVM.Framework
         {
         }
 
+		public static IServiceLocator GetServiceLocator()
+		{
+			IServiceLocator serviceLocator = null;
+
+			var serviceLocators = Assembly.GetCallingAssembly().GetTypes().
+					Where(t => t.GetInterfaces().Where(i => i == typeof(IServiceLocator)).Count() > 0).ToList();
+
+			if (serviceLocators.Count > 0)
+			{
+				serviceLocator = Activator.CreateInstance(serviceLocators.First()) as IServiceLocator;
+			}
+			else
+			{
+				serviceLocator = new DefaultServiceLocator();
+			}
+
+			return serviceLocator;
+		}
+
         public static void SetLocator(IServiceLocator locator)
         {
             if (locator == null)
@@ -54,5 +76,34 @@ namespace TinyMVVM.Framework
 
             instance = locator;
         }
+
+		class DefaultServiceLocator : IServiceLocator
+		{
+			private IKernel kernel;
+
+			public DefaultServiceLocator()
+			{
+				kernel = new StandardKernel();
+			}
+
+			public T GetInstance<T>() where T : class
+			{
+				return kernel.Get<T>();
+			}
+		}
+
+    	public static void SetLocatorIfNotSet(Func<IServiceLocator> func)
+    	{
+			if (func == null)
+				throw new ArgumentNullException();
+
+			if (instance == null)
+				instance = func.Invoke();
+    	}
+
+		public static void Reset()
+		{
+			instance = null;
+		}
     }
 }
