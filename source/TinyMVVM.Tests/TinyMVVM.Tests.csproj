@@ -86,6 +86,8 @@
     <Compile Include="Framework\TestContext\DelegateCommandContext.cs" />
     <Compile Include="Framework\TestContext\ServiceLocatorContext.cs" />
     <Compile Include="Framework\TestContext\ViewModelBaseContext.cs" />
+    <Compile Include="Framework\Testing\ServiceLocatorForTestsSpecs.cs" />
+    <Compile Include="Framework\Testing\TestContext\ServiceLocatorForTestsContext.cs" />
     <Compile Include="Framework\ViewModelBaseSpecs.cs" />
     <Compile Include="Learning\MoqLearningTests.cs" />
     <Compile Include="Learning\NinjectLearningTests.cs" />

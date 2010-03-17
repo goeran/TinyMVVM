@@ -16,23 +16,9 @@ namespace TestGUI.Tests.ViewModel
 		{
 			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
 			
-			EnableBackgroundWorkFakeForTesting();
-			
 			Context();
 		}
-		
-		private void EnableBackgroundWorkFakeForTesting()
-		{
-			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
-			
-		    backgroundWorkerFake.Setup(
-		        w => w.Invoke(It.IsAny<Action>())).
-		            Callback((Action a) =>
-		            {
-                        a.Invoke();
-		            });
-		}
-		
+				
 		protected abstract void Context();
 		
 		protected Mock<T> GetFakeFor<T>() where T: class
@@ -98,23 +84,9 @@ namespace TestGUI.Tests.ViewModel
 		{
 			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
 			
-			EnableBackgroundWorkFakeForTesting();
-			
 			Context();
 		}
-		
-		private void EnableBackgroundWorkFakeForTesting()
-		{
-			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
-			
-		    backgroundWorkerFake.Setup(
-		        w => w.Invoke(It.IsAny<Action>())).
-		            Callback((Action a) =>
-		            {
-                        a.Invoke();
-		            });
-		}
-		
+				
 		protected abstract void Context();
 		
 		protected Mock<T> GetFakeFor<T>() where T: class
@@ -211,23 +183,9 @@ namespace TestGUI.Tests.ViewModel
 		{
 			ServiceLocator.SetLocator(new CustomServiceLocatorForTests());
 			
-			EnableBackgroundWorkFakeForTesting();
-			
 			Context();
 		}
-		
-		private void EnableBackgroundWorkFakeForTesting()
-		{
-			var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
-			
-		    backgroundWorkerFake.Setup(
-		        w => w.Invoke(It.IsAny<Action>())).
-		            Callback((Action a) =>
-		            {
-                        a.Invoke();
-		            });
-		}
-		
+				
 		protected abstract void Context();
 		
 		protected Mock<T> GetFakeFor<T>() where T: class

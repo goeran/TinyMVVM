@@ -11,7 +11,7 @@ using TinyMVVM.Framework.Services.Impl;
 
 namespace TestGUI.Tests
 {
-    internal class CustomServiceLocatorForTests : ServiceLocatorForTests
+    internal class CustomServiceLocatorForTests : ServiceLocatorForTesting
     {
         public CustomServiceLocatorForTests()
         {
