@@ -10,6 +10,7 @@
 #>
 using System;
 using TinyMVVM.Framework;
+using System.Collections.ObjectModel;
 
 namespace TestGUI.ViewModel
 {
@@ -32,7 +33,9 @@ namespace TestGUI.ViewModel
 			}
 		}
 	<#}#>
-<# if (!property.IsObservable) {#>public <#= property.Type#> <#= property.Name#> { get; set; }<#}#>
+<# if (!property.IsObservable){#>
+public <#= property.Type#> <#= property.Name#> { get; set; } 
+	<#}#>
 <#}#>
 
 		
@@ -46,6 +49,7 @@ namespace TestGUI.ViewModel
 	<#foreach (var command in viewModel.Commands) {#>
 		<#= command.Name#> = new DelegateCommand();
 	<#}#>
+	
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
 			ApplyDefaultConventions();

@@ -1,12 +1,14 @@
 ﻿using System;
 using TinyMVVM.Framework;
+using System.Collections.ObjectModel;
 
 namespace TestGUI.ViewModel
 {
 	public partial class SearchViewModel : ViewModelBase
 	{
 		//State
-		public string Query { get; set; }
+		public string Query { get; set; } 
+	
 		
 		//Commands
 		public DelegateCommand Search { get; set; }
@@ -18,7 +20,8 @@ namespace TestGUI.ViewModel
 			Search = new DelegateCommand();
 			Clear = new DelegateCommand();
 			Save = new DelegateCommand();
-				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
 			ApplyDefaultConventions();
 		}
@@ -102,7 +105,8 @@ namespace TestGUI.ViewModel
 		{
 			Login = new DelegateCommand();
 			Cancel = new DelegateCommand();
-				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
 			ApplyDefaultConventions();
 		}
@@ -111,7 +115,8 @@ namespace TestGUI.ViewModel
 	public partial class AddressBookViewModel : ViewModelBase
 	{
 		//State
-		public string Contacts { get; set; }
+		public ObservableCollection<Contact> Contacts { get; set; } 
+	
 		
 		//Commands
 		public DelegateCommand Add { get; set; }
@@ -121,7 +126,27 @@ namespace TestGUI.ViewModel
 		{
 			Add = new DelegateCommand();
 			Delete = new DelegateCommand();
-				ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
+			ApplyDefaultConventions();
+		}
+	}
+		
+	public partial class Contact : ViewModelBase
+	{
+		//State
+		public string Name { get; set; } 
+		public string Email { get; set; } 
+		public string Phone { get; set; } 
+	
+		
+		//Commands
+		
+		public Contact()
+		{
+		
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
 		
 			ApplyDefaultConventions();
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Moq;
 using NUnit.Framework;
 using TestGUI.ViewModel;
@@ -203,7 +204,7 @@ namespace TestGUI.Tests.ViewModel
 		{
 		}
 		
-		public void And_Contacts_is_entered(string value)
+		public void And_Contacts_is_entered(ObservableCollection<Contact> value)
 		{
 			viewModel.Contacts = value;
 		}
@@ -214,7 +215,7 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.PropertyChangeRecorder.Start();
 		}
 
-		public void When_Contacts_is_entered(string value)
+		public void When_Contacts_is_entered(ObservableCollection<Contact> value)
 		{
 			viewModel.Contacts = value;
 		}
@@ -235,6 +236,77 @@ namespace TestGUI.Tests.ViewModel
 		{
 			viewModel.Delete.Execute(null);
 		}
+		
+	}
+
+	public abstract class ContactContext
+	{
+		protected Contact viewModel;
+
+		[SetUp]
+		public void Setup()
+		{
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
+			
+			Context();
+		}
+				
+		protected abstract void Context();
+		
+		protected Mock<T> GetFakeFor<T>() where T: class
+		{
+			return ServiceLocator.Instance.GetInstance<Mock<T>>();
+		}
+	
+		public void Given_Contact_is_created()
+		{
+			viewModel = new Contact();
+		}
+		
+		public void And_data_is_entered()
+		{
+		}
+		
+		public void And_Name_is_entered(string value)
+		{
+			viewModel.Name = value;
+		}
+		public void And_Email_is_entered(string value)
+		{
+			viewModel.Email = value;
+		}
+		public void And_Phone_is_entered(string value)
+		{
+			viewModel.Phone = value;
+		}
+		
+	
+		public void And_Contact_PropertyChangeRecording_is_Started()
+		{
+			viewModel.PropertyChangeRecorder.Start();
+		}
+
+		public void When_Name_is_entered(string value)
+		{
+			viewModel.Name = value;
+		}
+		
+		public void When_Email_is_entered(string value)
+		{
+			viewModel.Email = value;
+		}
+		
+		public void When_Phone_is_entered(string value)
+		{
+			viewModel.Phone = value;
+		}
+		
+	
+	
+		public void When_Contact_is_spawned()
+		{
+			viewModel = new Contact();
+		} 
 		
 	}
 

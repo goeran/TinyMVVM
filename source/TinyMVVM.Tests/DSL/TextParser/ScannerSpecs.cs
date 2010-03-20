@@ -20,6 +20,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
             And("simple viewmodel is described with the MVVM DSL", () =>
                 code = "viewmodel LoginViewModel:\n" +
                 "\tproperty Username\n\r" +
+				"\tproperty Log ObservableCollection<string>\n" +
                 "\toproperty IsVisible\n" +
                 "\t\t\r\ncommand Login");
 
@@ -60,11 +61,18 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
                  tokens.Last().ShouldBe(Token.EOF));
         }
 
+    	[Test]
+    	public void assure_angel_brackets_are_interpreted_as_characters()
+    	{
+    		Then(() =>
+				 tokens.Where(t => t == Token.Name("ObservableCollection<string>")).Count().ShouldBe(1));	
+    	}
+
         [Test]
         public void assure_Property_Token_is_found()
         {
             Then(() =>
-                 tokens.Where(t => t == Token.Property).Count().ShouldBe(1));
+                 tokens.Where(t => t == Token.Property).Count().ShouldBe(2));
         }
 
         [Test]

@@ -15,8 +15,12 @@ viewmodel LoginViewModel:
 	command Cancel
 
 viewmodel AddressBookViewModel:
-	property Contacts as string
+	property Contacts as ObservableCollection<Contact>
 	
 	command Add
 	command Delete
-	
+
+viewmodel Contact:
+	property Name as string
+	property Email as string
+	property Phone as string

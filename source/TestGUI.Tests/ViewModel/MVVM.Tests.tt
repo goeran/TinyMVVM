@@ -9,6 +9,7 @@
 	var modelSpec = parser.Parse(Code.FromFile(filePath));
 #>
 using System;
+using System.Collections.ObjectModel;
 using Moq;
 using NUnit.Framework;
 using TestGUI.ViewModel;

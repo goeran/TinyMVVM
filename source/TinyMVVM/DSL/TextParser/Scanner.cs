@@ -55,7 +55,9 @@ namespace TinyMVVM.DSL.TextParser
         {
             var sb = new StringBuilder();
 
-            while (char.IsLetter((char)textReader.Peek()))
+            while (char.IsLetter((char)textReader.Peek()) ||
+				textReader.Peek() == '<' ||
+				textReader.Peek() == '>')
                 sb.Append((char)textReader.Read());
 
             return sb.ToString();
