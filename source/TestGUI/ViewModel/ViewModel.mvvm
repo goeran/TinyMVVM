@@ -24,3 +24,4 @@ viewmodel Contact:
 	property Name as string
 	property Email as string
 	property Phone as string
+	property Mobile as string

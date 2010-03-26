@@ -110,10 +110,10 @@
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\Impl\AuthenticationService.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\MVVM.cs">
+    <Compile Include="ViewModel\ViewModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MVVM.tt</DependentUpon>
+      <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -127,11 +127,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <DesignTimeOnly Include="SampleData\SampleDataSource\SampleDataSource.xsd" />
-    <None Include="ViewModel\MVVM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MVVM.cs</LastGenOutput>
+    <None Include="ViewModel\ViewModel.mvvm">
+      <Generator>T4ScriptFileGenerator</Generator>
+      <LastGenOutput>ViewModel.tt</LastGenOutput>
     </None>
-    <None Include="ViewModel\ViewModel.mvvm" />
+    <None Include="ViewModel\ViewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewModel.mvvm</DependentUpon>
+      <LastGenOutput>ViewModel.cs</LastGenOutput>
+    </None>
+    <None Include="ViewModel\ViewModelTemplate.tt">
+    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

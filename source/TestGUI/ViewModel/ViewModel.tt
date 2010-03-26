@@ -1,0 +1,11 @@
+<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="cs" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="ViewModelTemplate.tt" #>
+
+<#
+	ViewModelTemplate viewModelTemplate = new ViewModelTemplate();
+	viewModelTemplate.File = @"C:\Documents and Settings\goeran\My Documents\Software Projects\TinyMVVM\trunk\source\TestGUI\ViewModel\ViewModel.mvvm";
+	viewModelTemplate.Namespace = "TestGUI.ViewModel";
+	viewModelTemplate.Render();
+#>

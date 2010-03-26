@@ -1,4 +1,7 @@
-﻿using System;
+
+
+
+using System;
 using TinyMVVM.Framework;
 using System.Collections.ObjectModel;
 
@@ -139,6 +142,7 @@ namespace TestGUI.ViewModel
 		public string Name { get; set; } 
 		public string Email { get; set; } 
 		public string Phone { get; set; } 
+		public string Mobile { get; set; } 
 	
 		
 		//Commands
@@ -153,4 +157,3 @@ namespace TestGUI.ViewModel
 	}
 		
 }
-

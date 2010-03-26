@@ -91,14 +91,14 @@
     <Compile Include="SemanticModel\ViewModelProperty.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CodeGen\Templates\ViewModelTemplate.tt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="MVVM.dsl" />
     <None Include="SemanticModel\MVVMClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeGen\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
