@@ -5,7 +5,7 @@
 
 <#
 	ViewModelTemplate viewModelTemplate = new ViewModelTemplate();
-	viewModelTemplate.File = @"C:\Documents and Settings\goeran\My Documents\Software Projects\TinyMVVM\trunk\source\TestGUI\ViewModel\ViewModel.mvvm";
+	viewModelTemplate.File = Host.ResolvePath("ViewModel.mvvm");
 	viewModelTemplate.Namespace = "TestGUI.ViewModel";
 	viewModelTemplate.Render();
 #>

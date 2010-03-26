@@ -91,7 +91,7 @@
     <Compile Include="SemanticModel\ViewModelProperty.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeGen\Templates\ViewModelTemplate.tt">
+    <None Include="CodeGen\ViewModelTemplate.tt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="MVVM.dsl" />
