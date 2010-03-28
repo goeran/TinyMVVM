@@ -21,7 +21,7 @@
       <Item value="List" priority="6" />
       <Item value="object" priority="5" />
       <Item value="public" priority="45" />
-      <Item value="new" priority="103" />
+      <Item value="new" priority="104" />
       <Item value="Data" priority="0" />
       <Item value="List&lt;object&gt;" priority="2" />
       <Item value="private" priority="54" />
@@ -100,7 +100,7 @@
       <Item value="CodeFile_exists" priority="0" />
       <Item value="CodeFile_instance_is_created" priority="0" />
       <Item value="StringReader" priority="1" />
-      <Item value="using" priority="0" />
+      <Item value="using" priority="1" />
       <Item value="TextReader" priority="0" />
       <Item value="StreamReader" priority="0" />
       <Item value="TearDown" priority="0" />
@@ -158,7 +158,7 @@
       <Item value="When_GetInstance" priority="0" />
       <Item value="interface" priority="1" />
       <Item value="IAuthenticationService" priority="21" />
-      <Item value="kernel" priority="28" />
+      <Item value="kernel" priority="36" />
       <Item value="StandardKernel" priority="5" />
       <Item value="IModule" priority="2" />
       <Item value="StandardModule" priority="0" />
@@ -302,6 +302,7 @@
       <Item value="ServiceLocator`0" priority="0" />
       <Item value="CustomServiceLocatorForTests`0" priority="0" />
       <Item value="Console`0" priority="0" />
+      <Item value="Ninject" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="AsReadOnly" priority="3" />
@@ -643,8 +644,33 @@
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="252" fromTop="9" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="236" fromTop="6" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="22" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="94" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="696" fromTop="19" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="911" fromTop="21" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="649" fromTop="15" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="178" fromTop="4" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="0" fromTop="0" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="22" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="86" fromTop="3" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="380" fromTop="8" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="696" fromTop="20" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="522" fromTop="10" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="166" fromTop="5" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="484" fromTop="18" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="90" fromTop="3" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="386" fromTop="14" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="586" fromTop="19" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="116" fromTop="0" />
+    </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>
     <Providers />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject.Core;
+using Ninject;
 using TinyMVVM.Framework;
 using TestGUI.Services;
 using TestGUI.Services.Impl;
@@ -17,12 +17,9 @@ namespace TestGUI
 
         public ServiceLocatorForClient()
         {
-            kernel = new StandardKernel(
-                new InlineModule(m =>
-                {
-                    m.Bind<IAuthenticationService>().To<AuthenticationService>();
-                    m.Bind<IBackgroundWorker>().To<BackgroundWorker>();
-                }));
+            kernel = new StandardKernel();
+            kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
+            kernel.Bind<IBackgroundWorker>().To<BackgroundWorker>();
         }
 
         #region IServiceLocator Members

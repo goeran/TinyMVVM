@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Moq;
-using Ninject.Core;
+using Ninject;
 using TinyMVVM.Framework.Services;
 
 namespace TinyMVVM.Framework.Testing
@@ -13,19 +13,17 @@ namespace TinyMVVM.Framework.Testing
 
         public ServiceLocatorForTesting()
         {
-            kernel = new StandardKernel(new InlineModule(m =>
-            {
-                var backgroundWorkerFake = new Mock<IBackgroundWorker>();
-				backgroundWorkerFake.Setup(
-					w => w.Invoke(It.IsAny<Action>())).
-						Callback((Action a) =>
-						{
-							a.Invoke();
-						});
+            kernel = new StandardKernel();
+            var backgroundWorkerFake = new Mock<IBackgroundWorker>();
+			backgroundWorkerFake.Setup(
+				w => w.Invoke(It.IsAny<Action>())).
+					Callback((Action a) =>
+					{
+						a.Invoke();
+					});
 
-                m.Bind<Mock<IBackgroundWorker>>().ToConstant(backgroundWorkerFake);
-                m.Bind<IBackgroundWorker>().ToConstant(backgroundWorkerFake.Object);
-            }));
+            kernel.Bind<Mock<IBackgroundWorker>>().ToConstant(backgroundWorkerFake);
+            kernel.Bind<IBackgroundWorker>().ToConstant(backgroundWorkerFake.Object);
         }
 
         #region IServiceLocator Members

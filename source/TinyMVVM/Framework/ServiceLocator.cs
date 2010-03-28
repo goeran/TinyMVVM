@@ -29,7 +29,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using Ninject.Core;
+using Ninject;
 
 namespace TinyMVVM.Framework
 {

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject.Core;
+using Ninject;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
-using Ninject.Core.Binding;
 
 namespace TinyMVVM.Tests.Learning
 {
@@ -15,10 +14,9 @@ namespace TinyMVVM.Tests.Learning
         [Test]
         public void How_to_add_obj_to_container_programantically()
         {
-            IKernel kernel = new StandardKernel(new InlineModule(m =>
-            {
-                m.Bind<IHelloWorld>().To(typeof(HelloWorld));
-            }));
+            IKernel kernel = new StandardKernel();
+
+            kernel.Bind<IHelloWorld>().To(typeof(HelloWorld));
             kernel.Inject(new HelloWorld());
 
             var helloWorld = kernel.Get<IHelloWorld>();
