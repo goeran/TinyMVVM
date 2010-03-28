@@ -2,10 +2,20 @@
 <#@ output extension="cs" #>
 <#@ include file="T4Toolbox.tt" #>
 <#@ include file="ViewModelTemplate.tt" #>
+<#@ include file="ViewModelTestsTemplate.tt" #>
 
 <#
+	string dslFile = Host.ResolvePath("ViewModel.mvvm");
+	
 	ViewModelTemplate viewModelTemplate = new ViewModelTemplate();
-	viewModelTemplate.File = Host.ResolvePath("ViewModel.mvvm");
+	viewModelTemplate.File = dslFile;
+	viewModelTemplate.Output.File = "ViewModels.cs";
 	viewModelTemplate.Namespace = "TestGUI.ViewModel";
 	viewModelTemplate.Render();
+	
+	ViewModelTestsTemplate testsTemplate = new ViewModelTestsTemplate();
+	testsTemplate.File = dslFile;
+	testsTemplate.Output.File = "ViewModels.Test.cs";
+	testsTemplate.Namespace = "TestGUI.Tests.ViewModel";
+	testsTemplate.Render();
 #>

@@ -9,7 +9,7 @@ using TinyMVVM.Framework.Testing;
 
 namespace TestGUI.Tests
 {
-    internal class CustomServiceLocatorForTests : ServiceLocatorForTesting
+    public class CustomServiceLocatorForTests : ServiceLocatorForTesting
     {
         public CustomServiceLocatorForTests()
         {

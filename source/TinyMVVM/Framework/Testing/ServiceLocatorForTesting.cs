@@ -11,7 +11,7 @@ namespace TinyMVVM.Framework.Testing
     {
         protected readonly IKernel kernel;
 
-        protected ServiceLocatorForTesting()
+        public ServiceLocatorForTesting()
         {
             kernel = new StandardKernel(new InlineModule(m =>
             {
