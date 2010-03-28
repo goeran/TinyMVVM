@@ -1,4 +1,4 @@
-﻿<#@ assembly name="TinyMVVM.dll" #>
+﻿<#@ assembly name="$(ProjectDir)$(OutDir)\TinyMVVM.dll" #>
 <#@ import namespace="TinyMVVM.DSL.TextParser" #>
 <#@ import namespace="TinyMVVM.SemanticModel" #>
 

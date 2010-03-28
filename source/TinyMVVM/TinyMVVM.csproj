@@ -113,6 +113,9 @@
     <None Include="CodeGen\ViewModelTemplate.tt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="CodeGen\ViewModelTestsTemplate.tt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="MVVM.dsl" />
     <None Include="SemanticModel\MVVMClassDiagram.cd" />
   </ItemGroup>
