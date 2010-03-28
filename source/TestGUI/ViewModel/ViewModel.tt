@@ -13,9 +13,9 @@
 	viewModelTemplate.Namespace = "TestGUI.ViewModel";
 	viewModelTemplate.Render();
 	
-	ViewModelTestsTemplate testsTemplate = new ViewModelTestsTemplate();
+	/*ViewModelTestsTemplate testsTemplate = new ViewModelTestsTemplate();
 	testsTemplate.File = dslFile;
 	testsTemplate.Output.File = "ViewModels.Test.cs";
 	testsTemplate.Namespace = "TestGUI.Tests.ViewModel";
-	testsTemplate.Render();
+	testsTemplate.Render();*/
 #>

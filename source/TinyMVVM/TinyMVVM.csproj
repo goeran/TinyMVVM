@@ -60,10 +60,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\ninject 1.0\Ninject.Core.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.2.9222, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\tools\NUnit 2.5\net-2.0\framework\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -104,6 +100,7 @@
     <Compile Include="Framework\Services\Impl\BackgroundWorker.cs" />
     <Compile Include="Framework\Services\Impl\BackgroundWorkerForTesting.cs" />
     <Compile Include="Framework\Testing\ServiceLocatorForTesting.cs" />
+    <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SemanticModel\ModelSpecification.cs" />

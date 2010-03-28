@@ -20,8 +20,8 @@
       <Item value="prop" priority="17" />
       <Item value="List" priority="6" />
       <Item value="object" priority="5" />
-      <Item value="public" priority="39" />
-      <Item value="new" priority="102" />
+      <Item value="public" priority="45" />
+      <Item value="new" priority="103" />
       <Item value="Data" priority="0" />
       <Item value="List&lt;object&gt;" priority="2" />
       <Item value="private" priority="54" />
@@ -30,15 +30,15 @@
       <Item value="_data" priority="2" />
       <Item value="ReadOnlyCollection" priority="0" />
       <Item value="_commands" priority="1" />
-      <Item value="static" priority="29" />
-      <Item value="class" priority="12" />
+      <Item value="static" priority="30" />
+      <Item value="class" priority="13" />
       <Item value="sWhen" priority="5" />
       <Item value="abstract" priority="0" />
       <Item value="Type" priority="9" />
       <Item value="override" priority="0" />
       <Item value="typeof" priority="33" />
       <Item value="tokensEnumerator" priority="10" />
-      <Item value="protected" priority="31" />
+      <Item value="protected" priority="32" />
       <Item value="Then" priority="46" />
       <Item value="this" priority="20" />
       <Item value="ArgumentNullException" priority="20" />
@@ -58,7 +58,7 @@
       <Item value="Parser_is_created" priority="2" />
       <Item value="When" priority="33" />
       <Item value="parser" priority="6" />
-      <Item value="void" priority="26" />
+      <Item value="void" priority="30" />
       <Item value="if" priority="32" />
       <Item value="loadingStrategy" priority="1" />
       <Item value="throw" priority="10" />
@@ -166,7 +166,7 @@
       <Item value="mock" priority="3" />
       <Item value="ASCIIEncoding" priority="0" />
       <Item value="where" priority="5" />
-      <Item value="TestFixture" priority="0" />
+      <Item value="TestFixture" priority="1" />
       <Item value="GetObj" priority="0" />
       <Item value="IHelloWorld" priority="4" />
       <Item value="m" priority="18" />
@@ -215,8 +215,8 @@
       <Item value="fakeMappings" priority="2" />
       <Item value="authServiceFake" priority="1" />
       <Item value="And_dependencies_are_configured" priority="0" />
-      <Item value="TestFixtureSetUp" priority="2" />
-      <Item value="SetUp" priority="0" />
+      <Item value="TestFixtureSetUp" priority="4" />
+      <Item value="SetUp" priority="2" />
       <Item value="SerializableAttribute" priority="0" />
       <Item value="GetInstance" priority="0" />
       <Item value="ServiceLocatorForClient" priority="0" />
@@ -294,6 +294,14 @@
       <Item value="dynamicObject" priority="7" />
       <Item value="executeMethodName" priority="1" />
       <Item value="canExecuteMethodName" priority="1" />
+      <Item value="File`0" priority="0" />
+      <Item value="IServiceLocator`0" priority="0" />
+      <Item value="Assembly`0" priority="0" />
+      <Item value="SetUpFixture" priority="4" />
+      <Item value="Setup`0" priority="0" />
+      <Item value="ServiceLocator`0" priority="0" />
+      <Item value="CustomServiceLocatorForTests`0" priority="0" />
+      <Item value="Console`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="AsReadOnly" priority="3" />
@@ -460,6 +468,7 @@
       <Item value="SetLocatorOnce" priority="0" />
       <Item value="Reset" priority="0" />
       <Item value="SetLocatorIfNotSet" priority="1" />
+      <Item value="SetLocator`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Framework.ServiceLocator">
       <Item value="GetInstance" priority="6" />
@@ -469,6 +478,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Moq.Times">
       <Item value="Once" priority="1" />
+      <Item value="Never`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.Framework.ServiceLocatorSpecs.When_GetInstance+IAuthenticationService">
       <Item value="ShouldBe" priority="0" />
@@ -495,6 +505,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine" priority="0" />
+      <Item value="WriteLine`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Ninject.Core.InlineModule">
       <Item value="Bind" priority="12" />
@@ -520,6 +531,7 @@
     <ItemStatistics item="Qualified:@System.Reflection.Assembly">
       <Item value="GetExecutingAssembly" priority="1" />
       <Item value="GetCallingAssembly" priority="0" />
+      <Item value="GetExecutingAssembly`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Reflection.Assembly">
       <Item value="GetTypes" priority="1" />
@@ -626,15 +638,12 @@
       <Item value="DoesMethodExist" priority="2" />
       <Item value="InvokeMethod" priority="2" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileStream">
+      <Item value="Close`0" priority="1" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5762" fromTop="13" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="146" fromTop="6" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="1592" fromTop="38" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="2746" fromTop="25" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:DelegateCommandSpecs.cs" caret="3963" fromTop="4" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:DelegateCommand.cs" caret="1793" fromTop="30" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:TestContext/f:DelegateCommandContext.cs" caret="566" fromTop="15" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:TestContext/f:ViewModelBaseContext.cs" caret="1036" fromTop="23" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="1713" fromTop="32" />
@@ -643,41 +652,57 @@
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Conventions/f:InvokeOnInitializeSpecs.cs" caret="450" fromTop="6" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:InvokeOnInitialize.cs" caret="171" fromTop="7" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="270" fromTop="6" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="392" fromTop="14" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:LoginViewModel.cs" caret="551" fromTop="18" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="0" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.Test.cs" caret="0" fromTop="0" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.cs" caret="21" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="99" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="99" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="300" fromTop="12" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="227" fromTop="5" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/d:TestContext/f:CodeFileContext.cs" caret="797" fromTop="9" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:CodeFileSpecs.cs" caret="1440" fromTop="9" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="2136" fromTop="4" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="0" fromTop="0" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1744" fromTop="4" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Testing/f:ServiceLocatorForTestsSpecs.cs" caret="1197" fromTop="9" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="352" fromTop="15" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:TestContext.cs" caret="191" fromTop="8" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="338" fromTop="13" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="268" fromTop="8" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="284" fromTop="7" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModels.Test.cs" caret="4108" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.cs" caret="0" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="126" fromTop="5" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="653" fromTop="12" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="457" fromTop="10" />
     </RecentFiles>
     <RecentEdits>
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="1550" fromTop="4" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="1936" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2479" fromTop="25" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="2153" fromTop="23" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2092" fromTop="20" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:TestContext/f:ViewModelBaseContext.cs" caret="1036" fromTop="23" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="1245" fromTop="29" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Conventions/d:TestContext/f:ConventionsTestContext.cs" caret="952" fromTop="26" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Conventions/d:TestContext/f:ConventionsTestContext.cs" caret="523" fromTop="12" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Conventions/d:TestContext/f:ConventionsTestContext.cs" caret="1223" fromTop="3" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Conventions/d:TestContext/f:ConventionsTestContext.cs" caret="1875" fromTop="24" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="1713" fromTop="32" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2207" fromTop="25" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="899" fromTop="30" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="377" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="379" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="971" fromTop="31" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="1146" fromTop="35" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:InvokeOnInitialize.cs" caret="431" fromTop="16" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="744" fromTop="13" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.cs" caret="0" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="81" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="99" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="300" fromTop="12" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="317" fromTop="13" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="223" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="348" fromTop="17" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="1472" fromTop="12" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="3912" fromTop="15" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:TestContext.cs" caret="191" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="6551" fromTop="15" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2752" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="3217" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="4205" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5060" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5759" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="348" fromTop="7" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="348" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="348" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2602" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2149" fromTop="28" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="1220" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="487" fromTop="4" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="351" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="351" fromTop="1" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="4029" fromTop="19" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="528" fromTop="6" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="763" fromTop="10" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="304" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="384" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="1056" fromTop="10" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="1021" fromTop="8" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="677" fromTop="13" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="620" fromTop="13" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>

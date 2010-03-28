@@ -15,7 +15,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_spawned : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             When_LoginViewModel_is_spawned();
         }
@@ -44,7 +44,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     {
         protected int loginCommandStateChanges;
 
-        protected override void Context()
+        public override void Context()
         {
             loginCommandStateChanges = 0;
 
@@ -78,7 +78,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Password_is_entered : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             Given_LoginViewModel_is_created();
 
@@ -101,7 +101,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Username_and_Password_is_entered : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             Given_LoginViewModel_is_created();
             And_Username_is_entered("goeran");
@@ -119,7 +119,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Login : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             Given_LoginViewModel_is_created();
             And_Username_is_entered("goeran");
@@ -148,7 +148,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Login_with_invalid_credentials : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             var authFake = GetFakeFor<IAuthenticationService>();
             authFake.Setup(s => s.Authenticate(It.IsAny<string>(), It.IsAny<string>())).
@@ -177,7 +177,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Login_with_valid_credentials : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             var authServiceFake = GetFakeFor<IAuthenticationService>();
             authServiceFake.Setup(s => 
@@ -201,7 +201,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_authenticating : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             Given_LoginViewModel_is_created();
             And_LoginViewModel_PropertyChangeRecording_is_Started();
@@ -225,7 +225,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     [TestFixture]
     public class When_Cancel : LoginViewModelContext
     {
-        protected override void Context()
+        public override void Context()
         {
             Given_LoginViewModel_is_created();
             And_Username_is_entered("goeran");
