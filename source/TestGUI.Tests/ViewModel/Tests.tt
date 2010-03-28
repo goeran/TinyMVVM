@@ -1,0 +1,18 @@
+<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension=".cs" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="ViewModelTestsTemplate.tt" #>
+<#
+// <copyright file="Script1.tt" company="Microsoft">
+//  Copyright © Microsoft. All Rights Reserved.
+// </copyright>
+
+	string dslFile = Host.ResolvePath(@"..\..\TestGUI\ViewModel\ViewModel.mvvm");
+
+	ViewModelTestsTemplate testsTemplate = new ViewModelTestsTemplate();
+	testsTemplate.File = dslFile;
+	testsTemplate.Output.File = "ViewModels.Test.cs";
+	testsTemplate.Namespace = "TestGUI.Tests.ViewModel";
+	testsTemplate.Render();
+
+#>
