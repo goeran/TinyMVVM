@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM", "TinyMVVM\TinyMVVM.csproj", "{41795993-5643-4733-8834-0128DE34F945}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM.Tests", "TinyMVVM.Tests\TinyMVVM.Tests.csproj", "{B4EBC972-D86A-40E3-BC6E-AF8757BF340D}"

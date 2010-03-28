@@ -24,7 +24,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.TestContext
 
         protected Context CodeFile_exists = () =>
         {
-            File.Create(filePathToCodeFile);
+            File.Create(filePathToCodeFile).Close();
         };
     }
 }

@@ -16,7 +16,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new ServiceLocatorForTesting());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
@@ -84,7 +84,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new ServiceLocatorForTesting());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
@@ -183,7 +183,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new ServiceLocatorForTesting());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
@@ -246,7 +246,7 @@ namespace TestGUI.Tests.ViewModel
 		[SetUp]
 		public void Setup()
 		{
-			ServiceLocator.SetLocator(new ServiceLocatorForTesting());
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
 			
 			Context();
 		}
