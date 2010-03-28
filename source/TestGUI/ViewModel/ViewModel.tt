@@ -2,7 +2,6 @@
 <#@ output extension="cs" #>
 <#@ include file="T4Toolbox.tt" #>
 <#@ include file="ViewModelTemplate.tt" #>
-<#@ include file="ViewModelTestsTemplate.tt" #>
 
 <#
 	string dslFile = Host.ResolvePath("ViewModel.mvvm");
