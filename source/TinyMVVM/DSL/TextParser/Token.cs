@@ -13,6 +13,7 @@ namespace TinyMVVM.DSL.TextParser
         oproperty,
         command,
         AS,
+        attribute,
         EOF
     }
 
@@ -41,13 +42,19 @@ namespace TinyMVVM.DSL.TextParser
             if (value == null)
                 throw new ArgumentNullException();
 
-            this._value = value;
+            _value = value;
         }
 
         private Token(Kind kind)
         {
-            this._kind = kind;
-            this._value = string.Empty;
+            _kind = kind;
+            _value = string.Empty;
+        }
+
+        private Token(Kind kind, string value)
+        {
+            _kind = kind;
+            _value = value;
         }
 
         public static Token ViewModel
@@ -73,6 +80,11 @@ namespace TinyMVVM.DSL.TextParser
         public static Token EOF
         {
             get{ return new Token(TextParser.Kind.EOF); }
+        }
+
+        public static Token Attribute(string name)
+        {
+            return new Token(TextParser.Kind.attribute, name);
         }
 
         public static Token Name(string name)

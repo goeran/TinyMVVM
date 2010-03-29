@@ -10,6 +10,7 @@ namespace TinyMVVM.SemanticModel
         public string Name { get; protected set; }
         public string Type { get; protected set; }
         public bool IsObservable { get; protected set; }
+        public List<string> Attributes { get; protected set; }
 
         public ViewModelProperty(string name, 
             string type,
@@ -21,6 +22,8 @@ namespace TinyMVVM.SemanticModel
             Name = name;
             Type = type;
             IsObservable = isObservable;
+
+            Attributes = new List<string>();
         }
     }
 }

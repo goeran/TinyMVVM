@@ -336,6 +336,7 @@
       <Item value="GetProperty" priority="0" />
       <Item value="GetMethods" priority="2" />
       <Item value="GetProperties" priority="0" />
+      <Item value="GetInterface`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Token">
       <Item value="Value" priority="3" />
@@ -646,15 +647,21 @@
   <RecentFiles>
     <RecentFiles>
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="252" fromTop="9" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="236" fromTop="6" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="22" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="94" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="696" fromTop="19" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="911" fromTop="21" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="649" fromTop="15" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="178" fromTop="4" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="578" fromTop="15" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="550" fromTop="14" />
+      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="2728" fromTop="5" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="595" fromTop="13" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2213" fromTop="9" />
+      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs/l:..?..?..?TinyMVVM?Framework?Testing?ServiceLocatorForTesting.cs" caret="166" fromTop="7" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="378" fromTop="17" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="295" fromTop="15" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="4974" fromTop="17" />
     </RecentFiles>
     <RecentEdits>
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
@@ -670,6 +677,15 @@
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="386" fromTop="14" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="586" fromTop="19" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="116" fromTop="0" />
+      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="2798" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="410" fromTop="11" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="694" fromTop="17" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="595" fromTop="13" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="399" fromTop="18" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="380" fromTop="18" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="378" fromTop="17" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="282" fromTop="14" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="4974" fromTop="17" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>

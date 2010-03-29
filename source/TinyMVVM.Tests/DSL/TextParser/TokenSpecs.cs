@@ -182,5 +182,16 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
             Then(() =>
                  token.ShouldBe(Token.Keyword(Kind.EOF)));
         }
+
+        [Test]
+        public void assure_its_a_Attribute_token()
+        {
+            When("spawning a Attribute token", () =>
+                token = Token.Attribute("Required"));
+
+            Then(() =>
+                token.ShouldBe(Token.Attribute("Required")));
+        }
+   
     }
 }

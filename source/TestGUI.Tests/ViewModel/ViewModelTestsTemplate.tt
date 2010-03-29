@@ -10,6 +10,7 @@
 public class ViewModelTestsTemplate : Template
 {
 	public string File;
+	public string UsingNamespace;
 	public string Namespace;
 
 	public override string TransformText()
@@ -20,7 +21,7 @@ public class ViewModelTestsTemplate : Template
 using System;
 using System.Collections.ObjectModel;
 using NUnit.Framework;
-using TestGUI.ViewModel;
+using <#= UsingNamespace#>;
 using TinyMVVM.Framework;
 using TinyMVVM.Framework.Services;
 using TinyMVVM.Framework.Testing;

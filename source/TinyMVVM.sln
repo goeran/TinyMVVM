@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGUI", "TestGUI\TestGUI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGUI.Tests", "TestGUI.Tests\TestGUI.Tests.csproj", "{47C8CC8B-97C7-43A1-92C8-079540DF6EED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM.SL", "TinyMVVM.SL\TinyMVVM.SL.csproj", "{B405566F-FAA9-4CFF-82AC-B0BD898478CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{47C8CC8B-97C7-43A1-92C8-079540DF6EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47C8CC8B-97C7-43A1-92C8-079540DF6EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47C8CC8B-97C7-43A1-92C8-079540DF6EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B405566F-FAA9-4CFF-82AC-B0BD898478CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B405566F-FAA9-4CFF-82AC-B0BD898478CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B405566F-FAA9-4CFF-82AC-B0BD898478CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B405566F-FAA9-4CFF-82AC-B0BD898478CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

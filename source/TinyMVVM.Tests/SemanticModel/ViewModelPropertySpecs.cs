@@ -64,5 +64,13 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
             Then(() =>
                 viewModelProperty.IsObservable.ShouldBeFalse());
         }
+
+        [Test]
+        public void assure_it_has_Attributes()
+        {
+            Then(() =>
+                 viewModelProperty.Attributes.ShouldNotBeNull());
+        }
+
     }
 }

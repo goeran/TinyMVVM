@@ -19,6 +19,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
             Given(Scanner_is_created);
             And("simple viewmodel is described with the MVVM DSL", () =>
                 code = "viewmodel LoginViewModel:\n" +
+                "\t[Required]\n\r" +
+                "\t[MaxLength(10)]\n" +
                 "\tproperty Username\n\r" +
 				"\tproperty Log ObservableCollection<string>\n" +
                 "\toproperty IsVisible\n" +
@@ -94,6 +96,26 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
         {
             Then(() =>
                  tokens.Where(t => t == Token.Name("IsVisible")).Count().ShouldBe(1));
+        }
+
+        [Test]
+        public void assure_attribute_Tokens_are_found()
+        {
+            Then(() =>
+            {
+                foreach (var token in tokens)
+                    Console.WriteLine(token);
+
+                tokens.Where(t => t == Token.Attribute("[Required]")).Count().ShouldBe(1);
+                tokens.Where(t => t == Token.Attribute("[MaxLength(10)]")).Count().ShouldBe(1);
+            });
+        }
+
+        [Test]
+        public void assure_attribute_Name_is_parsed()
+        {
+            Then(() =>
+                 tokens.Where(t => t == Token.Attribute("[Required]")).SingleOrDefault().Value.ShouldBe("[Required]"));            
         }
 
         [Test]

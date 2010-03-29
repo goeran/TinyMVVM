@@ -74,7 +74,7 @@ namespace TinyMVVM.Framework
             
         private bool IsPropertyTypeAnImplOfCommand(PropertyInfo p)
         {
-            return p.PropertyType.GetInterface(typeof (ICommand).FullName) != null;
+            return p.PropertyType.GetInterface(typeof (ICommand).FullName, true) != null;
         }
 
         public void Start()

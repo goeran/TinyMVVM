@@ -11,8 +11,11 @@ viewmodel SearchViewModel:
 	command Search
 	command Clear
 
-vm ExpressionViewModel:
+viewmodel ExpressionViewModel:
 	data Text as string
-	
 
+viewmodel Traybar:
+	[ImportMany]
+	property Widgets as ObservableCollection<Widget>
 	
+viewmodel Widget	

@@ -38,6 +38,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             Given("a simple viewmodel is described with the MVVM dsl", () =>
             {
                 code = "viewmodel LoginViewModel:\n" +
+                       "\t[Required]\n" +
+                       "\t[MaxLength(10)]\n" +
                        "\tproperty Username as string\n\r" +
                        "\tproperty Password as string\n" +
                        "\t\tcommand Login\n" +
@@ -78,7 +80,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         }
 
         [Test]
-        public void assure_ViewModel_Properties_is_parsed()
+        public void assure_ViewModel_Properties_are_parsed()
         {
             Then(() =>
             {
@@ -95,6 +97,21 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
                 vmSearch.Properties[0].IsObservable.ShouldBeTrue();
             });
         }
+
+        [Test]
+        public void assure_Attributes_on_ViewModel_Properties_are_parsed()
+        {
+            Then(() =>
+            {
+                var vm = semanticModel.ViewModels.First();
+                var usernameProperty = vm.Properties[0];
+
+                usernameProperty.Attributes.ShouldHave(2);
+                usernameProperty.Attributes.Where(a => a == "[Required]").Count().ShouldBe(1);
+                usernameProperty.Attributes.Where(a => a == "[MaxLength(10)]").Count().ShouldBe(1);
+            });
+        }
+
 
         [Test]
         public void assure_ViewModelCommand_is_parsed()

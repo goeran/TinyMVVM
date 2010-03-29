@@ -22,11 +22,14 @@ namespace TinyMVVM.DSL.TextParser
                 {
                     chr = (char)textReader.Peek();
 
-                    if (char.IsLetter(chr))
+                    if (char.IsLetter(chr) ||
+                        chr == '[' || chr == ']')
                     {
                         name = ScanName(textReader);
                         keyword = ConvertToKeyword(name);
-                        if (keyword == Kind.Name)
+                        if (name.StartsWith("[") && name.EndsWith("]"))
+                            yield return Token.Attribute(name);
+                        else if (keyword == Kind.Name)
                             yield return Token.Name(name);
                         else
                             yield return Token.Keyword(keyword);
@@ -57,7 +60,12 @@ namespace TinyMVVM.DSL.TextParser
 
             while (char.IsLetter((char)textReader.Peek()) ||
 				textReader.Peek() == '<' ||
-				textReader.Peek() == '>')
+				textReader.Peek() == '>' ||
+                textReader.Peek() == '[' ||
+                textReader.Peek() == ']' ||
+                textReader.Peek() == '(' ||
+                textReader.Peek() == ')' ||
+                char.IsNumber((char)textReader.Peek()))
                 sb.Append((char)textReader.Read());
 
             return sb.ToString();
