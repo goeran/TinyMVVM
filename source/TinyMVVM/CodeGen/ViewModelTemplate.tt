@@ -29,6 +29,9 @@ namespace <#= Namespace #>
 	{
 		//State
 	<#+ foreach (ViewModelProperty property in viewModel.Properties) {#>
+	<#+ foreach (string attribute in property.Attributes) {#>
+		<#= attribute #>
+	<#+ }#>
 	<#+ if (property.IsObservable) {#>private <#= property.Type#> _<#= property.Name#>;
 		public <#= property.Type#> <#= property.Name#>
 		{
