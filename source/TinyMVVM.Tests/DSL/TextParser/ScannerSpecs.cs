@@ -18,7 +18,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
         {
             Given(Scanner_is_created);
             And("simple viewmodel is described with the MVVM DSL", () =>
-                code = "viewmodel LoginViewModel:\n" +
+                code = "using System.ComponentModel.Composition\n\n" +
+                "viewmodel LoginViewModel:\n" +
                 "\t[Required]\n\r" +
                 "\t[MaxLength(10)]\n" +
                 "\tproperty Username\n\r" +
@@ -43,10 +44,25 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
         }
 
         [Test]
+        public void assure_Using_Token_is_found()
+        {
+            Then(() =>
+                 tokens.Where(t => t == Token.Using).Count().ShouldBe(1));
+        }
+
+        [Test]
+        public void assure_Using_Name_Token_is_found()
+        {
+            Then(() =>
+                 tokens.Where(t => t == Token.Name("System.ComponentModel.Composition")).Count().ShouldBe(1));
+        }
+
+
+        [Test]
         public void assure_ViewModel_Token_is_found()
         {
             Then(() =>
-                tokens.First().ShouldBe(Token.ViewModel));
+                tokens.Where(t => t == Token.ViewModel).Count().ShouldBe(1));
         }
 
         [Test]

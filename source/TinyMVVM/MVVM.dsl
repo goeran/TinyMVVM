@@ -1,4 +1,7 @@
-﻿viewmodel LoginViewModel:
+﻿using System.Linq
+using System.ComponentModel.Composition
+
+viewmodel LoginViewModel:
 	oproperty Username as string
 	oproperty Password as string
 	

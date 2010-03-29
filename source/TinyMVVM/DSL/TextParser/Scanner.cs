@@ -65,6 +65,7 @@ namespace TinyMVVM.DSL.TextParser
                 textReader.Peek() == ']' ||
                 textReader.Peek() == '(' ||
                 textReader.Peek() == ')' ||
+                textReader.Peek() == '.' ||
                 char.IsNumber((char)textReader.Peek()))
                 sb.Append((char)textReader.Read());
 

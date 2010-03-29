@@ -53,7 +53,12 @@ namespace TinyMVVM.DSL.TextParser
         {
             while (CurrentToken() != Token.EOF)
             {
-                ParseViewModel();
+                if (CurrentToken() == Token.Using)
+                    ParseUsing();
+                else if (CurrentToken() == Token.ViewModel)
+                    ParseViewModel();
+                else
+                    NextToken();
             }
         }
 
@@ -61,6 +66,17 @@ namespace TinyMVVM.DSL.TextParser
         {
             tokensEnumerator.MoveNext();
             return tokensEnumerator.Current;
+        }
+
+        private void ParseUsing()
+        {
+            var nameToken = NextToken();
+            if (nameToken.Kind != Kind.Name)
+                throw new InvalidSyntaxException("Namespace must be specified when using the 'using' keyword");
+
+            modelSpecification.Usings.Add(nameToken.Value);
+
+            NextToken();
         }
 
         private void ParseViewModel()

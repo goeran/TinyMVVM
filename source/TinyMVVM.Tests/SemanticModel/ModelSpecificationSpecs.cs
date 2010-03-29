@@ -24,6 +24,14 @@ namespace TinyMVVM.Tests.SemanticModel.ModelSpecificationSpecs
             Then(() =>
                  modelSpecification.ViewModels.ShouldNotBeNull());
         }
+
+        [Test]
+        public void assure_it_has_Usings() //Namespace includes
+        {
+            Then(() =>
+                modelSpecification.Usings.ShouldNotBeNull());
+        }
+
     }
 
     [TestFixture]

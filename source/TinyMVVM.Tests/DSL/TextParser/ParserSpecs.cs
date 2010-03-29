@@ -37,7 +37,9 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Given("a simple viewmodel is described with the MVVM dsl", () =>
             {
-                code = "viewmodel LoginViewModel:\n" +
+                code = "using System.Linq\n" + 
+                       "using System.ComponentModel.Composition\n\n" + 
+                       "viewmodel LoginViewModel:\n" +
                        "\t[Required]\n" +
                        "\t[MaxLength(10)]\n" +
                        "\tproperty Username as string\n\r" +
@@ -58,6 +60,18 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             When("parse", () =>
                 semanticModel = parser.Parse(new InlineCode(code)));
         }
+
+        [Test]
+        public void assure_Usings_are_parsed()
+        {
+            Then(() =>
+            {
+                semanticModel.Usings.ShouldHave(2);
+                semanticModel.Usings[0].ShouldBe("System.Linq");
+                semanticModel.Usings[1].ShouldBe("System.ComponentModel.Composition");
+            });
+        }
+
 
         [Test]
         public void assure_ViewModels_are_parsed()
@@ -136,6 +150,23 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Given(Parser_is_created);
         }
+
+        [Test]
+        public void assure_it_checks_if_Name_is_specified_for_Using()
+        {
+            And(dsl_code_is_described(
+                "using System.Linq\n" +
+                "using \n" +
+                "viewmodel Login:"));
+
+            When("parse");
+
+            Then(() =>
+                this.ShouldThrowException<InvalidSyntaxException>(() =>
+                    parser.Parse(new InlineCode(code)), ex =>
+                        ex.Message.ShouldBe("Namespace must be specified when using the 'using' keyword")));
+        }
+
 
         [Test]
         public void assure_it_checks_if_Name_is_specified_for_ViewModel()
