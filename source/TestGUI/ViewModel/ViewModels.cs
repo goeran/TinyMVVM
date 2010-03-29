@@ -1,13 +1,13 @@
 using System;
-using TinyMVVM.Framework;
 using System.Collections.ObjectModel;
+using TinyMVVM.Framework;
 
 namespace TestGUI.ViewModel
 {
 	public partial class SearchViewModel : ViewModelBase
 	{
 		//State
-		public string Query { get; set; } 
+			public string Query { get; set; } 
 	
 		
 		//Commands
@@ -30,7 +30,7 @@ namespace TestGUI.ViewModel
 	public partial class LoginViewModel : ViewModelBase
 	{
 		//State
-		private string _Username;
+			private string _Username;
 		public string Username
 		{
 			get { return _Username; }
@@ -43,7 +43,7 @@ namespace TestGUI.ViewModel
 				}
 			}
 		}
-		private string _Password;
+			private string _Password;
 		public string Password
 		{
 			get { return _Password; }
@@ -56,7 +56,7 @@ namespace TestGUI.ViewModel
 				}
 			}
 		}
-		private bool _IsVisible;
+			private bool _IsVisible;
 		public bool IsVisible
 		{
 			get { return _IsVisible; }
@@ -69,7 +69,7 @@ namespace TestGUI.ViewModel
 				}
 			}
 		}
-		private string _Status;
+			private string _Status;
 		public string Status
 		{
 			get { return _Status; }
@@ -82,7 +82,7 @@ namespace TestGUI.ViewModel
 				}
 			}
 		}
-		private bool _ReadOnly;
+			private bool _ReadOnly;
 		public bool ReadOnly
 		{
 			get { return _ReadOnly; }
@@ -115,7 +115,7 @@ namespace TestGUI.ViewModel
 	public partial class AddressBookViewModel : ViewModelBase
 	{
 		//State
-		public ObservableCollection<Contact> Contacts { get; set; } 
+			public ObservableCollection<Contact> Contacts { get; set; } 
 	
 		
 		//Commands
@@ -136,10 +136,10 @@ namespace TestGUI.ViewModel
 	public partial class Contact : ViewModelBase
 	{
 		//State
-		public string Name { get; set; } 
-		public string Email { get; set; } 
-		public string Phone { get; set; } 
-		public string Mobile { get; set; } 
+			public string Name { get; set; } 
+			public string Email { get; set; } 
+			public string Phone { get; set; } 
+			public string Mobile { get; set; } 
 	
 		
 		//Commands

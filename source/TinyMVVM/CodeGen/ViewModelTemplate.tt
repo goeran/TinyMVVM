@@ -18,9 +18,10 @@ public class ViewModelTemplate : Template
 		ModelSpecification modelSpec = parser.Parse(Code.FromFile(File));
 
 	#>
-using System;
-using TinyMVVM.Framework;
-using System.Collections.ObjectModel;
+
+<#+ foreach (string Using in modelSpec.Usings) {#>
+using <#= Using #>;
+<#+ }#>
 
 namespace <#= Namespace #>
 {
@@ -29,8 +30,7 @@ namespace <#= Namespace #>
 	{
 		//State
 	<#+ foreach (ViewModelProperty property in viewModel.Properties) {#>
-	<#+ foreach (string attribute in property.Attributes) {#>
-		<#= attribute #>
+	<#+ foreach (string attribute in property.Attributes) {#> <#= attribute #> 
 	<#+ }#>
 	<#+ if (property.IsObservable) {#>private <#= property.Type#> _<#= property.Name#>;
 		public <#= property.Type#> <#= property.Name#>

@@ -1,4 +1,8 @@
-﻿viewmodel SearchViewModel:
+﻿using System
+using System.Collections.ObjectModel
+using TinyMVVM.Framework
+
+viewmodel SearchViewModel:
 	property Query as string
 	command Search
 	command Clear

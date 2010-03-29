@@ -15,22 +15,22 @@
       <Item value="testsetup" priority="43" />
       <Item value="viewModel" priority="40" />
       <Item value="ViewModel" priority="10" />
-      <Item value="test" priority="81" />
-      <Item value="string" priority="28" />
-      <Item value="prop" priority="17" />
-      <Item value="List" priority="6" />
+      <Item value="test" priority="92" />
+      <Item value="string" priority="32" />
+      <Item value="prop" priority="20" />
+      <Item value="List" priority="10" />
       <Item value="object" priority="5" />
-      <Item value="public" priority="45" />
-      <Item value="new" priority="104" />
+      <Item value="public" priority="48" />
+      <Item value="new" priority="114" />
       <Item value="Data" priority="0" />
       <Item value="List&lt;object&gt;" priority="2" />
-      <Item value="private" priority="54" />
+      <Item value="private" priority="56" />
       <Item value="Object" priority="11" />
-      <Item value="return" priority="49" />
+      <Item value="return" priority="53" />
       <Item value="_data" priority="2" />
       <Item value="ReadOnlyCollection" priority="0" />
       <Item value="_commands" priority="1" />
-      <Item value="static" priority="30" />
+      <Item value="static" priority="32" />
       <Item value="class" priority="13" />
       <Item value="sWhen" priority="5" />
       <Item value="abstract" priority="0" />
@@ -40,12 +40,12 @@
       <Item value="tokensEnumerator" priority="10" />
       <Item value="protected" priority="32" />
       <Item value="Then" priority="46" />
-      <Item value="this" priority="20" />
+      <Item value="this" priority="23" />
       <Item value="ArgumentNullException" priority="20" />
       <Item value="ViewModelData" priority="0" />
       <Item value="type" priority="2" />
-      <Item value="semanticModel" priority="9" />
-      <Item value="var" priority="49" />
+      <Item value="semanticModel" priority="13" />
+      <Item value="var" priority="57" />
       <Item value="System" priority="1" />
       <Item value="DictionaryEntry" priority="0" />
       <Item value="Dictionary&lt;string,Type&gt;" priority="0" />
@@ -58,10 +58,10 @@
       <Item value="Parser_is_created" priority="2" />
       <Item value="When" priority="33" />
       <Item value="parser" priority="6" />
-      <Item value="void" priority="30" />
-      <Item value="if" priority="32" />
+      <Item value="void" priority="31" />
+      <Item value="if" priority="37" />
       <Item value="loadingStrategy" priority="1" />
-      <Item value="throw" priority="10" />
+      <Item value="throw" priority="11" />
       <Item value="ICodeLoader" priority="1" />
       <Item value="InlineCode" priority="5" />
       <Item value="loadedCode" priority="2" />
@@ -72,10 +72,10 @@
       <Item value="null" priority="15" />
       <Item value="ViewModelContext" priority="0" />
       <Item value="ThrowExceptionIfNull" priority="0" />
-      <Item value="name" priority="1" />
+      <Item value="name" priority="3" />
       <Item value="Name" priority="0" />
       <Item value="NUnitScenarioClass" priority="7" />
-      <Item value="modelSpecification" priority="8" />
+      <Item value="modelSpecification" priority="10" />
       <Item value="ModelSpecification" priority="5" />
       <Item value="spawned" priority="0" />
       <Item value="viewModels" priority="1" />
@@ -85,10 +85,10 @@
       <Item value="ArgIterator" priority="0" />
       <Item value="ModelSpecification_is_created" priority="0" />
       <Item value="while" priority="0" />
-      <Item value="Token" priority="7" />
+      <Item value="Token" priority="11" />
       <Item value="NextToken" priority="13" />
       <Item value="CurrentToken" priority="3" />
-      <Item value="nameToken" priority="0" />
+      <Item value="nameToken" priority="2" />
       <Item value="code" priority="4" />
       <Item value="CodeFile" priority="4" />
       <Item value="filePath" priority="4" />
@@ -104,7 +104,7 @@
       <Item value="TextReader" priority="0" />
       <Item value="StreamReader" priority="0" />
       <Item value="TearDown" priority="0" />
-      <Item value="vm" priority="1" />
+      <Item value="vm" priority="2" />
       <Item value="vmSearch" priority="0" />
       <Item value="DelegateCommand" priority="15" />
       <Item value="Action" priority="6" />
@@ -182,12 +182,12 @@
       <Item value="AssemblyKeyFileAttribute" priority="0" />
       <Item value="Assembly" priority="0" />
       <Item value="Where" priority="8" />
-      <Item value="t" priority="6" />
+      <Item value="t" priority="11" />
       <Item value="InitTestingModule" priority="0" />
       <Item value="InlineModule" priority="1" />
-      <Item value="a" priority="0" />
-      <Item value="foreach" priority="1" />
-      <Item value="in" priority="2" />
+      <Item value="a" priority="2" />
+      <Item value="foreach" priority="3" />
+      <Item value="in" priority="5" />
       <Item value="interfaces" priority="1" />
       <Item value="service" priority="0" />
       <Item value="Dictionary" priority="2" />
@@ -253,7 +253,7 @@
       <Item value="command" priority="5" />
       <Item value="BindingFlags" priority="6" />
       <Item value="customCanExecuteDelegateIsCalled" priority="1" />
-      <Item value="value" priority="1" />
+      <Item value="value" priority="2" />
       <Item value="methods" priority="4" />
       <Item value="executeMethod" priority="7" />
       <Item value="Clear" priority="0" />
@@ -301,13 +301,52 @@
       <Item value="Setup`0" priority="0" />
       <Item value="ServiceLocator`0" priority="0" />
       <Item value="CustomServiceLocatorForTests`0" priority="0" />
-      <Item value="Console`0" priority="0" />
+      <Item value="Console`0" priority="3" />
       <Item value="Ninject" priority="0" />
+      <Item value="When`0" priority="2" />
+      <Item value="token" priority="6" />
+      <Item value="Token`0" priority="21" />
+      <Item value="TextParser" priority="0" />
+      <Item value="Kind`0" priority="8" />
+      <Item value="Then`0" priority="9" />
+      <Item value="tokens" priority="5" />
+      <Item value="textReader" priority="7" />
+      <Item value="yield break" priority="0" />
+      <Item value="kind" priority="0" />
+      <Item value="char" priority="3" />
+      <Item value="chr" priority="1" />
+      <Item value="viewModelProperty" priority="2" />
+      <Item value="IEnumerable" priority="0" />
+      <Item value="Attributes" priority="0" />
+      <Item value="List&lt;string&gt;" priority="1" />
+      <Item value="usernameProperty" priority="3" />
+      <Item value="attribute" priority="1" />
+      <Item value="UriFormat`0" priority="0" />
+      <Item value="CurrentToken`0" priority="3" />
+      <Item value="attributes" priority="1" />
+      <Item value="NextToken`0" priority="3" />
+      <Item value="ViewModel`0" priority="0" />
+      <Item value="ValuesAttribute`0" priority="0" />
+      <Item value="Usings" priority="0" />
+      <Item value="ModelSpecification`0" priority="0" />
+      <Item value="ParseUsing`0" priority="0" />
+      <Item value="And`0" priority="0" />
+      <Item value="dsl_code_is_described`0" priority="0" />
+      <Item value="InvalidSyntaxException`0" priority="0" />
+      <Item value="parse" priority="0" />
+      <Item value="InlineCode`0" priority="0" />
+      <Item value="ex" priority="0" />
+      <Item value="InvalidSyntaxException" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="AsReadOnly" priority="3" />
       <Item value="Add" priority="1" />
       <Item value="Count" priority="0" />
+      <Item value="ShouldHave`0" priority="2" />
+      <Item value="Add`0" priority="1" />
+      <Item value="AddRange`0" priority="0" />
+      <Item value="ShouldContain`0" priority="0" />
+      <Item value="Where`1" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Parser+TokenEnumerator">
       <Item value="MoveNext" priority="3" />
@@ -320,6 +359,7 @@
       <Item value="Data" priority="3" />
       <Item value="Name" priority="1" />
       <Item value="Commands" priority="0" />
+      <Item value="Properties" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.SemanticModel.ViewModelData">
       <Item value="Type" priority="1" />
@@ -339,7 +379,11 @@
       <Item value="GetInterface`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Token">
-      <Item value="Value" priority="3" />
+      <Item value="Value" priority="8" />
+      <Item value="ShouldBe`0" priority="1" />
+      <Item value="Kind" priority="3" />
+      <Item value="_kind" priority="0" />
+      <Item value="_value" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Type">
       <Item value="GetType" priority="0" />
@@ -357,6 +401,9 @@
       <Item value="ShouldNotBeNull" priority="0" />
       <Item value="ShouldBeNull" priority="0" />
       <Item value="Equals" priority="3" />
+      <Item value="StartsWith`0" priority="0" />
+      <Item value="EndsWith`0" priority="0" />
+      <Item value="ShouldBe`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.DSL.TextParser.ParserSpecs.When_code_is_loaded">
       <Item value="ShouldThrowException" priority="0" />
@@ -364,6 +411,7 @@
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Parser">
       <Item value="LoadCode" priority="1" />
       <Item value="Parse" priority="2" />
+      <Item value="Parse`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.ICodeLoader">
       <Item value="Load" priority="0" />
@@ -392,17 +440,24 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.SemanticModel.ModelSpecification">
       <Item value="AddViewModel" priority="2" />
-      <Item value="ViewModels" priority="7" />
+      <Item value="ViewModels" priority="8" />
+      <Item value="Usings" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.ObjectModel.ReadOnlyCollection`1">
       <Item value="ShouldContain" priority="1" />
       <Item value="First" priority="2" />
       <Item value="ShouldHave" priority="0" />
       <Item value="Where" priority="1" />
+      <Item value="First`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@TinyMVVM.DSL.TextParser.Token">
-      <Item value="ViewModel" priority="1" />
+      <Item value="ViewModel" priority="3" />
       <Item value="EOF" priority="2" />
+      <Item value="Keyword`0" priority="3" />
+      <Item value="Name`0" priority="1" />
+      <Item value="Attribute" priority="0" />
+      <Item value="Attribute`0" priority="4" />
+      <Item value="Using" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.DSL.TextParser.CodeFileSpecs.When_spawning">
       <Item value="ShouldThrowException" priority="0" />
@@ -507,7 +562,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine" priority="0" />
-      <Item value="WriteLine`0" priority="0" />
+      <Item value="WriteLine`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Ninject.Core.InlineModule">
       <Item value="Bind" priority="12" />
@@ -566,6 +621,10 @@
       <Item value="Count" priority="3" />
       <Item value="GetType" priority="0" />
       <Item value="SingleOrDefault" priority="2" />
+      <Item value="Where`1" priority="5" />
+      <Item value="Count`1" priority="6" />
+      <Item value="ToList`1" priority="0" />
+      <Item value="SingleOrDefault`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.Framework.BootStrapperSpecs.BootstrapperFromProject">
       <Item value="GetType" priority="0" />
@@ -632,6 +691,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Int32">
       <Item value="ShouldBe" priority="1" />
+      <Item value="ShouldBe`0" priority="6" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Framework.Internal.DynamicObject">
       <Item value="instanceType" priority="0" />
@@ -643,49 +703,90 @@
     <ItemStatistics item="Qualified:System.IO.FileStream">
       <Item value="Close`0" priority="1" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:@TinyMVVM.DSL.TextParser.Kind">
+      <Item value="attribute" priority="4" />
+      <Item value="Using" priority="0" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.TextReader">
+      <Item value="Peek`0" priority="7" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Char">
+      <Item value="IsSymbol`0" priority="0" />
+      <Item value="IsControl`0" priority="0" />
+      <Item value="IsNumber`0" priority="0" />
+      <Item value="IsPunctuation`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TinyMVVM.SemanticModel.ViewModelProperty">
+      <Item value="Attributes" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TinyMVVM.Tests.DSL.TextParser.ParserSpecs.When_Parse_and_checking_grammar">
+      <Item value="ShouldThrowException`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.InvalidSyntaxException">
+      <Item value="Message" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="252" fromTop="9" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="94" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="911" fromTop="21" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="649" fromTop="15" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="178" fromTop="4" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="578" fromTop="15" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="550" fromTop="14" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="2728" fromTop="5" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="595" fromTop="13" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2213" fromTop="9" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs/l:..?..?..?TinyMVVM?Framework?Testing?ServiceLocatorForTesting.cs" caret="166" fromTop="7" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="378" fromTop="17" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="295" fromTop="15" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="4974" fromTop="17" />
+      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:SemanticModel/f:ViewModelProperty.cs/l:..?..?TinyMVVM?SemanticModel?ViewModelProperty.cs" caret="756" fromTop="21" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ViewModelPropertySpecs.cs" caret="1369" fromTop="20" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="171" fromTop="7" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="1826" fromTop="20" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2153" fromTop="12" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="1346" fromTop="42" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ModelSpecificationSpecs.cs" caret="1606" fromTop="47" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5516" fromTop="25" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2161" fromTop="27" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1965" fromTop="42" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.cs" caret="0" fromTop="0" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="569" fromTop="21" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="783" fromTop="4" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="295" fromTop="7" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="585" fromTop="20" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="251" fromTop="10" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="213" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1879" fromTop="22" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="0" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="22" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="86" fromTop="3" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="380" fromTop="8" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="696" fromTop="20" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="522" fromTop="10" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="166" fromTop="5" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="484" fromTop="18" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="90" fromTop="3" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="386" fromTop="14" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="586" fromTop="19" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="116" fromTop="0" />
-      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="2798" fromTop="0" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="410" fromTop="11" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="694" fromTop="17" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="595" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="399" fromTop="18" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="380" fromTop="18" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="378" fromTop="17" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="282" fromTop="14" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="4974" fromTop="17" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="3657" fromTop="20" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="3458" fromTop="13" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="3608" fromTop="15" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="4283" fromTop="16" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="17" fromTop="0" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5501" fromTop="24" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="297" fromTop="15" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="1826" fromTop="20" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="614" fromTop="16" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="1955" fromTop="23" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="1758" fromTop="30" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2153" fromTop="12" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ModelSpecificationSpecs.cs" caret="839" fromTop="24" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="335" fromTop="11" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="778" fromTop="24" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="569" fromTop="21" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="1058" fromTop="5" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="1586" fromTop="25" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="2367" fromTop="36" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="5527" fromTop="10" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2161" fromTop="27" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="945" fromTop="31" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="626" fromTop="24" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="42" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="479" fromTop="11" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="331" fromTop="15" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="0" fromTop="0" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="0" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1879" fromTop="42" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="2863" fromTop="10" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>
@@ -696,4 +797,36 @@
     </NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <UserSolutionTemplateManager>
+    <LiveTemplates>
+      <Template uid="2d591791-35ab-4f62-97e9-980e9738f54f" shortcut="test" description="NUnit test" text="[Test]&#xD;&#xA;public void $NAME$()&#xD;&#xA;{&#xD;&#xA;	$END$   &#xD;&#xA;}&#xD;&#xA;" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="NAME" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="d9622933-360a-4b75-b6c8-7273d88f91bd" shortcut="testfixture" description="NUnit test fixture" text="[TestFixture]&#xD;&#xA;public class $NAME$&#xD;&#xA;{&#xD;&#xA;	$END$    &#xD;&#xA;}&#xD;&#xA;" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="NAME" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="ba7b1e30-69e0-4697-8a49-f594fcfcf4d1" shortcut="testsetup" description="NUnit test setup" text="[SetUp]&#xD;&#xA;public void Setup()&#xD;&#xA;{&#xD;&#xA;    $END$&#xD;&#xA;}&#xD;&#xA;" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+    </LiveTemplates>
+  </UserSolutionTemplateManager>
 </Configuration>
