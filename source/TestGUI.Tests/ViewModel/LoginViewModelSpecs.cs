@@ -52,7 +52,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
             viewModel.Login.CanExecuteChanged += (o, e) =>
                 loginCommandStateChanges++;
 
-            When_Username_is_entered("goeran");
+            When_Username_is_set("goeran");
         }
 
 
@@ -82,7 +82,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         {
             Given_LoginViewModel_is_created();
 
-            When_Password_is_entered("hansen");
+            When_Password_is_set("hansen");
         }
 
         [Test]
@@ -104,9 +104,9 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public override void Context()
         {
             Given_LoginViewModel_is_created();
-            And_Username_is_entered("goeran");
+            And_Username_is_set("goeran");
 
-            When_Password_is_entered("hansen");
+            When_Password_is_set("hansen");
         }
 
         [Test]
@@ -122,8 +122,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public override void Context()
         {
             Given_LoginViewModel_is_created();
-            And_Username_is_entered("goeran");
-            And_Password_is_entered("hansen");
+            And_Username_is_set("goeran");
+            And_Password_is_set("hansen");
 
             When_execute_Login_Command();
         }
@@ -155,8 +155,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
                 Returns(false);
 
             Given_LoginViewModel_is_created();
-            And_Username_is_entered("goeran");
-            And_Password_is_entered("notvalid");
+            And_Username_is_set("goeran");
+            And_Password_is_set("notvalid");
 
             When_execute_Login_Command();
         }
@@ -184,8 +184,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
                 s.Authenticate(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 
             Given_LoginViewModel_is_created();
-            And_Username_is_entered("goeran");
-            And_Password_is_entered("hansen");
+            And_Username_is_set("goeran");
+            And_Password_is_set("hansen");
 
             When_execute_Login_Command();
         }
@@ -206,8 +206,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
             Given_LoginViewModel_is_created();
             And_LoginViewModel_PropertyChangeRecording_is_Started();
 
-            And_Username_is_entered("goeran");
-            And_Password_is_entered("hansen");
+            And_Username_is_set("goeran");
+            And_Password_is_set("hansen");
 
             When_execute_Login_Command();
         }
@@ -228,8 +228,8 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public override void Context()
         {
             Given_LoginViewModel_is_created();
-            And_Username_is_entered("goeran");
-            And_Password_is_entered("hansen");
+            And_Username_is_set("goeran");
+            And_Password_is_set("hansen");
 
             When_execute_Cancel_Command();
         }

@@ -18,13 +18,13 @@ public class ViewModelTestsTemplate : Template
 		Parser parser = new Parser();
 		ModelSpecification modelSpec = parser.Parse(Code.FromFile(File));
 #>
-using System;
-using System.Collections.ObjectModel;
+
 using NUnit.Framework;
 using <#= UsingNamespace#>;
-using TinyMVVM.Framework;
-using TinyMVVM.Framework.Services;
 using TinyMVVM.Framework.Testing;
+<#+ foreach (string Using in modelSpec.Usings) {#>
+using <#= Using #>;
+<#+ }#>
 
 namespace <#= Namespace #>
 {
@@ -46,14 +46,11 @@ namespace <#= Namespace #>
 		public void Given_<#= viewModel.Name#>_is_created()
 		{
 			viewModel = new <#= viewModel.Name#>();
-		}
-		
-		public void And_data_is_entered()
-		{
+            viewModel.PropertyChangeRecorder.Start();
 		}
 		
 	<#+ foreach (ViewModelProperty property in viewModel.Properties){#>
-	public void And_<#= property.Name#>_is_entered(<#= property.Type#> value)
+	public void And_<#= property.Name#>_is_set(<#= property.Type#> value)
 		{
 			viewModel.<#= property.Name#> = value;
 		}
@@ -65,13 +62,12 @@ namespace <#= Namespace #>
 		}
 
 	<#+ foreach (ViewModelProperty property in viewModel.Properties){#>
-	public void When_<#= property.Name#>_is_entered(<#= property.Type#> value)
+	public void When_<#= property.Name#>_is_set(<#= property.Type#> value)
 		{
 			viewModel.<#= property.Name#> = value;
 		}
 		
 	<#+ }#>
-
 	
 		public void When_<#= viewModel.Name#>_is_spawned()
 		{

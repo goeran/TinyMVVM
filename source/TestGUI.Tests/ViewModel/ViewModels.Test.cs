@@ -1,10 +1,10 @@
-using System;
-using System.Collections.ObjectModel;
+
 using NUnit.Framework;
 using TestGUI.ViewModel;
-using TinyMVVM.Framework;
-using TinyMVVM.Framework.Services;
 using TinyMVVM.Framework.Testing;
+using System;
+using System.Collections.ObjectModel;
+using TinyMVVM.Framework;
 
 namespace TestGUI.Tests.ViewModel
 {
@@ -25,13 +25,10 @@ namespace TestGUI.Tests.ViewModel
 		public void Given_SearchViewModel_is_created()
 		{
 			viewModel = new SearchViewModel();
+            viewModel.PropertyChangeRecorder.Start();
 		}
 		
-		public void And_data_is_entered()
-		{
-		}
-		
-		public void And_Query_is_entered(string value)
+		public void And_Query_is_set(string value)
 		{
 			viewModel.Query = value;
 		}
@@ -42,13 +39,12 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.PropertyChangeRecorder.Start();
 		}
 
-		public void When_Query_is_entered(string value)
+		public void When_Query_is_set(string value)
 		{
 			viewModel.Query = value;
 		}
 		
-	
-	
+		
 		public void When_SearchViewModel_is_spawned()
 		{
 			viewModel = new SearchViewModel();
@@ -88,29 +84,26 @@ namespace TestGUI.Tests.ViewModel
 		public void Given_LoginViewModel_is_created()
 		{
 			viewModel = new LoginViewModel();
+            viewModel.PropertyChangeRecorder.Start();
 		}
 		
-		public void And_data_is_entered()
-		{
-		}
-		
-		public void And_Username_is_entered(string value)
+		public void And_Username_is_set(string value)
 		{
 			viewModel.Username = value;
 		}
-		public void And_Password_is_entered(string value)
+		public void And_Password_is_set(string value)
 		{
 			viewModel.Password = value;
 		}
-		public void And_IsVisible_is_entered(bool value)
+		public void And_IsVisible_is_set(bool value)
 		{
 			viewModel.IsVisible = value;
 		}
-		public void And_Status_is_entered(string value)
+		public void And_Status_is_set(string value)
 		{
 			viewModel.Status = value;
 		}
-		public void And_ReadOnly_is_entered(bool value)
+		public void And_ReadOnly_is_set(bool value)
 		{
 			viewModel.ReadOnly = value;
 		}
@@ -121,33 +114,32 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.PropertyChangeRecorder.Start();
 		}
 
-		public void When_Username_is_entered(string value)
+		public void When_Username_is_set(string value)
 		{
 			viewModel.Username = value;
 		}
 		
-		public void When_Password_is_entered(string value)
+		public void When_Password_is_set(string value)
 		{
 			viewModel.Password = value;
 		}
 		
-		public void When_IsVisible_is_entered(bool value)
+		public void When_IsVisible_is_set(bool value)
 		{
 			viewModel.IsVisible = value;
 		}
 		
-		public void When_Status_is_entered(string value)
+		public void When_Status_is_set(string value)
 		{
 			viewModel.Status = value;
 		}
 		
-		public void When_ReadOnly_is_entered(bool value)
+		public void When_ReadOnly_is_set(bool value)
 		{
 			viewModel.ReadOnly = value;
 		}
 		
-	
-	
+		
 		public void When_LoginViewModel_is_spawned()
 		{
 			viewModel = new LoginViewModel();
@@ -182,13 +174,10 @@ namespace TestGUI.Tests.ViewModel
 		public void Given_AddressBookViewModel_is_created()
 		{
 			viewModel = new AddressBookViewModel();
+            viewModel.PropertyChangeRecorder.Start();
 		}
 		
-		public void And_data_is_entered()
-		{
-		}
-		
-		public void And_Contacts_is_entered(ObservableCollection<Contact> value)
+		public void And_Contacts_is_set(ObservableCollection<Contact> value)
 		{
 			viewModel.Contacts = value;
 		}
@@ -199,13 +188,12 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.PropertyChangeRecorder.Start();
 		}
 
-		public void When_Contacts_is_entered(ObservableCollection<Contact> value)
+		public void When_Contacts_is_set(ObservableCollection<Contact> value)
 		{
 			viewModel.Contacts = value;
 		}
 		
-	
-	
+		
 		public void When_AddressBookViewModel_is_spawned()
 		{
 			viewModel = new AddressBookViewModel();
@@ -240,25 +228,22 @@ namespace TestGUI.Tests.ViewModel
 		public void Given_Contact_is_created()
 		{
 			viewModel = new Contact();
+            viewModel.PropertyChangeRecorder.Start();
 		}
 		
-		public void And_data_is_entered()
-		{
-		}
-		
-		public void And_Name_is_entered(string value)
+		public void And_Name_is_set(string value)
 		{
 			viewModel.Name = value;
 		}
-		public void And_Email_is_entered(string value)
+		public void And_Email_is_set(string value)
 		{
 			viewModel.Email = value;
 		}
-		public void And_Phone_is_entered(string value)
+		public void And_Phone_is_set(string value)
 		{
 			viewModel.Phone = value;
 		}
-		public void And_Mobile_is_entered(string value)
+		public void And_Mobile_is_set(string value)
 		{
 			viewModel.Mobile = value;
 		}
@@ -269,28 +254,27 @@ namespace TestGUI.Tests.ViewModel
 			viewModel.PropertyChangeRecorder.Start();
 		}
 
-		public void When_Name_is_entered(string value)
+		public void When_Name_is_set(string value)
 		{
 			viewModel.Name = value;
 		}
 		
-		public void When_Email_is_entered(string value)
+		public void When_Email_is_set(string value)
 		{
 			viewModel.Email = value;
 		}
 		
-		public void When_Phone_is_entered(string value)
+		public void When_Phone_is_set(string value)
 		{
 			viewModel.Phone = value;
 		}
 		
-		public void When_Mobile_is_entered(string value)
+		public void When_Mobile_is_set(string value)
 		{
 			viewModel.Mobile = value;
 		}
 		
-	
-	
+		
 		public void When_Contact_is_spawned()
 		{
 			viewModel = new Contact();

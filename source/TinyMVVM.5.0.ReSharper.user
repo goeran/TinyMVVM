@@ -732,11 +732,7 @@
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2284" fromTop="94" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="911" fromTop="21" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="649" fromTop="15" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="178" fromTop="4" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="578" fromTop="15" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="2728" fromTop="5" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="595" fromTop="13" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2213" fromTop="9" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs/l:..?..?..?TinyMVVM?Framework?Testing?ServiceLocatorForTesting.cs" caret="166" fromTop="7" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:SemanticModel/f:ViewModelProperty.cs/l:..?..?TinyMVVM?SemanticModel?ViewModelProperty.cs" caret="756" fromTop="21" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ViewModelPropertySpecs.cs" caret="1369" fromTop="20" />
@@ -748,45 +744,52 @@
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5516" fromTop="25" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2161" fromTop="27" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="569" fromTop="21" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="295" fromTop="7" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="373" fromTop="9" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1974" fromTop="42" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="597" fromTop="10" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="1505" fromTop="46" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="783" fromTop="4" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="50" fromTop="0" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.cs" caret="0" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="1959" fromTop="5" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1970" fromTop="42" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1139" fromTop="2" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="106" fromTop="3" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="634" fromTop="20" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2103" fromTop="9" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="206" fromTop="9" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="161" fromTop="2" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="489" fromTop="11" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModels.Test.cs" caret="2436" fromTop="11" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2861" fromTop="21" />
     </RecentFiles>
     <RecentEdits>
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="4283" fromTop="16" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/f:MVVM.dsl" caret="17" fromTop="0" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5501" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="297" fromTop="15" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="1826" fromTop="20" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="614" fromTop="16" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="1955" fromTop="23" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="1758" fromTop="30" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2153" fromTop="12" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ModelSpecificationSpecs.cs" caret="839" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="335" fromTop="11" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="778" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ModelSpecification.cs" caret="569" fromTop="21" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="1058" fromTop="5" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="1586" fromTop="25" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="2367" fromTop="36" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="5527" fromTop="10" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2161" fromTop="27" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1970" fromTop="31" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1970" fromTop="42" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="479" fromTop="11" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="383" fromTop="15" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1970" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1970" fromTop="42" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="649" fromTop="10" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1974" fromTop="0" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1974" fromTop="42" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="618" fromTop="21" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="82" fromTop="0" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="2400" fromTop="29" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="2873" fromTop="29" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="50" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1970" fromTop="42" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="2873" fromTop="98" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1646" fromTop="14" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="295" fromTop="7" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="2873" fromTop="0" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1851" fromTop="27" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1311" fromTop="26" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="2873" fromTop="7" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="185" fromTop="8" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="996" fromTop="15" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="871" fromTop="12" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="649" fromTop="10" />
+      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="211" fromTop="9" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1974" fromTop="42" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="60" fromTop="0" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="2280" fromTop="42" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="4474" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5328" fromTop="26" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5881" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="6587" fromTop="28" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="3309" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="1442" fromTop="16" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2211" fromTop="21" />
+      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2861" fromTop="21" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>
