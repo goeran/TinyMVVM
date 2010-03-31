@@ -30,6 +30,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
+using TinyMVVM.Framework.Services;
 
 namespace TinyMVVM.Framework
 {
@@ -41,7 +42,8 @@ namespace TinyMVVM.Framework
 
 		public PropertyChangeRecorder PropertyChangeRecorder { get; protected set; }
 		public Object CmdStateChangeRecorder { get; protected set; }
-		protected ReadOnlyCollection<IViewModelConvention> AppliedConventions
+
+        protected ReadOnlyCollection<IViewModelConvention> AppliedConventions
 		{
 			get { return new ReadOnlyCollection<IViewModelConvention>(appliedConventions); }
 		}

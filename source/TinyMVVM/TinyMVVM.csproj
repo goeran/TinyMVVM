@@ -63,6 +63,7 @@
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -76,6 +77,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DSL\TextParser\Code.cs" />
@@ -99,6 +101,8 @@
     <Compile Include="Framework\Services\IBackgroundWorker.cs" />
     <Compile Include="Framework\Services\Impl\BackgroundWorker.cs" />
     <Compile Include="Framework\Services\Impl\BackgroundWorkerForTesting.cs" />
+    <Compile Include="Framework\Services\Impl\UIInvoker.cs" />
+    <Compile Include="Framework\Services\IUIInvoker.cs" />
     <Compile Include="Framework\Testing\ServiceLocatorForTesting.cs" />
     <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />

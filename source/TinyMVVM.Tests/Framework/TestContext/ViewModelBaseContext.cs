@@ -7,6 +7,7 @@ using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.Framework;
 using Moq;
 using TinyMVVM.Framework.Conventions;
+using TinyMVVM.Framework.Services;
 
 namespace TinyMVVM.Tests.Framework.TestContext
 {

@@ -100,6 +100,9 @@
     <Compile Include="..\TinyMVVM\Framework\Services\Impl\BackgroundWorkerForTesting.cs">
       <Link>Framework\Services\Impl\BackgroundWorkerForTesting.cs</Link>
     </Compile>
+    <Compile Include="..\TinyMVVM\Framework\Services\IUIInvoker.cs">
+      <Link>Framework\Services\IUIInvoker.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\Framework\Testing\ServiceLocatorForTesting.cs">
       <Link>Framework\Testing\ServiceLocatorForTesting.cs</Link>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="..\TinyMVVM\SemanticModel\ViewModelProperty.cs">
       <Link>SemanticModel\ViewModelProperty.cs</Link>
     </Compile>
+    <Compile Include="Framework\Services\Impl\UIInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
