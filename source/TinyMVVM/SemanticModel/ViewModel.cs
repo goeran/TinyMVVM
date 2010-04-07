@@ -23,6 +23,18 @@ namespace TinyMVVM.SemanticModel
             get { return _commands.AsReadOnly(); }
         }
 
+        private string _parent;
+        public string Parent
+        {
+            get { return _parent; } 
+            set
+            {
+                if (value == null) throw new ArgumentNullException();
+
+                _parent = value;
+            }
+        }
+
         public ViewModel(string name)
         {
             ThrowExceptionIfNull(name, "name");
@@ -31,6 +43,8 @@ namespace TinyMVVM.SemanticModel
             _commands = new List<ViewModelCommand>();
 
             Name = name;
+
+            Parent = typeof (object).FullName;
         }
 
         public void AddViewModelData(ViewModelProperty data)

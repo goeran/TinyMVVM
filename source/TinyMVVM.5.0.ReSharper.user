@@ -773,12 +773,12 @@
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:BackgroundWorker.cs" caret="293" fromTop="11" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:BackgroundWorkerForTesting.cs" caret="254" fromTop="9" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="257" fromTop="10" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/f:IUIInvoker.cs" caret="211" fromTop="9" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="541" fromTop="18" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="1540" fromTop="13" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="0" fromTop="0" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2150" fromTop="27" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="1031" fromTop="27" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/f:IUIInvoker.cs" caret="172" fromTop="7" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:TestContext/f:ViewModelBaseContext.cs" caret="1007" fromTop="13" />
     </RecentFiles>
     <RecentEdits>

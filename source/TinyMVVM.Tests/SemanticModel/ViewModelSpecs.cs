@@ -56,6 +56,14 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
             Then(() =>
                  viewModel.Commands.ShouldNotBeNull());
         }
+
+        [Test]
+        public void assure_it_has_a_Parent()
+        {
+            Then(() =>
+                 viewModel.Parent.ShouldBe("System.Object"));
+        }
+
     }
 
     [TestFixture]
@@ -120,6 +128,27 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
             Then(() =>
                  viewModel.Commands.ShouldContain(command));
         }
+    }
+
+    [TestFixture]
+    public class When_setting_Parent : ViewModelContext
+    {
+        [SetUp]
+        public void Setup()
+        {
+            Given(ViewModel_is_created);
+
+            When("setting Parent");
+        }
+
+        [Test]
+        public void assure_Value_is_validated()
+        {
+            Then(() =>
+                this.ShouldThrowException<ArgumentNullException>(() =>
+                    viewModel.Parent = null));
+        }
+
     }
 
 }
