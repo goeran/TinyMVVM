@@ -47,7 +47,7 @@ namespace TinyMVVM.SemanticModel
             Parent = typeof (object).FullName;
         }
 
-        public void AddViewModelData(ViewModelProperty data)
+        public void AddProperty(ViewModelProperty data)
         {
             ThrowExceptionIfNull(data, "data");
 
@@ -60,7 +60,7 @@ namespace TinyMVVM.SemanticModel
                 throw new ArgumentNullException(name);
         }
 
-        public void AddViewModelCommand(ViewModelCommand command)
+        public void AddCommand(ViewModelCommand command)
         {
             ThrowExceptionIfNull(command, "command");
 

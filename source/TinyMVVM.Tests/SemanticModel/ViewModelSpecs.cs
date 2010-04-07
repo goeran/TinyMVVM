@@ -82,7 +82,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
 
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    viewModel.AddViewModelData(null)));
+                    viewModel.AddProperty(null)));
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
             var viewModelData = new ViewModelProperty("Username", typeof(string).Name, false);
 
             When("adding ViewModelData", () =>
-                viewModel.AddViewModelData(viewModelData));
+                viewModel.AddProperty(viewModelData));
 
             Then(() =>
                  viewModel.Properties.ShouldContain(viewModelData));
@@ -114,7 +114,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
 
             Then(() =>
                 this.ShouldThrowException<ArgumentNullException>(() =>
-                    viewModel.AddViewModelCommand(null)));
+                    viewModel.AddCommand(null)));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
             var command = new ViewModelCommand("Login");
 
             When("adding a ViewModelCommand", () =>
-                viewModel.AddViewModelCommand(command));
+                viewModel.AddCommand(command));
 
             Then(() =>
                  viewModel.Commands.ShouldContain(command));

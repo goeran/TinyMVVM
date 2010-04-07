@@ -151,7 +151,7 @@ namespace TinyMVVM.DSL.TextParser
             var viewModelProperty = new ViewModelProperty(name, type, isObservable);
             viewModelProperty.Attributes.AddRange(attributes);
             
-            semanticModel.AddViewModelData(viewModelProperty);
+            semanticModel.AddProperty(viewModelProperty);
         }
 
         private void ParseViewModelCommand()
@@ -161,7 +161,7 @@ namespace TinyMVVM.DSL.TextParser
             if (nameToken.Kind != Kind.Name)
                 throw new InvalidSyntaxException("Name must be specified when using the 'command' keyword");
 
-            semanticModel.AddViewModelCommand(
+            semanticModel.AddCommand(
                 new ViewModelCommand(nameToken.Value));
         }
 
