@@ -61,7 +61,7 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelSpecs
         public void assure_it_has_a_Parent()
         {
             Then(() =>
-                 viewModel.Parent.ShouldBe("System.Object"));
+                 viewModel.Parent.ShouldBe("TinyMVVM.Framework.ViewModelBase"));
         }
 
     }

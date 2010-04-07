@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using TinyMVVM.Framework;
 
 namespace TinyMVVM.SemanticModel
 {
@@ -44,7 +45,7 @@ namespace TinyMVVM.SemanticModel
 
             Name = name;
 
-            Parent = typeof (object).FullName;
+            Parent = typeof (ViewModelBase).FullName;
         }
 
         public void AddProperty(ViewModelProperty data)

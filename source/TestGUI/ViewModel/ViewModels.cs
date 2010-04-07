@@ -4,7 +4,7 @@ using TinyMVVM.Framework;
 
 namespace TestGUI.ViewModel
 {
-	public partial class SearchViewModel : ViewModelBase
+	public partial class SearchViewModel : TinyMVVM.Framework.ViewModelBase
 	{
 		//State
 		public string Query { get; set; } 
@@ -27,7 +27,7 @@ namespace TestGUI.ViewModel
 		}
 	}
 		
-	public partial class LoginViewModel : ViewModelBase
+	public partial class LoginViewModel : TinyMVVM.Framework.ViewModelBase
 	{
 		//State
 		public string Username
@@ -117,7 +117,7 @@ namespace TestGUI.ViewModel
 		}
 	}
 		
-	public partial class AddressBookViewModel : ViewModelBase
+	public partial class AddressBookViewModel : TinyMVVM.Framework.ViewModelBase
 	{
 		//State
 		public ObservableCollection<Contact> Contacts { get; set; } 
@@ -138,7 +138,7 @@ namespace TestGUI.ViewModel
 		}
 	}
 		
-	public partial class Contact : ViewModelBase
+	public partial class Contact : TinyMVVM.Framework.ViewModelBase
 	{
 		//State
 		public string Name { get; set; } 
@@ -150,6 +150,22 @@ namespace TestGUI.ViewModel
 		//Commands
 		
 		public Contact()
+		{
+		
+			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+		
+			ApplyDefaultConventions();
+		}
+	}
+		
+	public partial class Friend : Contact
+	{
+		//State
+	
+		
+		//Commands
+		
+		public Friend()
 		{
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());

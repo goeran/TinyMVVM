@@ -1,4 +1,4 @@
-﻿<#@ assembly name="$(ProjectDir)$(OutDir)\TinyMVVM.dll" #>
+﻿<#@ assembly name="$(SolutionDir)\TinyMVVM\$(OutDir)\TinyMVVM.dll" #>
 <#@ import namespace="TinyMVVM.DSL.TextParser" #>
 <#@ import namespace="TinyMVVM.SemanticModel" #>
 
@@ -26,7 +26,7 @@ using <#= Using #>;
 namespace <#= Namespace #>
 {
 <#+ foreach (ViewModel viewModel in modelSpec.ViewModels) {#>
-	public partial class <#= viewModel.Name#> : ViewModelBase
+	public partial class <#= viewModel.Name#> : <#= viewModel.Parent #>
 	{
 		//State
 	<#+ foreach (ViewModelProperty property in viewModel.Properties) {#>

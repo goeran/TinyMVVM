@@ -29,3 +29,5 @@ viewmodel Contact:
 	property Email as string
 	property Phone as string
 	property Mobile as string
+
+viewmodel Friend extends Contact
