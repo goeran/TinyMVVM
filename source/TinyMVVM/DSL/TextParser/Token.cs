@@ -15,6 +15,7 @@ namespace TinyMVVM.DSL.TextParser
         AS,
         attribute,
         Using,
+        extends,
         EOF
     }
 
@@ -86,6 +87,11 @@ namespace TinyMVVM.DSL.TextParser
         public static Token Using
         {
             get { return new Token(TextParser.Kind.Using); }
+        }
+
+        public static Token Extends
+        {
+            get { return new Token(TextParser.Kind.extends); }
         }
 
         public static Token Attribute(string name)

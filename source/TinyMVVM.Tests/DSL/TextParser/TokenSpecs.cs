@@ -203,5 +203,15 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
                 token.ShouldBe(Token.Keyword(Kind.Using)));
         }
 
+        [Test]
+        public void assure_its_a_Extens_token()
+        {
+            When("Spawning a Extends token", () =>
+                token = Token.Extends);
+
+            Then(() =>
+                token.ShouldBe(Token.Keyword(Kind.extends)));
+        }
+
     }
 }

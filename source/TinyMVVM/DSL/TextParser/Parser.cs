@@ -86,6 +86,7 @@ namespace TinyMVVM.DSL.TextParser
                 throw new InvalidSyntaxException("Name must be specified when using the 'viewmodel' keyword");
 
             ParseViewModelName();
+            ParseViewModelParent();
             ParseViewModelBody();
         }
 
@@ -94,6 +95,16 @@ namespace TinyMVVM.DSL.TextParser
             var nameToken = CurrentToken();
             semanticModel = new ViewModel(nameToken.Value);
             modelSpecification.AddViewModel(semanticModel);
+        }
+
+        private void ParseViewModelParent()
+        {
+            var token = NextToken();
+            if (token == Token.Extends)
+            {
+                var parentNameToken = NextToken();
+                semanticModel.Parent = parentNameToken.Value;
+            }
         }
 
         private void ParseViewModelBody()

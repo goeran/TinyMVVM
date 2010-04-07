@@ -39,7 +39,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             {
                 code = "using System.Linq\n" + 
                        "using System.ComponentModel.Composition\n\n" + 
-                       "viewmodel LoginViewModel:\n" +
+                       "viewmodel LoginViewModel extends ViewModelBase:\n" +
                        "\t[Required]\n" +
                        "\t[MaxLength(10)]\n" +
                        "\tproperty Username as string\n\r" +
@@ -80,6 +80,15 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             {   
                 semanticModel.ViewModels.ShouldHave(3);
             });
+        }
+
+        [Test]
+        public void assure_ViewModels_Parents_are_parsed()
+        {
+            Then(() =>
+            {
+                semanticModel.ViewModels[0].Parent.ShouldBe("ViewModelBase");
+            });            
         }
 
         [Test]
