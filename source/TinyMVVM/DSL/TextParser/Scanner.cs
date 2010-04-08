@@ -22,14 +22,16 @@ namespace TinyMVVM.DSL.TextParser
                 {
                     chr = (char)textReader.Peek();
 
-                    if (char.IsLetter(chr) ||
-                        chr == '[' || chr == ']')
+                    if (chr == '[')
+                    {
+                        name = ScannAttribute(textReader);
+                        yield return Token.Attribute(name);
+                    }
+                    else if (char.IsLetter(chr))
                     {
                         name = ScanName(textReader);
                         keyword = ConvertToKeyword(name);
-                        if (name.StartsWith("[") && name.EndsWith("]"))
-                            yield return Token.Attribute(name);
-                        else if (keyword == Kind.Name)
+                        if (keyword == Kind.Name)
                             yield return Token.Name(name);
                         else
                             yield return Token.Keyword(keyword);
@@ -40,6 +42,22 @@ namespace TinyMVVM.DSL.TextParser
 
                 yield return Token.EOF;
             }
+        }
+
+        private string ScannAttribute(TextReader textReader)
+        {
+            var sb = new StringBuilder();
+
+            Char chr;
+
+            do
+            {
+                chr = (char) textReader.Read();
+                sb.Append(chr);
+
+            } while (chr != ']');
+
+            return sb.ToString();
         }
 
         private Kind ConvertToKeyword(string name)

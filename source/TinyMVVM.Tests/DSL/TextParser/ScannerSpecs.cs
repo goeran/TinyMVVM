@@ -21,7 +21,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
                 code = "using System.ComponentModel.Composition\n\n" +
                 "viewmodel LoginViewModel extends ViewModelBase:\n" +
                 "\t[Required]\n\r" +
-                "\t[MaxLength(10)]\n" +
+                "\t[Length(Max = 10, Min = 1)]\n" +
                 "\tproperty Username\n\r" +
 				"\tproperty Log ObservableCollection<string>\n" +
                 "\toproperty IsVisible\n" +
@@ -138,7 +138,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
                     Console.WriteLine(token);
 
                 tokens.Where(t => t == Token.Attribute("[Required]")).Count().ShouldBe(1);
-                tokens.Where(t => t == Token.Attribute("[MaxLength(10)]")).Count().ShouldBe(1);
+                tokens.Where(t => t == Token.Attribute("[Length(Max = 10, Min = 1)]")).Count().ShouldBe(1);
             });
         }
 
