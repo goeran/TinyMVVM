@@ -23,7 +23,8 @@ namespace TinyMVVM.Framework.Conventions
 				
 				if (dynamicObject.MethodExist(executeMethodName))
 				{
-					((DelegateCommand)command.GetValue(viewModel, null)).ExecuteDelegate = () =>
+                    var delegateCommand = command.GetValue(viewModel, null) as DelegateCommand;
+					delegateCommand.ExecuteDelegate = () =>
 					{
 						dynamicObject.InvokeMethod(executeMethodName);
 					};
@@ -31,7 +32,8 @@ namespace TinyMVVM.Framework.Conventions
 
 				if (dynamicObject.MethodExist(canExecuteMethodName))
 				{
-					((DelegateCommand) command.GetValue(viewModel, null)).CanExecuteDelegate = () =>
+                    var delegateCommand = command.GetValue(viewModel, null) as DelegateCommand;
+					delegateCommand.CanExecuteDelegate = () =>
 					{
 						return (bool) dynamicObject.InvokeMethod(canExecuteMethodName);
 					};

@@ -20,8 +20,7 @@ namespace TinyMVVM.Framework.Internal
 
 		public bool MethodExist(string name)
 		{
-			var methods = instanceType.GetMethods(instanceFlags);
-			return methods.Where(m => m.Name.Equals(name)).Count() > 0;
+		    return GetMethod(name) != null;
 		}
 
 		public Object InvokeMethod(string name)
@@ -36,8 +35,18 @@ namespace TinyMVVM.Framework.Internal
 
 		private MethodInfo GetMethod(string name)
 		{
-			var methods = instanceType.GetMethods(instanceFlags);
-			return methods.Where(m => m.Name.Equals(name) && m.DeclaringType == instanceType).SingleOrDefault();
+		    MethodInfo retValue = null;
+
+            //Try public available methods
+            retValue = instanceType.GetMethod(name, instanceFlags);
+
+            if (retValue == null)
+            {
+                //Check for available private methods on base type
+                retValue = instanceType.BaseType.GetMethod(name, instanceFlags);
+            }
+
+		    return retValue;
 		}
 
 		public MethodInfo[] GetMethods()

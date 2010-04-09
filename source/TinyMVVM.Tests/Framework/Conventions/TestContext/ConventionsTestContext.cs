@@ -13,6 +13,7 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 		protected static BindCommandsDelegatesToMethods BindCommandsDelegatesToMethodsConvention;
 		protected static InvokeOnInitialize invokeOnInitializeConvention; 
 		protected static LoginViewModel viewModel;
+        protected static SpecializedLoginViewModel specializedViewModel;
 
 		protected Context BindCommandsExecuteDelegateToMethodConvention_is_created = () =>
 		{
@@ -23,6 +24,12 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 		{
 			viewModel = new LoginViewModel();
 		};
+
+	    protected Context SpecializedLoginViewModel_is_created = () =>
+	    {
+            specializedViewModel = new SpecializedLoginViewModel();
+	        viewModel = specializedViewModel;
+	    };
 
 		protected Context InvokeOnInitializeConvention_is_created = () =>
 		{
@@ -83,5 +90,28 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 				return true;
 			}
 		}
+
+        protected class SpecializedLoginViewModel : LoginViewModel
+        {
+            public bool OnInitializedOnSpecialIsExecuted { get; set; }
+            public DelegateCommand ResetPassword { get; private set; }
+            public bool ResetPasswordIsExecuted { get; private set; }
+
+            public SpecializedLoginViewModel()
+            {
+                ResetPassword = new DelegateCommand();
+            }
+
+            public void OnInitialize()
+            {
+                OnInitializedOnSpecialIsExecuted = true;
+            }
+
+            private void OnResetPassword()
+            {
+                ResetPasswordIsExecuted = true;
+            }
+        }
+
 	}
 }

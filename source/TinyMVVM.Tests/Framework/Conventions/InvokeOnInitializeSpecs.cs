@@ -34,17 +34,11 @@ namespace TinyMVVM.Tests.Framework.Conventions
 	    [TestFixture]
 	    public class When_applied_to_ViewModel_that_inherits_from_another_ViewModel : ConventionsTestContext
 	    {
-	        private SpecializedLoginViewModel specializedViewModel;
 
 	        [SetUp]
 	        public void Setup()
 	        {
-                Given("Specialized LoginViewModel is created", () =>
-                {
-                    specializedViewModel = new SpecializedLoginViewModel();
-                    viewModel = specializedViewModel;
-                });
-
+	            Given(SpecializedLoginViewModel_is_created);
 	            And(InvokeOnInitializeConvention_is_created);
 
                 When("convention is applied to specialized ViewModel", () =>
@@ -59,16 +53,6 @@ namespace TinyMVVM.Tests.Framework.Conventions
 	                specializedViewModel.OnInitializedOnSpecialIsExecuted.ShouldBeTrue();
 	            });
 	        }
-
-	        class SpecializedLoginViewModel : LoginViewModel
-            {
-                public bool OnInitializedOnSpecialIsExecuted { get; set; }
-        
-                public void OnInitialize()
-                {
-                    OnInitializedOnSpecialIsExecuted = true;
-                }
-            }
 	    }
 
 
