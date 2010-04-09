@@ -132,6 +132,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public void Then_assure_AuthenticationService_is_called()
         {
             var authServiceFake = GetFakeFor<IAuthenticationService>();
+
             authServiceFake.Verify(s =>
                 s.Authenticate(viewModel.Username, viewModel.Password), Times.Once());
         }

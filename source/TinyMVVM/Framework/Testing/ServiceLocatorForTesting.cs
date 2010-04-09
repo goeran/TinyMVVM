@@ -1,57 +1,39 @@
 ﻿using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
 using Moq;
-using Ninject;
 using TinyMVVM.Framework.Services;
 
 namespace TinyMVVM.Framework.Testing
 {
-    public class ServiceLocatorForTesting : IServiceLocator
+    public class ServiceLocatorForTesting : ServiceLocator.DefaultServiceLocator
     {
-        protected readonly IKernel kernel;
+        [Export(typeof(Mock<IBackgroundWorker>))]
+        private readonly Mock<IBackgroundWorker> backgroundWorkerFake;
+
+        [Export(typeof(IBackgroundWorker))]
+        private readonly IBackgroundWorker backgroundWorker;
 
         public ServiceLocatorForTesting()
         {
-            kernel = new StandardKernel();
-            var backgroundWorkerFake = new Mock<IBackgroundWorker>();
+            backgroundWorkerFake = new Mock<IBackgroundWorker>();
 			backgroundWorkerFake.Setup(
 				w => w.Invoke(It.IsAny<Action>())).
 					Callback((Action a) =>
 					{
 						a.Invoke();
 					});
+            backgroundWorker = backgroundWorkerFake.Object;
 
-            kernel.Bind<Mock<IBackgroundWorker>>().ToConstant(backgroundWorkerFake);
-            kernel.Bind<IBackgroundWorker>().ToConstant(backgroundWorkerFake.Object);
+            aggregateCatalog.Catalogs.Add(new TypeCatalog(typeof(ServiceLocatorForTesting)));
         }
-
-        #region IServiceLocator Members
-
-        public T GetInstance<T>() where T : class
-        {
-            return kernel.Get<T>();
-        }
-
-        #endregion
 
     	public static ServiceLocatorForTesting GetServiceLocator()
     	{
-    		ServiceLocatorForTesting serviceLocatorForTesting = null;
-
-			var serviceLocators = Assembly.GetCallingAssembly().GetTypes().
-					Where(t => t.IsSubclassOf(typeof(ServiceLocatorForTesting))).ToList();
-
-			if (serviceLocators.Count > 0)
-			{
-				serviceLocatorForTesting = Activator.CreateInstance(serviceLocators.First()) as ServiceLocatorForTesting;
-			}
-			else
-			{
-				serviceLocatorForTesting = new ServiceLocatorForTesting();
-			}
-
-			return serviceLocatorForTesting;
+    	    var container = new CompositionContainer(new AssemblyCatalog(Assembly.GetCallingAssembly()));
+    	    return container.GetExportedValues<ServiceLocatorForTesting>().FirstOrDefault();
     	}
     }
 }

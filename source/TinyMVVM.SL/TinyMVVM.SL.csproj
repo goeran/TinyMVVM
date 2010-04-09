@@ -50,9 +50,7 @@
       <HintPath>..\..\tools\Moq.Silverlight.4.0.812.4-bin\Moq.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="Ninject">
-      <HintPath>..\..\tools\Ninject-2.0.0.0-release-silverlight-3.0\Ninject.dll</HintPath>
-    </Reference>
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />

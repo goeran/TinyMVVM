@@ -1,4 +1,5 @@
-﻿using TinyBDD.Dsl.GivenWhenThen;
+﻿using System.ComponentModel.Composition;
+using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.Framework.Testing;
 
 namespace TinyMVVM.Tests.Framework.Testing.TestContext
@@ -12,6 +13,7 @@ namespace TinyMVVM.Tests.Framework.Testing.TestContext
 			serviceLocator = new CustomServiceLocatorForTesting();
 		};
 
+        [Export(typeof(ServiceLocatorForTesting))]
 		protected class CustomServiceLocatorForTesting : ServiceLocatorForTesting
 		{
 

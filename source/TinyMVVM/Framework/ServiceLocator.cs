@@ -27,9 +27,9 @@
 
 
 using System;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
-using Ninject;
 
 namespace TinyMVVM.Framework
 {
@@ -77,18 +77,21 @@ namespace TinyMVVM.Framework
             instance = locator;
         }
 
-		class DefaultServiceLocator : IServiceLocator
+        public class DefaultServiceLocator : IServiceLocator
 		{
-			private IKernel kernel;
+			protected CompositionContainer container;
+		    protected AggregateCatalog aggregateCatalog;
 
 			public DefaultServiceLocator()
 			{
-				kernel = new StandardKernel();
+                aggregateCatalog = new AggregateCatalog();
+
+                container = new CompositionContainer(aggregateCatalog);
 			}
 
-			public T GetInstance<T>() where T : class
+			public virtual T GetInstance<T>() where T : class
 			{
-				return kernel.Get<T>();
+			    return container.GetExportedValues<T>().FirstOrDefault();
 			}
 		}
 
