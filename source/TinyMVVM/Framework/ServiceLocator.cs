@@ -52,21 +52,8 @@ namespace TinyMVVM.Framework
 
 		public static IServiceLocator GetServiceLocator()
 		{
-			IServiceLocator serviceLocator = null;
-
-			var serviceLocators = Assembly.GetCallingAssembly().GetTypes().
-					Where(t => t.GetInterfaces().Where(i => i == typeof(IServiceLocator)).Count() > 0).ToList();
-
-			if (serviceLocators.Count > 0)
-			{
-				serviceLocator = Activator.CreateInstance(serviceLocators.First()) as IServiceLocator;
-			}
-			else
-			{
-				serviceLocator = new DefaultServiceLocator();
-			}
-
-			return serviceLocator;
+            var container = new CompositionContainer(new AssemblyCatalog(Assembly.GetCallingAssembly()));
+            return container.GetExportedValues<IServiceLocator>().FirstOrDefault();
 		}
 
         public static void SetLocator(IServiceLocator locator)
@@ -76,24 +63,6 @@ namespace TinyMVVM.Framework
 
             instance = locator;
         }
-
-        public class DefaultServiceLocator : IServiceLocator
-		{
-			protected CompositionContainer container;
-		    protected AggregateCatalog aggregateCatalog;
-
-			public DefaultServiceLocator()
-			{
-                aggregateCatalog = new AggregateCatalog();
-
-                container = new CompositionContainer(aggregateCatalog);
-			}
-
-			public virtual T GetInstance<T>() where T : class
-			{
-			    return container.GetExportedValues<T>().FirstOrDefault();
-			}
-		}
 
     	public static void SetLocatorIfNotSet(Func<IServiceLocator> func)
     	{

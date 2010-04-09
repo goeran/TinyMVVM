@@ -55,7 +55,6 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +72,9 @@
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\Conventions\SetServiceLocator.cs">
       <Link>Framework\Conventions\SetServiceLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\Framework\DefaultServiceLocator.cs">
+      <Link>Framework\DefaultServiceLocator.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\DelegateCommand.cs">
       <Link>Framework\DelegateCommand.cs</Link>

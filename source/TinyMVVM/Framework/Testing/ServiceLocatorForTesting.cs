@@ -8,7 +8,7 @@ using TinyMVVM.Framework.Services;
 
 namespace TinyMVVM.Framework.Testing
 {
-    public class ServiceLocatorForTesting : ServiceLocator.DefaultServiceLocator
+    public class ServiceLocatorForTesting : DefaultServiceLocator
     {
         [Export(typeof(Mock<IBackgroundWorker>))]
         private readonly Mock<IBackgroundWorker> backgroundWorkerFake;

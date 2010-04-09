@@ -5,7 +5,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Text;
 using Moq;
-using Ninject;
 using TestGUI.Services;
 using TinyMVVM.Framework.Testing;
 

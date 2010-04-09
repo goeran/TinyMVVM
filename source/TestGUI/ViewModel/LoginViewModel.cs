@@ -13,7 +13,7 @@ namespace TestGUI.ViewModel
         private IBackgroundWorker backgroundWorker;
         private IAuthenticationService authService;
 
-        private void OnInitialize()
+        public void OnInitialize()
         {
             backgroundWorker = GetInstance<IBackgroundWorker>();
             authService = GetInstance<IAuthenticationService>();
@@ -29,7 +29,7 @@ namespace TestGUI.ViewModel
                 Login.TriggerCanExecuteChanged();
         }
 
-        private void OnLogin()
+        public void OnLogin()
         {
             backgroundWorker.Invoke(() =>
             {
@@ -60,13 +60,13 @@ namespace TestGUI.ViewModel
             return Username != null && Password != null;
         }
 
-        private void OnCancel()
+        public void OnCancel()
         {
             Username = null;
             Password = null;
         }
 
-        private bool CanCancel()
+        public bool CanCancel()
         {
             if (Username != null || Password != null)
                 return true;
