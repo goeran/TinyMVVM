@@ -77,8 +77,12 @@ namespace TinyMVVM.Tests.Framework.Conventions
 	            Given(SpecializedLoginViewModel_is_created);
 	            And(BindCommandsExecuteDelegateToMethodConvention_is_created);
 
-                When("convention is applied to ViewModel", () =>
+                And("convention is applied to specialized ViewModel", () =>
                     BindCommandsDelegatesToMethodsConvention.ApplyTo(specializedViewModel));
+
+                When("convention is applied base ViewModel", () =>
+                    BindCommandsDelegatesToMethodsConvention.ApplyTo(viewModel));
+
 	        }
 
             [Test]

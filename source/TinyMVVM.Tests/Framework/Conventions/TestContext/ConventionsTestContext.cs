@@ -107,7 +107,7 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
                 OnInitializedOnSpecialIsExecuted = true;
             }
 
-            private void OnResetPassword()
+            public void OnResetPassword()
             {
                 ResetPasswordIsExecuted = true;
             }

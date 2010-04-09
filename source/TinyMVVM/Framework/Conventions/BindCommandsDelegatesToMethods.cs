@@ -20,24 +20,27 @@ namespace TinyMVVM.Framework.Conventions
 				var command = c;
 				var executeMethodName = string.Format("On{0}", command.Name);
 				var canExecuteMethodName = string.Format("Can{0}", command.Name);
-				
-				if (dynamicObject.MethodExist(executeMethodName))
-				{
-                    var delegateCommand = command.GetValue(viewModel, null) as DelegateCommand;
-					delegateCommand.ExecuteDelegate = () =>
-					{
-						dynamicObject.InvokeMethod(executeMethodName);
-					};
-				}
 
-				if (dynamicObject.MethodExist(canExecuteMethodName))
-				{
-                    var delegateCommand = command.GetValue(viewModel, null) as DelegateCommand;
-					delegateCommand.CanExecuteDelegate = () =>
-					{
-						return (bool) dynamicObject.InvokeMethod(canExecuteMethodName);
-					};
-				}
+                var delegateCommand = command.GetValue(viewModel, null) as DelegateCommand;
+
+                if (delegateCommand != null)
+                {
+                    if (dynamicObject.MethodExist(executeMethodName))
+                    {
+                        delegateCommand.ExecuteDelegate = () =>
+                        {
+                            dynamicObject.InvokeMethod(executeMethodName);
+                        };
+                    }
+
+                    if (dynamicObject.MethodExist(canExecuteMethodName))
+                    {
+                        delegateCommand.CanExecuteDelegate = () =>
+                        {
+                            return (bool)dynamicObject.InvokeMethod(canExecuteMethodName);
+                        };
+                    }
+                }
 			}
 		}
 	}
