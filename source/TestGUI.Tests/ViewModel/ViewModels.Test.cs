@@ -282,5 +282,40 @@ namespace TestGUI.Tests.ViewModel
 		
 	}
 
+	public abstract class FriendContext : TestContext
+	{
+		protected Friend viewModel;
+
+		[SetUp]
+		public void Setup()
+		{
+			ServiceLocator.SetLocator(ServiceLocatorForTesting.GetServiceLocator());
+			
+			Context();
+		}
+
+		public abstract void Context();
+
+		public void Given_Friend_is_created()
+		{
+			viewModel = new Friend();
+            viewModel.PropertyChangeRecorder.Start();
+		}
+		
+		
+	
+		public void And_Friend_PropertyChangeRecording_is_Started()
+		{
+			viewModel.PropertyChangeRecorder.Start();
+		}
+
+		
+		public void When_Friend_is_spawned()
+		{
+			viewModel = new Friend();
+		} 
+		
+	}
+
 }
 

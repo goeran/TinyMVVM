@@ -132,7 +132,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public void Then_assure_AuthenticationService_is_called()
         {
             var authServiceFake = GetFakeFor<IAuthenticationService>();
-            authServiceFake.Verify(s => 
+            authServiceFake.Verify(s =>
                 s.Authenticate(viewModel.Username, viewModel.Password), Times.Once());
         }
 
@@ -140,7 +140,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public void Then_assure_Authentication_is_performed_on_a_Background_Thread()
         {
             var backgroundWorkerFake = GetFakeFor<IBackgroundWorker>();
-            backgroundWorkerFake.Verify(s => 
+            backgroundWorkerFake.Verify(s =>
                 s.Invoke(It.IsAny<Action>()), Times.Once());
         }
     }
@@ -180,7 +180,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
         public override void Context()
         {
             var authServiceFake = GetFakeFor<IAuthenticationService>();
-            authServiceFake.Setup(s => 
+            authServiceFake.Setup(s =>
                 s.Authenticate(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 
             Given_LoginViewModel_is_created();
