@@ -11,46 +11,46 @@
   </NAntValidationSettings>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="testfixture" priority="45" />
-      <Item value="testsetup" priority="47" />
+      <Item value="testfixture" priority="48" />
+      <Item value="testsetup" priority="50" />
       <Item value="viewModel" priority="52" />
       <Item value="ViewModel" priority="10" />
-      <Item value="test" priority="104" />
+      <Item value="test" priority="108" />
       <Item value="string" priority="35" />
       <Item value="prop" priority="26" />
       <Item value="List" priority="12" />
-      <Item value="object" priority="6" />
+      <Item value="object" priority="8" />
       <Item value="public" priority="52" />
-      <Item value="new" priority="140" />
+      <Item value="new" priority="145" />
       <Item value="Data" priority="0" />
       <Item value="List&lt;object&gt;" priority="2" />
-      <Item value="private" priority="67" />
+      <Item value="private" priority="68" />
       <Item value="Object" priority="11" />
-      <Item value="return" priority="60" />
+      <Item value="return" priority="65" />
       <Item value="_data" priority="2" />
       <Item value="ReadOnlyCollection" priority="0" />
       <Item value="_commands" priority="1" />
-      <Item value="static" priority="33" />
-      <Item value="class" priority="17" />
+      <Item value="static" priority="35" />
+      <Item value="class" priority="18" />
       <Item value="sWhen" priority="5" />
       <Item value="abstract" priority="0" />
       <Item value="Type" priority="9" />
       <Item value="override" priority="1" />
       <Item value="typeof" priority="60" />
       <Item value="tokensEnumerator" priority="10" />
-      <Item value="protected" priority="35" />
+      <Item value="protected" priority="40" />
       <Item value="Then" priority="46" />
-      <Item value="this" priority="25" />
+      <Item value="this" priority="26" />
       <Item value="ArgumentNullException" priority="21" />
       <Item value="ViewModelData" priority="0" />
       <Item value="type" priority="2" />
       <Item value="semanticModel" priority="15" />
-      <Item value="var" priority="70" />
+      <Item value="var" priority="71" />
       <Item value="System" priority="2" />
       <Item value="DictionaryEntry" priority="0" />
       <Item value="Dictionary&lt;string,Type&gt;" priority="0" />
       <Item value="typeConversionTable" priority="4" />
-      <Item value="bool" priority="32" />
+      <Item value="bool" priority="33" />
       <Item value="ParserContext" priority="1" />
       <Item value="Given" priority="21" />
       <Item value="Dependencies_are_created" priority="1" />
@@ -58,8 +58,8 @@
       <Item value="Parser_is_created" priority="2" />
       <Item value="When" priority="33" />
       <Item value="parser" priority="6" />
-      <Item value="void" priority="35" />
-      <Item value="if" priority="44" />
+      <Item value="void" priority="36" />
+      <Item value="if" priority="46" />
       <Item value="loadingStrategy" priority="1" />
       <Item value="throw" priority="12" />
       <Item value="ICodeLoader" priority="1" />
@@ -69,7 +69,7 @@
       <Item value="s" priority="3" />
       <Item value="It" priority="2" />
       <Item value="InvalidOperationException" priority="1" />
-      <Item value="null" priority="18" />
+      <Item value="null" priority="21" />
       <Item value="ViewModelContext" priority="0" />
       <Item value="ThrowExceptionIfNull" priority="0" />
       <Item value="name" priority="4" />
@@ -176,7 +176,7 @@
       <Item value="BindingMatchCollection" priority="1" />
       <Item value="HelloWorld" priority="3" />
       <Item value="ServiceLocatorContext" priority="3" />
-      <Item value="is" priority="11" />
+      <Item value="is" priority="12" />
       <Item value="newInstance" priority="1" />
       <Item value="testingModule" priority="1" />
       <Item value="AssemblyKeyFileAttribute" priority="0" />
@@ -194,7 +194,7 @@
       <Item value="testingModules" priority="2" />
       <Item value="module" priority="0" />
       <Item value="Dictionary&lt;Type,IModule&gt;" priority="0" />
-      <Item value="as" priority="7" />
+      <Item value="as" priority="8" />
       <Item value="IServiceLocator" priority="7" />
       <Item value="CustomServiceLocator" priority="11" />
       <Item value="customServiceLocator" priority="5" />
@@ -253,7 +253,7 @@
       <Item value="command" priority="5" />
       <Item value="BindingFlags" priority="6" />
       <Item value="customCanExecuteDelegateIsCalled" priority="1" />
-      <Item value="value" priority="4" />
+      <Item value="value" priority="8" />
       <Item value="methods" priority="4" />
       <Item value="executeMethod" priority="7" />
       <Item value="Clear" priority="0" />
@@ -303,12 +303,12 @@
       <Item value="CustomServiceLocatorForTests`0" priority="1" />
       <Item value="Console`0" priority="3" />
       <Item value="Ninject" priority="0" />
-      <Item value="When`0" priority="5" />
+      <Item value="When`0" priority="10" />
       <Item value="token" priority="9" />
       <Item value="Token`0" priority="27" />
       <Item value="TextParser" priority="1" />
       <Item value="Kind`0" priority="11" />
-      <Item value="Then`0" priority="18" />
+      <Item value="Then`0" priority="21" />
       <Item value="tokens" priority="7" />
       <Item value="textReader" priority="17" />
       <Item value="yield break" priority="0" />
@@ -341,7 +341,7 @@
       <Item value="Application`0" priority="1" />
       <Item value="Parent" priority="0" />
       <Item value="ViewModelContext`0" priority="0" />
-      <Item value="Given`0" priority="5" />
+      <Item value="Given`0" priority="9" />
       <Item value="ViewModel_is_created" priority="0" />
       <Item value="ArgumentNullException`0" priority="0" />
       <Item value="_parent" priority="1" />
@@ -376,7 +376,7 @@
       <Item value="ExportProvider`0" priority="1" />
       <Item value="exports" priority="2" />
       <Item value="ConsoleLogger`0" priority="1" />
-      <Item value="Object`0" priority="0" />
+      <Item value="Object`0" priority="2" />
       <Item value="IBackgroundWorker`0" priority="8" />
       <Item value="Export" priority="5" />
       <Item value="export" priority="1" />
@@ -408,6 +408,22 @@
       <Item value="AuthenticationService`0" priority="1" />
       <Item value="BackgroundWorker`0" priority="1" />
       <Item value="ServiceLocatorForClient`0" priority="0" />
+      <Item value="GivenSemantics`0" priority="1" />
+      <Item value="IValueConverter`0" priority="0" />
+      <Item value="NUnitScenarioClass`0" priority="0" />
+      <Item value="converter" priority="2" />
+      <Item value="New_ValueConverter_is_created`0" priority="0" />
+      <Item value="WhenSemantics`0" priority="0" />
+      <Item value="result" priority="1" />
+      <Item value="BoolToVisibilityConverter`0" priority="2" />
+      <Item value="ArgumentException" priority="0" />
+      <Item value="val" priority="0" />
+      <Item value="Visibility`0" priority="1" />
+      <Item value="ValueConverterTestContext`0" priority="2" />
+      <Item value="new_ValueConverter_is_created`0" priority="1" />
+      <Item value="convert_value`0" priority="0" />
+      <Item value="ArgumentException`0" priority="0" />
+      <Item value="Convert`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="AsReadOnly" priority="3" />
@@ -664,6 +680,7 @@
     <ItemStatistics item="Qualified:System.Object">
       <Item value="ShouldNotBeInstanceOfType" priority="0" />
       <Item value="GetType" priority="2" />
+      <Item value="ShouldBe`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.Framework.ServiceLocatorSpecs.IAuthenticationService">
       <Item value="ShouldBe" priority="0" />
@@ -895,13 +912,22 @@
     <ItemStatistics item="Qualified:System.ComponentModel.Composition.Hosting.TypeCatalog">
       <Item value="Parts" priority="0" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Data.IValueConverter">
+      <Item value="Convert`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Globalization.CultureInfo">
+      <Item value="CurrentCulture" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Visibility">
+      <Item value="Visible" priority="1" />
+      <Item value="Collapsed" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TinyMVVM.Tests.Framework.Converters.BoolToVisibilityConverterSpecs+When_convert_an_invalid_value">
+      <Item value="ShouldThrowException`1" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="0" fromTop="0" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="489" fromTop="11" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/f:IBackgroundWorker.cs" caret="132" fromTop="5" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:BackgroundWorkerForTesting.cs" caret="218" fromTop="7" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:MEFLearningTests.cs" caret="1277" fromTop="20" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:InvokeOnInitialize.cs" caret="332" fromTop="11" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:BindCommandsDelegatesToMethods.cs" caret="322" fromTop="11" />
@@ -928,16 +954,12 @@
       <File id="B4ECF98D-642E-4AAA-800E-1496D4FB668F/f:ServiceLocatorForClient.cs/l:..?TestGUI?ServiceLocatorForClient.cs" caret="262" fromTop="7" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="0" fromTop="0" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="374" fromTop="12" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:CommmandStateChangeRecorderSpecs.cs" caret="0" fromTop="0" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/d:TestContext/f:ValueConverterTestContext.cs" caret="813" fromTop="24" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="920" fromTop="26" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="588" fromTop="18" />
     </RecentFiles>
     <RecentEdits>
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="413" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="1056" fromTop="15" />
-      <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:LoginViewModel.cs" caret="324" fromTop="9" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="3674" fromTop="29" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="789" fromTop="15" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="1056" fromTop="15" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Testing/d:TestContext/f:ServiceLocatorForTestsContext.cs" caret="487" fromTop="14" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:NinjectLearningTests.cs" caret="989" fromTop="31" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="2112" fromTop="9" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="288" fromTop="9" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="194" fromTop="6" />
@@ -960,6 +982,14 @@
       <File id="B4ECF98D-642E-4AAA-800E-1496D4FB668F/d:ViewModel/f:LoginViewModel.cs/l:..?..?TestGUI?ViewModel?LoginViewModel.cs" caret="1852" fromTop="22" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="608" fromTop="18" />
       <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="374" fromTop="12" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="273" fromTop="8" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="877" fromTop="17" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/d:TestContext/f:ValueConverterTestContext.cs" caret="452" fromTop="12" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="698" fromTop="22" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="1988" fromTop="32" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/d:TestContext/f:ValueConverterTestContext.cs" caret="975" fromTop="29" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/d:TestContext/f:ValueConverterTestContext.cs" caret="813" fromTop="24" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="920" fromTop="26" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>

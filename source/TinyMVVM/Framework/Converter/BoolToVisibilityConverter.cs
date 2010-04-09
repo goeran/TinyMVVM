@@ -10,6 +10,8 @@ namespace TinyMVVM.Framework.Converter
 {
     public class BoolToVisibilityConverter : IValueConverter
     {
+        public bool Invert { get; set; }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is bool))
@@ -17,7 +19,8 @@ namespace TinyMVVM.Framework.Converter
 
             var val = (bool) value;
 
-            if (val == true)
+            if ((val == true && !Invert) ||
+                (val == false && Invert))
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;
