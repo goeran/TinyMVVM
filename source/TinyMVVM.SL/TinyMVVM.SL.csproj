@@ -73,6 +73,9 @@
     <Compile Include="..\TinyMVVM\Framework\Conventions\SetServiceLocator.cs">
       <Link>Framework\Conventions\SetServiceLocator.cs</Link>
     </Compile>
+    <Compile Include="..\TinyMVVM\Framework\Converter\BoolToVisibilityConverter.cs">
+      <Link>Framework\Converters\BoolToVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\Framework\DefaultServiceLocator.cs">
       <Link>Framework\DefaultServiceLocator.cs</Link>
     </Compile>

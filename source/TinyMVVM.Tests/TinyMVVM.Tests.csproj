@@ -64,6 +64,7 @@
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core">
@@ -100,6 +101,8 @@
     <Compile Include="Framework\Conventions\BindCommandsDelegatesToMethodsSpecs.cs" />
     <Compile Include="Framework\Conventions\InvokeOnInitializeSpecs.cs" />
     <Compile Include="Framework\Conventions\TestContext\ConventionsTestContext.cs" />
+    <Compile Include="Framework\Converters\BoolToVisibilityConverterSpecs.cs" />
+    <Compile Include="Framework\Converters\TestContext\ValueConverterTestContext.cs" />
     <Compile Include="Framework\PropertyChangeRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />
     <Compile Include="Framework\ServiceLocatorSpecs.cs" />
