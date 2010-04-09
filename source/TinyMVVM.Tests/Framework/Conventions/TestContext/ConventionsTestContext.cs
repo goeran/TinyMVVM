@@ -56,7 +56,7 @@ namespace TinyMVVM.Tests.Framework.Conventions.TestContext
 				Clear = new DelegateCommand();
 			}
 
-			private void OnInitialize()
+			public void OnInitialize()
 			{
 				OnInitializedIsExecuted = true;
 			}

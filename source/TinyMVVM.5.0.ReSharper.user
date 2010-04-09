@@ -11,20 +11,20 @@
   </NAntValidationSettings>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="testfixture" priority="42" />
+      <Item value="testfixture" priority="43" />
       <Item value="testsetup" priority="44" />
       <Item value="viewModel" priority="43" />
       <Item value="ViewModel" priority="10" />
-      <Item value="test" priority="99" />
+      <Item value="test" priority="100" />
       <Item value="string" priority="34" />
       <Item value="prop" priority="23" />
-      <Item value="List" priority="10" />
+      <Item value="List" priority="12" />
       <Item value="object" priority="6" />
       <Item value="public" priority="49" />
-      <Item value="new" priority="116" />
+      <Item value="new" priority="118" />
       <Item value="Data" priority="0" />
       <Item value="List&lt;object&gt;" priority="2" />
-      <Item value="private" priority="57" />
+      <Item value="private" priority="58" />
       <Item value="Object" priority="11" />
       <Item value="return" priority="56" />
       <Item value="_data" priority="2" />
@@ -45,7 +45,7 @@
       <Item value="ViewModelData" priority="0" />
       <Item value="type" priority="2" />
       <Item value="semanticModel" priority="15" />
-      <Item value="var" priority="61" />
+      <Item value="var" priority="64" />
       <Item value="System" priority="1" />
       <Item value="DictionaryEntry" priority="0" />
       <Item value="Dictionary&lt;string,Type&gt;" priority="0" />
@@ -59,7 +59,7 @@
       <Item value="When" priority="33" />
       <Item value="parser" priority="6" />
       <Item value="void" priority="32" />
-      <Item value="if" priority="39" />
+      <Item value="if" priority="40" />
       <Item value="loadingStrategy" priority="1" />
       <Item value="throw" priority="12" />
       <Item value="ICodeLoader" priority="1" />
@@ -84,7 +84,7 @@
       <Item value="sContext" priority="12" />
       <Item value="ArgIterator" priority="0" />
       <Item value="ModelSpecification_is_created" priority="0" />
-      <Item value="while" priority="0" />
+      <Item value="while" priority="1" />
       <Item value="Token" priority="12" />
       <Item value="NextToken" priority="13" />
       <Item value="CurrentToken" priority="3" />
@@ -182,7 +182,7 @@
       <Item value="AssemblyKeyFileAttribute" priority="0" />
       <Item value="Assembly" priority="0" />
       <Item value="Where" priority="8" />
-      <Item value="t" priority="13" />
+      <Item value="t" priority="15" />
       <Item value="InitTestingModule" priority="0" />
       <Item value="InlineModule" priority="1" />
       <Item value="a" priority="2" />
@@ -310,15 +310,15 @@
       <Item value="Kind`0" priority="11" />
       <Item value="Then`0" priority="16" />
       <Item value="tokens" priority="7" />
-      <Item value="textReader" priority="7" />
+      <Item value="textReader" priority="17" />
       <Item value="yield break" priority="0" />
       <Item value="kind" priority="0" />
-      <Item value="char" priority="3" />
-      <Item value="chr" priority="1" />
+      <Item value="char" priority="7" />
+      <Item value="chr" priority="2" />
       <Item value="viewModelProperty" priority="2" />
       <Item value="IEnumerable" priority="0" />
       <Item value="Attributes" priority="0" />
-      <Item value="List&lt;string&gt;" priority="1" />
+      <Item value="List&lt;string&gt;" priority="2" />
       <Item value="usernameProperty" priority="3" />
       <Item value="attribute" priority="1" />
       <Item value="UriFormat`0" priority="0" />
@@ -346,6 +346,11 @@
       <Item value="ArgumentNullException`0" priority="0" />
       <Item value="_parent" priority="1" />
       <Item value="parentNameToken" priority="0" />
+      <Item value="Char`0" priority="0" />
+      <Item value="sb" priority="0" />
+      <Item value="names" priority="1" />
+      <Item value="ObservableCollection&lt;int&gt;" priority="0" />
+      <Item value="numbers" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="AsReadOnly" priority="3" />
@@ -356,6 +361,7 @@
       <Item value="AddRange`0" priority="0" />
       <Item value="ShouldContain`0" priority="0" />
       <Item value="Where`1" priority="1" />
+      <Item value="GetType`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Parser+TokenEnumerator">
       <Item value="MoveNext" priority="3" />
@@ -387,7 +393,9 @@
       <Item value="GetMethods" priority="2" />
       <Item value="GetProperties" priority="0" />
       <Item value="GetInterface`0" priority="0" />
-      <Item value="FullName" priority="0" />
+      <Item value="FullName" priority="2" />
+      <Item value="ToString`0" priority="0" />
+      <Item value="Name" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.DSL.TextParser.Token">
       <Item value="Value" priority="9" />
@@ -414,7 +422,7 @@
       <Item value="Equals" priority="3" />
       <Item value="StartsWith`0" priority="0" />
       <Item value="EndsWith`0" priority="0" />
-      <Item value="ShouldBe`0" priority="5" />
+      <Item value="ShouldBe`0" priority="6" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.Tests.DSL.TextParser.ParserSpecs.When_code_is_loaded">
       <Item value="ShouldThrowException" priority="0" />
@@ -723,13 +731,15 @@
       <Item value="extends" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.IO.TextReader">
-      <Item value="Peek`0" priority="7" />
+      <Item value="Peek`0" priority="12" />
+      <Item value="Read`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Char">
       <Item value="IsSymbol`0" priority="0" />
       <Item value="IsControl`0" priority="0" />
       <Item value="IsNumber`0" priority="0" />
       <Item value="IsPunctuation`0" priority="0" />
+      <Item value="IsWhiteSpace`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TinyMVVM.SemanticModel.ViewModelProperty">
       <Item value="Attributes" priority="4" />
@@ -761,12 +771,15 @@
     <ItemStatistics item="Qualified:TinyMVVM.Tests.SemanticModel.ViewModelSpecs.When_setting_Parent">
       <Item value="ShouldThrowException`1" priority="0" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.StringBuilder">
+      <Item value="Append`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.ObjectModel.ObservableCollection`1">
+      <Item value="GetType`0" priority="1" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="634" fromTop="20" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="206" fromTop="9" />
-      <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="489" fromTop="11" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModels.Test.cs" caret="2436" fromTop="11" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="2280" fromTop="42" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2567" fromTop="13" />
@@ -779,7 +792,6 @@
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/f:IBackgroundWorker.cs" caret="0" fromTop="0" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="1969" fromTop="18" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5789" fromTop="31" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="2313" fromTop="0" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="2879" fromTop="8" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2800" fromTop="18" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ViewModel.cs" caret="1228" fromTop="24" />
@@ -790,27 +802,16 @@
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="133" fromTop="1" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="1185" fromTop="0" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="1995" fromTop="32" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1995" fromTop="32" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/f:IUIInvoker.cs" caret="0" fromTop="0" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="0" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="0" fromTop="0" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="1875" fromTop="17" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1466" fromTop="8" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="713" fromTop="15" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="198" fromTop="6" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:GenericTypeToString.cs" caret="516" fromTop="10" />
+      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/f:CommandStateChangeRecorder.cs/l:..?..?TinyMVVM?Framework?CommandStateChangeRecorder.cs" caret="1444" fromTop="3" />
     </RecentFiles>
     <RecentEdits>
-      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="401" fromTop="13" />
-      <File id="B405566F-FAA9-4CFF-82AC-B0BD898478CF/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="530" fromTop="17" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="1791" fromTop="15" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2150" fromTop="27" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/f:ViewModelBaseSpecs.cs" caret="1031" fromTop="27" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:TestContext/f:ViewModelBaseContext.cs" caret="1007" fromTop="13" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ViewModelSpecs.cs" caret="3762" fromTop="31" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ViewModel.cs" caret="881" fromTop="14" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ViewModel.cs" caret="1618" fromTop="21" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="316" fromTop="14" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Token.cs" caret="1969" fromTop="18" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:TokenSpecs.cs" caret="5776" fromTop="30" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="686" fromTop="8" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="2793" fromTop="30" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="1207" fromTop="7" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="2706" fromTop="23" />
       <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ParserSpecs.cs" caret="2834" fromTop="5" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Parser.cs" caret="2642" fromTop="15" />
@@ -826,6 +827,21 @@
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="804" fromTop="27" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="685" fromTop="31" />
       <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="1995" fromTop="32" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2221" fromTop="23" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2221" fromTop="14" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="2512" fromTop="21" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="851" fromTop="12" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="1036" fromTop="16" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="656" fromTop="14" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="722" fromTop="16" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="1732" fromTop="18" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="1656" fromTop="20" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:DSL/d:TextParser/f:Scanner.cs" caret="1697" fromTop="24" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="3873" fromTop="9" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="4249" fromTop="17" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:DSL/d:TextParser/f:ScannerSpecs.cs" caret="776" fromTop="22" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:GenericTypeToString.cs" caret="435" fromTop="13" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Learning/f:GenericTypeToString.cs" caret="738" fromTop="21" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>

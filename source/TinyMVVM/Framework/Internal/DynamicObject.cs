@@ -37,7 +37,7 @@ namespace TinyMVVM.Framework.Internal
 		private MethodInfo GetMethod(string name)
 		{
 			var methods = instanceType.GetMethods(instanceFlags);
-			return methods.Where(m => m.Name.Equals(name)).SingleOrDefault();
+			return methods.Where(m => m.Name.Equals(name) && m.DeclaringType == instanceType).SingleOrDefault();
 		}
 
 		public MethodInfo[] GetMethods()

@@ -88,6 +88,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\TinyBDD\TinyBDD.Specification.NUnit.2.5.3.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DSL\TextParser\CodeFileSpecs.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Framework\Testing\ServiceLocatorForTestsSpecs.cs" />
     <Compile Include="Framework\Testing\TestContext\ServiceLocatorForTestsContext.cs" />
     <Compile Include="Framework\ViewModelBaseSpecs.cs" />
+    <Compile Include="Learning\GenericTypeToString.cs" />
     <Compile Include="Learning\MoqLearningTests.cs" />
     <Compile Include="Learning\NinjectLearningTests.cs" />
     <Compile Include="NUnitScenarioClass.cs" />
