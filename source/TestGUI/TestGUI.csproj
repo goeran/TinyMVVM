@@ -173,9 +173,8 @@
       <DependentUpon>ViewModel.mvvm</DependentUpon>
       <LastGenOutput>ViewModel.cs</LastGenOutput>
     </None>
-    <None Include="ViewModel\ViewModelTemplate.tt">
-    </None>
     <AppDesigner Include="Properties\" />
+    <None Include="ViewModel\ViewModelTemplate.tt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

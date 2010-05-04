@@ -1,3 +1,5 @@
+
+using TinyMVVM.Framework.Services;
 using System;
 using System.Collections.ObjectModel;
 using TinyMVVM.Framework;
@@ -6,6 +8,8 @@ namespace TestGUI.ViewModel
 {
 	public partial class SearchViewModel : TinyMVVM.Framework.ViewModelBase
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 		public string Query { get; set; } 
 	
@@ -22,6 +26,7 @@ namespace TestGUI.ViewModel
 			Save = new DelegateCommand();
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}
@@ -29,6 +34,8 @@ namespace TestGUI.ViewModel
 		
 	public partial class LoginViewModel : TinyMVVM.Framework.ViewModelBase
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 		public string Username
 		{
@@ -37,8 +44,11 @@ namespace TestGUI.ViewModel
 			{
 				if (value != _Username)
 				{
-					_Username = value;
-					TriggerPropertyChanged("Username");
+					UIInvoker.Invoke(() =>
+					{
+						_Username = value;
+						TriggerPropertyChanged("Username");
+					});
 				}
 			}
 		}
@@ -51,8 +61,11 @@ namespace TestGUI.ViewModel
 			{
 				if (value != _Password)
 				{
-					_Password = value;
-					TriggerPropertyChanged("Password");
+					UIInvoker.Invoke(() =>
+					{
+						_Password = value;
+						TriggerPropertyChanged("Password");
+					});
 				}
 			}
 		}
@@ -65,8 +78,11 @@ namespace TestGUI.ViewModel
 			{
 				if (value != _IsVisible)
 				{
-					_IsVisible = value;
-					TriggerPropertyChanged("IsVisible");
+					UIInvoker.Invoke(() =>
+					{
+						_IsVisible = value;
+						TriggerPropertyChanged("IsVisible");
+					});
 				}
 			}
 		}
@@ -79,8 +95,11 @@ namespace TestGUI.ViewModel
 			{
 				if (value != _Status)
 				{
-					_Status = value;
-					TriggerPropertyChanged("Status");
+					UIInvoker.Invoke(() =>
+					{
+						_Status = value;
+						TriggerPropertyChanged("Status");
+					});
 				}
 			}
 		}
@@ -93,8 +112,11 @@ namespace TestGUI.ViewModel
 			{
 				if (value != _ReadOnly)
 				{
-					_ReadOnly = value;
-					TriggerPropertyChanged("ReadOnly");
+					UIInvoker.Invoke(() =>
+					{
+						_ReadOnly = value;
+						TriggerPropertyChanged("ReadOnly");
+					});
 				}
 			}
 		}
@@ -112,6 +134,7 @@ namespace TestGUI.ViewModel
 			Cancel = new DelegateCommand();
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}
@@ -119,6 +142,8 @@ namespace TestGUI.ViewModel
 		
 	public partial class AddressBookViewModel : TinyMVVM.Framework.ViewModelBase
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 		public ObservableCollection<Contact> Contacts { get; set; } 
 	
@@ -133,6 +158,7 @@ namespace TestGUI.ViewModel
 			Delete = new DelegateCommand();
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}
@@ -140,6 +166,8 @@ namespace TestGUI.ViewModel
 		
 	public partial class Contact : TinyMVVM.Framework.ViewModelBase
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 		public string Name { get; set; } 
 		public string Email { get; set; } 
@@ -153,6 +181,7 @@ namespace TestGUI.ViewModel
 		{
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}
@@ -160,6 +189,8 @@ namespace TestGUI.ViewModel
 		
 	public partial class Friend : Contact
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 	
 		
@@ -169,6 +200,7 @@ namespace TestGUI.ViewModel
 		{
 		
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}

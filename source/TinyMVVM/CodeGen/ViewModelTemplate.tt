@@ -19,6 +19,7 @@ public class ViewModelTemplate : Template
 
 	#>
 
+using TinyMVVM.Framework.Services;
 <#+ foreach (string Using in modelSpec.Usings) {#>
 using <#= Using #>;
 <#+ }#>
@@ -26,8 +27,10 @@ using <#= Using #>;
 namespace <#= Namespace #>
 {
 <#+ foreach (ViewModel viewModel in modelSpec.ViewModels) {#>
-	public partial class <#= viewModel.Name#> : <#= viewModel.Parent #>
+	public partial class <#= viewModel.Name#> : <#= viewModel.Parent#>
 	{
+		protected IUIInvoker UIInvoker { get; set; }
+
 		//State
 	<#+ foreach (ViewModelProperty property in viewModel.Properties) {#>
 <#+ foreach (string attribute in property.Attributes) {#>
@@ -41,8 +44,11 @@ public <#= property.Type#> <#= property.Name#>
 			{
 				if (value != _<#= property.Name#>)
 				{
-					_<#= property.Name#> = value;
-					TriggerPropertyChanged("<#= property.Name#>");
+					UIInvoker.Invoke(() =>
+					{
+						_<#= property.Name#> = value;
+						TriggerPropertyChanged("<#= property.Name#>");
+					});
 				}
 			}
 		}
@@ -67,6 +73,7 @@ public <#= property.Type#> <#= property.Name#> { get; set; }
 	<#+ }#>
 	
 			ServiceLocator.SetLocatorIfNotSet(() => ServiceLocator.GetServiceLocator());
+			UIInvoker = ServiceLocator.Instance.GetInstance<IUIInvoker>();
 		
 			ApplyDefaultConventions();
 		}

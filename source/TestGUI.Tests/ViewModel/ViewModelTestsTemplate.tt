@@ -1,4 +1,4 @@
-﻿<#@ assembly name="$(ProjectDir)..\TinyMVVM\$(OutDir)\TinyMVVM.dll" #>
+﻿<#@ assembly name="$(SolutionDir)\TinyMVVM\$(OutDir)\TinyMVVM.dll" #>
 <#@ import namespace="TinyMVVM.DSL.TextParser" #>
 <#@ import namespace="TinyMVVM.SemanticModel" #>
 
@@ -19,6 +19,7 @@ public class ViewModelTestsTemplate : Template
 		ModelSpecification modelSpec = parser.Parse(Code.FromFile(File));
 #>
 
+using System;
 using NUnit.Framework;
 using <#= UsingNamespace#>;
 using TinyMVVM.Framework.Testing;
@@ -29,7 +30,7 @@ using <#= Using #>;
 namespace <#= Namespace #>
 {
 <#+ foreach (ViewModel viewModel in modelSpec.ViewModels){#>
-	public abstract class <#= viewModel.Name #>Context : TestContext
+	public abstract class <#= viewModel.Name #>TestContext : TestContext
 	{
 		protected <#= viewModel.Name#> viewModel;
 
@@ -46,7 +47,11 @@ namespace <#= Namespace #>
 		public void Given_<#= viewModel.Name#>_is_created()
 		{
 			viewModel = new <#= viewModel.Name#>();
-            viewModel.PropertyChangeRecorder.Start();
+		}
+
+		public void And_<#= viewModel.Name#>_is_created()
+		{
+			viewModel = new <#= viewModel.Name#>();
 		}
 		
 	<#+ foreach (ViewModelProperty property in viewModel.Properties){#>
@@ -54,6 +59,16 @@ namespace <#= Namespace #>
 		{
 			viewModel.<#= property.Name#> = value;
 		}
+
+	<#+ if (property.Type.Contains("Collection")) { 
+		String possibleTypeName = property.Name.Substring(0, property.Name.Length - 1); 
+	#>
+	public void When_add_<#= possibleTypeName#>(Action unitOfWork)
+		{
+			unitOfWork.Invoke();
+		}
+	<#+ } #>
+
 	<#+ }#>	
 	
 		public void And_<#= viewModel.Name#>_PropertyChangeRecording_is_Started()
@@ -75,12 +90,26 @@ namespace <#= Namespace #>
 		} 
 		
 	<#+ foreach (ViewModelCommand command in viewModel.Commands) {#>
-	public void When_execute_<#= command.Name#>_Command()
+	public void And_<#= command.Name#>_Command_is_executed()
 		{
 			viewModel.<#= command.Name#>.Execute(null);
 		}
-		
+
+		public void When_execute_<#= command.Name#>_Command()
+		{
+			viewModel.<#= command.Name#>.Execute(null);
+		}
 	<#+ }#>
+		
+		public void And(string description, Action unitOfWork)
+		{
+			unitOfWork.Invoke();
+		}
+
+		public void When(string description, Action unitOfWork)
+		{
+			unitOfWork.Invoke();
+		}
 }
 
 <#+ }#>

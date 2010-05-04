@@ -13,7 +13,7 @@ using TinyMVVM.Framework.Services.Impl;
 namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
 {
     [TestFixture]
-    public class When_spawned : LoginViewModelContext
+    public class When_spawned : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -40,7 +40,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Username_is_entered : LoginViewModelContext
+	public class When_Username_is_entered : LoginViewModelTestContext
     {
         protected int loginCommandStateChanges;
 
@@ -76,7 +76,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Password_is_entered : LoginViewModelContext
+	public class When_Password_is_entered : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -99,7 +99,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Username_and_Password_is_entered : LoginViewModelContext
+	public class When_Username_and_Password_is_entered : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -117,7 +117,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Login : LoginViewModelContext
+	public class When_Login : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -147,7 +147,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Login_with_invalid_credentials : LoginViewModelContext
+	public class When_Login_with_invalid_credentials : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -176,7 +176,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Login_with_valid_credentials : LoginViewModelContext
+	public class When_Login_with_valid_credentials : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -200,7 +200,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_authenticating : LoginViewModelContext
+	public class When_authenticating : LoginViewModelTestContext
     {
         public override void Context()
         {
@@ -224,7 +224,7 @@ namespace TestGUI.Tests.ViewModel.LoginViewModelSpecs
     }
 
     [TestFixture]
-    public class When_Cancel : LoginViewModelContext
+	public class When_Cancel : LoginViewModelTestContext
     {
         public override void Context()
         {

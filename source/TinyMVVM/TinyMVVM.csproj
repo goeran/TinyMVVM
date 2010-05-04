@@ -63,6 +63,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -105,6 +106,7 @@
     <Compile Include="Framework\Services\Impl\UIInvoker.cs" />
     <Compile Include="Framework\Services\IUIInvoker.cs" />
     <Compile Include="Framework\Testing\ServiceLocatorForTesting.cs" />
+    <Compile Include="Framework\Testing\Services\UIInvokerForTesting.cs" />
     <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

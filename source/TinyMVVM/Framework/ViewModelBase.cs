@@ -28,6 +28,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
@@ -40,9 +41,16 @@ namespace TinyMVVM.Framework
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
+        [Display(AutoGenerateField = false)]
+        [Editable(false)]
 		public PropertyChangeRecorder PropertyChangeRecorder { get; protected set; }
-		public Object CmdStateChangeRecorder { get; protected set; }
 
+        [Display(AutoGenerateField = false)]
+        [Editable(false)]
+        public Object CmdStateChangeRecorder { get; protected set; }
+
+        [Display(AutoGenerateField = false)]
+        [Editable(false)]
         protected ReadOnlyCollection<IViewModelConvention> AppliedConventions
 		{
 			get { return new ReadOnlyCollection<IViewModelConvention>(appliedConventions); }
@@ -68,13 +76,13 @@ namespace TinyMVVM.Framework
 			appliedConventions.Add(convention);
 		}
 
-        protected void TriggerPropertyChanged(string propertyName)
+        protected virtual void TriggerPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected T GetInstance<T>() where T: class
+        protected virtual T GetInstance<T>() where T: class
         {
             return ServiceLocator.Instance.GetInstance<T>();
         }
