@@ -105,6 +105,8 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
 			types.Add("long", true);
 			types.Add("ulong", true);
 			types.Add("char", true);
+			types.Add("bool", true);
+			types.Add("boolean", true);
 
 			foreach (var type in types)
 			{

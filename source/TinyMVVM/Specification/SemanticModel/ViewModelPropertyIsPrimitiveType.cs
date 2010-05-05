@@ -25,7 +25,8 @@ namespace TinyMVVM.Specification.SemanticModel
 				typeof(ushort),
 				typeof(long),
 				typeof(ulong),
-				typeof(char)
+				typeof(char),
+				typeof(bool)
 			};
 		}
 
@@ -49,6 +50,7 @@ namespace TinyMVVM.Specification.SemanticModel
 			if (name.Equals("ushort")) return "uint16";
 			if (name.Equals("long")) return "int64";
 			if (name.Equals("ulong")) return "uint64";
+			if (name.Equals("bool")) return "boolean";
 
 			return name;
 		}
