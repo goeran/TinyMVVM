@@ -5,7 +5,7 @@ using System.Text;
 using Moq;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.DSL.TextParser;
-using TinyMVVM.SemanticModel;
+using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.Tests.DSL.TextParser.TestContext
 {

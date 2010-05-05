@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TinyMVVM.SemanticModel;
+using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.Specification.SemanticModel
 {

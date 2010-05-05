@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
-using TinyMVVM.SemanticModel;
+using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.Tests.SemanticModel.TestContext;
 
 namespace TinyMVVM.Tests.SemanticModel.ViewModelCommandSpecs

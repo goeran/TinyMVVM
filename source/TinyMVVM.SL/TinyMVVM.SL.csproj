@@ -116,25 +116,30 @@
     <Compile Include="..\TinyMVVM\Framework\ViewModelBase.cs">
       <Link>Framework\ViewModelBase.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\SemanticModel\ModelSpecification.cs">
-      <Link>SemanticModel\ModelSpecification.cs</Link>
+    <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs">
+      <Link>SemanticModel\MVVM\ModelSpecification.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\SemanticModel\ViewModel.cs">
-      <Link>SemanticModel\ViewModel.cs</Link>
+    <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ViewModel.cs">
+      <Link>SemanticModel\MVVM\ViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\SemanticModel\ViewModelCommand.cs">
-      <Link>SemanticModel\ViewModelCommand.cs</Link>
+    <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ViewModelCommand.cs">
+      <Link>SemanticModel\MVVM\ViewModelCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\SemanticModel\ViewModelProperty.cs">
-      <Link>SemanticModel\ViewModelProperty.cs</Link>
+    <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ViewModelProperty.cs">
+      <Link>SemanticModel\MVVM\ViewModelProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\Specification\ISpecification.cs">
+      <Link>Specification\ISpecification.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs">
+      <Link>Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs</Link>
     </Compile>
     <Compile Include="Framework\Services\Impl\UIInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="..\TinyMVVM\SemanticModel\MVVMClassDiagram.cd">
-      <Link>SemanticModel\MVVMClassDiagram.cd</Link>
+    <None Include="..\TinyMVVM\SemanticModel\MVVM\MVVMClassDiagram.cd">
+      <Link>SemanticModel\MVVM\MVVMClassDiagram.cd</Link>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

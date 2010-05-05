@@ -110,10 +110,10 @@
     <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SemanticModel\ModelSpecification.cs" />
-    <Compile Include="SemanticModel\ViewModelCommand.cs" />
-    <Compile Include="SemanticModel\ViewModel.cs" />
-    <Compile Include="SemanticModel\ViewModelProperty.cs" />
+    <Compile Include="SemanticModel\MVVM\ModelSpecification.cs" />
+    <Compile Include="SemanticModel\MVVM\ViewModelCommand.cs" />
+    <Compile Include="SemanticModel\MVVM\ViewModel.cs" />
+    <Compile Include="SemanticModel\MVVM\ViewModelProperty.cs" />
     <Compile Include="Specification\ISpecification.cs" />
     <Compile Include="Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs" />
   </ItemGroup>
@@ -125,7 +125,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="MVVM.dsl" />
-    <None Include="SemanticModel\MVVMClassDiagram.cd" />
+    <None Include="SemanticModel\MVVM\MVVMClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />

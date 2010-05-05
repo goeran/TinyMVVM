@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TinyBDD.Dsl.GivenWhenThen;
-using TinyMVVM.SemanticModel;
+using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.Tests.SemanticModel.TestContext
 {
