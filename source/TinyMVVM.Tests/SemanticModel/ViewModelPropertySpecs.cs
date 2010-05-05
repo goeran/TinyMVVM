@@ -10,7 +10,7 @@ using TinyMVVM.Tests.SemanticModel.TestContext;
 namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
 {
     [TestFixture]
-    public class When_spawning : ViewModelDataContext
+    public class When_spawning : ViewModelPropertyContext
     {
         [SetUp]
         public void Setup()
@@ -36,12 +36,12 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
     }
 
     [TestFixture]
-    public class When_spawned : ViewModelDataContext
+    public class When_spawned : ViewModelPropertyContext
     {
         [SetUp]
         public void Setup()
         {
-            When(ViewModelData_is_spawned);
+            When(ViewModelProperty_is_spawned);
         }
 
         [Test]
@@ -73,4 +73,49 @@ namespace TinyMVVM.Tests.SemanticModel.ViewModelDataSpec
         }
 
     }
+
+	[TestFixture]
+	public class When_eval_IsPrimitiveType : ViewModelPropertyContext
+	{
+		[Test]
+		public void assure_Class_is_not_eval_as_primitive_type()
+		{
+			Given(ViewModelProperty_is_created_and_its_a_type_of("Customer"));
+
+			When(eval);
+
+			Then(() =>
+			     viewModelProperty.IsPrimitiveType.ShouldBeFalse());
+		}
+
+		[Test]
+		public void assure_types_are_correctly_evaluated()
+		{
+			var types = new Dictionary<string, bool>();
+			types.Add("string", true);
+			types.Add("int", true);
+			types.Add("int16", true);
+			types.Add("short", true);
+			types.Add("ushort", true);
+			types.Add("byte", true);
+			types.Add("float", true);
+			types.Add("double", true);
+			types.Add("uint", true);
+			types.Add("sbyte", true);
+			types.Add("long", true);
+			types.Add("ulong", true);
+			types.Add("char", true);
+
+			foreach (var type in types)
+			{
+				Scenario("When eval IsPrimitiveType (" + type.Key + ")");
+				Given(ViewModelProperty_is_created_and_its_a_type_of(type.Key));
+				When(eval);
+
+				Then(() =>
+					 viewModelProperty.IsPrimitiveType.ShouldBe(type.Value));
+				StartScenario();
+			}
+		}
+	}
 }

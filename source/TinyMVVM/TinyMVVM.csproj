@@ -114,6 +114,8 @@
     <Compile Include="SemanticModel\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\ViewModel.cs" />
     <Compile Include="SemanticModel\ViewModelProperty.cs" />
+    <Compile Include="Specification\ISpecification.cs" />
+    <Compile Include="Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen\ViewModelTemplate.tt">

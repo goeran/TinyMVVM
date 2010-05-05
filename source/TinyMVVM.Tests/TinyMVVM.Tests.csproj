@@ -125,7 +125,7 @@
     <Compile Include="SemanticModel\TestContext\ModelSpecificationContext.cs" />
     <Compile Include="SemanticModel\TestContext\ViewModelCommandContext.cs" />
     <Compile Include="SemanticModel\TestContext\ViewModelContext.cs" />
-    <Compile Include="SemanticModel\TestContext\ViewModelDataContext.cs" />
+    <Compile Include="SemanticModel\TestContext\ViewModelPropertyContext.cs" />
     <Compile Include="SemanticModel\ViewModelCommandSpecs.cs" />
     <Compile Include="SemanticModel\ViewModelPropertySpecs.cs" />
     <Compile Include="SemanticModel\ViewModelSpecs.cs" />
