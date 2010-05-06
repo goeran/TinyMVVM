@@ -110,7 +110,7 @@
     <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SemanticModel\DataBuilder\Root.cs" />
+    <Compile Include="SemanticModel\DataBuilder\Node.cs" />
     <Compile Include="SemanticModel\MVVM\ModelSpecification.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModel.cs" />
