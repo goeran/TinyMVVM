@@ -945,51 +945,31 @@
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="117" fromTop="3" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/d:TestContext/f:ValueConverterTestContext.cs" caret="813" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="71" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="71" fromTop="0" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModelTemplate.tt" caret="0" fromTop="0" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.mvvm" caret="380" fromTop="16" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.cs" caret="0" fromTop="0" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:ViewModelTestsTemplate.tt" caret="491" fromTop="14" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:Tests.tt" caret="650" fromTop="14" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Conventions/f:InvokeOnInitialize.cs" caret="438" fromTop="9" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="3175" fromTop="4" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/f:ServiceLocatorForClient.cs" caret="678" fromTop="14" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Services/d:Impl/f:UIInvoker.cs" caret="0" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:TestContext.cs" caret="0" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/f:ServiceLocatorForTesting.cs" caret="0" fromTop="0" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5828" fromTop="3" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ServiceLocator.cs" caret="1975" fromTop="13" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:LoginViewModel.cs" caret="618" fromTop="20" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModels.cs" caret="1638" fromTop="2" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="1001" fromTop="6" />
       <File id="294A2FF8-764A-4AA7-847E-26852B025FBD/d:ViewModel/f:ViewModel.tt" caret="718" fromTop="16" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/d:Services/f:UIInvokerForTesting.cs" caret="281" fromTop="10" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:DefaultServiceLocator.cs" caret="238" fromTop="5" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:ViewModelPropertySpecs.cs" caret="433" fromTop="15" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:TestContext/f:ModelSpecificationContext.cs" caret="0" fromTop="0" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:TestContext/f:ViewModelCommandContext.cs" caret="0" fromTop="0" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:TestContext/f:DesignTimeDataContext.cs" caret="599" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:ViewModelProperty.cs" caret="673" fromTop="12" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:DesignTimeData.cs" caret="197" fromTop="8" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:DesignTimeDataSpecs.cs" caret="239" fromTop="7" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:MVVM/f:ModelSpecification.cs" caret="152" fromTop="5" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:MVVM/f:ViewModel.cs" caret="0" fromTop="0" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:MVVM/f:ViewModelCommand.cs" caret="0" fromTop="0" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:MVVM/f:ViewModelProperty.cs" caret="431" fromTop="3" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:DesignTimeData/f:Root.cs" caret="166" fromTop="7" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/d:TestContext/f:ModelSpecificationContext.cs" caret="211" fromTop="6" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/d:TestContext/f:ViewModelCommandContext.cs" caret="0" fromTop="0" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/d:TestContext/f:ViewModelContext.cs" caret="0" fromTop="0" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ModelSpecificationSpecs.cs" caret="297" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelCommandSpecs.cs" caret="303" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelPropertySpecs.cs" caret="288" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelSpecs.cs" caret="300" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="2405" fromTop="23" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="2853" fromTop="31" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="2609" fromTop="23" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:Framework/d:Converters/f:BoolToVisibilityConverterSpecs.cs" caret="2801" fromTop="29" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Converter/f:BoolToVisibilityConverter.cs" caret="736" fromTop="23" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2422" fromTop="31" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="1762" fromTop="18" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2066" fromTop="27" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="2832" fromTop="16" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/f:ViewModelBase.cs" caret="3058" fromTop="22" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="353" fromTop="9" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTemplate.tt" caret="71" fromTop="0" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:CodeGen/f:ViewModelTestsTemplate.tt" caret="71" fromTop="0" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="427" fromTop="14" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="1104" fromTop="26" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="2075" fromTop="11" />
@@ -999,14 +979,18 @@
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="4951" fromTop="21" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="5636" fromTop="4" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/d:ViewModel/f:LoginViewModelSpecs.cs" caret="6415" fromTop="13" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/d:Services/f:UIInvokerForTesting.cs" caret="186" fromTop="6" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:Framework/d:Testing/d:Services/f:UIInvokerForTesting.cs" caret="281" fromTop="10" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="765" fromTop="6" />
       <File id="47C8CC8B-97C7-43A1-92C8-079540DF6EED/f:CustomServiceLocatorForTests.cs" caret="1158" fromTop="9" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:TestContext/f:DesignTimeDataContext.cs" caret="413" fromTop="15" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:TestContext/f:DesignTimeDataContext.cs" caret="599" fromTop="24" />
-      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/f:DesignTimeData.cs" caret="183" fromTop="8" />
-      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/f:DesignTimeDataSpecs.cs" caret="553" fromTop="23" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:MVVM/f:ModelSpecification.cs" caret="212" fromTop="5" />
+      <File id="41795993-5643-4733-8834-0128DE34F945/d:SemanticModel/d:DesignTimeData/f:Root.cs" caret="166" fromTop="7" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/d:TestContext/f:ModelSpecificationContext.cs" caret="246" fromTop="6" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ModelSpecificationSpecs.cs" caret="368" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ModelSpecificationSpecs.cs" caret="368" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ModelSpecificationSpecs.cs" caret="363" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ModelSpecificationSpecs.cs" caret="297" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelCommandSpecs.cs" caret="303" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelPropertySpecs.cs" caret="288" fromTop="8" />
+      <File id="B4EBC972-D86A-40E3-BC6E-AF8757BF340D/d:SemanticModel/d:MVVM/f:ViewModelSpecs.cs" caret="288" fromTop="8" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>
