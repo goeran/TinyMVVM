@@ -19,6 +19,12 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 		}
 
 		public Type Type { get; private set; }
+		public Node Parent { get; set; }
+
+		public bool IsRoot
+		{
+			get { return Parent == null; }
+		}
 
 		public Node(Type type)
 		{

@@ -35,21 +35,28 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			[SetUp]
 			public void Setup()
 			{
-				When(Root_is_spawned);
+				When(Node_is_spawned);
 			}
 
 			[Test]
-			public void assure_it_has_leafs()
+			public void assure_it_has_child_Nodes()
 			{
 				Then(() =>
-				    root.Nodes.ShouldNotBeNull());
+				    node.Nodes.ShouldNotBeNull());
 			}
 
 			[Test]
 			public void assure_it_has_a_Type()
 			{
 				Then(() =>
-					root.Type.ShouldNotBeNull());
+					node.Type.ShouldNotBeNull());
+			}
+
+			[Test]
+			public void assure_it_has_a_Parent()
+			{
+				Then(() =>
+					node.Parent.ShouldBeNull());
 			}
 		}
 
@@ -59,17 +66,51 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			[SetUp]
 			public void Setup()
 			{
-				Given(Root_is_created);
+				Given(Node_is_created);
 
 				When("created new child Node", () =>
-					root.NewNode());
+					node.NewNode());
 			}
 
 			[Test]
 			public void assure_child_Node_is_added_to_Nodes()
 			{
 				Then(() =>
-					root.Nodes.ShouldHave(1));
+					node.Nodes.ShouldHave(1));
+			}
+		}
+
+		[TestFixture]
+		public class When_eval_if_IsRoot : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(Node_is_created);
+			}
+
+			[Test]
+			public void assure_its_a_root_Node_when_it_doesnt_have_a_parent()
+			{
+				And("it doesn't have a parent", () =>
+					node.Parent = null);
+
+				When("eval if IsRoot");
+
+				Then(() =>
+					node.IsRoot.ShouldBeTrue());
+			}
+
+			[Test]
+			public void assure_its_not_a_root_Node_when_it_have_a_parent()
+			{
+				And("it does have a parent", () =>
+					node.Parent = new Node(typeof(string)));
+
+				When("eval if IsRoot");
+
+				Then(() =>
+					node.IsRoot.ShouldBeFalse());
 			}
 		}
 	}
