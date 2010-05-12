@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,10 +23,16 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 		public Part Parent { get; set; }
 	    public string Name { get; set; }
 		public Object Value { get; set; }
+		public PartMetadata Metadata { get; private set; }
 
 		public bool IsRoot
 		{
 			get { return Parent == null; }
+		}
+
+		public bool IsList
+		{
+			get { return Type is IEnumerable; }
 		}
 
 		public Part(Type type)
@@ -33,6 +40,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			if (type == null) throw new ArgumentNullException();
 
 			Type = type;
+			Metadata = new PartMetadata(this);
 		}
 
 		public static Part NewPropertyPart(string name, Type type)

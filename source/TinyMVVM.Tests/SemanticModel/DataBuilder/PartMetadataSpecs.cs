@@ -45,6 +45,18 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			{
 				Then(() => partMetadata.Part.ShouldNotBeNull());
 			}
+
+			[Test]
+			public void assure_it_has_Hints()
+			{
+				Then(() => partMetadata.Hints.ShouldNotBeNull());
+			}
+
+			[Test]
+			public void assure_it_has_Count()
+			{
+				Then(() => partMetadata.Count.ShouldBe(0));
+			}
 		}
 	}
 }

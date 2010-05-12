@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,6 +71,12 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			public void assure_it_has_a_container_for_Value()
 			{
 				Then(() => part.Value.ShouldBeNull());
+			}
+
+			[Test]
+			public void assure_it_has_Metadata()
+			{
+				Then(() => part.Metadata.ShouldNotBeNull());
 			}
 		}
 
@@ -215,6 +222,25 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 
 				Then(() =>
 					part.IsRoot.ShouldBeFalse());
+			}
+		}
+
+		[TestFixture]
+		public class When_eval_if_IsList : DataBuilderTestContext
+		{
+			[Test]
+			public void assure_List_of_strings_is_a_List()
+			{
+				var b = new List<string>() is IEnumerable;
+				Console.WriteLine(b);
+
+				Given("part is created", () =>
+					part = new Part(typeof(List<string>)));
+
+				When("eval IsList");
+
+				Then(() => 
+					part.IsList.ShouldBe(true));
 			}
 		}
 

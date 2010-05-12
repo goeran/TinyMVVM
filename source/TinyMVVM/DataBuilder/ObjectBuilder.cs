@@ -8,6 +8,7 @@ using TinyMVVM.SemanticModel.DataBuilder;
 
 namespace TinyMVVM.DataBuilder
 {
+	//TODO: Impl visitor in semantic model => makes it easier to iterate over all parts
     public class ObjectBuilder
     {
     	private static readonly BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
@@ -32,7 +33,16 @@ namespace TinyMVVM.DataBuilder
     	private void BuildValuesForList(Part part, IList list)
     	{
     		var values = part.Parts.Where(n => n is ValuePart);
-    		foreach (var value in values)
+
+			if (part.Metadata.Count != 0)
+			{
+				for (int i = 0; i < part.Metadata.Count; i++)
+				{
+					//part.AddPart(Part.NewValuePart(typeof()));
+				}
+			}
+
+			foreach (var value in values)
     		{
     			var obj = Activator.CreateInstance(value.Type);
     			BuildProperties(value, obj);

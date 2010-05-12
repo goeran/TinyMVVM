@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					part.AddPart(Part.NewValuePart(typeof(Customer)));
                 });
 
-                When(build);
+                When(build_object_graph);
             }
 
             [Test]
@@ -102,7 +103,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					employeesProperty.AddPart(Part.NewValuePart(typeof(Employee)));
 				});
 
-				When(build);
+				When(build_object_graph);
             }
 
             [Test]
@@ -135,4 +136,36 @@ namespace TinyMVVM.Tests.DataBuilder
         	}
         }
     }
+
+	public class ObjectBuilder_usage_scenarios
+	{
+		[TestFixture]
+		public class When_building_a_list_of_Customers_of_a_given_size : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+
+				And("parts for lists of customers are specified", () =>
+				{
+					part = new Part(typeof(List<Customer>));
+					part.Metadata.Count = 10;
+				});
+
+				When(build_object_graph);
+			}
+
+			[Test]
+			public void assure_list_is_created()
+			{
+				Then(() =>
+				{
+					var listOfCustomers = result as IList;
+					listOfCustomers.ShouldNotBeNull();
+					listOfCustomers.ShouldHave(10);
+				});
+			}
+		}
+	}
 }

@@ -27,7 +27,7 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
             objectBuilder = new ObjectBuilder();
         };
 
-        protected When build = () =>
+        protected When build_object_graph = () =>
         {
             result = objectBuilder.Build(part);
         	customer = result as Customer;
