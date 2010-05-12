@@ -66,6 +66,11 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 		             part.Name.ShouldBeNull());
 		    }
 
+			[Test]
+			public void assure_it_has_a_container_for_Value()
+			{
+				Then(() => part.Value.ShouldBeNull());
+			}
 		}
 
 	    [TestFixture]

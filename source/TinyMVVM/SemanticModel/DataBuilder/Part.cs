@@ -21,6 +21,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 		public Type Type { get; private set; }
 		public Part Parent { get; set; }
 	    public string Name { get; set; }
+		public Object Value { get; set; }
 
 		public bool IsRoot
 		{

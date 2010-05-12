@@ -10,7 +10,10 @@ namespace TinyMVVM.DataBuilder
 {
     public class ObjectBuilder
     {
-        public Object Build(Part part)
+    	private static readonly BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
+    	                                                    BindingFlags.NonPublic;
+
+    	public Object Build(Part part)
         {
             Object result = null;
 
@@ -44,8 +47,7 @@ namespace TinyMVVM.DataBuilder
             foreach (var property in properties)
             {
                 var prop = resultType.GetProperty(property.Name,
-                                                  BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
-                                                  BindingFlags.NonPublic);
+                                                  bindingFlags);
 
             	var propValue = Activator.CreateInstance(property.Type);
                 if (prop != null)
