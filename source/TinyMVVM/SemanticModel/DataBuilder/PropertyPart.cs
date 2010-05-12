@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TinyMVVM.SemanticModel.DataBuilder
 {
-    public class PropertyNode : Node
+    public class PropertyPart : Part
     {
-        public PropertyNode(Type type) : 
+        public PropertyPart(Type type) : 
             base(type)
         {
             

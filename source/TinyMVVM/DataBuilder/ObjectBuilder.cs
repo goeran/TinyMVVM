@@ -10,25 +10,25 @@ namespace TinyMVVM.DataBuilder
 {
     public class ObjectBuilder
     {
-        public Object Build(Node node)
+        public Object Build(Part part)
         {
             Object result = null;
 
-            result = Activator.CreateInstance(node.Type);
+            result = Activator.CreateInstance(part.Type);
 
-            BuildProperties(node, result);
+            BuildProperties(part, result);
 
             if (result is IList)
             {
-            	BuildValuesForList(node, result as IList);
+            	BuildValuesForList(part, result as IList);
             }
 
         	return result;
         }
 
-    	private void BuildValuesForList(Node node, IList list)
+    	private void BuildValuesForList(Part part, IList list)
     	{
-    		var values = node.Nodes.Where(n => n is ValueNode);
+    		var values = part.Parts.Where(n => n is ValuePart);
     		foreach (var value in values)
     		{
     			var obj = Activator.CreateInstance(value.Type);
@@ -37,10 +37,10 @@ namespace TinyMVVM.DataBuilder
     		}
     	}
 
-    	private void BuildProperties(Node node, object result)
+    	private void BuildProperties(Part part, object result)
         {
             var resultType = result.GetType();
-            var properties = node.Nodes.Where(n => n is PropertyNode);
+            var properties = part.Parts.Where(n => n is PropertyPart);
             foreach (var property in properties)
             {
                 var prop = resultType.GetProperty(property.Name,

@@ -9,22 +9,22 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder.TestContext
 {
 	public class DataBuilderTestContext : NUnitScenarioClass
 	{
-		protected static Node node;
-		protected static Node newNode;
+		protected static Part part;
+		protected static Part newPart;
 
-		protected Context Node_is_created = () =>
+		protected Context Part_is_created = () =>
 		{
-			NewNode();
+			NewPart();
 		};
 
-		protected When Node_is_spawned = () =>
+		protected When Part_is_spawned = () =>
 		{
-			NewNode();
+			NewPart();
 		};
 
-		private static void NewNode()
+		private static void NewPart()
 		{
-			node = new Node(typeof(List<string>));
+			part = new Part(typeof(List<string>));
 		}
 	}
 }

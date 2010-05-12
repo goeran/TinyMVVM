@@ -12,7 +12,7 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
     public class DataBuilderTestContext : NUnitScenarioClass
     {
         protected static ObjectBuilder objectBuilder;
-        protected static Node recipe;
+        protected static Part recipe;
         protected static Object result;
     	protected static Customer customer;
     	protected static IList<Customer> customers;

@@ -9,7 +9,7 @@ using TinyMVVM.Tests.SemanticModel.DataBuilder.TestContext;
 
 namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 {
-	public class NodeSpecs
+	public class PartSpecs
 	{
 		[TestFixture]
 		public class When_spawning : DataBuilderTestContext
@@ -25,7 +25,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			{
 				Then(() =>
 					this.ShouldThrowException<ArgumentNullException>(() =>
-						new Node(null)));
+						new Part(null)));
 			}
 		}
 
@@ -35,48 +35,48 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			[SetUp]
 			public void Setup()
 			{
-				When(Node_is_spawned);
+				When(Part_is_spawned);
 			}
 
 			[Test]
-			public void assure_it_has_child_Nodes()
+			public void assure_it_has_child_Parts()
 			{
 				Then(() =>
-				    node.Nodes.ShouldNotBeNull());
+				    part.Parts.ShouldNotBeNull());
 			}
 
 			[Test]
 			public void assure_it_has_a_Type()
 			{
 				Then(() =>
-					node.Type.ShouldNotBeNull());
+					part.Type.ShouldNotBeNull());
 			}
 
 			[Test]
 			public void assure_it_has_a_Parent()
 			{
 				Then(() =>
-					node.Parent.ShouldBeNull());
+					part.Parent.ShouldBeNull());
 			}
 
 		    [Test]
 		    public void assure_it_has_a_Name()
 		    {
 		        Then(() =>
-		             node.Name.ShouldBeNull());
+		             part.Name.ShouldBeNull());
 		    }
 
 		}
 
 	    [TestFixture]
-	    public class When_creating_new_Value_Node : DataBuilderTestContext
+	    public class When_creating_new_Value_Part : DataBuilderTestContext
 	    {
 	        [SetUp]
 	        public void Setup()
 	        {
-	            Given(Node_is_created);
+	            Given(Part_is_created);
 
-	            When("creating new Value Node");
+	            When("creating new Value part");
 	        }
 
 	        [Test]
@@ -84,54 +84,54 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Node.NewValueNode(null)));
+                        Part.NewValuePart(null)));
 	        }
 
 	        [Test]
-	        public void assure_created_Node_is_returned()
+	        public void assure_created_Part_is_returned()
 	        {
                 Then(() =>
-                    Node.NewValueNode(typeof(string)).ShouldNotBeNull());
+                    Part.NewValuePart(typeof(string)).ShouldNotBeNull());
 	        }
 
 	    }
 
 	    [TestFixture]
-	    public class When_new_Value_Node_is_created : DataBuilderTestContext
+	    public class When_new_Value_Part_is_created : DataBuilderTestContext
 	    {
 	        [SetUp]
 	        public void Setup()
 	        {
-	            Given(Node_is_created);
+	            Given(Part_is_created);
 
-                When("new Value Node is created", () =>
-                    newNode = Node.NewValueNode(typeof(string)));
+                When("new Value part is created", () =>
+                    newPart = Part.NewValuePart(typeof(string)));
 	        }
 
 	        [Test]
-	        public void assure_added_Node_is_a_Value_Node()
+	        public void assure_added_Part_is_a_Value_Part()
 	        {
-	            Then(() => newNode.GetType().ShouldBe(typeof (ValueNode)));
+	            Then(() => newPart.GetType().ShouldBe(typeof (ValuePart)));
 	        }
 
 			[Test]
-			public void assure_its_a_Root_Node()
+			public void assure_its_Root()
 			{
-				//It's a root Node as long it isn't added to another Node
-				Then(() => newNode.IsRoot.ShouldBeTrue());
+				//It's a root part as long it isn't added to another part
+				Then(() => newPart.IsRoot.ShouldBeTrue());
 			}
 	    }
 
 
 	    [TestFixture]
-	    public class When_creating_new_Property_Node : DataBuilderTestContext
+	    public class When_creating_new_Property_Part : DataBuilderTestContext
 	    {
 	        [SetUp]
 	        public void Setup()
 	        {
-	            Given(Node_is_created);
+	            Given(Part_is_created);
 
-	            When("creating a new Property node");
+	            When("creating a new Property part");
 	        }
 
 	        [Test]
@@ -139,7 +139,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Node.NewPropertyNode(string.Empty, null)));
+                        Part.NewPropertyPart(string.Empty, null)));
 	        }
 
 	        [Test]
@@ -147,35 +147,35 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Node.NewPropertyNode(null, typeof(string))));
+                        Part.NewPropertyPart(null, typeof(string))));
 	        }
 	    }
 
 
 		[TestFixture]
-		public class When_new_Property_Node_is_created : DataBuilderTestContext
+		public class When_new_Property_Part_is_created : DataBuilderTestContext
 		{
 			[SetUp]
 			public void Setup()
 			{
-				Given(Node_is_created);
+				Given(Part_is_created);
 
-				When("created new Property Node", () =>
-					newNode = Node.NewPropertyNode("child", typeof(string)));
+				When("created new Property part", () =>
+					newPart = Part.NewPropertyPart("child", typeof(string)));
 			}
 
 		    [Test]
-		    public void assure_added_node_is_a_Property_Node()
+		    public void assure_added_Part_is_a_Property_Part()
 		    {
                 Then(() =>
-                    newNode.GetType().ShouldBe(typeof(PropertyNode)));
+                    newPart.GetType().ShouldBe(typeof(PropertyPart)));
 		    }
 
 	    	[Test]
-	    	public void assure_its_a_Root_Node()
+	    	public void assure_its_Root()
 	    	{
-	    		//It's a root Node as long it isn't added to another Node
-	    		Then(() => newNode.IsRoot.ShouldBeTrue());
+	    		//It's a root part as long it isn't added to another part
+	    		Then(() => newPart.IsRoot.ShouldBeTrue());
 	    	}
 		}
 
@@ -185,76 +185,76 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			[SetUp]
 			public void Setup()
 			{
-				Given(Node_is_created);
+				Given(Part_is_created);
 			}
 
 			[Test]
-			public void assure_its_a_root_Node_when_it_doesnt_have_a_parent()
+			public void assure_its_a_root_Part_when_it_doesnt_have_a_parent()
 			{
 				And("it doesn't have a parent", () =>
-					node.Parent = null);
+					part.Parent = null);
 
 				When("eval if IsRoot");
 
 				Then(() =>  
-					node.IsRoot.ShouldBeTrue());
+					part.IsRoot.ShouldBeTrue());
 			}
 
 			[Test]
-			public void assure_its_not_a_root_Node_when_it_have_a_parent()
+			public void assure_its_not_a_root_Part_when_it_have_a_parent()
 			{
 				And("it does have a parent", () =>
-					node.Parent = new Node(typeof(string)));
+					part.Parent = new Part(typeof(string)));
 
 				When("eval if IsRoot");
 
 				Then(() =>
-					node.IsRoot.ShouldBeFalse());
+					part.IsRoot.ShouldBeFalse());
 			}
 		}
 
 		[TestFixture]
-		public class When_adding_Node : DataBuilderTestContext
+		public class When_adding_Part : DataBuilderTestContext
 		{
 			[SetUp]
 			public void Setup()
 			{
-				Given(Node_is_created);
+				Given(Part_is_created);
 
-				When("adding Node");
+				When("adding part");
 			}
 
 			[Test]
-			public void assure_Node_arg_is_validated()
+			public void assure_Part_arg_is_validated()
 			{
 				Then(() =>
 					this.ShouldThrowException<ArgumentNullException>(() =>
-						node.AddNode(null)));
+						part.AddPart(null)));
 			}
 		}
 
 		[TestFixture]
-		public class When_Node_is_added : DataBuilderTestContext
+		public class When_Part_is_added : DataBuilderTestContext
 		{
 			[SetUp]
 			public void Setup()
 			{
-				Given(Node_is_created);
+				Given(Part_is_created);
 
-				When("Node is added", () =>
-					node.AddNode(Node.NewValueNode(typeof(string))));
+				When("part is added", () =>
+					part.AddPart(Part.NewValuePart(typeof(string))));
 			}
 
 			[Test]
-			public void assure_Node_is_added_to_Nodes()
+			public void assure_Part_is_added_to_Parts()
 			{
-				Then(() => node.Nodes.ShouldHave(1));
+				Then(() => part.Parts.ShouldHave(1));
 			}
 
 			[Test]
-			public void assure_added_Node_is_not_a_Root_Node()
+			public void assure_added_Part_is_not_a_Root()
 			{
-				Then(() => node.Nodes.First().IsRoot.ShouldBeFalse());
+				Then(() => part.Parts.First().IsRoot.ShouldBeFalse());
 			}
 		}
 	}

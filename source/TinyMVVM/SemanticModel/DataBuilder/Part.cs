@@ -6,20 +6,20 @@ using System.Text;
 
 namespace TinyMVVM.SemanticModel.DataBuilder
 {
-	public class Node
+	public class Part
 	{
-		private List<Node> nodes = new List<Node>();
+		private List<Part> parts = new List<Part>();
 
-		public ReadOnlyCollection<Node> Nodes
+		public ReadOnlyCollection<Part> Parts
 		{
 			get
 			{
-				return new ReadOnlyCollection<Node>(nodes);
+				return new ReadOnlyCollection<Part>(parts);
 			}
 		}
 
 		public Type Type { get; private set; }
-		public Node Parent { get; set; }
+		public Part Parent { get; set; }
 	    public string Name { get; set; }
 
 		public bool IsRoot
@@ -27,37 +27,37 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			get { return Parent == null; }
 		}
 
-		public Node(Type type)
+		public Part(Type type)
 		{
 			if (type == null) throw new ArgumentNullException();
 
 			Type = type;
 		}
 
-		public static Node NewPropertyNode(string name, Type type)
+		public static Part NewPropertyPart(string name, Type type)
 		{
             if (type == null) throw new ArgumentNullException();
             if (name == null) throw new ArgumentNullException();
 
-			var propertyNode = new PropertyNode(type);
+			var propertyNode = new PropertyPart(type);
 		    propertyNode.Name = name;
 
 			return propertyNode;
 		}
 
-		public void AddNode(Node node)
+		public void AddPart(Part part)
 		{
-			if (node == null) throw new ArgumentNullException();
+			if (part == null) throw new ArgumentNullException();
 
-            node.Parent = this;
-			nodes.Add(node);
+            part.Parent = this;
+			parts.Add(part);
 		}
 
-	    public static Node NewValueNode(Type type)
+	    public static Part NewValuePart(Type type)
 	    {
             if (type == null) throw new ArgumentNullException();
 
-	        var valueNode = new ValueNode(type);
+	        var valueNode = new ValuePart(type);
 
 	        return valueNode;
 	    }

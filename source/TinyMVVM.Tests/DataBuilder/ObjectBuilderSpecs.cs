@@ -22,15 +22,15 @@ namespace TinyMVVM.Tests.DataBuilder
 
                 And("recipe for list of objects is specified", () =>
                 {
-                    recipe = new Node(typeof(List<Customer>));
-                	var customerNode1 = Node.NewValueNode(typeof (Customer));
-                	customerNode1.AddNode(Node.NewPropertyNode("CEO", typeof (Employee)));
-                	var employeesNode = Node.NewPropertyNode("Employees", typeof (ObservableCollection<Employee>));
-					employeesNode.AddNode(Node.NewValueNode(typeof(Employee)));
-					customerNode1.AddNode(employeesNode);
+                    recipe = new Part(typeof(List<Customer>));
+                	var customerNode1 = Part.NewValuePart(typeof (Customer));
+                	customerNode1.AddPart(Part.NewPropertyPart("CEO", typeof (Employee)));
+                	var employeesNode = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
+					employeesNode.AddPart(Part.NewValuePart(typeof(Employee)));
+					customerNode1.AddPart(employeesNode);
 
-					recipe.AddNode(customerNode1);
-					recipe.AddNode(Node.NewValueNode(typeof(Customer)));
+					recipe.AddPart(customerNode1);
+					recipe.AddPart(Part.NewValuePart(typeof(Customer)));
                 });
 
                 When(build);
@@ -90,12 +90,12 @@ namespace TinyMVVM.Tests.DataBuilder
 
 				And("recipe for a complex object is specified", () =>
 				{
-					recipe = new Node(typeof(Customer));
-					recipe.AddNode(Node.NewPropertyNode("CEO", typeof(Employee)));
-					var employeesProperty = Node.NewPropertyNode("Employees", typeof (ObservableCollection<Employee>));
-					recipe.AddNode(employeesProperty);
+					recipe = new Part(typeof(Customer));
+					recipe.AddPart(Part.NewPropertyPart("CEO", typeof(Employee)));
+					var employeesProperty = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
+					recipe.AddPart(employeesProperty);
 
-					employeesProperty.AddNode(Node.NewValueNode(typeof(Employee)));
+					employeesProperty.AddPart(Part.NewValuePart(typeof(Employee)));
 				});
 
 				When(build);
