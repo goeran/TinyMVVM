@@ -37,7 +37,8 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
 
         protected class Employee
         {
-            
+        	public string Name { get; set; }
+        	public Employee Boss { get; set; }
         }
     }
 }

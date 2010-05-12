@@ -23,13 +23,16 @@ namespace TinyMVVM.Tests.DataBuilder
                 And("recipe for list of objects is specified", () =>
                 {
                     recipe = new Part(typeof(List<Customer>));
-                	var customerNode1 = Part.NewValuePart(typeof (Customer));
-                	customerNode1.AddPart(Part.NewPropertyPart("CEO", typeof (Employee)));
-                	var employeesNode = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
-					employeesNode.AddPart(Part.NewValuePart(typeof(Employee)));
-					customerNode1.AddPart(employeesNode);
+                	var customer1Part = Part.NewValuePart(typeof (Customer));
+                	customer1Part.AddPart(Part.NewPropertyPart("CEO", typeof (Employee)));
+                	var employeesPart = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
+                	var employeePart = Part.NewValuePart(typeof (Employee));
+					employeePart.AddPart(Part.NewPropertyPart("Boss", typeof(Employee)));
 
-					recipe.AddPart(customerNode1);
+					employeesPart.AddPart(employeePart);
+					customer1Part.AddPart(employeesPart);
+
+					recipe.AddPart(customer1Part);
 					recipe.AddPart(Part.NewValuePart(typeof(Customer)));
                 });
 
@@ -70,14 +73,15 @@ namespace TinyMVVM.Tests.DataBuilder
         	}
 
         	[Test]
-        	public void assure_complext_object_lists_values_are_built()
+        	public void assure_complex_object_lists_values_are_built()
         	{
         		Then(() =>
         		{
-					customers.First().Employees.ShouldHave(1);
+        			var customer = customers.First();
+					customer.Employees.ShouldNotBeNull();
+					customer.Employees.First().Boss.ShouldNotBeNull();
         		});
         	}
-            
         }
 
         [TestFixture]
