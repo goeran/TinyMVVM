@@ -89,6 +89,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBuilder\ObjectBuilderSpecs.cs" />
+    <Compile Include="DataBuilder\TestContext\DataBuilderTestContext.cs" />
     <Compile Include="DSL\TextParser\CodeFileSpecs.cs" />
     <Compile Include="DSL\TextParser\ParserSpecs.cs" />
     <Compile Include="DSL\TextParser\ScannerSpecs.cs" />

@@ -20,6 +20,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 
 		public Type Type { get; private set; }
 		public Node Parent { get; set; }
+	    public string Name { get; set; }
 
 		public bool IsRoot
 		{
@@ -33,19 +34,34 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			Type = type;
 		}
 
-		public Node NewNode()
+		public Node NewPropertyNode(string name, Type type)
 		{
-			var leaf = new Node(typeof(string));
-			AddNode(leaf);
+            if (type == null) throw new ArgumentNullException();
+            if (name == null) throw new ArgumentNullException();
 
-			return leaf;
+			var propertyNode = new PropertyNode(type);
+		    propertyNode.Name = name;
+			AddNode(propertyNode);
+
+			return propertyNode;
 		}
 
 		private void AddNode(Node node)
 		{
 			if (node == null) throw new ArgumentNullException();
 
+            node.Parent = this;
 			nodes.Add(node);
 		}
+
+	    public Node NewValueNode(Type type)
+	    {
+            if (type == null) throw new ArgumentNullException();
+
+	        var valueNode = new ValueNode(type);
+            AddNode(valueNode);
+
+	        return valueNode;
+	    }
 	}
 }
