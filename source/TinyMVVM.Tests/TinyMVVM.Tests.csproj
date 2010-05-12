@@ -123,6 +123,7 @@
     <Compile Include="Learning\NinjectLearningTests.cs" />
     <Compile Include="NUnitScenarioClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemanticModel\DataBuilder\PartMetadataSpecs.cs" />
     <Compile Include="SemanticModel\DataBuilder\PartSpecs.cs" />
     <Compile Include="SemanticModel\DataBuilder\TestContext\DataBuilderTestContext.cs" />
     <Compile Include="SemanticModel\MVVM\ModelSpecificationSpecs.cs" />

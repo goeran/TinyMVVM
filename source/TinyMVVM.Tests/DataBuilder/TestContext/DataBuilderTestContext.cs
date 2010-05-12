@@ -12,10 +12,15 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
     public class DataBuilderTestContext : NUnitScenarioClass
     {
         protected static ObjectBuilder objectBuilder;
-        protected static Part recipe;
+        protected static Part part;
         protected static Object result;
     	protected static Customer customer;
     	protected static IList<Customer> customers;
+
+    	protected Context Part_is_created = () =>
+    	{
+			part = new Part(typeof(Customer));    		
+    	};
 
         protected Context ObjectBuilder_is_created = () =>
         {
@@ -24,7 +29,7 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
 
         protected When build = () =>
         {
-            result = objectBuilder.Build(recipe);
+            result = objectBuilder.Build(part);
         	customer = result as Customer;
         	customers = result as List<Customer>;
         };
@@ -40,5 +45,12 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
         	public string Name { get; set; }
         	public Employee Boss { get; set; }
         }
+
+    	protected static PartMetadata partMetadata;
+
+    	protected When PartMetadata_is_spawned = () =>
+    	{
+    		partMetadata = new PartMetadata(part);
+    	};
     }
 }

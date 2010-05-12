@@ -112,6 +112,7 @@
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SemanticModel\DataBuilder\Part.cs" />
+    <Compile Include="SemanticModel\DataBuilder\PartMetadata.cs" />
     <Compile Include="SemanticModel\DataBuilder\PropertyPart.cs" />
     <Compile Include="SemanticModel\DataBuilder\ValuePart.cs" />
     <Compile Include="SemanticModel\MVVM\ModelSpecification.cs" />

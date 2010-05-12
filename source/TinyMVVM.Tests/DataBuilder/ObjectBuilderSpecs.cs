@@ -20,9 +20,9 @@ namespace TinyMVVM.Tests.DataBuilder
             {
                 Given(ObjectBuilder_is_created);
 
-                And("recipe for list of objects is specified", () =>
+                And("part for list of objects is specified", () =>
                 {
-                    recipe = new Part(typeof(List<Customer>));
+                    part = new Part(typeof(List<Customer>));
                 	var customer1Part = Part.NewValuePart(typeof (Customer));
                 	customer1Part.AddPart(Part.NewPropertyPart("CEO", typeof (Employee)));
                 	var employeesPart = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
@@ -32,8 +32,8 @@ namespace TinyMVVM.Tests.DataBuilder
 					employeesPart.AddPart(employeePart);
 					customer1Part.AddPart(employeesPart);
 
-					recipe.AddPart(customer1Part);
-					recipe.AddPart(Part.NewValuePart(typeof(Customer)));
+					part.AddPart(customer1Part);
+					part.AddPart(Part.NewValuePart(typeof(Customer)));
                 });
 
                 When(build);
@@ -92,12 +92,12 @@ namespace TinyMVVM.Tests.DataBuilder
             {
                 Given(ObjectBuilder_is_created);
 
-				And("recipe for a complex object is specified", () =>
+				And("part for a complex object is specified", () =>
 				{
-					recipe = new Part(typeof(Customer));
-					recipe.AddPart(Part.NewPropertyPart("CEO", typeof(Employee)));
+					part = new Part(typeof(Customer));
+					part.AddPart(Part.NewPropertyPart("CEO", typeof(Employee)));
 					var employeesProperty = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
-					recipe.AddPart(employeesProperty);
+					part.AddPart(employeesProperty);
 
 					employeesProperty.AddPart(Part.NewValuePart(typeof(Employee)));
 				});
