@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -19,12 +20,17 @@ namespace TinyMVVM.Tests.DataBuilder
             {
                 Given(ObjectBuilder_is_created);
 
-                And("recipe for list of object is create", () =>
+                And("recipe for list of objects is specified", () =>
                 {
                     recipe = new Node(typeof(List<Customer>));
-                    recipe.NewValueNode(typeof(Customer)).
-                        NewPropertyNode("CEO", typeof(Employee));
-                    recipe.NewValueNode(typeof(Customer));
+                	var customerNode1 = Node.NewValueNode(typeof (Customer));
+                	customerNode1.AddNode(Node.NewPropertyNode("CEO", typeof (Employee)));
+                	var employeesNode = Node.NewPropertyNode("Employees", typeof (ObservableCollection<Employee>));
+					employeesNode.AddNode(Node.NewValueNode(typeof(Employee)));
+					customerNode1.AddNode(employeesNode);
+
+					recipe.AddNode(customerNode1);
+					recipe.AddNode(Node.NewValueNode(typeof(Customer)));
                 });
 
                 When(build);
@@ -41,43 +47,63 @@ namespace TinyMVVM.Tests.DataBuilder
             {
                 Then(() =>
                 {
-                    var list = result as List<Customer>;
-                    list.ShouldHave(2);
+                    customers.Count.ShouldBe(2);
                 });
             }
 
             [Test]
-            public void assure_complex_class_values_are_built_with_values()
+            public void assure_complex_object_values_are_built()
             {
                 Then(() =>
                 {
-                    var list = result as List<Customer>;
-                    list.First().CEO.ShouldNotBeNull();
+                    customers.First().CEO.ShouldNotBeNull();
                 });
             }
+
+        	[Test]
+        	public void assure_complex_object_list_properties_are_built()
+        	{
+        		Then(() =>
+        		{
+					customers.First().Employees.ShouldNotBeNull();
+        		});
+        	}
+
+        	[Test]
+        	public void assure_complext_object_lists_values_are_built()
+        	{
+        		Then(() =>
+        		{
+					customers.First().Employees.ShouldHave(1);
+        		});
+        	}
             
         }
 
         [TestFixture]
-        public class When_Build_object : DataBuilderTestContext
+        public class When_Build_complex_object : DataBuilderTestContext
         {
             [SetUp]
             public void Setup()
             {
                 Given(ObjectBuilder_is_created);
+
+				And("recipe for a complex object is specified", () =>
+				{
+					recipe = new Node(typeof(Customer));
+					recipe.AddNode(Node.NewPropertyNode("CEO", typeof(Employee)));
+					var employeesProperty = Node.NewPropertyNode("Employees", typeof (ObservableCollection<Employee>));
+					recipe.AddNode(employeesProperty);
+
+					employeesProperty.AddNode(Node.NewValueNode(typeof(Employee)));
+				});
+
+				When(build);
             }
 
             [Test]
-            public void assure_its_possible_to_build_an_complex_class()
+            public void assure_complex_values_are_built()
             {
-                And("", () =>
-                {
-                    recipe = new Node(typeof (Customer));
-                    recipe.NewPropertyNode("CEO", typeof (Employee));
-                });
-
-                When(build);
-
                 Then(() =>
                 {
                     result.GetType().ShouldBe(typeof (Customer));
@@ -85,6 +111,24 @@ namespace TinyMVVM.Tests.DataBuilder
                     customer.CEO.ShouldNotBeNull();
                 });
             }
+
+        	[Test]
+        	public void assure_list_properties_are_built()
+        	{
+        		Then(() =>
+        		{
+					customer.Employees.ShouldNotBeNull();
+        		});
+        	}
+
+        	[Test]
+        	public void assure_list_properties_values_are_built()
+        	{
+        		Then(() =>
+        		{
+					customer.Employees.ShouldHave(1);
+        		});
+        	}
         }
     }
 }

@@ -20,20 +20,24 @@ namespace TinyMVVM.DataBuilder
 
             if (result is IList)
             {
-                var list = result as IList;
-                var values = node.Nodes.Where(n => n is ValueNode);
-                foreach (var value in values)
-                {
-                    var obj = Activator.CreateInstance(value.Type);
-                    BuildProperties(value, obj);
-                    list.Add(obj);
-                }
+            	BuildValuesForList(node, result as IList);
             }
 
-            return result;
+        	return result;
         }
 
-        private void BuildProperties(Node node, object result)
+    	private void BuildValuesForList(Node node, IList list)
+    	{
+    		var values = node.Nodes.Where(n => n is ValueNode);
+    		foreach (var value in values)
+    		{
+    			var obj = Activator.CreateInstance(value.Type);
+    			BuildProperties(value, obj);
+    			list.Add(obj);
+    		}
+    	}
+
+    	private void BuildProperties(Node node, object result)
         {
             var resultType = result.GetType();
             var properties = node.Nodes.Where(n => n is PropertyNode);
@@ -42,8 +46,13 @@ namespace TinyMVVM.DataBuilder
                 var prop = resultType.GetProperty(property.Name,
                                                   BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
                                                   BindingFlags.NonPublic);
+
+            	var propValue = Activator.CreateInstance(property.Type);
                 if (prop != null)
-                    prop.SetValue(result, Activator.CreateInstance(property.Type), new Object[]{});
+                    prop.SetValue(result, propValue, new Object[]{});
+
+				if (propValue is IList)
+					BuildValuesForList(property, propValue as IList);
             }
         }
     }

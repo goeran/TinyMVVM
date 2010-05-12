@@ -84,14 +84,14 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        node.NewValueNode(null)));
+                        Node.NewValueNode(null)));
 	        }
 
 	        [Test]
 	        public void assure_created_Node_is_returned()
 	        {
                 Then(() =>
-                    node.NewValueNode(typeof(string)).ShouldBe(node.Nodes.First()));
+                    Node.NewValueNode(typeof(string)).ShouldNotBeNull());
 	        }
 
 	    }
@@ -105,20 +105,21 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	            Given(Node_is_created);
 
                 When("new Value Node is created", () =>
-                    node.NewValueNode(typeof(string)));
-	        }
-
-	        [Test]
-	        public void assure_Node_is_added_to_Nodes()
-	        {
-	            Then(() => node.Nodes.ShouldHave(1));
+                    newNode = Node.NewValueNode(typeof(string)));
 	        }
 
 	        [Test]
 	        public void assure_added_Node_is_a_Value_Node()
 	        {
-	            Then(() => node.Nodes.First().GetType().ShouldBe(typeof (ValueNode)));
+	            Then(() => newNode.GetType().ShouldBe(typeof (ValueNode)));
 	        }
+
+			[Test]
+			public void assure_its_a_Root_Node()
+			{
+				//It's a root Node as long it isn't added to another Node
+				Then(() => newNode.IsRoot.ShouldBeTrue());
+			}
 	    }
 
 
@@ -138,7 +139,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        node.NewPropertyNode(string.Empty, null)));
+                        Node.NewPropertyNode(string.Empty, null)));
 	        }
 
 	        [Test]
@@ -146,9 +147,8 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        node.NewPropertyNode(null, typeof(string))));
+                        Node.NewPropertyNode(null, typeof(string))));
 	        }
-
 	    }
 
 
@@ -161,28 +161,22 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 				Given(Node_is_created);
 
 				When("created new Property Node", () =>
-					node.NewPropertyNode("child", typeof(string)));
-			}
-
-			[Test]
-			public void assure_Property_Node_is_added_to_Nodes()
-			{
-				Then(() =>
-					node.Nodes.ShouldHave(1));
+					newNode = Node.NewPropertyNode("child", typeof(string)));
 			}
 
 		    [Test]
 		    public void assure_added_node_is_a_Property_Node()
 		    {
                 Then(() =>
-                    node.Nodes.First().GetType().ShouldBe(typeof(PropertyNode)));
+                    newNode.GetType().ShouldBe(typeof(PropertyNode)));
 		    }
 
-		    [Test]
-		    public void assure_added_not_is_not_a_Root_Node()
-		    {
-		        Then(() => node.Nodes.First().IsRoot.ShouldBeFalse());
-		    }
+	    	[Test]
+	    	public void assure_its_a_Root_Node()
+	    	{
+	    		//It's a root Node as long it isn't added to another Node
+	    		Then(() => newNode.IsRoot.ShouldBeTrue());
+	    	}
 		}
 
 		[TestFixture]
@@ -216,6 +210,51 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 
 				Then(() =>
 					node.IsRoot.ShouldBeFalse());
+			}
+		}
+
+		[TestFixture]
+		public class When_adding_Node : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(Node_is_created);
+
+				When("adding Node");
+			}
+
+			[Test]
+			public void assure_Node_arg_is_validated()
+			{
+				Then(() =>
+					this.ShouldThrowException<ArgumentNullException>(() =>
+						node.AddNode(null)));
+			}
+		}
+
+		[TestFixture]
+		public class When_Node_is_added : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(Node_is_created);
+
+				When("Node is added", () =>
+					node.AddNode(Node.NewValueNode(typeof(string))));
+			}
+
+			[Test]
+			public void assure_Node_is_added_to_Nodes()
+			{
+				Then(() => node.Nodes.ShouldHave(1));
+			}
+
+			[Test]
+			public void assure_added_Node_is_not_a_Root_Node()
+			{
+				Then(() => node.Nodes.First().IsRoot.ShouldBeFalse());
 			}
 		}
 	}

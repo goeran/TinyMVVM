@@ -10,6 +10,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder.TestContext
 	public class DataBuilderTestContext : NUnitScenarioClass
 	{
 		protected static Node node;
+		protected static Node newNode;
 
 		protected Context Node_is_created = () =>
 		{

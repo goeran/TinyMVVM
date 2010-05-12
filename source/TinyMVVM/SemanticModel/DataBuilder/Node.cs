@@ -34,19 +34,18 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			Type = type;
 		}
 
-		public Node NewPropertyNode(string name, Type type)
+		public static Node NewPropertyNode(string name, Type type)
 		{
             if (type == null) throw new ArgumentNullException();
             if (name == null) throw new ArgumentNullException();
 
 			var propertyNode = new PropertyNode(type);
 		    propertyNode.Name = name;
-			AddNode(propertyNode);
 
 			return propertyNode;
 		}
 
-		private void AddNode(Node node)
+		public void AddNode(Node node)
 		{
 			if (node == null) throw new ArgumentNullException();
 
@@ -54,12 +53,11 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			nodes.Add(node);
 		}
 
-	    public Node NewValueNode(Type type)
+	    public static Node NewValueNode(Type type)
 	    {
             if (type == null) throw new ArgumentNullException();
 
 	        var valueNode = new ValueNode(type);
-            AddNode(valueNode);
 
 	        return valueNode;
 	    }
