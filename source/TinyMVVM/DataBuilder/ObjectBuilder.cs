@@ -34,19 +34,14 @@ namespace TinyMVVM.DataBuilder
     	{
     		var values = part.Parts.Where(n => n is ValuePart);
 
-			if (part.Metadata.Count != 0)
-			{
-				for (int i = 0; i < part.Metadata.Count; i++)
-				{
-					//part.AddPart(Part.NewValuePart(typeof()));
-				}
-			}
-
 			foreach (var value in values)
     		{
-    			var obj = Activator.CreateInstance(value.Type);
-    			BuildProperties(value, obj);
-    			list.Add(obj);
+				for (int i = 0; i < value.Metadata.Count; i++)
+				{
+					var obj = Activator.CreateInstance(value.Type);
+					BuildProperties(value, obj);
+					list.Add(obj);
+				}
     		}
     	}
 

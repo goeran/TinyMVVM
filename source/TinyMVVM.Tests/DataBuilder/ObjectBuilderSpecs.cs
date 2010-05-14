@@ -150,7 +150,9 @@ namespace TinyMVVM.Tests.DataBuilder
 				And("parts for lists of customers are specified", () =>
 				{
 					part = new Part(typeof(List<Customer>));
-					part.Metadata.Count = 10;
+					var customersPart = Part.NewValuePart(typeof(Customer));
+					customersPart.Metadata.Count = 10;
+					part.AddPart(customersPart);
 				});
 
 				When(build_object_graph);

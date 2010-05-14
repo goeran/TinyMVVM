@@ -53,9 +53,9 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 			}
 
 			[Test]
-			public void assure_it_has_Count()
+			public void assure_default_Count_is_1()
 			{
-				Then(() => partMetadata.Count.ShouldBe(0));
+				Then(() => partMetadata.Count.ShouldBe(1));
 			}
 		}
 	}

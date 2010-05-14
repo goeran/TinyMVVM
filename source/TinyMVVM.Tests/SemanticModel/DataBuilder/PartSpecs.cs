@@ -226,25 +226,6 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 		}
 
 		[TestFixture]
-		public class When_eval_if_IsList : DataBuilderTestContext
-		{
-			[Test]
-			public void assure_List_of_strings_is_a_List()
-			{
-				var b = new List<string>() is IEnumerable;
-				Console.WriteLine(b);
-
-				Given("part is created", () =>
-					part = new Part(typeof(List<string>)));
-
-				When("eval IsList");
-
-				Then(() => 
-					part.IsList.ShouldBe(true));
-			}
-		}
-
-		[TestFixture]
 		public class When_adding_Part : DataBuilderTestContext
 		{
 			[SetUp]

@@ -30,11 +30,6 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			get { return Parent == null; }
 		}
 
-		public bool IsList
-		{
-			get { return Type is IEnumerable; }
-		}
-
 		public Part(Type type)
 		{
 			if (type == null) throw new ArgumentNullException();

@@ -19,6 +19,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 
 			Part = part;
 			Hints = new List<string>();
+			Count = 1;
 		}
 	}
 }
