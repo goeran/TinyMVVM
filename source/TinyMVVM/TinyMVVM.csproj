@@ -80,6 +80,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBuilder\DataGeneratorSpecifications.cs" />
+    <Compile Include="DataBuilder\HumanName.cs" />
+    <Compile Include="DataBuilder\HumanNameOptions.cs" />
     <Compile Include="DataBuilder\ObjectBuilder.cs" />
     <Compile Include="DSL\TextParser\Code.cs" />
     <Compile Include="DSL\TextParser\CodeFile.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="SemanticModel\MVVM\ViewModelProperty.cs" />
     <Compile Include="Specification\ISpecification.cs" />
     <Compile Include="Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs" />
+    <Compile Include="Specification\Specification.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen\ViewModelTemplate.tt">
