@@ -38,12 +38,19 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			Metadata = new PartMetadata(this);
 		}
 
-		public void AddPart(Part part)
+		public Part AddPart(Part part)
 		{
 			if (part == null) throw new ArgumentNullException();
 
             part.Parent = this;
 			parts.Add(part);
+
+			return part;
+		}
+
+		public void Describe(Action<PartMetadata> m)
+		{
+			m.Invoke(Metadata);
 		}
 	}
 }

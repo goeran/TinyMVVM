@@ -150,9 +150,15 @@ namespace TinyMVVM.Tests.DataBuilder
 				And("parts for lists of customers are specified", () =>
 				{
 					part = new Part(typeof(List<Customer>));
-					var customersPart = new ValuePart(typeof (Customer));
-					customersPart.Metadata.Count = 10;
-					part.AddPart(customersPart);
+					var customerPart = new ValuePart(typeof (Customer));
+					customerPart.Describe(m => m.Count = 10);
+					customerPart.AddPart(new PropertyPart("Name", typeof(string))).
+						Describe(m =>
+						{
+							m.Hints.Add("Name");
+						});
+					customerPart.AddPart(new PropertyPart("CEO", typeof (Employee)));
+					part.AddPart(customerPart);
 				});
 
 				When(build_object_graph);
@@ -166,6 +172,31 @@ namespace TinyMVVM.Tests.DataBuilder
 					var listOfCustomers = result as IList;
 					listOfCustomers.ShouldNotBeNull();
 					listOfCustomers.ShouldHave(10);
+				});
+			}
+
+			[Test]
+			public void assure_CEO_property_is_built_on_Customers_objects()
+			{
+				Then(() =>
+				{
+					foreach (var customer in customers)
+					{
+						customer.CEO.ShouldNotBeNull();
+					}
+				});
+			}
+
+			[Test]
+			public void assure_Name_property_is_built_on_Customers_objects()
+			{
+				Then(() =>
+				{
+					foreach (var customer in customers)
+					{
+						customer.Name.ShouldNotBeNull();
+						customer.Name.ShouldNotBe(string.Empty);
+					}
 				});
 			}
 		}

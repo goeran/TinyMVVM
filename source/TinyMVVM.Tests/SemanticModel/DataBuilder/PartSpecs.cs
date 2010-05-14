@@ -269,5 +269,30 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 				Then(() => part.Parts.First().IsRoot.ShouldBeFalse());
 			}
 		}
+
+		[TestFixture]
+		public class When_metadata_is_specified : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(Part_is_created);
+
+				When("metadata is specified", () =>
+					part.Describe(m =>
+					{
+						m.Count = 10;
+					}));
+			}
+
+			[Test]
+			public void assure_Metadata_is_changed()
+			{
+				Then(() =>
+				{
+					part.Metadata.Count.ShouldBe(10);
+				});
+			}
+		}
 	}
 }

@@ -36,6 +36,7 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
 
         protected class Customer
         {
+        	public string Name { get; set; }
         	public ObservableCollection<Employee> Employees { get; set; }
             public Employee CEO { get; set; }
         }

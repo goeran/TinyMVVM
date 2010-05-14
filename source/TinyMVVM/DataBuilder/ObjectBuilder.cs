@@ -51,15 +51,22 @@ namespace TinyMVVM.DataBuilder
             var properties = part.Parts.Where(n => n is PropertyPart);
             foreach (var property in properties)
             {
-                var prop = resultType.GetProperty(property.Name,
-                                                  bindingFlags);
+				var prop = resultType.GetProperty(property.Name,
+								  bindingFlags);
 
-            	var propValue = Activator.CreateInstance(property.Type);
-                if (prop != null)
-                    prop.SetValue(result, propValue, new Object[]{});
+				if (property.Type == typeof(string))
+				{
+					prop.SetValue(result, property.Metadata.Hints.FirstOrDefault(), new object[]{});
+				}
+				else
+				{
+					var propValue = Activator.CreateInstance(property.Type);
+					if (prop != null)
+						prop.SetValue(result, propValue, new Object[] { });
 
-				if (propValue is IList)
-					BuildValuesForList(property, propValue as IList);
+					if (propValue is IList)
+						BuildValuesForList(property, propValue as IList);
+				}
             }
         }
     }
