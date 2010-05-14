@@ -83,6 +83,11 @@
     <Compile Include="DataBuilder\DataGeneratorSpecifications.cs" />
     <Compile Include="DataBuilder\HumanName.cs" />
     <Compile Include="DataBuilder\HumanNameOptions.cs" />
+    <Compile Include="DataBuilder\Internal\FemaleNameRepository.cs" />
+    <Compile Include="DataBuilder\Internal\IRepository.cs" />
+    <Compile Include="DataBuilder\Internal\MaleNameRepository.cs" />
+    <Compile Include="DataBuilder\Internal\NameRepository.cs" />
+    <Compile Include="DataBuilder\Internal\StringResourceRepository.cs" />
     <Compile Include="DataBuilder\ObjectBuilder.cs" />
     <Compile Include="DSL\TextParser\Code.cs" />
     <Compile Include="DSL\TextParser\CodeFile.cs" />
@@ -114,6 +119,11 @@
     <Compile Include="Framework\Testing\TestContext.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SemanticModel\DataBuilder\Part.cs" />
     <Compile Include="SemanticModel\DataBuilder\PartMetadata.cs" />
     <Compile Include="SemanticModel\DataBuilder\PropertyPart.cs" />
@@ -156,7 +166,16 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataBuilder\Internal\Data\FemaleNames.txt" />
+    <Content Include="DataBuilder\Internal\Data\MaleNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

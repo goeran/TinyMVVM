@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBuilder\HumanNamesSpecificationSpecs.cs" />
+    <Compile Include="DataBuilder\Internal\NameRepositorySpecs.cs" />
+    <Compile Include="DataBuilder\Internal\TestContext\RepositoryTestContext.cs" />
     <Compile Include="DataBuilder\ObjectBuilderSpecs.cs" />
     <Compile Include="DataBuilder\TestContext\DataBuilderTestContext.cs" />
     <Compile Include="DataBuilder\TestContext\SpecificationsTestContext.cs" />
