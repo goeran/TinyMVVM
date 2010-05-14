@@ -155,7 +155,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					customerPart.AddPart(new PropertyPart("Name", typeof(string))).
 						Describe(m =>
 						{
-							m.Hints.Add("Name");
+							m.Data.Add("DataType", "String");
 						});
 					customerPart.AddPart(new PropertyPart("CEO", typeof (Employee)));
 					part.AddPart(customerPart);
@@ -199,6 +199,17 @@ namespace TinyMVVM.Tests.DataBuilder
 					}
 				});
 			}
+
+		    [Test]
+		    public void assure_Name_property_on_Customers_is_distinct()
+		    {
+		        Then(() =>
+		        {
+		            var names = customers.Select(c => c.Name).Distinct();
+                    names.ToList().ShouldHave(customers.Count);
+		        });
+		    }
+
 		}
 	}
 }

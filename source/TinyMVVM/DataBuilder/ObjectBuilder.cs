@@ -56,7 +56,7 @@ namespace TinyMVVM.DataBuilder
 
 				if (property.Type == typeof(string))
 				{
-					prop.SetValue(result, property.Metadata.Hints.FirstOrDefault(), new object[]{});
+					prop.SetValue(result, "Hihi", new object[]{});
 				}
 				else
 				{

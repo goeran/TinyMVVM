@@ -10,7 +10,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 		public Part Part { get; private set; }
 		
 		//Metadata
-		public List<string> Hints { get; private set; }
+	    public Dictionary<string, Object> Data { get; private set; }
 		public int Count { get; set; }
 
 		public PartMetadata(Part part)
@@ -18,7 +18,7 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			if (part == null) throw new ArgumentNullException();
 
 			Part = part;
-			Hints = new List<string>();
+			Data = new Dictionary<string, object>();
 			Count = 1;
 		}
 	}
