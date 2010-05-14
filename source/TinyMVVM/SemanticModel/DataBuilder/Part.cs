@@ -38,17 +38,6 @@ namespace TinyMVVM.SemanticModel.DataBuilder
 			Metadata = new PartMetadata(this);
 		}
 
-		public static Part NewPropertyPart(string name, Type type)
-		{
-            if (type == null) throw new ArgumentNullException();
-            if (name == null) throw new ArgumentNullException();
-
-			var propertyNode = new PropertyPart(type);
-		    propertyNode.Name = name;
-
-			return propertyNode;
-		}
-
 		public void AddPart(Part part)
 		{
 			if (part == null) throw new ArgumentNullException();
@@ -56,14 +45,5 @@ namespace TinyMVVM.SemanticModel.DataBuilder
             part.Parent = this;
 			parts.Add(part);
 		}
-
-	    public static Part NewValuePart(Type type)
-	    {
-            if (type == null) throw new ArgumentNullException();
-
-	        var valueNode = new ValuePart(type);
-
-	        return valueNode;
-	    }
 	}
 }

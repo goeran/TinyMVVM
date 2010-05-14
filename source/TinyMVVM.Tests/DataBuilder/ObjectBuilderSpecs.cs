@@ -24,17 +24,17 @@ namespace TinyMVVM.Tests.DataBuilder
                 And("part for list of objects is specified", () =>
                 {
                     part = new Part(typeof(List<Customer>));
-                	var customer1Part = Part.NewValuePart(typeof (Customer));
-                	customer1Part.AddPart(Part.NewPropertyPart("CEO", typeof (Employee)));
-                	var employeesPart = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
-                	var employeePart = Part.NewValuePart(typeof (Employee));
-					employeePart.AddPart(Part.NewPropertyPart("Boss", typeof(Employee)));
+                	var customer1Part = new ValuePart(typeof (Customer));
+                	customer1Part.AddPart(new PropertyPart("CEO", typeof (Employee)));
+                	var employeesPart = new PropertyPart("Employees", typeof (ObservableCollection<Employee>));
+                	var employeePart = new ValuePart(typeof (Employee));
+					employeePart.AddPart(new PropertyPart("Boss", typeof(Employee)));
 
 					employeesPart.AddPart(employeePart);
 					customer1Part.AddPart(employeesPart);
 
 					part.AddPart(customer1Part);
-					part.AddPart(Part.NewValuePart(typeof(Customer)));
+					part.AddPart(new ValuePart(typeof(Customer)));
                 });
 
                 When(build_object_graph);
@@ -96,11 +96,11 @@ namespace TinyMVVM.Tests.DataBuilder
 				And("part for a complex object is specified", () =>
 				{
 					part = new Part(typeof(Customer));
-					part.AddPart(Part.NewPropertyPart("CEO", typeof(Employee)));
-					var employeesProperty = Part.NewPropertyPart("Employees", typeof (ObservableCollection<Employee>));
+					part.AddPart(new PropertyPart("CEO", typeof(Employee)));
+					var employeesProperty = new PropertyPart("Employees", typeof (ObservableCollection<Employee>));
 					part.AddPart(employeesProperty);
 
-					employeesProperty.AddPart(Part.NewValuePart(typeof(Employee)));
+					employeesProperty.AddPart(new ValuePart(typeof(Employee)));
 				});
 
 				When(build_object_graph);
@@ -150,7 +150,7 @@ namespace TinyMVVM.Tests.DataBuilder
 				And("parts for lists of customers are specified", () =>
 				{
 					part = new Part(typeof(List<Customer>));
-					var customersPart = Part.NewValuePart(typeof(Customer));
+					var customersPart = new ValuePart(typeof (Customer));
 					customersPart.Metadata.Count = 10;
 					part.AddPart(customersPart);
 				});

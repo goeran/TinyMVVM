@@ -96,14 +96,14 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Part.NewValuePart(null)));
+                        new ValuePart(null)));
 	        }
 
 	        [Test]
 	        public void assure_created_Part_is_returned()
 	        {
                 Then(() =>
-                    Part.NewValuePart(typeof(string)).ShouldNotBeNull());
+                    new ValuePart(typeof(string)).ShouldNotBeNull());
 	        }
 
 	    }
@@ -117,7 +117,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	            Given(Part_is_created);
 
                 When("new Value part is created", () =>
-                    newPart = Part.NewValuePart(typeof(string)));
+                    newPart = new ValuePart(typeof(string)));
 	        }
 
 	        [Test]
@@ -151,7 +151,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Part.NewPropertyPart(string.Empty, null)));
+                        new PropertyPart(string.Empty, null)));
 	        }
 
 	        [Test]
@@ -159,7 +159,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 	        {
                 Then(() =>
                     this.ShouldThrowException<ArgumentNullException>(() =>
-                        Part.NewPropertyPart(null, typeof(string))));
+                        new PropertyPart(null, typeof(string))));
 	        }
 	    }
 
@@ -173,7 +173,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 				Given(Part_is_created);
 
 				When("created new Property part", () =>
-					newPart = Part.NewPropertyPart("child", typeof(string)));
+					newPart = new PropertyPart("child", typeof(string)));
 			}
 
 		    [Test]
@@ -254,7 +254,7 @@ namespace TinyMVVM.Tests.SemanticModel.DataBuilder
 				Given(Part_is_created);
 
 				When("part is added", () =>
-					part.AddPart(Part.NewValuePart(typeof(string))));
+					part.AddPart(new ValuePart(typeof(string))));
 			}
 
 			[Test]
