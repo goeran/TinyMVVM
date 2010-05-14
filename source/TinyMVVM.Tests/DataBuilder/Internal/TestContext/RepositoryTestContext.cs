@@ -13,7 +13,8 @@ namespace TinyMVVM.Tests.DataBuilder.Internal.TestContext
         {
             new FemaleNameRepository(),
             new MaleNameRepository(),
-            new NameRepository()
+            new NameRepository(),
+            new SurnameRepository()
         };
 
         internal static FemaleNameRepository femaleNameRepository;

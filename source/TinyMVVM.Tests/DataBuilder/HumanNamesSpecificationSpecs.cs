@@ -81,7 +81,7 @@ namespace TinyMVVM.Tests.DataBuilder
                 Then(() =>
                 {
                     foreach (var humanName in humanNames)
-                        humanName.Surname.ShouldBeNull();
+                        humanName.Surname.ShouldNotBeNull();
                 });
             }
 

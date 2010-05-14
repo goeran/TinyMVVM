@@ -88,6 +88,7 @@
     <Compile Include="DataBuilder\Internal\MaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\NameRepository.cs" />
     <Compile Include="DataBuilder\Internal\StringResourceRepository.cs" />
+    <Compile Include="DataBuilder\Internal\SurnameRepository.cs" />
     <Compile Include="DataBuilder\ObjectBuilder.cs" />
     <Compile Include="DSL\TextParser\Code.cs" />
     <Compile Include="DSL\TextParser\CodeFile.cs" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <Content Include="DataBuilder\Internal\Data\FemaleNames.txt" />
     <Content Include="DataBuilder\Internal\Data\MaleNames.txt" />
+    <Content Include="DataBuilder\Internal\Data\Surnames.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

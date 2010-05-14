@@ -231,5 +231,86 @@ namespace TinyMVVM.Properties {
                 return ResourceManager.GetString("MaleNames", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name
+        ///Giles
+        ///Cummings
+        ///Kennedy
+        ///Mullins
+        ///Hawkins
+        ///Downs
+        ///Ashley
+        ///Blake
+        ///Love
+        ///Coffey
+        ///Dillon
+        ///Maddox
+        ///Battle
+        ///Sheppard
+        ///Hernandez
+        ///Le
+        ///Woods
+        ///Odom
+        ///Dixon
+        ///Pollard
+        ///Mcintosh
+        ///Solis
+        ///Rowland
+        ///Doyle
+        ///Chase
+        ///Vargas
+        ///Franklin
+        ///Mcclain
+        ///Dunlap
+        ///Hickman
+        ///Alvarado
+        ///Mcguire
+        ///Montoya
+        ///Knapp
+        ///Doyle
+        ///Ballard
+        ///Reeves
+        ///Espinoza
+        ///Bryan
+        ///Foster
+        ///Hughes
+        ///Gonzalez
+        ///Solis
+        ///Kline
+        ///Combs
+        ///Espinoza
+        ///Baldwin
+        ///Clements
+        ///Weber
+        ///Evans
+        ///Tucker
+        ///Lynn
+        ///Calhoun
+        ///Patrick
+        ///Rush
+        ///Ford
+        ///Mills
+        ///Buchanan
+        ///Stuart
+        ///Summers
+        ///Leonard
+        ///Terrell
+        ///Joseph
+        ///Chapman
+        ///Head
+        ///Porter
+        ///Cooke
+        ///Chan
+        ///Aguilar
+        ///Franks
+        ///Hutchinson
+        ///H [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Surnames {
+            get {
+                return ResourceManager.GetString("Surnames", resourceCulture);
+            }
+        }
     }
 }
