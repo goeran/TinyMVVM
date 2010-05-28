@@ -43,9 +43,32 @@ namespace TinyMVVM.DataBuilder
     		{
 				for (int i = 0; i < value.Metadata.Count; i++)
 				{
-					var obj = Activator.CreateInstance(value.Type);
-					BuildProperties(value, obj);
-					list.Add(obj);
+					if (value.Type == typeof(string))
+					{
+						var str = string.Empty;
+
+						if (value.Metadata.Data.ContainsKey("HumanName"))
+						{
+							var options = (HumanNameOptions)value.Metadata.Data["HumanName"];
+							if ((options & HumanNameOptions.FemaleName) == HumanNameOptions.FemaleName)
+								str = humanNameRepository.Get(All.FemaleNames()).Random<HumanName>().Name;
+							else if ((options & HumanNameOptions.MaleName) == HumanNameOptions.MaleName)
+								str = humanNameRepository.Get(All.MaleNames()).Random<HumanName>().Name;
+							else if ((options & HumanNameOptions.Name) == HumanNameOptions.Name)
+								str = humanNameRepository.Get(All.Names()).Random<HumanName>().Name;
+
+							if ((options & HumanNameOptions.Surname) == HumanNameOptions.Surname)
+								str += string.Format(" {0}", humanNameRepository.Get(All.Names()).Random<HumanName>().Surname);
+						}
+
+						list.Add(str);
+					}
+					else
+					{
+						var obj = Activator.CreateInstance(value.Type);
+						BuildProperties(value, obj);
+						list.Add(obj);
+					}
 				}
     		}
     	}

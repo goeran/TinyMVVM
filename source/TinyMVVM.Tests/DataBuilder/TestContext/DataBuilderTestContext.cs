@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.DataBuilder;
+using TinyMVVM.DataBuilder.Internal;
 using TinyMVVM.SemanticModel.DataBuilder;
 
 namespace TinyMVVM.Tests.DataBuilder.TestContext
@@ -16,6 +17,9 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
         protected static Object result;
     	protected static Customer customer;
     	protected static IList<Customer> customers;
+    	protected static List<string> names;
+    	protected static List<string> femaleNames;
+    	protected static List<string> maleNames;
 
     	protected Context Part_is_created = () =>
     	{
@@ -24,6 +28,8 @@ namespace TinyMVVM.Tests.DataBuilder.TestContext
 
         protected Context ObjectBuilder_is_created = () =>
         {
+        	femaleNames = new FemaleNameRepository().Get().ToList();
+        	maleNames = new MaleNameRepository().Get().ToList();
             objectBuilder = new ObjectBuilder();
         };
 

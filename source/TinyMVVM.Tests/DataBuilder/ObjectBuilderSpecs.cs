@@ -162,7 +162,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					var ceoPart = new PropertyPart("CEO", typeof (Employee));
 					ceoPart.AddPart(new PropertyPart("Name", typeof (string))).
 						Describe(metadata => 
-							metadata.Data.Add("HumanName", new List<HumanNameOptions>()));
+							metadata.Data.Add("HumanName", HumanNameOptions.Name | HumanNameOptions.Surname));
 					customerPart.AddPart(ceoPart);
 					part.AddPart(customerPart);
 				});
@@ -240,6 +240,127 @@ namespace TinyMVVM.Tests.DataBuilder
 		        	uniqueNames.ShouldBeGreaterThan(80);
 		        });
 		    }
+		}
+
+		[TestFixture]
+		public class When_building_a_list_of_female_names : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+				And("recipe is specified", () =>
+				{
+					part = new Part(typeof(List<string>));
+					part.AddPart(new ValuePart(typeof (string))).Describe(metadata =>
+					{
+						metadata.Count = 10;
+						metadata.Data.Add("HumanName", HumanNameOptions.FemaleName);
+					});
+				});
+
+				When("build object graph", () =>
+					names = objectBuilder.Build(part) as List<string>);
+			}
+
+			[Test]
+			public void assure_list_is_created()
+			{
+				Then(() => 
+					names.ShouldNotBeNull());
+			}
+
+			[Test]
+			public void assure_list_contains_data()
+			{
+				Then(() =>
+					names.Where(n => n == null || n == string.Empty).Count().ShouldBe(0));
+			}
+
+			[Test]
+			public void assure_the_list_contains_female_names()
+			{
+				Then(() =>
+				{
+					names.ForEach(name => 
+						femaleNames.Contains(name).ShouldBeTrue());
+				});
+			}
+		}
+
+		[TestFixture]
+		public class When_building_a_list_of_male_names : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+				And("recipe is specified", () =>
+				{
+					part = new Part(typeof(List<string>));
+					part.AddPart(new ValuePart(typeof (string))).Describe(metadata =>
+					{
+						metadata.Count = 10;
+						metadata.Data.Add("HumanName", HumanNameOptions.MaleName);
+					});
+				});
+
+				When("build object graph", () =>
+					names = objectBuilder.Build(part) as List<string>);
+			}
+
+			[Test]
+			public void assure_list_contains_data()
+			{
+				Then(() => names.Count.ShouldNotBe(0));
+			}
+
+			[Test]
+			public void assure_list_contains_male_names()
+			{
+				names.ForEach(name =>
+					maleNames.Contains(name).ShouldBeTrue());
+			}
+		}
+
+		[TestFixture]
+		public class When_building_a_list_of_names : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+				And("recipe is specified", () =>
+				{
+					part = new Part(typeof (List<string>));
+					part.AddPart(new ValuePart(typeof (string))).Describe(metadata =>
+					{
+						metadata.Count = 10;
+						metadata.Data.Add("HumanName", HumanNameOptions.Name | HumanNameOptions.Surname);
+					});
+				});
+
+				When("build object graph", () =>
+					names = objectBuilder.Build(part) as List<string>);
+			}
+
+			[Test]
+			public void assure_list_contains_FirstName_and_Surname()
+			{
+				Then(() =>
+				{
+					var namesWithFirstAndSurname = names.Where(NameContainsFirstAndSurname());
+					namesWithFirstAndSurname.Count().ShouldBe(names.Count);
+				});
+			}
+
+			private Func<string, bool> NameContainsFirstAndSurname()
+			{
+				const char whitespace = ' ';
+
+				return n => n.Split(whitespace).Count() == 2 &&
+				            n != string.Empty;
+			}
 		}
 	}
 }

@@ -120,6 +120,7 @@
     <Compile Include="Framework\Testing\ServiceLocatorForTestsSpecs.cs" />
     <Compile Include="Framework\Testing\TestContext\ServiceLocatorForTestsContext.cs" />
     <Compile Include="Framework\ViewModelBaseSpecs.cs" />
+    <Compile Include="Learning\FalgsEnumLearningTests.cs" />
     <Compile Include="Learning\GenericTypeToString.cs" />
     <Compile Include="Learning\MEFLearningTests.cs" />
     <Compile Include="Learning\MoqLearningTests.cs" />
