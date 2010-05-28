@@ -6,37 +6,37 @@ using TinyMVVM.SemanticModel.DataBuilder;
 
 namespace TinyMVVM.DataBuilder.Internal.Factories
 {
-	internal class DefaultListPartValueFactory : IPartFactory
+	internal class DefaultListPartValueFactory : PartFactory
 	{
 		private ObjectBuilder objectBuilder;
 
-		public void Initialize(ObjectBuilder objectBuilder)
+		public override void Initialize(ObjectBuilder objectBuilder)
 		{
 			this.objectBuilder = objectBuilder;
 		}
 
-		public bool CanCreateObjectsFor(Part value)
+		public override bool CanCreateObjectsFor(Part part)
 		{
-			if (value.Type == typeof(string)) return false;
+			if (part.Type == typeof(string)) return false;
 
 			return true;
 		}
 
-		public List<object> CreateObjects(ValuePart part)
+		public override List<object> CreateObjects(Part part)
 		{
 			var result = new List<Object>();
 
 			for (int i = 0; i < part.Metadata.Count; i++)
 			{
 				var obj = Activator.CreateInstance(part.Type);
-				objectBuilder.BuildProperties(part, obj);
+				objectBuilder.BuildPropertyParts(part, obj);
 				result.Add(obj);
 			}
 
 			return result;
 		}
 
-		public Object CreateObject(Part part)
+		public override Object CreateObject(Part part)
 		{
 			return Activator.CreateInstance(part.Type);		
 		}

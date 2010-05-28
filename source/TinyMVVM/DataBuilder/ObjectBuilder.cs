@@ -20,12 +20,13 @@ namespace TinyMVVM.DataBuilder
     	private static readonly BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
     	                                                    BindingFlags.NonPublic;
 
-    	private List<IPartFactory> listPartValueFactories = new List<IPartFactory>();
+    	private List<PartFactory> listPartValueFactories = new List<PartFactory>();
 
 		public ObjectBuilder()
 		{
-			listPartValueFactories.Add(new StringPartFactory());
+			listPartValueFactories.Add(new HumanNamePartFactory());
 			listPartValueFactories.Add(new DefaultListPartValueFactory());
+			listPartValueFactories.Add(new StringPartFactory());
 		}
 
     	public Object Build(Part part)
@@ -34,17 +35,17 @@ namespace TinyMVVM.DataBuilder
 
             result = Activator.CreateInstance(part.Type);
 
-            BuildProperties(part, result);
+            BuildPropertyParts(part, result);
 
             if (result is IList)
             {
-            	BuildValuesForList(part, result as IList);
+            	BuildValueParts(part, result as IList);
             }
 
         	return result;
         }
 
-    	private void BuildValuesForList(Part listPart, IList list)
+    	private void BuildValueParts(Part listPart, IList list)
     	{
     		var valueParts = listPart.Parts.Where(n => n is ValuePart).Cast<ValuePart>();
 
@@ -59,17 +60,20 @@ namespace TinyMVVM.DataBuilder
 					foreach (var v in valueFactory.CreateObjects(valuePart))
 					{
 						list.Add(v);
+
+						if (v is IList)
+							BuildValueParts(valuePart, v as IList);
 					}
 				}
     		}
     	}
 
-		internal IPartFactory FindPartFactory(Part part)
+		internal PartFactory FindPartFactory(Part part)
 		{
-			return listPartValueFactories.Where(f => f.CanCreateObjectsFor(part)).SingleOrDefault();			
+			return listPartValueFactories.Where(f => f.CanCreateObjectsFor(part)).FirstOrDefault();			
 		}
 
-		internal void BuildProperties(Part part, object result)
+		internal void BuildPropertyParts(Part part, object result)
         {
             var resultType = result.GetType();
             var propertyParts = part.Parts.Where(n => n is PropertyPart);
@@ -90,9 +94,9 @@ namespace TinyMVVM.DataBuilder
 				if (propValue != null)
 				{
 					if (propValue is IList)
-						BuildValuesForList(propertyPart, propValue as IList);
+						BuildValueParts(propertyPart, propValue as IList);
 					else
-						BuildProperties(propertyPart, propValue);
+						BuildPropertyParts(propertyPart, propValue);
 				}
             }
         }

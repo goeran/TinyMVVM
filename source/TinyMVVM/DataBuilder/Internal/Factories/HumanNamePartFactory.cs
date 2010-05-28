@@ -9,34 +9,25 @@ using TinyMVVM.Utils.ExtensionMethods;
 
 namespace TinyMVVM.DataBuilder.Internal.Factories
 {
-	internal class StringPartFactory : IPartFactory
+	internal class HumanNamePartFactory : PartFactory
 	{
 		private HumanNameRepository humanNameRepository = new HumanNameRepository();
 
-		public void Initialize(ObjectBuilder objectBuilder)
+		public override void Initialize(ObjectBuilder objectBuilder)
 		{
 		}
 
-		public bool CanCreateObjectsFor(Part value)
+		public override bool CanCreateObjectsFor(Part part)
 		{
-			if (value != null &&
-				value.Type == typeof(string))
+			if (part != null &&
+				part.Type == typeof(string) &&
+				part.Metadata.Data.ContainsKey("HumanName"))
 				return true;
 
 			return false;
 		}
 
-		public List<Object> CreateObjects(ValuePart part)
-		{
-			var result = new List<Object>();
-			for (int i = 0; i < part.Metadata.Count; i++)
-			{
-				result.Add(CreateObject(part));
-			}
-
-			return result;
-		}	
-		public Object CreateObject(Part part)
+		public override Object CreateObject(Part part)
 		{
 			var str = string.Empty;
 

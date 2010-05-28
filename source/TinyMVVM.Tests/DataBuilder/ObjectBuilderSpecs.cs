@@ -362,5 +362,91 @@ namespace TinyMVVM.Tests.DataBuilder
 				            n != string.Empty;
 			}
 		}
+
+		[TestFixture]
+		public class When_building_a_list_of_empty_strings : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+				And("recipe is specified", () =>
+				{
+					part = new Part(typeof (List<string>));
+					part.AddPart(new ValuePart(typeof(string))).Describe(metadata =>
+					{
+						metadata.Count = 100;
+					});
+				});
+
+				When(build_object_graph);
+			}
+
+			[Test]
+			public void assure_list_is_built()
+			{
+				Then(() => result.ShouldNotBeNull());
+			}
+
+			[Test]
+			public void assure_list_contains_empty_strings()
+			{
+				Then(() =>
+				{
+					var strings = result as List<string>;
+					strings.ShouldHaveMoreThan(0);
+					strings.ForEach(str => 
+						str.ShouldBe(string.Empty));
+				});
+			}
+		}
+
+		[TestFixture]
+		public class When_building_a_list_of_lists_of_names : DataBuilderTestContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ObjectBuilder_is_created);
+				And("recipe is specified", () =>
+				{
+					part = new Part(typeof (List<List<string>>));
+					part.AddPart(new ValuePart(typeof(List<string>))).Describe(metadata =>
+					{
+						metadata.Count = 10;
+						metadata.Part.AddPart(new ValuePart(typeof (string))).Describe(m =>
+						{
+							m.Count = 10;
+							m.Data.Add("HumanName", HumanNameOptions.Name);
+						});
+					});
+				});
+
+				When(build_object_graph);
+			}
+
+			[Test]
+			public void assure_list_is_created()
+			{
+				Then(() => result.ShouldNotBeNull());
+			}
+
+			[Test]
+			public void assure_list_contains_list_of_names()
+			{
+				Then(() =>
+				{
+					var listOfLists = result as List<List<string>>;
+					listOfLists.ShouldHave(10);
+
+					listOfLists.ForEach(names =>
+					{
+						names.ShouldHave(10);
+						var emptyNames = names.Where(n => n == null || n == string.Empty);
+						emptyNames.Count().ShouldBe(0);
+					});
+				});
+			}
+		}
 	}
 }
