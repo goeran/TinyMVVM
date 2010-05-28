@@ -15,6 +15,8 @@ namespace TinyMVVM.Tests.DataBuilder.Internal.Factories
 		[TestFixture]
 		public class When_CreateObject : Scenario
 		{
+			private int numberOfWords = 10;
+
 			[SetUp]
 			public void Setup()
 			{
@@ -22,7 +24,7 @@ namespace TinyMVVM.Tests.DataBuilder.Internal.Factories
 				And("Part is created", () =>
 				{
 					part = new Part(typeof(string));
-					part.Metadata.Data.Add("Text", null);
+					part.Metadata.Data.Add("Text", numberOfWords);
 				});
 
 				When(create_object);
@@ -35,9 +37,9 @@ namespace TinyMVVM.Tests.DataBuilder.Internal.Factories
 			}
 
 			[Test]
-			public void assure_text_is_not_empty()
+			public void assure_text_contains_correct_number_of_words()
 			{
-				Then(() => text.Length.ShouldNotBe(0));
+				Then(() => text.Split(' ').Count().ShouldBe(numberOfWords));
 			}
 		}
 	}

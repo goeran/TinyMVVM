@@ -25,10 +25,13 @@ namespace TinyMVVM.DataBuilder.Internal.Factories
 		{
 			var result = new StringBuilder();
 			var words = wordRepository.Get();
-			
+
+			int numberOfWordsToCreate = (int)part.Metadata.Data["Text"];
+
 			foreach (var word in words)
 			{
 				result.Append(word);
+				result.Append(" ");
 			}
 
 			return result.ToString();
