@@ -1,0 +1,3 @@
+﻿Lazy
+Dog
+Jumped

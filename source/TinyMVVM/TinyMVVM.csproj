@@ -87,8 +87,10 @@
     <Compile Include="DataBuilder\Internal\Factories\HumanNamePartFactory.cs" />
     <Compile Include="DataBuilder\Internal\Factories\PartFactory.cs" />
     <Compile Include="DataBuilder\Internal\Factories\StringPartFactory.cs" />
+    <Compile Include="DataBuilder\Internal\Factories\TextPartFactory.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\FemaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\HumanNameRepository.cs" />
+    <Compile Include="DataBuilder\Internal\Repositories\WordRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\MaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\NameRepository.cs" />
@@ -181,6 +183,7 @@
     <Content Include="DataBuilder\Internal\Data\FemaleNames.txt" />
     <Content Include="DataBuilder\Internal\Data\MaleNames.txt" />
     <Content Include="DataBuilder\Internal\Data\Surnames.txt" />
+    <Content Include="DataBuilder\Internal\Data\Words.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

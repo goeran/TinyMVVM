@@ -89,6 +89,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBuilder\Internal\Factories\TextPartFactorySpecs.cs" />
     <Compile Include="DataBuilder\Internal\HumanNameRepositorySpecs.cs" />
     <Compile Include="DataBuilder\Internal\RepositorySpecs.cs" />
     <Compile Include="DataBuilder\Internal\TestContext\RepositoryTestContext.cs" />
