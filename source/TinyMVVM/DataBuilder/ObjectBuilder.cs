@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Internal.Repositories;
 using TinyMVVM.DataBuilder.Repositories.DSL;
 using TinyMVVM.SemanticModel.DataBuilder;
 using TinyMVVM.Utils.ExtensionMethods;

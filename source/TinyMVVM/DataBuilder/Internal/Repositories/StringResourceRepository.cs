@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using TinyMVVM.Properties;
+using TinyMVVM.Repositories;
 using TinyMVVM.Specifications;
 using TinyMVVM.Specifications.DSL;
 
-namespace TinyMVVM.DataBuilder.Internal
+namespace TinyMVVM.DataBuilder.Internal.Repositories
 {
     internal abstract class StringResourceRepository : IRepository<string>
     {

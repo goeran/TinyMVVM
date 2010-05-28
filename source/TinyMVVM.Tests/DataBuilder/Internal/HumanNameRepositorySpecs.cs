@@ -7,6 +7,7 @@ using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.DataBuilder;
 using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Internal.Repositories;
 using TinyMVVM.DataBuilder.Repositories.DSL;
 
 namespace TinyMVVM.Tests.DataBuilder.Internal

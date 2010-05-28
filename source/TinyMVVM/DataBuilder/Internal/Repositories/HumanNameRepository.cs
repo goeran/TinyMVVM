@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TinyMVVM.Repositories;
 using TinyMVVM.Specifications;
 using TinyMVVM.Specifications.DSL;
 
-namespace TinyMVVM.DataBuilder.Internal
+namespace TinyMVVM.DataBuilder.Internal.Repositories
 {
 	public class HumanNameRepository : IRepository<HumanName>
 	{

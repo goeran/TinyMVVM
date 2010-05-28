@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TinyMVVM.Properties;
+﻿using TinyMVVM.Properties;
 
-namespace TinyMVVM.DataBuilder.Internal
+namespace TinyMVVM.DataBuilder.Internal.Repositories
 {
     internal class MaleNameRepository : StringResourceRepository
     {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Internal.Repositories;
+using TinyMVVM.Repositories;
 
 namespace TinyMVVM.Tests.DataBuilder.Internal.TestContext
 {

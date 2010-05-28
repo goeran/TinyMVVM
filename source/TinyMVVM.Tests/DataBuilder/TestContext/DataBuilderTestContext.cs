@@ -6,6 +6,7 @@ using System.Text;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.DataBuilder;
 using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Internal.Repositories;
 using TinyMVVM.SemanticModel.DataBuilder;
 
 namespace TinyMVVM.Tests.DataBuilder.TestContext
