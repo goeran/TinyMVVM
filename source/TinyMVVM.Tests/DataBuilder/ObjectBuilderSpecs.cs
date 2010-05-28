@@ -156,7 +156,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					customerPart.AddPart(new PropertyPart("Name", typeof(string))).
 						Describe(m =>
 						{
-							m.Data.Add("CompanyName", null);
+							m.Data.Add("HumanName", HumanNameOptions.Name);
 						});
 
 					var ceoPart = new PropertyPart("CEO", typeof (Employee));

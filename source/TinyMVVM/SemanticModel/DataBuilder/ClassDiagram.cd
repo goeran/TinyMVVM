@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TinyMVVM.SemanticModel.DataBuilder.Part">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <AssociationLine Name="Parts" Type="TinyMVVM.SemanticModel.DataBuilder.Part" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="1.875" />
+        <Point X="8.375" Y="1.875" />
+        <Point X="8.375" Y="0.837" />
+        <Point X="9.625" Y="0.837" />
+        <Point X="9.625" Y="1.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.785" Y="0.752" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAgAABAAQAQAAAAAAAAAAQAgAAAEAAA=</HashCode>
+      <FileName>SemanticModel\DataBuilder\Part.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Metadata" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Parts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.DataBuilder.PartMetadata" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\DataBuilder\PartMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.DataBuilder.PropertyPart">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\DataBuilder\PropertyPart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyMVVM.SemanticModel.DataBuilder.ValuePart">
+    <Position X="10.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SemanticModel\DataBuilder\ValuePart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

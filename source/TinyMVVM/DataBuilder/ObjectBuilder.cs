@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Internal.Factories;
 using TinyMVVM.DataBuilder.Internal.Repositories;
 using TinyMVVM.DataBuilder.Repositories.DSL;
 using TinyMVVM.SemanticModel.DataBuilder;
@@ -16,9 +17,16 @@ namespace TinyMVVM.DataBuilder
     public class ObjectBuilder
     {
 		private HumanNameRepository humanNameRepository = new HumanNameRepository();
-
     	private static readonly BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
     	                                                    BindingFlags.NonPublic;
+
+    	private List<IPartFactory> listPartValueFactories = new List<IPartFactory>();
+
+		public ObjectBuilder()
+		{
+			listPartValueFactories.Add(new StringPartFactory());
+			listPartValueFactories.Add(new DefaultListPartValueFactory());
+		}
 
     	public Object Build(Part part)
         {
@@ -36,75 +44,55 @@ namespace TinyMVVM.DataBuilder
         	return result;
         }
 
-    	private void BuildValuesForList(Part part, IList list)
+    	private void BuildValuesForList(Part listPart, IList list)
     	{
-    		var values = part.Parts.Where(n => n is ValuePart);
+    		var valueParts = listPart.Parts.Where(n => n is ValuePart).Cast<ValuePart>();
 
-			foreach (var value in values)
+			foreach (var valuePart in valueParts)
     		{
-				for (int i = 0; i < value.Metadata.Count; i++)
+    			var valueFactory = FindPartFactory(valuePart);
+
+				if (valueFactory != null)
 				{
-					if (value.Type == typeof(string))
+					valueFactory.Initialize(this);
+
+					foreach (var v in valueFactory.CreateObjects(valuePart))
 					{
-						var str = string.Empty;
-
-						if (value.Metadata.Data.ContainsKey("HumanName"))
-						{
-							var options = (HumanNameOptions)value.Metadata.Data["HumanName"];
-							if ((options & HumanNameOptions.FemaleName) == HumanNameOptions.FemaleName)
-								str = humanNameRepository.Get(All.FemaleNames()).Random<HumanName>().Name;
-							else if ((options & HumanNameOptions.MaleName) == HumanNameOptions.MaleName)
-								str = humanNameRepository.Get(All.MaleNames()).Random<HumanName>().Name;
-							else if ((options & HumanNameOptions.Name) == HumanNameOptions.Name)
-								str = humanNameRepository.Get(All.Names()).Random<HumanName>().Name;
-
-							if ((options & HumanNameOptions.Surname) == HumanNameOptions.Surname)
-								str += string.Format(" {0}", humanNameRepository.Get(All.Names()).Random<HumanName>().Surname);
-						}
-
-						list.Add(str);
-					}
-					else
-					{
-						var obj = Activator.CreateInstance(value.Type);
-						BuildProperties(value, obj);
-						list.Add(obj);
+						list.Add(v);
 					}
 				}
     		}
     	}
 
-    	private void BuildProperties(Part part, object result)
+		internal IPartFactory FindPartFactory(Part part)
+		{
+			return listPartValueFactories.Where(f => f.CanCreateObjectsFor(part)).SingleOrDefault();			
+		}
+
+		internal void BuildProperties(Part part, object result)
         {
             var resultType = result.GetType();
-            var properties = part.Parts.Where(n => n is PropertyPart);
-            foreach (var property in properties)
+            var propertyParts = part.Parts.Where(n => n is PropertyPart);
+            foreach (var propertyPart in propertyParts)
             {
-				var prop = resultType.GetProperty(property.Name,
+				var prop = resultType.GetProperty(propertyPart.Name,
 								  bindingFlags);
 
-				if (property.Type == typeof(string))
-				{
-					if (property.Metadata.Data.ContainsKey("HumanName") ||
-						property.Metadata.Data.ContainsKey("CompanyName"))
-					{
-						var humanNames = humanNameRepository.Get(All.Names());
-						prop.SetValue(result, humanNames.Random<HumanName>().FullName, null);
-					}
-					else
-						prop.SetValue(result, "Hihi", new object[]{});
-				}
-				else
-				{
-					var propValue = Activator.CreateInstance(property.Type);
-					if (prop != null)
-						prop.SetValue(result, propValue, new Object[] { });
+            	var partFactory = FindPartFactory(propertyPart);
 
+            	var propValue = partFactory.CreateObject(propertyPart);
+
+				prop.SetValue(
+					result,
+					propValue,
+					null);
+
+				if (propValue != null)
+				{
 					if (propValue is IList)
-						BuildValuesForList(property, propValue as IList);
+						BuildValuesForList(propertyPart, propValue as IList);
 					else
-						BuildProperties(property, prop.GetValue(result, null));
-					
+						BuildProperties(propertyPart, propValue);
 				}
             }
         }
