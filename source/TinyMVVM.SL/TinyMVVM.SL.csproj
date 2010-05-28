@@ -128,11 +128,11 @@
     <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ViewModelProperty.cs">
       <Link>SemanticModel\MVVM\ViewModelProperty.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\Specification\ISpecification.cs">
-      <Link>Specification\ISpecification.cs</Link>
+    <Compile Include="..\TinyMVVM\Specifications\ISpecification.cs">
+      <Link>Specifications\ISpecification.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs">
-      <Link>Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs</Link>
+    <Compile Include="..\TinyMVVM\Specifications\SemanticModel\ViewModelPropertyIsPrimitiveType.cs">
+      <Link>Specifications\SemanticModel\ViewModelPropertyIsPrimitiveType.cs</Link>
     </Compile>
     <Compile Include="Framework\Services\Impl\UIInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,12 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TinyMVVM.Properties;
+using TinyMVVM.Specifications;
+using TinyMVVM.Specifications.DSL;
 
 namespace TinyMVVM.DataBuilder.Internal
 {
     internal abstract class StringResourceRepository : IRepository<string>
     {
-        public IEnumerable<string> GetAll()
+    	public IEnumerable<string> Get()
+    	{
+    		return Get(All.ItemsOf<string>());
+    	}
+
+    	public IEnumerable<string> Get(ISpecification<string> spec)
         {
             var result = new List<string>();
             using (var stream = new StringReader(StringResource()))

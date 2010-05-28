@@ -9,20 +9,25 @@ namespace TinyMVVM.Tests.DataBuilder.Internal.TestContext
 {
     public class RepositoryTestContext : NUnitScenarioClass
     {
+		internal static FemaleNameRepository femaleNameRepository = new FemaleNameRepository();
+		internal static MaleNameRepository maleRepository = new MaleNameRepository();
+
         internal static List<IRepository<string>> repositories = new List<IRepository<string>>()
         {
-            new FemaleNameRepository(),
-            new MaleNameRepository(),
+			femaleNameRepository,
+			maleRepository,
             new NameRepository(),
             new SurnameRepository()
         };
 
-        internal static FemaleNameRepository femaleNameRepository;
         internal static IEnumerable<string> result;
+    	internal static List<string> femaleNames;
+		internal static List<string> maleNames;
 
-        protected Context FemaleNameRepository_is_created = () =>
-        {
-            femaleNameRepository = new FemaleNameRepository();
-        };
+    	protected When get_all_names_from_Male_and_Female_Repository = () =>
+    	{
+			maleNames = maleRepository.Get().ToList();
+			femaleNames = femaleNameRepository.Get().ToList();
+    	};
     }
 }

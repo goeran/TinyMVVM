@@ -10,7 +10,6 @@ namespace TinyMVVM.DataBuilder
         Name,
         FemaleName,
         MaleName,
-        Middlename,
         Surname
     }
 }

@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using TinyMVVM.DataBuilder.Internal;
+using TinyMVVM.DataBuilder.Repositories.DSL;
 using TinyMVVM.SemanticModel.DataBuilder;
+using TinyMVVM.Utils.ExtensionMethods;
 
 namespace TinyMVVM.DataBuilder
 {
 	//TODO: Impl visitor in semantic model => makes it easier to iterate over all parts
     public class ObjectBuilder
     {
+		private HumanNameRepository humanNameRepository = new HumanNameRepository();
+
     	private static readonly BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.Public |
     	                                                    BindingFlags.NonPublic;
 
@@ -56,7 +61,13 @@ namespace TinyMVVM.DataBuilder
 
 				if (property.Type == typeof(string))
 				{
-					prop.SetValue(result, "Hihi", new object[]{});
+					if (property.Metadata.Data.ContainsKey("HumanName"))
+					{
+						var humanNames = humanNameRepository.Get(All.Names());
+						prop.SetValue(result, humanNames.Random<HumanName>().FullName, null);
+					}
+					else
+						prop.SetValue(result, "Hihi", new object[]{});
 				}
 				else
 				{

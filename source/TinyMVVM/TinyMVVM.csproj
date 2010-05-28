@@ -83,13 +83,16 @@
     <Compile Include="DataBuilder\DataGeneratorSpecifications.cs" />
     <Compile Include="DataBuilder\HumanName.cs" />
     <Compile Include="DataBuilder\HumanNameOptions.cs" />
+    <Compile Include="DataBuilder\HumanNameSpecifications.cs" />
     <Compile Include="DataBuilder\Internal\FemaleNameRepository.cs" />
+    <Compile Include="DataBuilder\Internal\HumanNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\IRepository.cs" />
     <Compile Include="DataBuilder\Internal\MaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\NameRepository.cs" />
     <Compile Include="DataBuilder\Internal\StringResourceRepository.cs" />
     <Compile Include="DataBuilder\Internal\SurnameRepository.cs" />
     <Compile Include="DataBuilder\ObjectBuilder.cs" />
+    <Compile Include="DataBuilder\Repositories\DSL\All.cs" />
     <Compile Include="DSL\TextParser\Code.cs" />
     <Compile Include="DSL\TextParser\CodeFile.cs" />
     <Compile Include="DSL\TextParser\ICodeLoader.cs" />
@@ -133,9 +136,12 @@
     <Compile Include="SemanticModel\MVVM\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModel.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModelProperty.cs" />
-    <Compile Include="Specification\ISpecification.cs" />
-    <Compile Include="Specification\SemanticModel\ViewModelPropertyIsPrimitiveType.cs" />
-    <Compile Include="Specification\Specification.cs" />
+    <Compile Include="Specifications\DefaultSpecifications.cs" />
+    <Compile Include="Specifications\DSL\All.cs" />
+    <Compile Include="Specifications\ISpecification.cs" />
+    <Compile Include="Specifications\SemanticModel\ViewModelPropertyIsPrimitiveType.cs" />
+    <Compile Include="Specifications\Specification.cs" />
+    <Compile Include="Utils\ExtensionMethods\IEnumerableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen\ViewModelTemplate.tt">
@@ -178,6 +184,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TinyMVVM.SemanticModel.DataBuilder
 {
-	public class PartMetadata
+	public class PartMetadata 
 	{
 		public Part Part { get; private set; }
 		

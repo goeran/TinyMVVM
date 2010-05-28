@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
+using TinyMVVM.DataBuilder;
 using TinyMVVM.SemanticModel.DataBuilder;
 using TinyMVVM.Tests.DataBuilder.TestContext;
 
@@ -155,7 +156,7 @@ namespace TinyMVVM.Tests.DataBuilder
 					customerPart.AddPart(new PropertyPart("Name", typeof(string))).
 						Describe(m =>
 						{
-							m.Data.Add("DataType", "String");
+							m.Data.Add("HumanName", new List<HumanNameOptions>(){ HumanNameOptions.Name, HumanNameOptions.Surname });
 						});
 					customerPart.AddPart(new PropertyPart("CEO", typeof (Employee)));
 					part.AddPart(customerPart);
@@ -209,7 +210,6 @@ namespace TinyMVVM.Tests.DataBuilder
                     names.ToList().ShouldHave(customers.Count);
 		        });
 		    }
-
 		}
 	}
 }
