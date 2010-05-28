@@ -89,13 +89,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBuilder\HumanNamesSpecificationSpecs.cs" />
     <Compile Include="DataBuilder\Internal\HumanNameRepositorySpecs.cs" />
     <Compile Include="DataBuilder\Internal\RepositorySpecs.cs" />
     <Compile Include="DataBuilder\Internal\TestContext\RepositoryTestContext.cs" />
     <Compile Include="DataBuilder\ObjectBuilderSpecs.cs" />
     <Compile Include="DataBuilder\TestContext\DataBuilderTestContext.cs" />
-    <Compile Include="DataBuilder\TestContext\SpecificationsTestContext.cs" />
     <Compile Include="DSL\TextParser\CodeFileSpecs.cs" />
     <Compile Include="DSL\TextParser\ParserSpecs.cs" />
     <Compile Include="DSL\TextParser\ScannerSpecs.cs" />

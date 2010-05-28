@@ -156,9 +156,14 @@ namespace TinyMVVM.Tests.DataBuilder
 					customerPart.AddPart(new PropertyPart("Name", typeof(string))).
 						Describe(m =>
 						{
-							m.Data.Add("HumanName", new List<HumanNameOptions>(){ HumanNameOptions.Name, HumanNameOptions.Surname });
+							m.Data.Add("CompanyName", null);
 						});
-					customerPart.AddPart(new PropertyPart("CEO", typeof (Employee)));
+
+					var ceoPart = new PropertyPart("CEO", typeof (Employee));
+					ceoPart.AddPart(new PropertyPart("Name", typeof (string))).
+						Describe(metadata => 
+							metadata.Data.Add("HumanName", new List<HumanNameOptions>()));
+					customerPart.AddPart(ceoPart);
 					part.AddPart(customerPart);
 				});
 
@@ -177,18 +182,6 @@ namespace TinyMVVM.Tests.DataBuilder
 			}
 
 			[Test]
-			public void assure_CEO_property_is_built_on_Customers_objects()
-			{
-				Then(() =>
-				{
-					foreach (var customer in customers)
-					{
-						customer.CEO.ShouldNotBeNull();
-					}
-				});
-			}
-
-			[Test]
 			public void assure_Name_property_is_built_on_Customers_objects()
 			{
 				Then(() =>
@@ -201,13 +194,50 @@ namespace TinyMVVM.Tests.DataBuilder
 				});
 			}
 
+			[Test]
+			public void assure_atleast_80_percent_of_the_Customer_Names_are_unique()
+			{
+				Then(() =>
+				{
+					var distinctNames = customers.Select(c => c.Name).Distinct();
+					var uniqueNames = ((double)distinctNames.Count() / customers.Count()) * 100;
+					uniqueNames.ShouldBeGreaterThan(80);
+				});
+			}
+
+			[Test]
+			public void assure_CEO_property_is_built_on_Customers_objects()
+			{
+				Then(() =>
+				{
+					foreach (var customer in customers)
+					{
+						customer.CEO.ShouldNotBeNull();
+					}
+				});
+			}
+
+			[Test]
+			public void assure_Name_property_is_built_on_CEO_objects()
+			{
+				Then(() =>
+				{
+					foreach (var customer in customers)
+					{
+						customer.CEO.Name.ShouldNotBeNull();
+						customer.CEO.Name.ShouldNotBe(string.Empty);
+					}
+				});
+			}
+
 		    [Test]
-		    public void assure_Name_property_on_Customers_is_distinct()
+		    public void assure_atleast_80_percent_of_the_CEO_Names_are_unique()
 		    {
 		        Then(() =>
 		        {
-		            var names = customers.Select(c => c.Name).Distinct();
-                    names.ToList().ShouldHave(customers.Count);
+		            var distinctNames = customers.Select(c => c.CEO.Name).Distinct();
+		        	var uniqueNames = ((double)distinctNames.Count()/customers.Count())*100;
+		        	uniqueNames.ShouldBeGreaterThan(80);
 		        });
 		    }
 		}

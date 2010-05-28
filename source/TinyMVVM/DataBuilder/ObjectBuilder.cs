@@ -61,7 +61,8 @@ namespace TinyMVVM.DataBuilder
 
 				if (property.Type == typeof(string))
 				{
-					if (property.Metadata.Data.ContainsKey("HumanName"))
+					if (property.Metadata.Data.ContainsKey("HumanName") ||
+						property.Metadata.Data.ContainsKey("CompanyName"))
 					{
 						var humanNames = humanNameRepository.Get(All.Names());
 						prop.SetValue(result, humanNames.Random<HumanName>().FullName, null);
@@ -77,6 +78,9 @@ namespace TinyMVVM.DataBuilder
 
 					if (propValue is IList)
 						BuildValuesForList(property, propValue as IList);
+					else
+						BuildProperties(property, prop.GetValue(result, null));
+					
 				}
             }
         }

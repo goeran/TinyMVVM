@@ -80,7 +80,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBuilder\DataGeneratorSpecifications.cs" />
     <Compile Include="DataBuilder\HumanName.cs" />
     <Compile Include="DataBuilder\HumanNameOptions.cs" />
     <Compile Include="DataBuilder\HumanNameSpecifications.cs" />
