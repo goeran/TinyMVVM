@@ -29,8 +29,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using Ninject;
 using Ninject.Modules;
+using Ninject.Parameters;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
@@ -41,8 +43,9 @@ namespace TinyMVVM.Framework
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        private static IKernel globalKernel = new StandardKernel();
         private bool sharedModuleLoaded = false;
-        private IKernel kernel = new StandardKernel();
+        private IKernel instanceKernel = new StandardKernel();
     	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
         private readonly List<Object> controllers = new List<object>();
 
@@ -113,12 +116,32 @@ namespace TinyMVVM.Framework
             TryLoadSharedNinjectModuleIntoKernel();
 
             var typeToBeCreated = typeof(T);
-            kernel.Bind(this.GetType()).ToConstant(this);
+            instanceKernel.Bind(this.GetType()).ToConstant(this);
 
             try
             {
-                kernel.Bind(typeToBeCreated).ToSelf();
-                controllers.Add(kernel.Get(typeToBeCreated));
+                instanceKernel.Bind(typeToBeCreated).ToSelf();
+
+                Object controller = null;
+
+                try
+                {
+                    controller = instanceKernel.Get(typeToBeCreated);
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        controller = globalKernel.Get(typeToBeCreated);
+                    }
+                    catch (Exception r)
+                    {
+                    }
+                }
+
+                if (controller != null) controllers.Add(controller);
+
+                
             }
             catch (Exception ex)
             {
@@ -130,7 +153,7 @@ namespace TinyMVVM.Framework
         {
             if (IsSharedNinjectModuleSpecified() && !IsSharedNinjectModuleLoaded())
             {
-                kernel.Load(SharedNinjectModule);
+                instanceKernel.Load(SharedNinjectModule);
                 sharedModuleLoaded = true;
             }
         }
@@ -145,14 +168,26 @@ namespace TinyMVVM.Framework
             return sharedModuleLoaded == true;
         }
 
-        public void ConfigureDependencies(Action<DependencyConfigSemantics> action)
+        public void ConfigureDependencies(Action<DependencyConfigSemantics> configAction)
         {
             var dependencyConfig = new Configuration();
-            action.Invoke(new DependencyConfigSemantics(dependencyConfig));
+            configAction.Invoke(new DependencyConfigSemantics(dependencyConfig));
 
             foreach (var dependencyBinding in dependencyConfig.Bindings)
             {
-                kernel.Bind(dependencyBinding.From).To(dependencyBinding.To);
+                instanceKernel.Bind(dependencyBinding.From).To(dependencyBinding.To);
+            }
+        }
+
+        public static void ConfigureGlobalDependencies(Action<DependencyConfigSemantics> configAction)
+        {
+            var dependencyConfig = new Configuration();
+            configAction.Invoke(new DependencyConfigSemantics(dependencyConfig));
+
+            foreach (var dependencyBinding in dependencyConfig.Bindings)
+            {
+                var name = MethodInfo.GetCurrentMethod().DeclaringType.FullName;
+                globalKernel.Bind(dependencyBinding.From).To(dependencyBinding.To).InSingletonScope();
             }
         }
     }

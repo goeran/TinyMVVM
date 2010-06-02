@@ -250,7 +250,7 @@ namespace TinyMVVM.Tests.Framework
 	        }
 
             [Test]
-            public void assure_configured_dependencies_are_injected_into_Controller()
+            public void assure_dependencies_are_injected_into_Controller()
             {
                 Then(() =>
                     GetTestControllerInViewModel().BackgroundWorker.
@@ -258,7 +258,7 @@ namespace TinyMVVM.Tests.Framework
             }
 
 	        [Test]
-	        public void assure_configured_dependencies_are_not_shared_between_controllers_by_default()
+	        public void assure_dependencies_are_not_shared_between_controllers_by_default()
 	        {
 	            Then(() =>
 	            {
@@ -270,11 +270,73 @@ namespace TinyMVVM.Tests.Framework
 	        }
 
 	        [Test]
-	        public void assure_its_possible_to_share_dependencies_between_Controllers()
+	        public void assure_dependencies_are_shared_between_controllers()
 	        {
 	            //TODO: add support
 	        }
 
+	    }
+
+	    [TestFixture]
+	    public class When_global_dependencies_are_configured : ViewModelBaseContext
+	    {
+	        [SetUp]
+	        public void Setup()
+	        {
+	            Given(ClassThatImplments_ViewModelBase_is_created);
+                And("another instnace of the same ViewModel is created", () =>
+                    viewModel2 = new CustomViewModel());
+	            And(yet_another_ViewModel_is_created);
+                And("dependencies are configured", () =>
+                {
+                    CustomViewModel.ConfigureGlobalDependencies(config =>
+                    {
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();
+                    });
+                    AnotherCustomViewModel.ConfigureGlobalDependencies(config =>
+                    {
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();                                                                               
+                    });
+                });
+
+	            When("register the same type Controllers on both of the ViewModels", () =>
+	            {
+	                viewModel.RegisterController<TestController>();
+                    viewModel.RegisterController<AnotherController>();
+                    viewModel.RegisterController<YetAnotherController>();
+
+                    viewModel2.RegisterController<TestController>();
+                    viewModel2.RegisterController<AnotherController>();
+                    viewModel2.RegisterController<YetAnotherController>();
+
+                    anotherViewModel.RegisterController<TestController>();
+                });
+	        }
+
+	        [Test]
+	        public void assure_dependencies_are_shared_between_viewModel_instances()
+	        {
+                Then(() =>
+                {
+                    var testControllerOnViewModel = viewModel.Controllers.First() as TestController;
+                    var testControllerOnViewModel2 = viewModel2.Controllers.First() as TestController;
+
+                    testControllerOnViewModel.BackgroundWorker.ShouldBe(testControllerOnViewModel2.BackgroundWorker);
+                });
+	        }
+
+	        [Test]
+            [Ignore("Will impl this functionality at a later stage")]
+	        public void assure_dependencies_are_only_shared_between_viewmodels_of_same_type()
+	        {
+                Then(() =>
+                {
+                    var testControllerOnViewModel = viewModel.Controllers.First() as TestController;
+                    var testControllerOnAnotherViewModel = anotherViewModel.Controllers.First() as TestController;
+
+                    testControllerOnViewModel.BackgroundWorker.ShouldNotBe(testControllerOnAnotherViewModel.BackgroundWorker);
+                });
+	        }
 	    }
 
 	}

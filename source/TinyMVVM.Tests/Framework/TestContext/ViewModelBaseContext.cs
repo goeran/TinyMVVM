@@ -16,6 +16,8 @@ namespace TinyMVVM.Tests.Framework.TestContext
     public class ViewModelBaseContext : NUnitScenarioClass
     {
         protected static CustomViewModel viewModel;
+        protected static CustomViewModel viewModel2;
+        protected static AnotherCustomViewModel anotherViewModel;
     	protected static Mock<IViewModelConvention> conventionMock;
 
     	protected Context ClassThatImplments_ViewModelBase_is_created = () =>
@@ -23,6 +25,11 @@ namespace TinyMVVM.Tests.Framework.TestContext
     	    CustomViewModel.SharedNinjectModule = null;
     		viewModel = new CustomViewModel();
     	};
+
+        protected Context yet_another_ViewModel_is_created = () =>
+        {
+            anotherViewModel = new AnotherCustomViewModel();
+        };
 
     	protected Context ConventionMock_is_created = () =>
     	{
@@ -46,6 +53,11 @@ namespace TinyMVVM.Tests.Framework.TestContext
         	{
 				get { return AppliedConventions; }
         	}
+        }
+
+        public class AnotherCustomViewModel : ViewModelBase
+        {
+            
         }
 
         protected TestController GetTestControllerInViewModel()
