@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\tools\Moq.3.1.416.3-bin\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\tools\Ninject-2.0.0.0-release-net-3.5\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -91,6 +94,7 @@
     <Compile Include="DataBuilder\Internal\Repositories\FemaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\HumanNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\WordRepository.cs" />
+    <Compile Include="Framework\ViewModelException.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\MaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\NameRepository.cs" />

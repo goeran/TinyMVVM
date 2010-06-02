@@ -29,6 +29,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Ninject;
+using Ninject.Modules;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
@@ -37,9 +39,17 @@ namespace TinyMVVM.Framework
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        private bool sharedModuleLoaded = false;
+        private IKernel kernel = new StandardKernel();
     	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
+        private readonly List<Type> controllersToCreate = new List<Type>();
+        private readonly List<Object> controllers = new List<object>();
 
 		public event PropertyChangedEventHandler PropertyChanged;
+
+        [Display(AutoGenerateField = false)]
+        [Editable(false)]
+        public static INinjectModule SharedNinjectModule { get; set; }
 
         [Display(AutoGenerateField = false)]
         [Editable(false)]
@@ -55,6 +65,16 @@ namespace TinyMVVM.Framework
 		{
 			get { return new ReadOnlyCollection<IViewModelConvention>(appliedConventions); }
 		}
+
+        [Display(AutoGenerateField = false)]
+        [Editable(false)]
+        public ReadOnlyCollection<Object> Controllers
+        {
+            get
+            {
+                return new ReadOnlyCollection<Object>(controllers);
+            }
+        }
 
     	protected ViewModelBase()
         {
@@ -85,6 +105,44 @@ namespace TinyMVVM.Framework
         protected virtual T GetInstance<T>() where T: class
         {
             return ServiceLocator.Instance.GetInstance<T>();
+        }
+
+        protected void DescribeControllerToBeCreated(Type typeToBeCreated)
+        {
+            if (typeToBeCreated == null) throw new ArgumentNullException();
+
+            TryLoadSharedNinjectModuleIntoKernel();
+
+            kernel.Bind(this.GetType()).ToConstant(this);
+
+            try
+            {
+                kernel.Bind(typeToBeCreated).ToSelf();
+                controllers.Add(kernel.Get(typeToBeCreated));
+            }
+            catch (Exception ex)
+            {
+                throw new ViewModelException("Dependencies for Controller was not found. Add dependencies using the SharedNinjectModule static property. See inner Exception for more info", ex);
+            }
+        }
+
+        private void TryLoadSharedNinjectModuleIntoKernel()
+        {
+            if (IsSharedNinjectModuleSpecified() && !IsSharedNinjectModuleLoaded())
+            {
+                kernel.Load(SharedNinjectModule);
+                sharedModuleLoaded = true;
+            }
+        }
+
+        private bool IsSharedNinjectModuleSpecified()
+        {
+            return SharedNinjectModule != null;
+        }
+
+        private bool IsSharedNinjectModuleLoaded()
+        {
+            return sharedModuleLoaded == true;
         }
     }
 }

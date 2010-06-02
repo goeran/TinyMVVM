@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Ninject;
+using Ninject.Modules;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyMVVM.Framework;
 using Moq;
@@ -18,6 +20,7 @@ namespace TinyMVVM.Tests.Framework.TestContext
 
     	protected Context ClassThatImplments_ViewModelBase_is_created = () =>
     	{
+    	    CustomViewModel.SharedNinjectModule = null;
     		viewModel = new CustomViewModel();
     	};
 
@@ -43,6 +46,41 @@ namespace TinyMVVM.Tests.Framework.TestContext
         	{
 				get { return AppliedConventions; }
         	}
+
+            public void DescribeController(Type controllerType)
+            {
+                DescribeControllerToBeCreated(controllerType);
+            }
+        }
+
+        protected class TestController
+        {
+            public ViewModelBase ViewModel { get; set; }
+            public IBackgroundWorker BackgroundWorker { get; set; }
+
+            public TestController(CustomViewModel customViewModel, IBackgroundWorker backgroundWorker)
+            {
+                ViewModel = customViewModel;
+                BackgroundWorker = backgroundWorker;
+            }
+        }
+
+        protected class AnotherController
+        {
+            public ViewModelBase ViewModel { get; set; }
+
+            public AnotherController(CustomViewModel customViewModel)
+            {
+                ViewModel = customViewModel;
+            }
+        }
+
+        protected class SharedModule : NinjectModule
+        {
+            public override void Load()
+            {
+                Kernel.Bind<IBackgroundWorker>().To<TinyMVVM.Framework.Services.Impl.BackgroundWorker>();
+            }
         }
     }
 }

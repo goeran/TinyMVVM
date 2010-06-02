@@ -50,6 +50,9 @@
       <HintPath>..\..\tools\Moq.Silverlight.4.0.812.4-bin\Moq.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Ninject">
+      <HintPath>..\..\tools\Ninject-2.0.0.0-release-silverlight-3.0\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
@@ -115,6 +118,9 @@
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\ViewModelBase.cs">
       <Link>Framework\ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\Framework\ViewModelException.cs">
+      <Link>Framework\ViewModelException.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs">
       <Link>SemanticModel\MVVM\ModelSpecification.cs</Link>
