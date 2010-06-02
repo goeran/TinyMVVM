@@ -86,6 +86,9 @@
     <Compile Include="..\TinyMVVM\Framework\DelegateCommand.cs">
       <Link>Framework\DelegateCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TinyMVVM\Framework\DependencyConfigSemantics.cs">
+      <Link>Framework\DependencyConfigSemantics.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\Framework\Internal\DynamicObject.cs">
       <Link>Framework\Internal\DynamicObject.cs</Link>
     </Compile>
@@ -121,6 +124,12 @@
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\ViewModelException.cs">
       <Link>Framework\ViewModelException.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\SemanticModel\DependencyConfig\Configuration.cs">
+      <Link>SemanticModel\DependencyConfig\Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\SemanticModel\DependencyConfig\DependencyBinding.cs">
+      <Link>SemanticModel\DependencyConfig\DependencyBinding.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs">
       <Link>SemanticModel\MVVM\ModelSpecification.cs</Link>

@@ -46,11 +46,18 @@ namespace TinyMVVM.Tests.Framework.TestContext
         	{
 				get { return AppliedConventions; }
         	}
+        }
 
-            public void DescribeController(Type controllerType)
-            {
-                DescribeControllerToBeCreated(controllerType);
-            }
+        protected TestController GetTestControllerInViewModel()
+        {
+            var controller = viewModel.Controllers.Where(t => t is TestController).SingleOrDefault();
+            return controller as TestController;
+        }
+
+        protected YetAnotherController GetYetAnotherControllerInViewModel()
+        {
+            var controller = viewModel.Controllers.Where(t => t is YetAnotherController).SingleOrDefault();
+            return controller as YetAnotherController;
         }
 
         protected class TestController
@@ -65,6 +72,17 @@ namespace TinyMVVM.Tests.Framework.TestContext
             }
         }
 
+        protected class YetAnotherController
+        {
+            public ViewModelBase ViewModel { get; set; }
+            public IBackgroundWorker BackgroundWorker { get; set; }
+
+            public YetAnotherController(CustomViewModel customViewModel, IBackgroundWorker backgroundWorker)
+            {
+                ViewModel = customViewModel;
+                BackgroundWorker = backgroundWorker;
+            }
+        }
         protected class AnotherController
         {
             public ViewModelBase ViewModel { get; set; }
@@ -80,6 +98,13 @@ namespace TinyMVVM.Tests.Framework.TestContext
             public override void Load()
             {
                 Kernel.Bind<IBackgroundWorker>().To<TinyMVVM.Framework.Services.Impl.BackgroundWorker>();
+            }
+        }
+
+        protected class CustomBackgroundWorker : IBackgroundWorker
+        {
+            public void Invoke(Action a)
+            {
             }
         }
     }

@@ -124,7 +124,7 @@ namespace TinyMVVM.Tests.Framework
 		}
 
 	    [TestFixture]
-	    public class When_describing_controller_to_be_created : ViewModelBaseContext
+	    public class When_register_Controller : ViewModelBaseContext
 	    {
 	        [SetUp]
 	        public void Setup()
@@ -135,19 +135,11 @@ namespace TinyMVVM.Tests.Framework
 	        }
 
 	        [Test]
-	        public void assure_assure_argument_is_validated()
-	        {
-                Then(() =>
-                    this.ShouldThrowException<ArgumentNullException>(() =>
-                        viewModel.DescribeController(null)));
-	        }
-
-	        [Test]
 	        public void assure_Exception_is_thrown_if_dependencies_are_not_configured()
 	        {
                 Then(() =>
                     this.ShouldThrowException<ViewModelException>(() =>
-                        viewModel.DescribeController(typeof(TestController)), ex =>
+                        viewModel.RegisterController<TestController>(), ex =>
                         {
                             ex.Message.ShouldBe("Dependencies for Controller was not found. Add dependencies using the SharedNinjectModule static property. See inner Exception for more info");
                             ex.InnerException.ShouldBeInstanceOfType<ActivationException>();
@@ -156,7 +148,7 @@ namespace TinyMVVM.Tests.Framework
 	    }
 
 	    [TestFixture]
-	    public class When_controllers_is_described : ViewModelBaseContext
+	    public class When_controllers_is_registerd : ViewModelBaseContext
 	    {
 	        [SetUp]
 	        public void Setup()
@@ -169,8 +161,8 @@ namespace TinyMVVM.Tests.Framework
 
                 When("controller is described", () =>
                 {
-                    viewModel.DescribeController(typeof(TestController));
-                    viewModel.DescribeController(typeof(AnotherController));
+                    viewModel.RegisterController<TestController>();
+                    viewModel.RegisterController<AnotherController>();
                 });
 	        }
 
@@ -208,5 +200,82 @@ namespace TinyMVVM.Tests.Framework
                 });
 	        }
 	    }
+
+	    [TestFixture]
+	    public class When_ConfigureDependencies : ViewModelBaseContext
+	    {
+	        [SetUp]
+	        public void Setup()
+	        {
+                Given(ClassThatImplments_ViewModelBase_is_created);
+
+                When("configure dependencies", () =>
+                {
+                    viewModel.ConfigureDependencies(config =>
+                    {
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();
+                    });
+                });
+	        }
+
+	        [Test]
+	        public void assure_Dependencies_are_configured()
+	        {
+                //TODO: bad test - can't assert on anything
+	            Then(() => { });
+	        }
+	    }
+
+	    [TestFixture]
+	    public class When_dependencies_are_configured : ViewModelBaseContext 
+	    {
+	        [SetUp]
+	        public void Setup()
+	        {
+                Given(ClassThatImplments_ViewModelBase_is_created);
+                And("dependencies are configured", () =>
+                {
+                    viewModel.ConfigureDependencies(config =>
+                    {
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();
+                    });
+                });
+
+	            When("register Controllers", () =>
+	            {
+	                viewModel.RegisterController<TestController>();
+                    viewModel.RegisterController<AnotherController>();
+                    viewModel.RegisterController<YetAnotherController>();
+	            });
+	        }
+
+            [Test]
+            public void assure_configured_dependencies_are_injected_into_Controller()
+            {
+                Then(() =>
+                    GetTestControllerInViewModel().BackgroundWorker.
+                        ShouldBeInstanceOfType<CustomBackgroundWorker>());
+            }
+
+	        [Test]
+	        public void assure_configured_dependencies_are_not_shared_between_controllers_by_default()
+	        {
+	            Then(() =>
+	            {
+	                var testController = GetTestControllerInViewModel();
+	                var yetAnotherController = GetYetAnotherControllerInViewModel();
+
+                    testController.BackgroundWorker.ShouldNotBe(yetAnotherController.BackgroundWorker);
+                });
+	        }
+
+	        [Test]
+	        public void assure_its_possible_to_share_dependencies_between_Controllers()
+	        {
+	            //TODO: add support
+	        }
+
+	    }
+
 	}
 }

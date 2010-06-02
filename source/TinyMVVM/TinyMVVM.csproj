@@ -94,6 +94,7 @@
     <Compile Include="DataBuilder\Internal\Repositories\FemaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\HumanNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\WordRepository.cs" />
+    <Compile Include="Framework\DependencyConfigSemantics.cs" />
     <Compile Include="Framework\ViewModelException.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\MaleNameRepository.cs" />
@@ -141,6 +142,8 @@
     <Compile Include="SemanticModel\DataBuilder\PartMetadata.cs" />
     <Compile Include="SemanticModel\DataBuilder\PropertyPart.cs" />
     <Compile Include="SemanticModel\DataBuilder\ValuePart.cs" />
+    <Compile Include="SemanticModel\DependencyConfig\DependencyBinding.cs" />
+    <Compile Include="SemanticModel\DependencyConfig\Configuration.cs" />
     <Compile Include="SemanticModel\MVVM\ModelSpecification.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModel.cs" />

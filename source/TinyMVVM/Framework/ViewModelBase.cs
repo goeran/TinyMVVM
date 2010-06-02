@@ -34,6 +34,8 @@ using Ninject.Modules;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
+using TinyMVVM.SemanticModel.DependencyConfig;
+using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.Framework
 {
@@ -42,7 +44,6 @@ namespace TinyMVVM.Framework
         private bool sharedModuleLoaded = false;
         private IKernel kernel = new StandardKernel();
     	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
-        private readonly List<Type> controllersToCreate = new List<Type>();
         private readonly List<Object> controllers = new List<object>();
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -107,12 +108,11 @@ namespace TinyMVVM.Framework
             return ServiceLocator.Instance.GetInstance<T>();
         }
 
-        protected void DescribeControllerToBeCreated(Type typeToBeCreated)
+        public void RegisterController<T>()
         {
-            if (typeToBeCreated == null) throw new ArgumentNullException();
-
             TryLoadSharedNinjectModuleIntoKernel();
 
+            var typeToBeCreated = typeof(T);
             kernel.Bind(this.GetType()).ToConstant(this);
 
             try
@@ -143,6 +143,17 @@ namespace TinyMVVM.Framework
         private bool IsSharedNinjectModuleLoaded()
         {
             return sharedModuleLoaded == true;
+        }
+
+        public void ConfigureDependencies(Action<DependencyConfigSemantics> action)
+        {
+            var dependencyConfig = new Configuration();
+            action.Invoke(new DependencyConfigSemantics(dependencyConfig));
+
+            foreach (var dependencyBinding in dependencyConfig.Bindings)
+            {
+                kernel.Bind(dependencyBinding.From).To(dependencyBinding.To);
+            }
         }
     }
 }
