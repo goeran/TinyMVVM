@@ -106,6 +106,9 @@ namespace TinyMVVM.Framework
         {
             PropertyChangeRecorder = new PropertyChangeRecorder(this);
             CmdStateChangeRecorder = new object();
+
+            instanceKernel.Bind(this.GetType()).ToConstant(this);
+    	    globalKernel.Bind(this.GetType()).ToConstant(this);
         }
 
     	protected void ApplyDefaultConventions()
@@ -136,7 +139,6 @@ namespace TinyMVVM.Framework
         public void RegisterController<T>()
         {
             var typeToBeCreated = typeof(T);
-            instanceKernel.Bind(this.GetType()).ToConstant(this);
 
             try
             {
