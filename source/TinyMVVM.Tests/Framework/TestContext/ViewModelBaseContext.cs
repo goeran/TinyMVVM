@@ -19,10 +19,11 @@ namespace TinyMVVM.Tests.Framework.TestContext
         protected static CustomViewModel viewModel2;
         protected static AnotherCustomViewModel anotherViewModel;
     	protected static Mock<IViewModelConvention> conventionMock;
+        protected CustomBackgroundWorker customBackgroundWorkerInstance = new CustomBackgroundWorker();
 
     	protected Context ClassThatImplments_ViewModelBase_is_created = () =>
     	{
-    	    CustomViewModel.SharedNinjectModule = null;
+    	    CustomViewModel.RemoveAllGlobalDependencies();
     		viewModel = new CustomViewModel();
     	};
 

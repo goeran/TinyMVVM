@@ -154,10 +154,13 @@ namespace TinyMVVM.Tests.Framework
 	        public void Setup()
 	        {
 	            Given(ClassThatImplments_ViewModelBase_is_created);
-	            And("Shared Ninject module is specified", () =>
-	            {
-	                CustomViewModel.SharedNinjectModule = new SharedModule();
-	            });
+                And("dependencies are configured", () =>
+                {
+                    viewModel.ConfigureDependencies(config =>
+                    {
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();
+                    });
+                });
 
                 When("controller is described", () =>
                 {
@@ -274,8 +277,36 @@ namespace TinyMVVM.Tests.Framework
 	        {
 	            //TODO: add support
 	        }
-
 	    }
+
+	    [TestFixture]
+	    public class When_dependencies_are_configured_and_bound_to_a_given_instance : ViewModelBaseContext
+	    {
+	        [SetUp]
+	        public void Setup()
+	        {
+	            Given(ClassThatImplments_ViewModelBase_is_created);
+	            And("dependencies are configured", () =>
+	            {
+                    viewModel.ConfigureDependencies(config => 
+                        config.Bind<IBackgroundWorker>().ToInstance(customBackgroundWorkerInstance));
+	            });
+
+                When("register Controllers", () =>
+                {
+                    viewModel.RegisterController<TestController>();
+                });
+	        }
+
+	        [Test]
+	        public void assure_dependencies_are_injected_into_Controller()
+	        {
+	            Then(() =>
+	                GetTestControllerInViewModel().BackgroundWorker.
+                        ShouldBe(customBackgroundWorkerInstance));
+	        }
+	    }
+
 
 	    [TestFixture]
 	    public class When_global_dependencies_are_configured : ViewModelBaseContext

@@ -29,6 +29,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
 using Ninject;
 using Ninject.Modules;
@@ -36,6 +37,7 @@ using Ninject.Parameters;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
+using TinyMVVM.Framework.Services.Impl;
 using TinyMVVM.SemanticModel.DependencyConfig;
 using TinyMVVM.SemanticModel.MVVM;
 
@@ -48,12 +50,32 @@ namespace TinyMVVM.Framework
         private IKernel instanceKernel = new StandardKernel();
     	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
         private readonly List<Object> controllers = new List<object>();
+        private ActivationException activationException;
+        private Configuration instanceDependenciesConfig = new Configuration();
+        private static Configuration globalDependenciesConfig = new Configuration();
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
         [Display(AutoGenerateField = false)]
         [Editable(false)]
-        public static INinjectModule SharedNinjectModule { get; set; }
+        protected IUIInvoker UIInvoker
+        {
+            get
+            {
+                var uiInvokerBinding = instanceDependenciesConfig.Bindings.Where(b => b.FromType == typeof(IUIInvoker)).FirstOrDefault();
+                if (uiInvokerBinding != null)
+                    return instanceKernel.Get<IUIInvoker>();
+
+                var uiInvokerBindingInGlobal = globalDependenciesConfig.Bindings.Where(b => b.FromType == typeof(IUIInvoker)).FirstOrDefault();
+                if (uiInvokerBindingInGlobal != null)
+                    return globalKernel.Get<IUIInvoker>();
+
+                ConfigureDependencies(config =>
+                    config.Bind<IUIInvoker>().To<UIInvoker>());
+
+                return instanceKernel.Get<IUIInvoker>();
+            }
+        }
 
         [Display(AutoGenerateField = false)]
         [Editable(false)]
@@ -113,8 +135,6 @@ namespace TinyMVVM.Framework
 
         public void RegisterController<T>()
         {
-            TryLoadSharedNinjectModuleIntoKernel();
-
             var typeToBeCreated = typeof(T);
             instanceKernel.Bind(this.GetType()).ToConstant(this);
 
@@ -124,24 +144,15 @@ namespace TinyMVVM.Framework
 
                 Object controller = null;
 
-                try
+                controller = TryGetFromInstanceKernel(typeToBeCreated);
+                if (controller == null)
                 {
-                    controller = instanceKernel.Get(typeToBeCreated);
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        controller = globalKernel.Get(typeToBeCreated);
-                    }
-                    catch (Exception r)
-                    {
-                    }
+                    controller = TryGetFromGlobalKernel(typeToBeCreated);
                 }
 
-                if (controller != null) controllers.Add(controller);
+                if (controller == null) throw activationException;
 
-                
+                controllers.Add(controller);
             }
             catch (Exception ex)
             {
@@ -149,46 +160,68 @@ namespace TinyMVVM.Framework
             }
         }
 
-        private void TryLoadSharedNinjectModuleIntoKernel()
+        private object TryGetFromInstanceKernel(Type typeToBeCreated)
         {
-            if (IsSharedNinjectModuleSpecified() && !IsSharedNinjectModuleLoaded())
+            Object result = null;
+            try
             {
-                instanceKernel.Load(SharedNinjectModule);
-                sharedModuleLoaded = true;
+                result = instanceKernel.Get(typeToBeCreated);
             }
+            catch (ActivationException ex)
+            {
+                activationException = ex;
+            }
+
+            return result;
         }
 
-        private bool IsSharedNinjectModuleSpecified()
+        private object TryGetFromGlobalKernel(Type typeToBeCreated)
         {
-            return SharedNinjectModule != null;
-        }
+            Object result = null;
+            try
+            {
+                result = globalKernel.Get(typeToBeCreated);
+            }
+            catch (ActivationException ex)
+            {
+                activationException = ex;
+            }
 
-        private bool IsSharedNinjectModuleLoaded()
-        {
-            return sharedModuleLoaded == true;
+            return result;
         }
 
         public void ConfigureDependencies(Action<DependencyConfigSemantics> configAction)
         {
-            var dependencyConfig = new Configuration();
-            configAction.Invoke(new DependencyConfigSemantics(dependencyConfig));
+            configAction.Invoke(new DependencyConfigSemantics(instanceDependenciesConfig));
 
-            foreach (var dependencyBinding in dependencyConfig.Bindings)
+            foreach (var dependencyBinding in instanceDependenciesConfig.Bindings)
             {
-                instanceKernel.Bind(dependencyBinding.From).To(dependencyBinding.To);
+                if (dependencyBinding.ToInstance != null)
+                    instanceKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance);
+                else
+                    instanceKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType);
             }
         }
 
         public static void ConfigureGlobalDependencies(Action<DependencyConfigSemantics> configAction)
         {
-            var dependencyConfig = new Configuration();
-            configAction.Invoke(new DependencyConfigSemantics(dependencyConfig));
+            configAction.Invoke(new DependencyConfigSemantics(globalDependenciesConfig));
 
-            foreach (var dependencyBinding in dependencyConfig.Bindings)
+            foreach (var dependencyBinding in globalDependenciesConfig.Bindings)
             {
-                var name = MethodInfo.GetCurrentMethod().DeclaringType.FullName;
-                globalKernel.Bind(dependencyBinding.From).To(dependencyBinding.To).InSingletonScope();
+                //var name = MethodInfo.GetCurrentMethod().DeclaringType.FullName;
+                if (dependencyBinding.ToInstance != null)
+                    globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
+                else
+                    globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType).InSingletonScope();
             }
+        }
+
+        public static void RemoveAllGlobalDependencies()
+        {
+            globalDependenciesConfig.Bindings.Clear();
+            globalKernel.Dispose();
+            globalKernel = new StandardKernel();
         }
     }
 }

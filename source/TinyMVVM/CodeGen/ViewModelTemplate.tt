@@ -68,6 +68,12 @@ public <#= property.Type#> <#= property.Name#> { get; set; }
 	
 		public <#= viewModel.Name#>()
 		{
+	<#+ foreach (ViewModelProperty property in viewModel.Properties) {#>
+	<#+ if (!property.IsPrimitiveType) {#>
+	<#= property.Name#> = new <#= property.Type#>();
+	<#+ }#>
+<#+ }#>
+
 	<#+ foreach (ViewModelCommand command in viewModel.Commands) {#>
 		<#= command.Name#> = new DelegateCommand();
 	<#+ }#>

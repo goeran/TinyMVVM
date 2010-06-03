@@ -7,7 +7,8 @@ namespace TinyMVVM.SemanticModel.DependencyConfig
 {
     public class DependencyBinding
     {
-        public Type From { get; set; }
-        public Type To { get; set; }
+        public Type FromType { get; set; }
+        public Type ToType { get; set; }
+        public Object ToInstance { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace TinyMVVM.Framework
         {
             var dependencyBinding = new DependencyBinding()
             {
-                From = typeof (T)
+                FromType = typeof (T)
             };
             semanticModel.Bindings.Add(dependencyBinding);
 
@@ -38,7 +38,12 @@ namespace TinyMVVM.Framework
 
         public void To<T>()
         {
-            dependencyBinding.To = typeof (T);
+            dependencyBinding.ToType = typeof (T);
+        }
+
+        public void ToInstance(Object instnace)
+        {
+            dependencyBinding.ToInstance = instnace;
         }
     }
 }
