@@ -36,14 +36,36 @@ namespace TinyMVVM.Framework
             this.dependencyBinding = dependencyBinding;
         }
 
-        public void To<T>()
+        public DependencyConfigScopingSemantics To<T>()
         {
             dependencyBinding.ToType = typeof (T);
+            return new DependencyConfigScopingSemantics(dependencyBinding);
         }
 
-        public void ToInstance(Object instnace)
+        public DependencyConfigScopingSemantics ToInstance(Object instnace)
         {
             dependencyBinding.ToInstance = instnace;
+            return new DependencyConfigScopingSemantics(dependencyBinding);
+        }
+    }
+
+    public class DependencyConfigScopingSemantics
+    {
+        private readonly DependencyBinding dependencyBinding;
+
+        public DependencyConfigScopingSemantics(DependencyBinding dependencyBinding)
+        {
+            this.dependencyBinding = dependencyBinding;
+        }
+
+        public void InSingletonScope()
+        {
+            dependencyBinding.ObjectScope = ObjectScopeEnum.Singleton;
+        }
+
+        public void InTransientScope()
+        {
+            dependencyBinding.ObjectScope = ObjectScopeEnum.Transient;
         }
     }
 }

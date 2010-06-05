@@ -322,11 +322,7 @@ namespace TinyMVVM.Tests.Framework
                 {
                     CustomViewModel.ConfigureGlobalDependencies(config =>
                     {
-                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();
-                    });
-                    AnotherCustomViewModel.ConfigureGlobalDependencies(config =>
-                    {
-                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>();                                                                               
+                        config.Bind<IBackgroundWorker>().To<CustomBackgroundWorker>().InSingletonScope();
                     });
                 });
 

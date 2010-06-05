@@ -113,6 +113,9 @@
     <Compile Include="..\TinyMVVM\SemanticModel\DependencyConfig\DependencyBinding.cs">
       <Link>SemanticModel\DependencyConfig\DependencyBinding.cs</Link>
     </Compile>
+    <Compile Include="..\TinyMVVM\SemanticModel\DependencyConfig\ObjectScopeEnum.cs">
+      <Link>SemanticModel\DependencyConfig\ObjectScopeEnum.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs">
       <Link>SemanticModel\MVVM\ModelSpecification.cs</Link>
     </Compile>

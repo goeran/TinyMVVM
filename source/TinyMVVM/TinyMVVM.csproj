@@ -139,6 +139,7 @@
     <Compile Include="SemanticModel\DataBuilder\ValuePart.cs" />
     <Compile Include="SemanticModel\DependencyConfig\DependencyBinding.cs" />
     <Compile Include="SemanticModel\DependencyConfig\Configuration.cs" />
+    <Compile Include="SemanticModel\DependencyConfig\ObjectScopeEnum.cs" />
     <Compile Include="SemanticModel\MVVM\ModelSpecification.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModelCommand.cs" />
     <Compile Include="SemanticModel\MVVM\ViewModel.cs" />

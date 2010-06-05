@@ -31,6 +31,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Ninject;
+using Ninject.Planning.Bindings;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
@@ -226,9 +227,19 @@ namespace TinyMVVM.Framework
             foreach (var dependencyBinding in globalDependenciesConfig.Bindings)
             {
                 if (dependencyBinding.ToInstance != null)
-                    globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
+                {
+                    if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
+                        globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
+                    else
+                        globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InTransientScope();
+                }
                 else
-                    globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType).InSingletonScope();
+                {
+                    if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
+                        globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType).InSingletonScope();
+                    else
+                        globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType);
+                }
             }
         }
 
