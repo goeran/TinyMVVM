@@ -74,14 +74,8 @@
     <Compile Include="..\TinyMVVM\Framework\Conventions\IViewModelConvention.cs">
       <Link>Framework\Conventions\IViewModelConvention.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\Framework\Conventions\SetServiceLocator.cs">
-      <Link>Framework\Conventions\SetServiceLocator.cs</Link>
-    </Compile>
     <Compile Include="..\TinyMVVM\Framework\Converter\BoolToVisibilityConverter.cs">
       <Link>Framework\Converters\BoolToVisibilityConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\TinyMVVM\Framework\DefaultServiceLocator.cs">
-      <Link>Framework\DefaultServiceLocator.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\DelegateCommand.cs">
       <Link>Framework\DelegateCommand.cs</Link>
@@ -92,14 +86,8 @@
     <Compile Include="..\TinyMVVM\Framework\Internal\DynamicObject.cs">
       <Link>Framework\Internal\DynamicObject.cs</Link>
     </Compile>
-    <Compile Include="..\TinyMVVM\Framework\IServiceLocator.cs">
-      <Link>Framework\IServiceLocator.cs</Link>
-    </Compile>
     <Compile Include="..\TinyMVVM\Framework\PropertyChangeRecorder.cs">
       <Link>Framework\PropertyChangeRecorder.cs</Link>
-    </Compile>
-    <Compile Include="..\TinyMVVM\Framework\ServiceLocator.cs">
-      <Link>Framework\ServiceLocator.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\Services\IBackgroundWorker.cs">
       <Link>Framework\Services\IBackgroundWorker.cs</Link>
@@ -112,12 +100,6 @@
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\Services\IUIInvoker.cs">
       <Link>Framework\Services\IUIInvoker.cs</Link>
-    </Compile>
-    <Compile Include="..\TinyMVVM\Framework\Testing\ServiceLocatorForTesting.cs">
-      <Link>Framework\Testing\ServiceLocatorForTesting.cs</Link>
-    </Compile>
-    <Compile Include="..\TinyMVVM\Framework\Testing\TestContext.cs">
-      <Link>Framework\Testing\TestContext.cs</Link>
     </Compile>
     <Compile Include="..\TinyMVVM\Framework\ViewModelBase.cs">
       <Link>Framework\ViewModelBase.cs</Link>
@@ -156,6 +138,9 @@
     <None Include="..\TinyMVVM\SemanticModel\MVVM\MVVMClassDiagram.cd">
       <Link>SemanticModel\MVVM\MVVMClassDiagram.cd</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Framework\Testing\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

@@ -133,7 +133,7 @@ namespace TinyMVVM.Framework
 
         protected virtual T GetInstance<T>() where T: class
         {
-            return ServiceLocator.Instance.GetInstance<T>();
+            return instanceKernel.Get<T>();
         }
 
         public void RegisterController<T>()
