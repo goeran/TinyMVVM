@@ -225,7 +225,6 @@ namespace TinyMVVM.Framework
 
             foreach (var dependencyBinding in globalDependenciesConfig.Bindings)
             {
-                //var name = MethodInfo.GetCurrentMethod().DeclaringType.FullName;
                 if (dependencyBinding.ToInstance != null)
                     globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
                 else

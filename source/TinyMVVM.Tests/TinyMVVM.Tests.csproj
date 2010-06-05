@@ -115,6 +115,7 @@
     <Compile Include="Framework\Converters\TestContext\ValueConverterTestContext.cs" />
     <Compile Include="Framework\PropertyChangeRecorderSpecs.cs" />
     <Compile Include="Framework\DelegateCommandSpecs.cs" />
+    <Compile Include="Learning\StaticClassesAndMethodsLearningTests.cs" />
     <Compile Include="Framework\TestContext\BootstrapperContext.cs" />
     <Compile Include="Framework\TestContext\CommandStateChangeRecorderContext.cs" />
     <Compile Include="Framework\TestContext\PropertyChangeRecorderContext.cs" />
