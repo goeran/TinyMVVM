@@ -80,10 +80,20 @@ namespace TinyMVVM.Framework
             CanExecuteDelegate = canExecuteDelegate;
         }
 
+        public void Execute()
+        {
+            Execute(null);
+        }
+
         public void Execute(object parameter)
         {
             if (CanExecute(parameter))
                 ExecuteDelegate();
+        }
+
+        public bool CanExecute()
+        {
+            return CanExecute(null);
         }
 
         public bool CanExecute(object parameter)

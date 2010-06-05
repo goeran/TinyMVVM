@@ -76,6 +76,17 @@ namespace TinyMVVM.Tests.Framework.DelegateCommandSpecs
     public class When_Execute : DelegateCommandContext
     {
         [Test]
+        public void assure_it_can_be_called_without_an_argument()
+        {
+            Given(DelegateCommand_is_created);
+
+            When("Execute", () =>
+                delegateCommand.Execute());
+
+            Then(() => executeDelegateIsCalled.ShouldBeTrue());
+        }
+
+        [Test]
         public void assure_Execute_delegate_is_called()
         {
             Given(DelegateCommand_is_created);
@@ -114,6 +125,28 @@ namespace TinyMVVM.Tests.Framework.DelegateCommandSpecs
             Then(() => executeDelegateIsCalled.ShouldBeFalse());
         }
     }
+
+    [TestFixture]
+    public class When_CanExecute : DelegateCommandContext
+    {
+        [SetUp]
+        public void Setup()
+        {
+            Given(DelegateCommand_is_created);
+        }
+
+        [Test]
+        public void assure_it_can_be_called_without_an_argument()
+        {
+            When("CanExecute", () =>
+                canExecuteResult = delegateCommand.CanExecute());
+
+            Then(() => {});
+        }
+
+   
+    }
+
 
 	[TestFixture]
 	public class When_set_Execute_delegate : DelegateCommandContext
