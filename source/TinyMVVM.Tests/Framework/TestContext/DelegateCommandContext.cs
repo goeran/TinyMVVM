@@ -10,6 +10,7 @@ namespace TinyMVVM.Tests.Framework.TestContext
     public class DelegateCommandContext : NUnitScenarioClass
     {
         protected static DelegateCommand delegateCommand;
+        protected static PropertyChangeRecorder changeRecorder;
         protected static bool executeDelegateIsCalled;
         protected static bool canExecuteDelegateIsCalled;
     	protected static bool customExecuteDelegateIsCalled;
@@ -29,6 +30,9 @@ namespace TinyMVVM.Tests.Framework.TestContext
                 canExecuteDelegateIsCalled = true;
                 return true;
             });
+
+            changeRecorder = new PropertyChangeRecorder(delegateCommand);
+            changeRecorder.Start();
         };
 
         protected When DelegateCommand_is_spawned = () =>

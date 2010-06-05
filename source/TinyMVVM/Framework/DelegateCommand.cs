@@ -28,13 +28,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
 namespace TinyMVVM.Framework
 {
-    public class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand, INotifyPropertyChanged
     {
 		private Action executeDelegate;
 
@@ -42,6 +43,34 @@ namespace TinyMVVM.Framework
 			this(() => { }, () => true)
 		{
 		}
+
+        private string text;
+        public string Text
+        {
+            get { return text; } 
+            set
+            {
+                if (value != text)
+                {
+                    text = value;
+                    TriggerPropertyChanged("Text");
+                }
+            }
+        }
+
+        private string description;
+        public string Description
+        {
+            get { return description; } 
+            set
+            {
+                if (value != description)
+                {
+                    description = value;
+                    TriggerPropertyChanged("Description");
+                }
+            }
+        }
 
     	public Action ExecuteDelegate
     	{
@@ -108,5 +137,12 @@ namespace TinyMVVM.Framework
         }
 
         public event EventHandler CanExecuteChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void TriggerPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
