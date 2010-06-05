@@ -30,16 +30,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using Ninject;
-using Ninject.Modules;
-using Ninject.Parameters;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
 using TinyMVVM.Framework.Services;
 using TinyMVVM.Framework.Services.Impl;
 using TinyMVVM.SemanticModel.DependencyConfig;
-using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.Framework
 {
