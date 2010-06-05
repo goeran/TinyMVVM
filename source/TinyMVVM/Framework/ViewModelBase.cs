@@ -131,7 +131,7 @@ namespace TinyMVVM.Framework
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected virtual T GetInstance<T>() where T: class
+        protected virtual T GetDependency<T>() where T: class
         {
             return instanceKernel.Get<T>();
         }
