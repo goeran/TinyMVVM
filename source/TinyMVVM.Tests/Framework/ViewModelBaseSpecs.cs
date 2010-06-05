@@ -194,7 +194,7 @@ namespace TinyMVVM.Tests.Framework
 	        }
 
 	        [Test]
-	        public void assure_Services_defined_in_SharedNinjectModule_is_injected_to_the_Controllers_constructor()
+	        public void assure_configured_dependencies_is_injected_to_the_Controllers()
 	        {
                 Then(() =>
                 {
