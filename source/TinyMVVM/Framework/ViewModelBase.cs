@@ -45,14 +45,26 @@ namespace TinyMVVM.Framework
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        private static IKernel globalKernel = new StandardKernel();
-        private bool sharedModuleLoaded = false;
         private IKernel instanceKernel = new StandardKernel();
-    	private readonly List<IViewModelConvention> appliedConventions = new List<IViewModelConvention>();
-        private readonly List<Object> controllers = new List<object>();
-        private ActivationException activationException;
+        private static IKernel globalKernel = new StandardKernel();
         private Configuration instanceDependenciesConfig = new Configuration();
         private static Configuration globalDependenciesConfig = new Configuration();
+
+    	private readonly List<IViewModelConvention> appliedConventions = 
+            new List<IViewModelConvention>();
+
+        private readonly List<Object> controllers = new List<object>();
+
+        private ActivationException activationException;
+
+        protected ViewModelBase()
+        {
+            PropertyChangeRecorder = new PropertyChangeRecorder(this);
+            CmdStateChangeRecorder = new object();
+
+            instanceKernel.Bind(this.GetType()).ToConstant(this);
+            globalKernel.Bind(this.GetType()).ToConstant(this);
+        }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -102,15 +114,6 @@ namespace TinyMVVM.Framework
             }
         }
 
-    	protected ViewModelBase()
-        {
-            PropertyChangeRecorder = new PropertyChangeRecorder(this);
-            CmdStateChangeRecorder = new object();
-
-            instanceKernel.Bind(this.GetType()).ToConstant(this);
-    	    globalKernel.Bind(this.GetType()).ToConstant(this);
-        }
-
     	protected void ApplyDefaultConventions()
     	{
 			ApplyConvention(new InvokeOnInitialize());
@@ -153,19 +156,9 @@ namespace TinyMVVM.Framework
         /// <typeparam name="T"></typeparam>
         public void CreateController<T>()
         {
-            var typeToBeCreated = typeof(T);
-
             try
             {
-                instanceKernel.Bind(typeToBeCreated).ToSelf();
-
-                Object controller = null;
-
-                controller = TryGetFromInstanceKernel(typeToBeCreated);
-                if (controller == null)
-                {
-                    controller = TryGetFromGlobalKernel(typeToBeCreated);
-                }
+                object controller = TryCreateController(typeof(T));
 
                 if (controller == null) throw activationException;
 
@@ -177,12 +170,32 @@ namespace TinyMVVM.Framework
             }
         }
 
+        private object TryCreateController(Type typeToBeCreated)
+        {
+            Object controller = null;
+
+            controller = TryGetFromInstanceKernel(typeToBeCreated);
+
+            if (controller == null)
+            {
+                controller = TryGetFromGlobalKernel(typeToBeCreated);
+            }
+
+            return controller;
+        }
+
         private object TryGetFromInstanceKernel(Type typeToBeCreated)
         {
+            return TryGetObjectFromKernel(typeToBeCreated, instanceKernel);
+        }
+
+        private object TryGetObjectFromKernel(Type typeToBeCreated, IKernel kernel)
+        {
             Object result = null;
+
             try
             {
-                result = instanceKernel.Get(typeToBeCreated);
+                result = kernel.Get(typeToBeCreated);
             }
             catch (ActivationException ex)
             {
@@ -194,17 +207,7 @@ namespace TinyMVVM.Framework
 
         private object TryGetFromGlobalKernel(Type typeToBeCreated)
         {
-            Object result = null;
-            try
-            {
-                result = globalKernel.Get(typeToBeCreated);
-            }
-            catch (ActivationException ex)
-            {
-                activationException = ex;
-            }
-
-            return result;
+            return TryGetObjectFromKernel(typeToBeCreated, globalKernel);
         }
 
         public void ConfigureDependencies(Action<DependencyConfigSemantics> configAction)
