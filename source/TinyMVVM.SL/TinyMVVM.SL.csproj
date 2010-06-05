@@ -139,9 +139,7 @@
       <Link>SemanticModel\MVVM\MVVMClassDiagram.cd</Link>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\Testing\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

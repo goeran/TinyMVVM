@@ -136,7 +136,22 @@ namespace TinyMVVM.Framework
             return instanceKernel.Get<T>();
         }
 
-        public void RegisterController<T>()
+        /// <summary>
+        /// Create a new instance of the specified Controller inside the ViewModel. 
+        /// The Controller object can be of any type. The only coupling between the 
+        /// ViewModel and the Controller is that the ViewModel must know of the 
+        /// type of Controller that’s about to be created. The ViewModel doesn’t 
+        /// have to call anything on it. The Controlelr object will have the same 
+        /// life span as the ViewModel object.
+        /// 
+        /// If the controller has any dependencies, they will be automatically 
+        /// injected. In order to inject dependencies you’ll have to configure 
+        /// them first. Dependencies are injected through the constructor on 
+        /// the Controller object. The ViewModel instance itself will be 
+        /// automatically configured as a dependency.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public void CreateController<T>()
         {
             var typeToBeCreated = typeof(T);
 

@@ -124,14 +124,14 @@ namespace TinyMVVM.Tests.Framework
 		}
 
 	    [TestFixture]
-	    public class When_register_Controller : ViewModelBaseContext
+	    public class When_Create_Controller : ViewModelBaseContext
 	    {
 	        [SetUp]
 	        public void Setup()
 	        {
                 Given(ClassThatImplments_ViewModelBase_is_created);
 
-	            When("describing Controller to be created");
+	            When("Create Controller to be created");
 	        }
 
 	        [Test]
@@ -139,7 +139,7 @@ namespace TinyMVVM.Tests.Framework
 	        {
                 Then(() =>
                     this.ShouldThrowException<ViewModelException>(() =>
-                        viewModel.RegisterController<TestController>(), ex =>
+                        viewModel.CreateController<TestController>(), ex =>
                         {
                             ex.Message.ShouldBe("Dependencies for Controller was not found. Add dependencies using the SharedNinjectModule static property. See inner Exception for more info");
                             ex.InnerException.ShouldBeInstanceOfType<ActivationException>();
@@ -148,7 +148,7 @@ namespace TinyMVVM.Tests.Framework
 	    }
 
 	    [TestFixture]
-	    public class When_controllers_is_registerd : ViewModelBaseContext
+	    public class When_controllers_are_created : ViewModelBaseContext
 	    {
 	        [SetUp]
 	        public void Setup()
@@ -162,10 +162,10 @@ namespace TinyMVVM.Tests.Framework
                     });
                 });
 
-                When("controller is described", () =>
+                When("controllers are created", () =>
                 {
-                    viewModel.RegisterController<TestController>();
-                    viewModel.RegisterController<AnotherController>();
+                    viewModel.CreateController<TestController>();
+                    viewModel.CreateController<AnotherController>();
                 });
 	        }
 
@@ -244,11 +244,11 @@ namespace TinyMVVM.Tests.Framework
                     });
                 });
 
-	            When("register Controllers", () =>
+	            When("Create Controllers", () =>
 	            {
-	                viewModel.RegisterController<TestController>();
-                    viewModel.RegisterController<AnotherController>();
-                    viewModel.RegisterController<YetAnotherController>();
+	                viewModel.CreateController<TestController>();
+                    viewModel.CreateController<AnotherController>();
+                    viewModel.CreateController<YetAnotherController>();
 	            });
 	        }
 
@@ -292,9 +292,9 @@ namespace TinyMVVM.Tests.Framework
                         config.Bind<IBackgroundWorker>().ToInstance(customBackgroundWorkerInstance));
 	            });
 
-                When("register Controllers", () =>
+                When("Create Controllers", () =>
                 {
-                    viewModel.RegisterController<TestController>();
+                    viewModel.CreateController<TestController>();
                 });
 	        }
 
@@ -330,17 +330,17 @@ namespace TinyMVVM.Tests.Framework
                     });
                 });
 
-	            When("register the same type Controllers on both of the ViewModels", () =>
+	            When("Create the same type Controllers on all of the ViewModels", () =>
 	            {
-	                viewModel.RegisterController<TestController>();
-                    viewModel.RegisterController<AnotherController>();
-                    viewModel.RegisterController<YetAnotherController>();
+	                viewModel.CreateController<TestController>();
+                    viewModel.CreateController<AnotherController>();
+                    viewModel.CreateController<YetAnotherController>();
 
-                    viewModel2.RegisterController<TestController>();
-                    viewModel2.RegisterController<AnotherController>();
-                    viewModel2.RegisterController<YetAnotherController>();
+                    viewModel2.CreateController<TestController>();
+                    viewModel2.CreateController<AnotherController>();
+                    viewModel2.CreateController<YetAnotherController>();
 
-                    anotherViewModel.RegisterController<TestController>();
+                    anotherViewModel.CreateController<TestController>();
                 });
 	        }
 
