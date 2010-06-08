@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM.SL", "TinyMVVM.SL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM.VSIntegration", "TinyMVVM.VSIntegration\TinyMVVM.VSIntegration.csproj", "{D36085F1-7848-4DCF-BC1E-FC33505BA93B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM.VSIntegration.Tests", "TinyMVVM.VSIntegration.Tests\TinyMVVM.VSIntegration.Tests.csproj", "{FDB95408-A16A-4F89-A810-8D2409F7C12B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{D36085F1-7848-4DCF-BC1E-FC33505BA93B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D36085F1-7848-4DCF-BC1E-FC33505BA93B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D36085F1-7848-4DCF-BC1E-FC33505BA93B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB95408-A16A-4F89-A810-8D2409F7C12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB95408-A16A-4F89-A810-8D2409F7C12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB95408-A16A-4F89-A810-8D2409F7C12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB95408-A16A-4F89-A810-8D2409F7C12B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
