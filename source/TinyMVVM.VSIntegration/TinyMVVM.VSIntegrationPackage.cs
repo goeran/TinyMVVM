@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
+using System.Windows.Forms;
+using EnvDTE;
 using Microsoft.Win32;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -28,8 +32,13 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
     // in the Help/About dialog of Visual Studio.
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(GuidList.guidTinyMVVM_VSIntegrationPkgString)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionExists)]
     public sealed class TinyMVVM_VSIntegrationPackage : Package
     {
+        private EnvDTE.DTE dte;
+        List<Document> docs = new List<Document>();
+        List<DocumentEvents> docsEvents = new List<DocumentEvents>();
+
         /// <summary>
         /// Default constructor of the package.
         /// Inside this method you can place any initialization code that does not require 
@@ -57,6 +66,33 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             Trace.WriteLine (string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
+
+            //var statusbar = GetService(typeof (IVsStatusbar)) as IVsStatusbar;
+            //statusbar.SetText("TinyMVVM");
+
+            dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
+
+            foreach (ProjectItem projItem in dte.Solution.Projects.Item(1).ProjectItems)
+            {
+                var fileInfo = new FileInfo(projItem.Name);
+                if (fileInfo.Extension == ".cs")
+                {
+                    docs.Add(projItem.Document);
+                }
+            }
+
+            docs.ForEach(d =>
+            {
+                var events = dte.Events.get_DocumentEvents(d);
+                docsEvents.Add(events);
+
+                events.DocumentSaved += new _dispDocumentEvents_DocumentSavedEventHandler(TinyMVVM_VSIntegrationPackage_DocumentSaved);
+            });
+        }
+
+        void TinyMVVM_VSIntegrationPackage_DocumentSaved(Document Document)
+        {
+            MessageBox.Show("File saved!");
         }
         #endregion
 
