@@ -56,7 +56,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -164,7 +165,6 @@
     <None Include="CodeGen\ViewModelTestsTemplate.tt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Key.snk" />
     <None Include="MVVM.dsl" />
     <None Include="SemanticModel\DataBuilder\ClassDiagram.cd" />
     <None Include="SemanticModel\MVVM\MVVMClassDiagram.cd" />
