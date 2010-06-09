@@ -9,12 +9,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
 {
     public class ViewsConvention
     {
-        private Project project;
-
         public void ApplyConvention(ModelSpecification mvvmDefinition, Project project)
         {
-            this.project = project;
-
             if (!project.HasFolder("Views"))
             {
                 project.NewFolder("Views");

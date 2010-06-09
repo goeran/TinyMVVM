@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\Conventions\PartialViewModelsConventionSpecs.cs" />
     <Compile Include="Internal\Conventions\ViewsConventionSpecs.cs" />
     <Compile Include="Internal\Model\FolderSpecs.cs" />
     <Compile Include="Internal\Model\ProjectSpecs.cs" />

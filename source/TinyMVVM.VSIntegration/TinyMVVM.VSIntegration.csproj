@@ -134,6 +134,7 @@
       <Link>Internal\TinyMVVM\Specifications\Specification.cs</Link>
     </Compile>
     <Compile Include="Guids.cs" />
+    <Compile Include="Internal\Conventions\PartialViewModelsConvention.cs" />
     <Compile Include="Internal\Conventions\ViewsConvention.cs" />
     <Compile Include="Internal\Model\File.cs" />
     <Compile Include="Internal\Model\Folder.cs" />

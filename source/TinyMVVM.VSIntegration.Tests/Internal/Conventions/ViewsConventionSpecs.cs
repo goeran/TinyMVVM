@@ -15,7 +15,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
     public class ViewsConventionSpecs
     {
         [TestFixture]
-        public class When_ApplyConvention_on_project : ViewsConventionTestScenario
+        public class When_Convention_is_applied_on_Project : ViewsConventionTestScenario
         {
             [SetUp]
             public void Setup()
@@ -59,7 +59,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
         }
 
         [TestFixture]
-        public class When_ApplyConvention_on_project_that_has_a_Views_folder : ViewsConventionTestScenario
+        public class When_Convention_is_applied_on_Project_that_has_a_Views_folder : ViewsConventionTestScenario
         {
             [SetUp]
             public void Setup()
@@ -96,7 +96,6 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                         Count().ShouldNotBe(2);
                 });
             }
-
 
             [Test]
             public void assure_Views_for_each_ViewModel_are_not_duplicated()
