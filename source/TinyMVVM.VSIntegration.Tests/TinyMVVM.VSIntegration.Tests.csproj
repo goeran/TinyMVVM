@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\Conventions\ViewsConventionSpecs.cs" />
+    <Compile Include="Internal\Model\FolderSpecs.cs" />
     <Compile Include="Internal\Model\ProjectSpecs.cs" />
     <Compile Include="Internal\Model\SolutionSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

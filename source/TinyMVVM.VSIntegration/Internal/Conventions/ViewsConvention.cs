@@ -15,37 +15,17 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
         {
             this.project = project;
 
-            if (!ViewsFolderExists())
+            if (!project.HasFolder("Views"))
             {
-                AddViewsFolder();
+                project.NewFolder("Views");
             }
 
             foreach (var viewModel in mvvmDefinition.ViewModels)
             {
-                var viewsFolder = project.Folders.Where(f => f.Name == "Views").Single();
+                var viewsFolder = project.GetSubFolder("Views");
                 if (viewsFolder.Files.Where(f => f.Name.Replace(".xaml", string.Empty) == viewModel.Name).Count() == 0)
-                    viewsFolder.Items.Add(new File(){ Name = viewModel.Name + ".xaml" });
+                    viewsFolder.NewFile(viewModel.Name + ".xaml");
             }
-        }
-
-        private void AddViewsFolder()
-        {
-            project.Items.Add(new Folder()
-            {
-                Name = "Views"
-            });
-        }
-
-        private bool ViewsFolderExists()
-        {
-            ProjectItem viewsFolder = TryGetViewsFolder();
-
-            return viewsFolder != null;
-        }
-
-        private ProjectItem TryGetViewsFolder()
-        {
-            return project.Items.Where(i => i is Folder && i.Name == "Views").SingleOrDefault();
         }
     }
 }
