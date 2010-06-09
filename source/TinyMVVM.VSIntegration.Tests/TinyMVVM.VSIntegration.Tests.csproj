@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\TinyMVVM.VSIntegration\Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -42,10 +48,31 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TinyBDD">
+      <HintPath>..\..\tools\TinyBDD\TinyBDD.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyBDD.Specification.NUnit.2.5.3, Version=0.1.0.93, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\TinyBDD\TinyBDD.Specification.NUnit.2.5.3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\Conventions\ViewsConventionSpecs.cs" />
+    <Compile Include="Internal\Model\ProjectSpecs.cs" />
+    <Compile Include="Internal\Model\SolutionSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TinyMVVM.Tests\TinyMVVM.Tests.csproj">
+      <Project>{B4EBC972-D86A-40E3-BC6E-AF8757BF340D}</Project>
+      <Name>TinyMVVM.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TinyMVVM.VSIntegration\TinyMVVM.VSIntegration.csproj">
+      <Project>{D36085F1-7848-4DCF-BC1E-FC33505BA93B}</Project>
+      <Name>TinyMVVM.VSIntegration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
