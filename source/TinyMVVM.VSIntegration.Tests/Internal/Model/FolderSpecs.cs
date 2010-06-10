@@ -13,6 +13,24 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
     public class FolderSpecs
     {
         [TestFixture]
+        public class When_not_added_to_a_Project : FolderTestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given(Folder_is_created);
+            }
+
+            [Test]
+            public void assure_Project_is_not_found()
+            {
+                When("Get Project");
+
+                Then(() => folder.Project.ShouldBeNull());
+            }
+        }
+
+        [TestFixture]
         public class When_check_if_SubFolder_exists : FolderTestScenario
         {
             [SetUp]
@@ -65,11 +83,38 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             }
         }
 
+        [TestFixture]
+        public class When_find_Project_from_a_SubFolder : FolderTestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given(Project_is_created);
+                And("it has a sub folder", () =>
+                    subSubFolder = project.NewFolder("Views").NewFolder("Login"));
+
+                When("find Project from a SubFolder");
+            }
+
+            [Test]
+            public void assure_Project_is_found()
+            {
+                Then(() => subSubFolder.Project.ShouldBe(project));
+            }
+        }
+
         public class FolderTestScenario : NUnitScenarioClass
         {
             protected static Folder folder;
             protected static bool result;
             protected static Folder subFolder;
+            protected static Folder subSubFolder;
+            protected static Project project;
+
+            protected Context Project_is_created = () =>
+            {
+                project = new Project();
+            };
 
             protected Context Folder_is_created = () =>
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Internal;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
@@ -30,17 +31,22 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
                 throw new ArgumentException("Folder already exists");
 
             var newFolder = new Folder() { Name = name };
+            newFolder.Parent = this;
             Items.Add(newFolder);
 
             return newFolder;
         }
 
-        public void NewFile(string name)
+        public File NewFile(string name)
         {
-            if (Files.Where(f => f.Name == name).Count() > 0)
+            if (HasFile(name))
                 throw new ArgumentException("File already exists");
 
-            Items.Add(new File() { Name = name });
+            var newFile = new File() { Name = name };
+            newFile.Parent = this;
+            Items.Add(newFile);
+
+            return newFile;
         }
 
         public bool HasFolder(string name)
@@ -55,12 +61,10 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 
         public Folder GetSubFolder(string name)
         {
-            var subFolder = Folders.Where(f => f.Name == name).SingleOrDefault();
-
-            if (subFolder == null)
+            if (!HasFolder(name))
                 throw new ArgumentException("Folder doesn't exists");
 
-            return subFolder;
+            return Folders.Where(f => f.Name == name).SingleOrDefault();
         }
     }
 }

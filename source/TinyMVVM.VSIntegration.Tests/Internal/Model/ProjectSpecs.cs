@@ -38,6 +38,12 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             {
                 Then(() => project.Type.ShouldBeNull());
             }
+
+            [Test]
+            public void assure_Project_is_set()
+            {
+                Then(() => project.Project.ShouldBe(project));
+            }
         }
 
         [TestFixture]
@@ -75,14 +81,33 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             [Test]
             public void assure_its_added_to_Items()
             {
-                When("add new folder", () =>
-                    project.NewFolder("Controllers"));
+                When(add_new_folder("Controllers"));
 
                 Then(() =>
                 {
                     project.Items.Count.ShouldBe(2);
                     project.Items.Last().Name.ShouldBe("Controllers");
                 });
+            }
+
+            [Test]
+            public void assure_Parent_is_set()
+            {
+                When(add_new_folder("Controllers"));
+
+                Then(() =>
+                {
+                    newFolder.Parent.ShouldBe(project);
+                });
+            }
+
+            [Test]
+            public void assure_Project_is_set()
+            {
+                When(add_new_folder("Controllers"));
+
+                Then(() =>
+                     newFolder.Project.ShouldBe(project));
             }
 
             [Test]
@@ -111,14 +136,31 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             [Test]
             public void assure_its_added_to_Items()
             {
-                When("add new file", () =>
-                    project.NewFile("LoginViewModel.cs"));
+                When(add_new_file);
 
                 Then(() =>
                 {
                     project.Items.Count.ShouldBe(2);
                     project.Items.Last().Name.ShouldBe("LoginViewModel.cs");
                 });
+            }
+
+            [Test]
+            public void assure_Parent_is_set()
+            {
+                When(add_new_file);
+
+                Then(() =>
+                    newFile.Parent.ShouldBe(project));
+            }
+
+            [Test]
+            public void assure_Project_is_set()
+            {
+                When(add_new_file);
+
+                Then(() =>
+                     newFile.Project.ShouldBe(project));
             }
 
             [Test]
@@ -137,6 +179,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
         {
             protected static Project project;
             protected static IEnumerable<Folder> folders;
+            protected static Folder newFolder;
+            protected static File newFile;
 
             protected Context Project_is_created = () =>
             {
@@ -147,6 +191,17 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             {
                 project = new Project();
             };
+
+            protected When add_new_file = () =>
+            {
+                newFile = project.NewFile("LoginViewModel.cs");
+            };
+
+            protected WhenSemantics add_new_folder(string name)
+            {
+                return When("add new folder", () =>
+                    newFolder = project.NewFolder("Controllers"));
+            }
         }
     }
 }

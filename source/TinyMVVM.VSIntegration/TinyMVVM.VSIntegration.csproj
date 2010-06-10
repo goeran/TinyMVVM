@@ -138,6 +138,7 @@
     <Compile Include="Internal\Conventions\ViewsConvention.cs" />
     <Compile Include="Internal\Model\File.cs" />
     <Compile Include="Internal\Model\Folder.cs" />
+    <Compile Include="Internal\Model\Internal\TreeWalker.cs" />
     <Compile Include="Internal\Model\Project.cs" />
     <Compile Include="Internal\Model\ProjectItem.cs" />
     <Compile Include="Internal\Model\Solution.cs" />
