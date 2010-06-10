@@ -24,12 +24,15 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             get { return Items.Where(i => i is File).Cast<File>(); }
         }
 
-        public void NewFolder(string name)
+        public Folder NewFolder(string name)
         {
             if (HasFolder(name))
                 throw new ArgumentException("Folder already exists");
 
-            Items.Add(new Folder() { Name = name });
+            var newFolder = new Folder() { Name = name };
+            Items.Add(newFolder);
+
+            return newFolder;
         }
 
         public void NewFile(string name)
@@ -43,6 +46,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
         public bool HasFolder(string name)
         {
             return Folders.Where(f => f.Name == name).Count() > 0;
+        }
+
+        public bool HasFile(string name)
+        {
+            return Files.Where(f => f.Name == name).Count() > 0;
         }
 
         public Folder GetSubFolder(string name)

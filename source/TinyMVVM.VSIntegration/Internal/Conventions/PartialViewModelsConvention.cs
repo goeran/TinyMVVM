@@ -15,7 +15,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
 
             foreach (var viewModel in mvvmDefinition.ViewModels)
             {
-                viewModelFolder.NewFile(viewModel.Name + ".cs");    
+                var name = string.Format("{0}.cs", viewModel.Name);
+                if (!viewModelFolder.HasFile(name))
+                    viewModelFolder.NewFile(name);    
             }
         }
     }

@@ -22,15 +22,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             {
                 Given(Convention_is_created);
                 And(VisualStudio_Solution_exists);
-                And("ViewModel is described", () =>
-                {
-                    mvvmDefinition = new ModelSpecification();
-                    var loginViewModel = new ViewModel("Login");
-                    loginViewModel.AddProperty(new ViewModelProperty("Username", "string", false));
-                    loginViewModel.AddProperty(new ViewModelProperty("Password", "string", false));
-                    loginViewModel.AddCommand(new ViewModelCommand("Login"));
-                    mvvmDefinition.AddViewModel(loginViewModel);
-                });
+                And(ViewModel_is_described);
 
                 When("apply convention", () =>
                     convention.ApplyToProject(mvvmDefinition, project));
@@ -43,6 +35,39 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 {
                     var viewModelFolder = project.GetSubFolder("ViewModel");
                     viewModelFolder.Files.Where(f => f.Name == "Login.cs").Count().ShouldBe(1);
+                    viewModelFolder.Files.Where(f => f.Name == "MainScreen.cs").Count().ShouldBe(1);
+                });
+            }
+        }
+
+        [TestFixture]
+        public class When_Convention_is_applied_on_a_Project_that_already_has_partial_classes_for_ViewModels : TestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given(Convention_is_created);
+                And(VisualStudio_Solution_exists);
+                And("Project already contains partial classes for ViewModel", () =>
+                {
+                    var viewModelFolder = project.GetSubFolder("ViewModel");
+                    viewModelFolder.NewFile("Login.cs");
+                    viewModelFolder.NewFile("MainScreen.cs");
+                });
+                And(ViewModel_is_described);
+
+                When("apply convention", () =>
+                    convention.ApplyToProject(mvvmDefinition, project));
+            }
+
+            [Test]
+            public void assure_more_partial_classes_are_not_added()
+            {
+                Then(() =>
+                {
+                    var viewModelFolder = project.GetSubFolder("ViewModel");
+                    viewModelFolder.Files.Count().ShouldBe(2);
+
                 });
             }
         }
@@ -69,6 +94,20 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 solution.Projects.Add(rtmProject);
 
                 project = rtmProject;
+            };
+
+            protected Context ViewModel_is_described = () =>
+            {
+                mvvmDefinition = new ModelSpecification();
+                var loginViewModel = new ViewModel("Login");
+                loginViewModel.AddProperty(new ViewModelProperty("Username", "string", false));
+                loginViewModel.AddProperty(new ViewModelProperty("Password", "string", false));
+                loginViewModel.AddCommand(new ViewModelCommand("Login"));
+                mvvmDefinition.AddViewModel(loginViewModel);
+
+                var mainScreenViewModel = new ViewModel("MainScreen");
+                mainScreenViewModel.AddProperty(new ViewModelProperty("Title", "string", true));
+                mvvmDefinition.AddViewModel(mainScreenViewModel);
             };
         }
     }
