@@ -117,6 +117,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
         protected static ViewsConvention viewsConvention;
         protected static Solution solution;
         protected static Project project;
+        protected static File mvvmFile;
         protected static ModelSpecification mvvmDefinition;
 
         protected Context ViewsConvention_is_created = () =>
@@ -130,6 +131,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             solution.Name = "Rich RememberTheMilk";
             var rtmProject = new Project();
             rtmProject.Name = "RichRememberTheMilk";
+            mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
             solution.Projects.Add(rtmProject);
 
             project = rtmProject;
@@ -143,7 +145,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
         protected When ApplyConvention = () =>
         {
-            viewsConvention.ApplyConvention(mvvmDefinition, project);
+            viewsConvention.Apply(mvvmDefinition, mvvmFile);
         };
     }
 }

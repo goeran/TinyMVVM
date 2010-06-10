@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Internal
+﻿namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Internal
 {
     internal class TreeWalker
     {
+        /// <summary>
+        /// Find the project a ProjectItem belongs to.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public static Project FindProject(ProjectItem item)
         {
             if (item.GetType() == typeof(Project))

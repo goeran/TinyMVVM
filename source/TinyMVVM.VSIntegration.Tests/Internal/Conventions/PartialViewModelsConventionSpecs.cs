@@ -25,7 +25,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 And(ViewModel_is_described);
 
                 When("apply convention", () =>
-                    convention.ApplyToProject(mvvmDefinition, project));
+                    convention.Apply(mvvmDefinition, mvvmFile));
             }
 
             [Test]
@@ -57,7 +57,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 And(ViewModel_is_described);
 
                 When("apply convention", () =>
-                    convention.ApplyToProject(mvvmDefinition, project));
+                    convention.Apply(mvvmDefinition, mvvmFile));
             }
 
             [Test]
@@ -66,7 +66,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 Then(() =>
                 {
                     var viewModelFolder = project.GetSubFolder("ViewModel");
-                    viewModelFolder.Files.Count().ShouldBe(2);
+                    viewModelFolder.Files.Count().ShouldBe(3);
 
                 });
             }
@@ -77,6 +77,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             protected static PartialViewModelsConvention convention;
             protected static Solution solution;
             protected static Project project;
+            protected static File mvvmFile;
             protected static ModelSpecification mvvmDefinition;
 
             protected Context Convention_is_created = () =>
@@ -90,7 +91,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 solution.Name = "Rich RememberTheMilk";
                 var rtmProject = new Project();
                 rtmProject.Name = "RichRemembertheMilk";
-                rtmProject.NewFolder("ViewModel");
+                mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
                 solution.Projects.Add(rtmProject);
 
                 project = rtmProject;

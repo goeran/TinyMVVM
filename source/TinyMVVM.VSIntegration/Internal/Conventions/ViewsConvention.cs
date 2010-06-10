@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
 {
+    /// <summary>
+    /// This convention does two thing:
+    /// - add 'Views' folder in the project if it not already exists
+    /// - add View files for every ViewModel defined in the mvvm file if not already exists.
+    ///   A view file = .xaml file
+    /// </summary>
     public class ViewsConvention
     {
-        public void ApplyConvention(ModelSpecification mvvmDefinition, Project project)
+        private const string viewsFolderName = "Views";
+
+        public void Apply(ModelSpecification mvvmDefinition, File mvvmFile)
         {
-            if (!project.HasFolder("Views"))
+            var project = mvvmFile.Project;
+            if (!project.HasFolder(viewsFolderName))
             {
-                project.NewFolder("Views");
+                project.NewFolder(viewsFolderName);
             }
 
             foreach (var viewModel in mvvmDefinition.ViewModels)
             {
-                var viewsFolder = project.GetSubFolder("Views");
+                var viewsFolder = project.GetSubFolder(viewsFolderName);
                 if (viewsFolder.Files.Where(f => f.Name.Replace(".xaml", string.Empty) == viewModel.Name).Count() == 0)
                     viewsFolder.NewFile(viewModel.Name + ".xaml");
             }

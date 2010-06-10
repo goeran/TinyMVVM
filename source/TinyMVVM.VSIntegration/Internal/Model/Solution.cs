@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
+    /// <summary>
+    /// Aggregated root. Represents a Visual Studio solution.
+    /// </summary>
     public class Solution
     {
         public virtual string Name { get; set; }
