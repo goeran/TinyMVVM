@@ -92,7 +92,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
 
         void TinyMVVM_VSIntegrationPackage_DocumentSaved(Document Document)
         {
-            MessageBox.Show("File saved!");
+            //MessageBox.Show("File saved!");
         }
         #endregion
 
