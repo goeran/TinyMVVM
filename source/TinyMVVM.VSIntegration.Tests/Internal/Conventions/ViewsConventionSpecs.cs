@@ -93,7 +93,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 Then(() =>
                 {
                     project.Items.Where(i => i is Folder && i.Name == "Views").
-                        Count().ShouldNotBe(2);
+                        Count().ShouldBe(1);
                 });
             }
 
