@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TinyMVVM.SemanticModel.MVVM;
+﻿using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
@@ -10,7 +9,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
     /// - add View files for every ViewModel defined in the mvvm file if not already exists.
     ///   A view file = .xaml file
     /// </summary>
-    public class ViewsConvention
+    public class ViewsConvention : IViewModelConvention
     {
         private const string viewsFolderName = "Views";
 
