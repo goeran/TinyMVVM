@@ -24,9 +24,10 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
 
             foreach (var viewModel in mvvmDefinition.ViewModels)
             {
+                var fileName = string.Format("{0}.xaml", viewModel.Name);
                 var viewsFolder = project.GetSubFolder(viewsFolderName);
-                if (!viewsFolder.HasFile(viewModel.Name + ".xaml"))
-                    viewsFolder.NewFile(viewModel.Name + ".xaml");
+                if (!viewsFolder.HasFile(fileName))
+                    viewsFolder.NewFile(fileName);
             }
         }
     }
