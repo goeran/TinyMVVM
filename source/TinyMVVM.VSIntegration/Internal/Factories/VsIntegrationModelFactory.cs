@@ -62,7 +62,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
             }
         }
 
-        private void AddFilesAndFolders(Folder folder, ProjectItem parentVsItem)
+        private void AddFilesAndFolders(Folder parentFolder, ProjectItem parentVsItem)
         {
             for (int x = 1; x <= parentVsItem.ProjectItems.Count; x++)
             {
@@ -73,10 +73,18 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                     newFolder.VsProjectItem = vsItem;
                     newFolder.Name = vsItem.Name;
             
-                    folder.Items.Add(newFolder);
+                    parentFolder.Items.Add(newFolder);
 
                     if (vsItem.ProjectItems.Count > 0)
                         AddFilesAndFolders(newFolder, vsItem);
+                }
+                else if (vsItem.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+                {
+                    var newFile = new FileProxy();
+                    newFile.VsProjectItem = vsItem;
+                    newFile.Name = vsItem.Name;
+
+                    parentFolder.Items.Add(newFile);
                 }
             }
         }
@@ -114,5 +122,6 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
 
     public class FileProxy : File
     {
+        public EnvDTE.ProjectItem VsProjectItem { get; set; }
     }
 }
