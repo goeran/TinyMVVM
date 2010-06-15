@@ -151,6 +151,7 @@
     <Compile Include="Internal\Model\Project.cs" />
     <Compile Include="Internal\Model\ProjectItem.cs" />
     <Compile Include="Internal\Model\Solution.cs" />
+    <Compile Include="Internal\Repositories\SolutionRepository.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,8 +185,6 @@
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Internal\Repositories\" />
-    <Folder Include="Internal\Services\" />
     <Folder Include="Internal\TinyMVVM\Framework\" />
   </ItemGroup>
   <PropertyGroup>
