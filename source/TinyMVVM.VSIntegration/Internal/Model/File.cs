@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
+using IO = System.IO;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
@@ -13,6 +15,30 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             {
                 return Items.Where(i => i is File).Cast<File>();
             }
+        }
+
+        public string Content
+        {
+            get
+            {
+                ThrowExceptionIfFileNotFound();
+
+                using (var sr = new StreamReader(Path))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+        }
+
+        private void ThrowExceptionIfFileNotFound()
+        {
+            if (!IO.File.Exists(Path))
+                throw new FileNotFoundException();
+        }
+
+        public StreamWriter NewFileStream()
+        {
+            return new StreamWriter(Path);
         }
 
         public void NewCodeBehindFile(string name)
