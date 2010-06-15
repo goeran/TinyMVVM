@@ -60,6 +60,7 @@
     <Compile Include="Internal\Conventions\PartialViewModelsConventionSpecs.cs" />
     <Compile Include="Internal\Conventions\ViewModelsConventionsSpecs.cs" />
     <Compile Include="Internal\Conventions\ViewsConventionSpecs.cs" />
+    <Compile Include="Internal\FakeData.cs" />
     <Compile Include="Internal\Model\FileSpecs.cs" />
     <Compile Include="Internal\Model\FolderSpecs.cs" />
     <Compile Include="Internal\Model\ProjectSpecs.cs" />

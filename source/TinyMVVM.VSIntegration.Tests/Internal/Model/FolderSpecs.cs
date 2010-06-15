@@ -13,6 +13,38 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
     public class FolderSpecs
     {
         [TestFixture]
+        public class When_Path_is_not_set : FolderTestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given(Folder_is_created);
+                And("Path is not set", () =>
+                    folder.Path = null);
+            }
+
+            [Test]
+            public void assure_Exception_is_thrown_when_create_SubFolder()
+            {
+                When("create new SubFolder");
+
+                Then(() =>
+                    this.ShouldThrowException<InvalidOperationException>(() =>
+                        folder.NewFolder("hello")));
+            }
+
+            [Test]
+            public void assure_Exception_is_thrown_when_create_File()
+            {
+                When("create new File");
+
+                Then(() =>
+                    this.ShouldThrowException<InvalidOperationException>(() =>
+                        folder.NewFile("test.txt")));
+            }
+        }
+
+        [TestFixture]
         public class When_not_added_to_a_Project : FolderTestScenario
         {
             [SetUp]
@@ -113,12 +145,19 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             protected Context Project_is_created = () =>
             {
-                project = new Project();
+                NewProject();
             };
+
+            private static void NewProject()
+            {
+                project = new Project();
+                project.Path = Environment.CurrentDirectory;
+            }
 
             protected Context Folder_is_created = () =>
             {
                 folder = new Folder();
+                folder.Path = Environment.CurrentDirectory;
             };
         }
     }

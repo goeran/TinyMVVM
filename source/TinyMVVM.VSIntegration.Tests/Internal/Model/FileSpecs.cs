@@ -1,8 +1,8 @@
 ﻿using System;
-using System.IO;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using IO = System.IO;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
-using File = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.File;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 {
@@ -14,7 +14,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             [SetUp]
             public void Setup()
             {
-                Given.File_on_disk_exists();
+                Given.Folder_is_created();
+                And.File_on_disk_exists();
 
                 When.File_is_spawned();
             }
@@ -36,12 +37,33 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
         }
 
         [TestFixture]
+        public class When_File_on_disk_does_not_exists : FileSpecsTestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given.Folder_is_created();
+                And.File_is_created();
+                And.File_on_disk_does_not_exists();
+
+                When.Write_to_file_stream("hello world");
+            }
+
+            [Test]
+            public void Then_assure_file_is_created()
+            {
+                IO.File.Exists(file.Path).ShouldBeTrue();
+            }
+        }
+
+        [TestFixture]
         public class When_create_new_CodeBehind_File : FileSpecsTestScenario
         {
             [SetUp]
             public void Setup()
             {
-                Given.File_is_created();
+                Given.Folder_is_created();
+                And.File_is_created();
             }
 
             [Test]
@@ -58,7 +80,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             [SetUp]
             public void Setup()
             {
-                Given.File_on_disk_exists();
+                Given.Folder_is_created();
                 And.File_is_created();
 
                 When.Write_to_file_stream("hello world");
@@ -74,12 +96,24 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
     public class FileSpecsTestScenario : ScenarioClass<FileSpecsTestScenario>
     {
+        protected Folder folder;
         protected File file;
-        private string path;
+
+        public void Folder_is_created()
+        {
+            folder = new Folder();
+            folder.Path = Environment.CurrentDirectory;
+        }
+
+        public void File_on_disk_does_not_exists()
+        {
+            if (IO.File.Exists(file.Path))
+                IO.File.Delete(file.Path);
+        }
 
         public void File_on_disk_exists()
         {
-            path = Path.Combine(Environment.CurrentDirectory, "test.txt");
+            var path = IO.Path.Combine(folder.Path, "test.txt");
             using (var f = System.IO.File.Create(path));
         }
 
@@ -90,8 +124,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
         public void File_is_spawned()
         {
-            file = new File();
-            file.Path = path;
+            file = folder.NewFile("test.txt");
         }
 
         public void Write_to_file_stream(string content)

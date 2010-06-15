@@ -127,14 +127,10 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
         protected Context Solution_is_created = () =>
         {
-            solution = new Solution();
-            solution.Name = "Rich RememberTheMilk";
-            var rtmProject = new Project();
-            rtmProject.Name = "RichRememberTheMilk";
-            mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
-            solution.Projects.Add(rtmProject);
+            solution = FakeData.VisualStudioSolution;
 
-            project = rtmProject;
+            project = solution.Projects.First();
+            mvvmFile = solution.Projects.First().GetSubFolder("ViewModel").GetFile("viewmodel.mvvm");
         };
 
 

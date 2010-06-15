@@ -87,14 +87,10 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
             protected Context VisualStudio_Solution_exists = () =>
             {
-                solution = new Solution();
-                solution.Name = "Rich RememberTheMilk";
-                var rtmProject = new Project();
-                rtmProject.Name = "RichRemembertheMilk";
-                mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
-                solution.Projects.Add(rtmProject);
+                solution = FakeData.VisualStudioSolution;
 
-                project = rtmProject;
+                project = solution.Projects.First();
+                mvvmFile = solution.Projects.First().GetSubFolder("ViewModel").GetFile("viewmodel.mvvm");
             };
 
             protected Context ViewModel_is_described = () =>

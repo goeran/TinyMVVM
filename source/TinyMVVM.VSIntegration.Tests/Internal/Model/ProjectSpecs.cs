@@ -185,6 +185,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             protected Context Project_is_created = () =>
             {
                 project = new Project();
+                project.Path = Environment.CurrentDirectory;
             };
 
             protected When Project_is_spawned = () =>

@@ -7,6 +7,7 @@ using TinyBDD.Specification.NUnit;
 using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using IO = System.IO;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 {
@@ -68,13 +69,10 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
             public void VisualStudio_solution_exists()
             {
-                solution = new Solution();
-                solution.Name = "RichRememberTheMilk";
-                var rtmProject = new Project();
-                project = rtmProject;
-                rtmProject.Name = "RichRemembertheMilk";
-                mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
-                solution.Projects.Add(rtmProject);
+                solution = FakeData.VisualStudioSolution;
+
+                project = solution.Projects.First();
+                mvvmFile = solution.Projects.First().GetSubFolder("ViewModel").GetFile("viewmodel.mvvm");
             }
 
             public void Convention_is_already_applied()
