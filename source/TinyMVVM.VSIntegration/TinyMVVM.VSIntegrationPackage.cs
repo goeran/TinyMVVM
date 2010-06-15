@@ -12,6 +12,8 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Repositories;
 
 namespace TinyMVVM.TinyMVVM_VSIntegration
 {
@@ -71,6 +73,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             //statusbar.SetText("TinyMVVM");
 
             dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
+
+            var repository = new SolutionRepository(new VsIntegrationModelFactory(dte));
+            var solution = repository.Get();
 
             foreach (ProjectItem projItem in dte.Solution.Projects.Item(1).ProjectItems)
             {
