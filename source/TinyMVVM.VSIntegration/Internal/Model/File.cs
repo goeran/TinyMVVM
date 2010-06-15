@@ -9,6 +9,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
     public class File : ProjectItem
     {
+        internal File()
+        {
+            
+        }
+
         public IEnumerable<File> CodeBehindFiles
         {
             get

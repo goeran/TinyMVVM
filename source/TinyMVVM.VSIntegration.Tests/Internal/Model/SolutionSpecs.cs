@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.Tests;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Model
@@ -37,11 +38,12 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
     public class SolutionTestScenario : NUnitScenarioClass
     {
+        protected static ModelFactory factory = new ModelFactory();
         protected static Solution solution;
 
         protected When Solution_is_spawned = () =>
         {
-            solution = new Solution();
+            solution = factory.NewSolution();
         };
     }
 }

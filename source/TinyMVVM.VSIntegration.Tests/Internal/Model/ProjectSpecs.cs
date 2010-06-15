@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.Tests;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Model
@@ -75,7 +76,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             {
                 Given(Project_is_created);
                 And("It has a folder", () =>
-                    project.Items.Add(new Folder() { Name = "Views" }));
+                    project.NewFolder("Views"));
             }
 
             [Test]
@@ -130,7 +131,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             {
                 Given(Project_is_created);
                 And("it has a file", () =>
-                    project.Items.Add(new File() { Name = "viewmodel.mvvm" }));
+                    project.NewFile("viewmodel.mvvm"));
             }
 
             [Test]
@@ -177,6 +178,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
         public class ModelTestScenario : NUnitScenarioClass
         {
+            private static ModelFactory factory = new ModelFactory();
             protected static Project project;
             protected static IEnumerable<Folder> folders;
             protected static Folder newFolder;
@@ -184,13 +186,13 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             protected Context Project_is_created = () =>
             {
-                project = new Project();
+                project = factory.NewProject();
                 project.Path = Environment.CurrentDirectory;
             };
 
             protected When Project_is_spawned = () =>
             {
-                project = new Project();
+                project = factory.NewProject();
             };
 
             protected When add_new_file = () =>

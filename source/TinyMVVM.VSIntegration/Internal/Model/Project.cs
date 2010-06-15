@@ -2,6 +2,11 @@
 {
     public class Project : Folder
     {
+        internal Project()
+        {
+            
+        }
+
         public virtual string Type { get; set; }
     }
 }

@@ -6,6 +6,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
     public class Folder : ProjectItem
     {
+        internal Folder()
+        {
+            
+        }
+
         public IEnumerable<Folder> Folders
         {
             get { return Items.Where(i => i is Folder).Cast<Folder>(); }

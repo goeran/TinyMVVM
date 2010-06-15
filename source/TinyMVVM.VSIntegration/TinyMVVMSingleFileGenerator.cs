@@ -46,16 +46,34 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
 
             var dir = new FileInfo(project.FullName).Directory.FullName;
 
-            var files = new List<string>()
-                {
-                    Path.Combine(dir, "1" + defaultExtension), 
-                    Path.Combine(dir, "2" + defaultExtension) 
-                };
-            files.ForEach(f =>
+            EnvDTE.ProjectItem item = null;
+
+            for (int i = 1; i <= project.ProjectItems.Count; i++)
             {
-                using (var newFile = File.Create(f));
-                projectItem.ProjectItems.AddFromFile(f);
-            });
+                var name = project.ProjectItems.Item(i).Name;
+                var fileName = project.ProjectItems.Item(i).get_FileNames(0);
+                
+                if (name == "viewmodel.mvvm")
+                {
+                    item = project.ProjectItems.Item(i);
+                    break;
+                }
+            }
+
+            var files = new List<string>()
+            {
+                Path.Combine(dir, "1" + defaultExtension), 
+                Path.Combine(dir, "2" + defaultExtension) 
+            };
+
+            if (item != null)
+            {
+                files.ForEach(f =>
+                {
+                    using (var newFile = File.Create(f));
+                    item.ProjectItems.AddFromFile(f);
+                });
+            }
             
 
             /*byte[] data = null;

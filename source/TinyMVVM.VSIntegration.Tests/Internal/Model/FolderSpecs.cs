@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.Tests;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Model
@@ -137,6 +138,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
         public class FolderTestScenario : NUnitScenarioClass
         {
+            private static ModelFactory factory = new ModelFactory();
             protected static Folder folder;
             protected static bool result;
             protected static Folder subFolder;
@@ -150,13 +152,13 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             private static void NewProject()
             {
-                project = new Project();
+                project = factory.NewProject();
                 project.Path = Environment.CurrentDirectory;
             }
 
             protected Context Folder_is_created = () =>
             {
-                folder = new Folder();
+                folder = factory.NewFolder();
                 folder.Path = Environment.CurrentDirectory;
             };
         }

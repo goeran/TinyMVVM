@@ -1,4 +1,5 @@
 ﻿using System;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 using IO = System.IO;
 using NUnit.Framework;
@@ -96,12 +97,13 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
     public class FileSpecsTestScenario : ScenarioClass<FileSpecsTestScenario>
     {
+        private ModelFactory factory = new ModelFactory();
         protected Folder folder;
         protected File file;
 
         public void Folder_is_created()
         {
-            folder = new Folder();
+            folder = factory.NewFolder();
             folder.Path = Environment.CurrentDirectory;
         }
 

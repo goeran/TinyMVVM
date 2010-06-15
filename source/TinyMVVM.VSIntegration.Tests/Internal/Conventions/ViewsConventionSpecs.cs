@@ -68,10 +68,9 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 And(Solution_is_created);
                 And("Project has 'Views' folder and Views", () =>
                 {
-                    var viewsFolder = new Folder() {Name = "Views"};
-                    project.Items.Add(viewsFolder);
+                    var viewsFolder = project.NewFolder("Views");
 
-                    viewsFolder.Items.Add(new File() { Name = "Login.xaml"});
+                    viewsFolder.NewFile("Login.xaml");
 
                 });
                 And("ViewModel is described", () =>

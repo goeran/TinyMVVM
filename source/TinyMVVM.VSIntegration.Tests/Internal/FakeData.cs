@@ -1,4 +1,5 @@
 ﻿using System;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
 using IO = System.IO;
 
@@ -10,6 +11,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal
         {
             get
             {
+                var modelFactory = new ModelFactory();
+
                 //File paths
                 var visualStudioDir = IO.Path.Combine(Environment.CurrentDirectory, "VisualStudioSolution");
                 var vsSolutionPath = IO.Path.Combine(visualStudioDir, "RichRememberTheMilk.sln");
@@ -26,11 +29,11 @@ namespace TinyMVVM.VSIntegration.Tests.Internal
                 using (var f = IO.File.Create(projectPath)) ;
                 using (var f = IO.File.Create(viewModelFilePath)) ;
 
-                var solution = new Solution();
+                var solution = modelFactory.NewSolution();
                 solution.Name = "RichRememberTheMilk";
                 solution.Path = vsSolutionPath;
 
-                var rtmProject = new Project();
+                var rtmProject = modelFactory.NewProject();
                 rtmProject.Path = projectPath;
                 rtmProject.Name = "RichRemembertheMilk";
                 var mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");

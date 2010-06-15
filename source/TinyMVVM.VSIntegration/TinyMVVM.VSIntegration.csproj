@@ -143,6 +143,8 @@
     <Compile Include="Internal\Conventions\PartialViewModelsConvention.cs" />
     <Compile Include="Internal\Conventions\ViewModelsConvention.cs" />
     <Compile Include="Internal\Conventions\ViewsConvention.cs" />
+    <Compile Include="Internal\Factories\IModelFactory.cs" />
+    <Compile Include="Internal\Factories\ModelFactory.cs" />
     <Compile Include="Internal\Model\File.cs" />
     <Compile Include="Internal\Model\Folder.cs" />
     <Compile Include="Internal\Model\Internal\TreeWalker.cs" />
