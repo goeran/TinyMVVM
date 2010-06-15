@@ -13,7 +13,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
     public class ViewModelsConventionsSpecs
     {
         [TestFixture]
-        public class When_Convention_is_applied : ViewModelConventionsTestScenario<When_Convention_is_applied>
+        public class When_Convention_is_applied : ViewModelConventionsTestScenario
         {
             [SetUp]
             public void Setup()
@@ -26,13 +26,34 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             }
 
             [Test]
-            public void Then_assure_ViewModels_are_created()
+            public void Then_assure_code_behind_files_for_ViewModels_are_created()
             {
                 mvvmFile.CodeBehindFiles.Count().ShouldBe(modelSpecification.ViewModels.Count);
             }
         }
 
-        public class ViewModelConventionsTestScenario<T> : ScenarioClass<T> where T: class
+        [TestFixture]
+        public class When_Convention_is_applied_for_the_nth_time : ViewModelConventionsTestScenario
+        {
+            [SetUp]
+            public void Setup()
+            {
+                Given.VisualStudio_solution_exists();
+                And.ViewModel_is_described();
+                And.ViewModelsConvention_is_created();
+                And.Convention_is_already_applied();
+
+                When.Convention_is_applied();
+            }
+
+            [Test]
+            public void Then_assure_created_code_behind_files_for_ViewModels_are_not_accumulated()
+            {
+                mvvmFile.CodeBehindFiles.Count().ShouldBe(modelSpecification.ViewModels.Count);
+            }
+        }
+
+        public class ViewModelConventionsTestScenario : ScenarioClass<ViewModelConventionsTestScenario>
         {
             private ViewModelsConvention convention;
 
@@ -54,7 +75,11 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
                 rtmProject.Name = "RichRemembertheMilk";
                 mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
                 solution.Projects.Add(rtmProject);
+            }
 
+            public void Convention_is_already_applied()
+            {
+                convention.Apply(modelSpecification, mvvmFile);
             }
 
             protected ModelSpecification modelSpecification;

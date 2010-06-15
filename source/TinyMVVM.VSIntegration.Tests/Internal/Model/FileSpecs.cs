@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
