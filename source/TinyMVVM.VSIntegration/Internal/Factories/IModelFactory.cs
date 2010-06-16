@@ -6,7 +6,5 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     {
         Solution NewSolution();
         Project NewProject();
-        Folder NewFolder();
-        File NewFile();
     }
 }

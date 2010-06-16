@@ -103,8 +103,11 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
         public void Folder_is_created()
         {
-            folder = factory.NewFolder();
-            folder.Path = Environment.CurrentDirectory;
+            IO.Directory.CreateDirectory(IO.Path.Combine(Environment.CurrentDirectory, "ViewModel"));
+
+            var proj = factory.NewProject();
+            proj.Path = Environment.CurrentDirectory;
+            folder = proj.NewFolder("ViewModel");
         }
 
         public void File_on_disk_does_not_exists()

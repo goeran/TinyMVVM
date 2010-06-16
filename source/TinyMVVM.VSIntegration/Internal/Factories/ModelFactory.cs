@@ -14,15 +14,5 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
         {
             return new Project();
         }
-
-        public Folder NewFolder()
-        {
-            return new Folder();
-        }
-
-        public File NewFile()
-        {
-            return new File();
-        }
     }
 }

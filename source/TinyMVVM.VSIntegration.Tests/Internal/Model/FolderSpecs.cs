@@ -46,24 +46,6 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
         }
 
         [TestFixture]
-        public class When_not_added_to_a_Project : FolderTestScenario
-        {
-            [SetUp]
-            public void Setup()
-            {
-                Given(Folder_is_created);
-            }
-
-            [Test]
-            public void assure_Project_is_not_found()
-            {
-                When("Get Project");
-
-                Then(() => folder.Project.ShouldBeNull());
-            }
-        }
-
-        [TestFixture]
         public class When_check_if_SubFolder_exists : FolderTestScenario
         {
             [SetUp]
@@ -158,7 +140,9 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             protected Context Folder_is_created = () =>
             {
-                folder = factory.NewFolder();
+                NewProject();
+
+                folder = project.NewFolder("ViewModel");
                 folder.Path = Environment.CurrentDirectory;
             };
         }

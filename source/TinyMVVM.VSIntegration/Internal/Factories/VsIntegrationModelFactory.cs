@@ -93,16 +93,6 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
         {
             return new ProjectProxy();
         }
-
-        public Folder NewFolder()
-        {
-            return new FolderProxy();
-        }
-
-        public File NewFile()
-        {
-            return new FileProxy();
-        }
     }
 
     public class SolutionProxy : Solution
