@@ -9,6 +9,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using VSLangProj80;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 
@@ -40,8 +41,15 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
         {
             pcbOutput = 1;
 
-            var dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
             var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
+            var dte = projectItem.DTE;
+            //var dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
+
+            var factory = new VsIntegrationModelFactory(dte);
+            var solution = factory.NewSolution();
+            solution.Projects.First().NewFolder("HelloWorld");
+            
+            /*var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
             var project = projectItem.ContainingProject;
 
             var dir = new FileInfo(project.FullName).Directory.FullName;
@@ -73,7 +81,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
                     using (var newFile = File.Create(f));
                     item.ProjectItems.AddFromFile(f);
                 });
-            }
+            }*/
             
 
             /*byte[] data = null;

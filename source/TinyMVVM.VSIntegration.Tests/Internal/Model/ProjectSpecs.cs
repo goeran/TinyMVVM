@@ -25,7 +25,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             [Test]
             public void assure_it_has_a_Name()
             {
-                Then(() => project.Name.ShouldBeNull());
+                Then(() => project.Name.ShouldNotBeNull());
             }
 
             [Test]
@@ -186,13 +186,19 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             protected Context Project_is_created = () =>
             {
-                project = factory.NewProject();
-                project.Path = Environment.CurrentDirectory;
+                NewProject();
             };
+
+            private static void NewProject()
+            {
+                project = factory.NewProject();
+                project.Name = "RichRememberTheMilk.proj";
+                project.DirectoryPath = Environment.CurrentDirectory;
+            }
 
             protected When Project_is_spawned = () =>
             {
-                project = factory.NewProject();
+                NewProject();
             };
 
             protected When add_new_file = () =>

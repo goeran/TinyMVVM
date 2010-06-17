@@ -13,7 +13,14 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
         public virtual List<ProjectItem> Items { get; private set; }
         public virtual string Name { get; set; }
         public virtual Folder Parent { get; internal set; }
-        public virtual string Path { get; set; }
+        public virtual string DirectoryPath { get; set; }
+        public virtual string Path
+        { 
+            get
+            {
+                return System.IO.Path.Combine(DirectoryPath, Name);        
+            }
+        }
 
         public Project Project
         {

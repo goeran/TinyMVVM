@@ -73,8 +73,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
 
             dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
 
-            var factory = new VsIntegrationModelFactory(dte);
-            var solution = factory.NewSolution();
+            //var factory = new VsIntegrationModelFactory(dte);
+            //var solution = factory.NewSolution();
 
             foreach (ProjectItem projItem in dte.Solution.Projects.Item(1).ProjectItems)
             {

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell.Interop;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using File = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.File;
 using Project = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Project;
 using ProjectItem = EnvDTE.ProjectItem;
 using Solution = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Solution;
@@ -31,7 +34,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                 var vsProject = dte.Solution.Projects.Item(i);
                 var project = new ProjectProxy();
                 project.VsProject = vsProject;
-                project.Path = vsProject.FullName;
+                project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
                 project.Name = vsProject.Name;
                 solution.Projects.Add(project);
 
@@ -103,11 +106,35 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     public class ProjectProxy : Project 
     {
         public EnvDTE.Project VsProject { get; set; }
+
+        public override Folder NewFolder(string name)
+        {
+            var result = base.NewFolder(name);
+
+            var directory = System.IO.Path.Combine(Path, name);
+            //if (Directory.Exists(directory))
+
+            if (Directory.Exists(directory))
+                VsProject.ProjectItems.AddFromDirectory(directory);
+            else
+                VsProject.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
+
+            return result;
+        }
     }
 
     public class FolderProxy : Folder
     {
         public EnvDTE.ProjectItem VsProjectItem { get; set; }
+
+        public override Folder NewFolder(string name)
+        {
+            var result = base.NewFolder(name);
+
+            VsProjectItem.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
+
+            return result;
+        }
     }
 
     public class FileProxy : File

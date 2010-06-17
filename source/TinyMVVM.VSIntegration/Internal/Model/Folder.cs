@@ -21,7 +21,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             get { return Items.Where(i => i is File).Cast<File>(); }
         }
 
-        public Folder NewFolder(string name)
+        public virtual Folder NewFolder(string name)
         {
             if (HasFolder(name))
                 throw new ArgumentException("Folder already exists");
@@ -29,7 +29,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 
             var newFolder = new Folder() { Name = name };
             newFolder.Parent = this;
-            newFolder.Path = System.IO.Path.Combine(Path, name);
+            newFolder.DirectoryPath = DirectoryPath;
             Items.Add(newFolder);
 
             return newFolder;
@@ -37,7 +37,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 
         private void ThrowExceptionIfPathIsNotSet()
         {
-            if (Path == null) throw new InvalidOperationException("Path must be specified before SubFolder/File can be created");
+            if (DirectoryPath == null) throw new InvalidOperationException("DirectoryPath must be specified before SubFolder/File can be created");
         }
 
         public File NewFile(string name)
@@ -48,7 +48,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 
             var newFile = new File() { Name = name };
             newFile.Parent = this;
-            newFile.Path = System.IO.Path.Combine(Path, name);
+            newFile.DirectoryPath = DirectoryPath;
             Items.Add(newFile);
 
             return newFile;

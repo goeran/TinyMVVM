@@ -14,14 +14,14 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
     public class FolderSpecs
     {
         [TestFixture]
-        public class When_Path_is_not_set : FolderTestScenario
+        public class When_DirectoryPath_is_not_set : FolderTestScenario
         {
             [SetUp]
             public void Setup()
             {
                 Given(Folder_is_created);
                 And("Path is not set", () =>
-                    folder.Path = null);
+                    folder.DirectoryPath = null);
             }
 
             [Test]
@@ -135,7 +135,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             private static void NewProject()
             {
                 project = factory.NewProject();
-                project.Path = Environment.CurrentDirectory;
+                project.Name = "RichRememberTheMilk";
+                project.DirectoryPath = Environment.CurrentDirectory;
             }
 
             protected Context Folder_is_created = () =>
@@ -143,7 +144,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
                 NewProject();
 
                 folder = project.NewFolder("ViewModel");
-                folder.Path = Environment.CurrentDirectory;
+                folder.DirectoryPath = Environment.CurrentDirectory;
             };
         }
     }
