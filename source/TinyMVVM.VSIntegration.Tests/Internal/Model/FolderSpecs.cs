@@ -118,6 +118,29 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             }
         }
 
+    	[TestFixture]
+    	public class When_get_Path_for_folder : FolderTestScenario
+    	{
+    		[SetUp]
+    		public void Setup()
+    		{
+    			Given(Project_is_created);
+    			And(Folder_is_created);
+
+				When("Get Path", () =>
+					path = folder.Path);
+    		}
+
+    		[Test]
+    		public void assure_Path_is_the_same_as_DirectoryPath()
+    		{
+    			Then(() =>
+    			{
+    				path.ShouldBe(folder.DirectoryPath);
+    			});
+    		}
+    	}
+
         public class FolderTestScenario : NUnitScenarioClass
         {
             private static ModelFactory factory = new ModelFactory();
@@ -126,6 +149,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             protected static Folder subFolder;
             protected static Folder subSubFolder;
             protected static Project project;
+        	protected static string path;
 
             protected Context Project_is_created = () =>
             {
@@ -136,7 +160,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
             {
                 project = factory.NewProject();
                 project.Name = "RichRememberTheMilk";
-                project.DirectoryPath = Environment.CurrentDirectory;
+            	project.DirectoryPath = System.IO.Path.Combine(Environment.CurrentDirectory, "RichRememberTheMilk");
             }
 
             protected Context Folder_is_created = () =>
@@ -144,7 +168,6 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
                 NewProject();
 
                 folder = project.NewFolder("ViewModel");
-                folder.DirectoryPath = Environment.CurrentDirectory;
             };
         }
     }

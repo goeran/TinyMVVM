@@ -32,20 +32,24 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
             for (int i = 1; i <= dte.Solution.Projects.Count; i++)
             {
                 var vsProject = dte.Solution.Projects.Item(i);
-                var project = new ProjectProxy();
-                project.VsProject = vsProject;
-                project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
-                project.Name = vsProject.Name;
-                solution.Projects.Add(project);
 
-                for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
-                {
-                    var item = vsProject.ProjectItems.Item(x);
-                    if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
-                    {
-                        AddSubFolderInProject(project, item);
-                    }
-                }
+				if (vsProject.FullName != null && vsProject.FullName != string.Empty)
+				{
+					var project = new ProjectProxy();
+					project.VsProject = vsProject;
+					project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
+					project.Name = vsProject.Name;
+					solution.Projects.Add(project);
+
+					for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
+					{
+						var item = vsProject.ProjectItems.Item(x);
+						if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+						{
+							AddSubFolderInProject(project, item);
+						}
+					}
+				}
             }
 
             return solution;
@@ -111,11 +115,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
         {
             var result = base.NewFolder(name);
 
-            var directory = System.IO.Path.Combine(Path, name);
-            //if (Directory.Exists(directory))
-
-            if (Directory.Exists(directory))
-                VsProject.ProjectItems.AddFromDirectory(directory);
+            if (Directory.Exists(result.Path))
+                VsProject.ProjectItems.AddFromDirectory(result.Path);
             else
                 VsProject.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
 

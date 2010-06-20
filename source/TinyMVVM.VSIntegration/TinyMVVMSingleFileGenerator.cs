@@ -47,7 +47,10 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
 
             var factory = new VsIntegrationModelFactory(dte);
             var solution = factory.NewSolution();
-            solution.Projects.First().NewFolder("HelloWorld");
+
+        	var proj = solution.Projects.First();
+			if (!proj.HasFolder("HelloWorld"))
+	          proj.NewFolder("HelloWorld");
             
             /*var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
             var project = projectItem.ContainingProject;

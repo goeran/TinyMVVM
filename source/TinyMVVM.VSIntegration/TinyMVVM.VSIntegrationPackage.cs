@@ -76,22 +76,22 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             //var factory = new VsIntegrationModelFactory(dte);
             //var solution = factory.NewSolution();
 
-            foreach (ProjectItem projItem in dte.Solution.Projects.Item(1).ProjectItems)
-            {
-                var fileInfo = new FileInfo(projItem.Name);
-                if (fileInfo.Extension == ".cs")
-                {
-                    docs.Add(projItem.Document);
-                }
-            }
+			//foreach (ProjectItem projItem in dte.Solution.Projects.Item(1).ProjectItems)
+			//{
+			//    var fileInfo = new FileInfo(projItem.Name);
+			//    if (fileInfo.Extension == ".cs")
+			//    {
+			//        docs.Add(projItem.Document);
+			//    }
+			//}
 
-            docs.ForEach(d =>
-            {
-                var events = dte.Events.get_DocumentEvents(d);
-                docsEvents.Add(events);
+			//docs.ForEach(d =>
+			//{
+			//    var events = dte.Events.get_DocumentEvents(d);
+			//    docsEvents.Add(events);
 
-                events.DocumentSaved += new _dispDocumentEvents_DocumentSavedEventHandler(TinyMVVM_VSIntegrationPackage_DocumentSaved);
-            });
+			//    events.DocumentSaved += new _dispDocumentEvents_DocumentSavedEventHandler(TinyMVVM_VSIntegrationPackage_DocumentSaved);
+			//});
         }
 
         void TinyMVVM_VSIntegrationPackage_DocumentSaved(Document Document)

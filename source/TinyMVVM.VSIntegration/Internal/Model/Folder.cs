@@ -11,7 +11,15 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             
         }
 
-        public IEnumerable<Folder> Folders
+		public override string Path
+		{
+			get
+			{
+				return DirectoryPath;
+			}
+		}
+
+	    public IEnumerable<Folder> Folders
         {
             get { return Items.Where(i => i is Folder).Cast<Folder>(); }
         }
@@ -29,7 +37,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 
             var newFolder = new Folder() { Name = name };
             newFolder.Parent = this;
-            newFolder.DirectoryPath = DirectoryPath;
+            newFolder.DirectoryPath = System.IO.Path.Combine(DirectoryPath, name);
             Items.Add(newFolder);
 
             return newFolder;
