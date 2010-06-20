@@ -48,7 +48,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             if (DirectoryPath == null) throw new InvalidOperationException("DirectoryPath must be specified before SubFolder/File can be created");
         }
 
-        public File NewFile(string name)
+        public virtual File NewFile(string name)
         {
             if (HasFile(name))
                 throw new ArgumentException("File already exists");

@@ -60,7 +60,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
             var newFolder = new FolderProxy();
             newFolder.VsProjectItem = vsProjectItem;
             newFolder.Name = vsProjectItem.Name;
-            
+        	newFolder.Parent = project;
+        	newFolder.DirectoryPath = new System.IO.DirectoryInfo(vsProjectItem.get_FileNames(0)).FullName;
+
             project.Items.Add(newFolder);
                     
             if (vsProjectItem.ProjectItems.Count > 0)
@@ -79,6 +81,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                     var newFolder = new FolderProxy();
                     newFolder.VsProjectItem = vsItem;
                     newFolder.Name = vsItem.Name;
+                	newFolder.Parent = parentFolder;
+					newFolder.DirectoryPath = new System.IO.DirectoryInfo(vsItem.get_FileNames(0)).FullName;
             
                     parentFolder.Items.Add(newFolder);
 
@@ -90,6 +94,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                     var newFile = new FileProxy();
                     newFile.VsProjectItem = vsItem;
                     newFile.Name = vsItem.Name;
+                	newFile.Parent = parentFolder;
+					newFile.DirectoryPath = new System.IO.FileInfo(vsItem.get_FileNames(0)).Directory.FullName;
+
 
                     parentFolder.Items.Add(newFile);
                 }
@@ -136,10 +143,29 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
 
             return result;
         }
+
+		public override File NewFile(string name)
+		{
+			var result = base.NewFile(name);
+
+			using (var f = result.NewFileStream()) ;
+			VsProjectItem.ProjectItems.AddFromFile(result.Path);
+
+			return result;
+		}
     }
 
     public class FileProxy : File
     {
         public EnvDTE.ProjectItem VsProjectItem { get; set; }
+
+		public override void NewCodeBehindFile(string name)
+		{
+			base.NewCodeBehindFile(name);
+
+			var file = CodeBehindFiles.Last();
+			using (var f = file.NewFileStream()) ;
+			VsProjectItem.ProjectItems.AddFromFile(file.Path);
+		}
     }
 }

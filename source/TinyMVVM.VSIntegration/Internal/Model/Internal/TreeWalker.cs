@@ -9,7 +9,7 @@
         /// <returns></returns>
         public static Project FindProject(ProjectItem item)
         {
-            if (item.GetType() == typeof(Project))
+            if (item is Project)
                 return item as Project;
             else if (item.Parent == null)
                 return null;

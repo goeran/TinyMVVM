@@ -9,6 +9,8 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using TinyMVVM.DSL.TextParser;
+using TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions;
 using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
 using VSLangProj80;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
@@ -48,9 +50,22 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             var factory = new VsIntegrationModelFactory(dte);
             var solution = factory.NewSolution();
 
-        	var proj = solution.Projects.First();
-			if (!proj.HasFolder("HelloWorld"))
-	          proj.NewFolder("HelloWorld");
+        	var p = new Parser();
+			var spec = p.Parse(Code.Inline(bstrInputFileContents));
+
+			//TODO: grab this file based on the path (wszInputFilePath)
+        	var mvvmFile = solution.Projects.First().GetSubFolder("ViewModel").GetFile("viewmodel.mvvm");
+
+			var viewModelsConvention = new ViewModelsConvention();
+			viewModelsConvention.Apply(spec, mvvmFile);
+
+			var viewsConvention = new ViewsConvention();
+			viewsConvention.Apply(spec, mvvmFile);
+
+        	var partialViewModelsConvention = new PartialViewModelsConvention();
+			partialViewModelsConvention.Apply(spec, mvvmFile);
+
+			//TODO: create a controller convention
             
             /*var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
             var project = projectItem.ContainingProject;
@@ -99,7 +114,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             rgbOutputFileContents[0] = Marshal.AllocCoTaskMem(outputLength);
             Marshal.Copy(data, 0, rgbOutputFileContents[0], outputLength);
             Marshal.Copy(data, 0, rgbOutputFileContents[1], outputLength);
-            pcbOutput = (uint)outputLength;*/
+            pcbOutput = (uint)outputLength;*/;
             
             return VSConstants.S_OK;
         }

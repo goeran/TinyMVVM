@@ -111,6 +111,33 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\Code.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\Code.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\CodeFile.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\CodeFile.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\ICodeLoader.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\ICodeLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\ILexicalAnalyzer.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\ILexicalAnalyzer.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\InlineCode.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\InlineCode.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\InvalidSyntaxException.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\InvalidSyntaxException.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\Parser.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\Parser.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\Scanner.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\Scanner.cs</Link>
+    </Compile>
+    <Compile Include="..\TinyMVVM\DSL\TextParser\Token.cs">
+      <Link>Internal\TinyMVVM\DSL\TextParser\Token.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs">
       <Link>Internal\TinyMVVM\SemanticModel\MVVM\ModelSpecification.cs</Link>
     </Compile>

@@ -86,6 +86,19 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
                 Then(() => subFolder.ShouldNotBeNull());
             }
 
+        	[Test]
+        	public void assure_DirectoryPath_and_Path_is_set()
+        	{
+				When("get sub folder by name", () =>
+					subFolder = folder.GetSubFolder("Views"));
+
+        		Then(() =>
+        		{
+					subFolder.DirectoryPath.ShouldBe(System.IO.Path.Combine(folder.DirectoryPath, "Views"));
+					subFolder.Path.ShouldBe(subFolder.DirectoryPath);
+        		});
+        	}
+
             [Test]
             public void assure_Exception_is_thrown_if_sub_folder_doesnt_exist()
             {

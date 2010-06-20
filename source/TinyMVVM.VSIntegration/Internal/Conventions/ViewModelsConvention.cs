@@ -11,6 +11,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
     {
         public void Apply(ModelSpecification viewModelSpecification, File mvvmFile)
         {
+			//TODO: This convention should always override code behind files
             foreach (var viewModel in viewModelSpecification.ViewModels)
             {
                 var fileName = string.Format("{0}.mvvm.cs", viewModel.Name);

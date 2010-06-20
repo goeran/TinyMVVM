@@ -46,11 +46,14 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
             return new StreamWriter(Path);
         }
 
-        public void NewCodeBehindFile(string name)
+        public virtual void NewCodeBehindFile(string name)
         {
             if (name == null) throw new ArgumentNullException();
 
-            Items.Add(new File() { Name = name });
+        	var newFile = new File() {Name = name};
+        	newFile.DirectoryPath = DirectoryPath;
+
+            Items.Add(newFile);
         }
 
         public bool HasCodeBehindFile(string name)
