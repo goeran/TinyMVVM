@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
+namespace TinyMVVM.VSIntegration.Internal.Model
 {
     /// <summary>
     /// Aggregated root. Represents a Visual Studio solution.

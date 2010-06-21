@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell.Interop;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
-using File = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.File;
-using Project = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Project;
+using TinyMVVM.VSIntegration.Internal.Model;
+using File = TinyMVVM.VSIntegration.Internal.Model.File;
+using Project = TinyMVVM.VSIntegration.Internal.Model.Project;
 using ProjectItem = EnvDTE.ProjectItem;
-using Solution = TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Solution;
+using Solution = TinyMVVM.VSIntegration.Internal.Model.Solution;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
+namespace TinyMVVM.VSIntegration.Internal.Factories
 {
     internal class VsIntegrationModelFactory : IModelFactory
     {

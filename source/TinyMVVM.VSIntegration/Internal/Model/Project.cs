@@ -1,4 +1,4 @@
-﻿namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
+﻿namespace TinyMVVM.VSIntegration.Internal.Model
 {
     public class Project : Folder
     {

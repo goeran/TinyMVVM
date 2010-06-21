@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
+namespace TinyMVVM.VSIntegration.Internal.Model
 {
     public class Folder : ProjectItem
     {

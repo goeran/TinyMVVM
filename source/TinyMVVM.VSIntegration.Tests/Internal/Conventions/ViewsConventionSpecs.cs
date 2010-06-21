@@ -7,8 +7,8 @@ using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.Tests;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Conventions;
+using TinyMVVM.VSIntegration.Internal.Model;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 {

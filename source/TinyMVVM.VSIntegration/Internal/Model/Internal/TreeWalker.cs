@@ -1,4 +1,4 @@
-﻿namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Internal
+﻿namespace TinyMVVM.VSIntegration.Internal.Model.Internal
 {
     internal class TreeWalker
     {

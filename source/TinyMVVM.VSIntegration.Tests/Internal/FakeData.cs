@@ -1,6 +1,6 @@
 ﻿using System;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Factories;
+using TinyMVVM.VSIntegration.Internal.Model;
 using IO = System.IO;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TinyMVVM.SemanticModel.MVVM;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
+namespace TinyMVVM.VSIntegration.Internal.Conventions
 {
     public class ViewModelsConvention : IViewModelConvention
     {

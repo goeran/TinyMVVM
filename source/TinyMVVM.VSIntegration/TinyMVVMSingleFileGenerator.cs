@@ -10,12 +10,12 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using TinyMVVM.DSL.TextParser;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
+using TinyMVVM.VSIntegration.Internal.Conventions;
+using TinyMVVM.VSIntegration.Internal.Factories;
 using VSLangProj80;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration
+namespace TinyMVVM.VSIntegration
 {
     [ComVisible(true)]
     [Guid("7A1FEC42-0F41-4B81-955F-87878ECDC30E")]

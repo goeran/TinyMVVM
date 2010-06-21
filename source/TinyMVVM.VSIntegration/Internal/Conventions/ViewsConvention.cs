@@ -1,7 +1,7 @@
 ﻿using TinyMVVM.SemanticModel.MVVM;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions
+namespace TinyMVVM.VSIntegration.Internal.Conventions
 {
     /// <summary>
     /// This convention does two thing:

@@ -2,7 +2,7 @@
 // MUST match guids.h
 using System;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration
+namespace TinyMVVM.VSIntegration
 {
     static class GuidList
     {

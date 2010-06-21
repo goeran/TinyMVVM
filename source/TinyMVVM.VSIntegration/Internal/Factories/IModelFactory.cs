@@ -1,6 +1,6 @@
-﻿using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+﻿using TinyMVVM.VSIntegration.Internal.Model;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
+namespace TinyMVVM.VSIntegration.Internal.Factories
 {
     public interface IModelFactory
     {

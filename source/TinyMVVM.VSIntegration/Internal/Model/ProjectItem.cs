@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model.Internal;
+using TinyMVVM.VSIntegration.Internal.Model.Internal;
 
-namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
+namespace TinyMVVM.VSIntegration.Internal.Model
 {
     public class ProjectItem
     {

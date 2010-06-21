@@ -6,8 +6,8 @@ using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.Tests;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Factories;
+using TinyMVVM.VSIntegration.Internal.Model;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 {

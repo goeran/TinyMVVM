@@ -5,8 +5,8 @@ using System.Text;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.SemanticModel.MVVM;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Conventions;
-using TinyMVVM.TinyMVVM_VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Conventions;
+using TinyMVVM.VSIntegration.Internal.Model;
 using IO = System.IO;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
