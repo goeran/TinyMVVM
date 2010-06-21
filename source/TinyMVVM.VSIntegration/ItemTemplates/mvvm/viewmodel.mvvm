@@ -1,0 +1,9 @@
+﻿using System
+
+viewmodel Login:
+	property Username as string
+	property Password as string
+	oprooperty Status as string
+
+	command Login
+	command Cancel

@@ -1,0 +1,14 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>MVVM DSL.mvvm</DefaultName>
+    <Name>MVVM DSL</Name>
+    <Description>A domain specific language for developing Silverlight/WPF applications based on the Model-View-ViewModel design pattern</Description>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>10</SortOrder>
+    <Icon>MVVMDslIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem SubType="" TargetFileName="$fileinputname$.mvvm" ReplaceParameters="false">viewmodel.mvvm</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

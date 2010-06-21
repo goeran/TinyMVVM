@@ -199,6 +199,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ItemTemplates\mvvm\viewmodel.mvvm">
+      <Generator>MVVMGenerator</Generator>
+    </None>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -207,6 +210,8 @@
     <None Include="Key.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ItemTemplates\mvvm\MVVMDslIcon.ico" />
+    <Content Include="ItemTemplates\mvvm\MyTemplate.vstemplate" />
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
