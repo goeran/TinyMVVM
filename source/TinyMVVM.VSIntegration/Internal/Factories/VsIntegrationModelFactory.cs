@@ -23,9 +23,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
             this.dte = dte;
         }
 
-        public Solution NewSolution()
+        public Solution NewSolution(string path)
         {
-            var solution = new SolutionProxy();
+            var solution = new SolutionProxy(path);
             solution.VsSolution = dte.Solution;
             solution.Path = dte.Solution.FullName;
 
@@ -102,7 +102,12 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     public class SolutionProxy : Solution
     {
         public EnvDTE.Solution VsSolution { get; set; }
-    }
+    
+		internal SolutionProxy(string path) : base(path)
+		{
+			
+		}
+	}
 
     public class ProjectProxy : Project 
     {

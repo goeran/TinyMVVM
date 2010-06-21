@@ -5,9 +5,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
 {
     public class ModelFactory : IModelFactory
     {
-        public Solution NewSolution()
+        public Solution NewSolution(string path)
         {
-            return new Solution();
+            return new Solution(path);
         }
     }
 }

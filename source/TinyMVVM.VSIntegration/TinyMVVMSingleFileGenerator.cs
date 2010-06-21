@@ -48,7 +48,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration
             //var dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
 
             var factory = new VsIntegrationModelFactory(dte);
-            var solution = factory.NewSolution();
+            var solution = factory.NewSolution(dte.FullName);
 
         	var p = new Parser();
 			var spec = p.Parse(Code.Inline(bstrInputFileContents));

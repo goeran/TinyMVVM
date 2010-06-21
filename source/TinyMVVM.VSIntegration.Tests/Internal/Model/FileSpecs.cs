@@ -105,7 +105,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
         {
             IO.Directory.CreateDirectory(IO.Path.Combine(Environment.CurrentDirectory, "ViewModel"));
 
-        	var solution = new ModelFactory().NewSolution();
+        	var solution = new ModelFactory().NewSolution(System.IO.Path.Combine(Environment.CurrentDirectory, "Test.sln"));
         	solution.Path = Environment.CurrentDirectory;
             var proj = solution.NewProject("Project");
             proj.DirectoryPath = Environment.CurrentDirectory;

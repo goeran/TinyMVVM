@@ -43,7 +43,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
         protected When Solution_is_spawned = () =>
         {
-            solution = factory.NewSolution();
+            solution = factory.NewSolution(System.IO.Path.Combine(Environment.CurrentDirectory, "Test.sln"));
         };
     }
 }

@@ -7,8 +7,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
     /// </summary>
     public class Solution
     {
-        internal Solution()
+        internal Solution(string path)
         {
+        	Path = path;
             Projects = new List<Project>();
         }
 
