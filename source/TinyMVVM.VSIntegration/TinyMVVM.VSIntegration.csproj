@@ -184,7 +184,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="TinyMVVM.VSIntegrationPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TinyMVVMSingleFileGenerator.cs" />
+    <Compile Include="MVVMGenerator.cs" />
     <Compile Include="vssdk\CodeGeneratorRegistrationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
