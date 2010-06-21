@@ -191,8 +191,9 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Model
 
             private static void NewProject()
             {
-                project = factory.NewProject();
-                project.Name = "RichRememberTheMilk.proj";
+            	var solution = factory.NewSolution();
+            	solution.Path = Environment.CurrentDirectory;
+                project = solution.NewProject("RichRememberTheMilk.proj");
                 project.DirectoryPath = Environment.CurrentDirectory;
             }
 

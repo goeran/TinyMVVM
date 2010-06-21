@@ -6,10 +6,15 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
     public class Folder : ProjectItem
     {
-        internal Folder()
-        {
-            
-        }
+		internal Folder(string name, Folder parentFolder)
+		{
+			Name = name;
+			if (parentFolder != null)
+			{
+				Parent = parentFolder;
+				DirectoryPath = System.IO.Path.Combine(parentFolder.DirectoryPath, name);
+			}
+		}
 
 		public override string Path
 		{
@@ -35,9 +40,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
                 throw new ArgumentException("Folder already exists");
             ThrowExceptionIfPathIsNotSet();
 
-            var newFolder = new Folder() { Name = name };
-            newFolder.Parent = this;
-            newFolder.DirectoryPath = System.IO.Path.Combine(DirectoryPath, name);
+        	var newFolder = new Folder(name, this);
             Items.Add(newFolder);
 
             return newFolder;
@@ -54,7 +57,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
                 throw new ArgumentException("File already exists");
             ThrowExceptionIfPathIsNotSet();
 
-            var newFile = new File() { Name = name };
+            var newFile = new File(this) { Name = name };
             newFile.Parent = this;
             newFile.DirectoryPath = DirectoryPath;
             Items.Add(newFile);

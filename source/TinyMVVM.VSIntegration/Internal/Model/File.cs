@@ -9,9 +9,12 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
 {
     public class File : ProjectItem
     {
-        internal File()
+        internal File(Folder parentFolder)
         {
-            
+			if (parentFolder == null) throw new ArgumentNullException();
+
+        	Parent = parentFolder;
+        	DirectoryPath = parentFolder.Path;
         }
 
         public IEnumerable<File> CodeBehindFiles
@@ -50,7 +53,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Model
         {
             if (name == null) throw new ArgumentNullException();
 
-        	var newFile = new File() {Name = name};
+        	var newFile = new File(Parent) {Name = name};
         	newFile.DirectoryPath = DirectoryPath;
 
             Items.Add(newFile);

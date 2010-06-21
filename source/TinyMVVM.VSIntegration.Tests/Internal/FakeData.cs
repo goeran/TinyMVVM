@@ -33,9 +33,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal
                 solution.Name = "RichRememberTheMilk";
                 solution.Path = vsSolutionPath;
 
-                var rtmProject = modelFactory.NewProject();
+                var rtmProject = solution.NewProject("RichRememberTheMilk");
                 rtmProject.DirectoryPath = projectDir;
-                rtmProject.Name = "RichRemembertheMilk";
                 var mvvmFile = rtmProject.NewFolder("ViewModel").NewFile("viewmodel.mvvm");
                 mvvmFile.DirectoryPath = viewModelFolderDir;
                 solution.Projects.Add(rtmProject);

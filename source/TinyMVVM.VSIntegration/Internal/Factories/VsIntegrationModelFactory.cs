@@ -35,10 +35,9 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
 
 				if (vsProject.FullName != null && vsProject.FullName != string.Empty)
 				{
-					var project = new ProjectProxy();
+					var project = new ProjectProxy(vsProject.Name);
 					project.VsProject = vsProject;
 					project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
-					project.Name = vsProject.Name;
 					solution.Projects.Add(project);
 
 					for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
@@ -57,10 +56,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
 
         private void AddSubFolderInProject(Project project, ProjectItem vsProjectItem)
         {
-            var newFolder = new FolderProxy();
+            var newFolder = new FolderProxy(vsProjectItem.Name, project);
             newFolder.VsProjectItem = vsProjectItem;
-            newFolder.Name = vsProjectItem.Name;
-        	newFolder.Parent = project;
         	newFolder.DirectoryPath = new System.IO.DirectoryInfo(vsProjectItem.get_FileNames(0)).FullName;
 
             project.Items.Add(newFolder);
@@ -78,10 +75,8 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                 var vsItem = parentVsItem.ProjectItems.Item(x);
                 if (vsItem.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
                 {
-                    var newFolder = new FolderProxy();
+                    var newFolder = new FolderProxy(vsItem.Name, parentFolder);
                     newFolder.VsProjectItem = vsItem;
-                    newFolder.Name = vsItem.Name;
-                	newFolder.Parent = parentFolder;
 					newFolder.DirectoryPath = new System.IO.DirectoryInfo(vsItem.get_FileNames(0)).FullName;
             
                     parentFolder.Items.Add(newFolder);
@@ -91,7 +86,7 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                 }
                 else if (vsItem.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
                 {
-                    var newFile = new FileProxy();
+                    var newFile = new FileProxy(parentFolder);
                     newFile.VsProjectItem = vsItem;
                     newFile.Name = vsItem.Name;
                 	newFile.Parent = parentFolder;
@@ -101,11 +96,6 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
                     parentFolder.Items.Add(newFile);
                 }
             }
-        }
-
-        public Project NewProject()
-        {
-            return new ProjectProxy();
         }
     }
 
@@ -117,6 +107,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     public class ProjectProxy : Project 
     {
         public EnvDTE.Project VsProject { get; set; }
+
+		internal ProjectProxy(string name) : base(name)
+		{
+			
+		}
 
         public override Folder NewFolder(string name)
         {
@@ -134,6 +129,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     public class FolderProxy : Folder
     {
         public EnvDTE.ProjectItem VsProjectItem { get; set; }
+
+		internal FolderProxy(string name, Folder parentFolder) : base(name, parentFolder)
+		{
+			
+		}
 
         public override Folder NewFolder(string name)
         {
@@ -158,6 +158,11 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
     public class FileProxy : File
     {
         public EnvDTE.ProjectItem VsProjectItem { get; set; }
+
+		internal FileProxy(Folder parentFolder) : base(parentFolder)
+		{
+			
+		}
 
 		public override void NewCodeBehindFile(string name)
 		{

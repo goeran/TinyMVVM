@@ -9,10 +9,5 @@ namespace TinyMVVM.TinyMVVM_VSIntegration.Internal.Factories
         {
             return new Solution();
         }
-
-        public Project NewProject()
-        {
-            return new Project();
-        }
     }
 }

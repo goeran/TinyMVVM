@@ -2,7 +2,7 @@
 {
     public class Project : Folder
     {
-        internal Project()
+        internal Project(string name) : base(name, null)
         {
             
         }
