@@ -211,7 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ItemTemplates\mvvm\MVVMDslIcon.ico" />
-    <Content Include="ItemTemplates\mvvm\MyTemplate.vstemplate" />
+    <Content Include="ItemTemplates\mvvm\MyTemplate.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>

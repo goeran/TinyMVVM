@@ -9,6 +9,6 @@
   </TemplateData>
   <TemplateContent>
     <References />
-    <ProjectItem SubType="" TargetFileName="$fileinputname$.mvvm" ReplaceParameters="false">viewmodel.mvvm</ProjectItem>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$.mvvm" ReplaceParameters="false" CustomTool="MVVMGenerator">viewmodel.mvvm</ProjectItem>
   </TemplateContent>
 </VSTemplate>
