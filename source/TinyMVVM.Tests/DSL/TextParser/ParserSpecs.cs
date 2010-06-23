@@ -39,21 +39,24 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
             {
                 code = "using System.Linq\n" + 
                        "using System.ComponentModel.Composition\n\n" + 
-                       "viewmodel LoginViewModel extends ViewModelBase:\n" +
-                       "\t[Required]\n" +
-                       "\t[MaxLength(10)]\n" +
-                       "\tproperty Username as string\n\r" +
-                       "\tproperty Password as string\n" +
+					   "viewmodel Login:\r\n" +
+					   "namespace Client.ViewModel:\r\n" +
+                       "\tviewmodel LoginViewModel extends ViewModelBase:\n" +
+                       "\t\t[Required]\n" +
+                       "\t\t[MaxLength(10)]\n" +
+                       "\t\tproperty Username as string\n\r" +
+                       "\t\tproperty Password as string\n" +
                        "\t\tcommand Login\n" +
-                       "\tcommand Cancel\n" +
+                       "\t\tcommand Cancel\n" +
                        "" +
-                       "viewmodel SearchQuery:\n" +
-                       "\tproperty Query as string\n" +
-                       "\tproperty Length as int\n" +
+					   "namespace Client.ViewModel.Search:\r\n" +
+                       "\tviewmodel SearchQuery:\n" +
+                       "\t\tproperty Query as string\n" +
+                       "\t\tproperty Length as int\n" +
                        "" +
-                       "viewmodel Search:\n" +
-                       "\tcommand Search" +
-                       "\toproperty Query as SearchQuery\n";
+                       "\tviewmodel Search:\n" +
+                       "\t\tcommand Search" +
+                       "\t\toproperty Query as SearchQuery\n";
             });
             And(Parser_is_created);
 
@@ -78,7 +81,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Then(() =>
             {   
-                semanticModel.ViewModels.ShouldHave(3);
+                semanticModel.ViewModels.ShouldHave(4);
             });
         }
 
@@ -87,7 +90,7 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Then(() =>
             {
-                semanticModel.ViewModels[0].Parent.ShouldBe("ViewModelBase");
+                semanticModel.ViewModels.Single(vm => vm.Name == "LoginViewModel").Parent.ShouldBe("ViewModelBase");
             });            
         }
 
@@ -96,26 +99,38 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Then(() =>
             {
-                semanticModel.ViewModels[0].Name.ShouldBe("LoginViewModel");
-                semanticModel.ViewModels[1].Name.ShouldBe("SearchQuery");
-                semanticModel.ViewModels[2].Name.ShouldBe("Search");
+				semanticModel.ViewModels[0].Name.ShouldBe("Login");
+                semanticModel.ViewModels[1].Name.ShouldBe("LoginViewModel");
+                semanticModel.ViewModels[2].Name.ShouldBe("SearchQuery");
+                semanticModel.ViewModels[3].Name.ShouldBe("Search");
             });
         }
+
+    	[Test]
+    	public void assure_ViewModel_Namespace_is_parsed()
+    	{
+    		Then(() =>
+    		{
+    			semanticModel.ViewModels[1].Namespace.ShouldBe("Client.ViewModel");
+				semanticModel.ViewModels[2].Namespace.ShouldBe("Client.ViewModel.Search");
+				semanticModel.ViewModels[3].Namespace.ShouldBe("Client.ViewModel.Search");
+    		});
+    	}
 
         [Test]
         public void assure_ViewModel_Properties_are_parsed()
         {
             Then(() =>
             {
-                var vm = semanticModel.ViewModels.First();
-                vm.Properties[0].Name.ShouldBe("Username");
-                vm.Properties[0].Type.ShouldBe("string");
-                vm.Properties[0].IsObservable.ShouldBeFalse();
-                vm.Properties[1].Name.ShouldBe("Password");
-                vm.Properties[1].Type.ShouldBe("string");
-                vm.Properties[1].IsObservable.ShouldBeFalse();
+                var viewModel = semanticModel.ViewModels.Single(vm => vm.Name == "LoginViewModel");
+                viewModel.Properties[0].Name.ShouldBe("Username");
+                viewModel.Properties[0].Type.ShouldBe("string");
+                viewModel.Properties[0].IsObservable.ShouldBeFalse();
+                viewModel.Properties[1].Name.ShouldBe("Password");
+                viewModel.Properties[1].Type.ShouldBe("string");
+                viewModel.Properties[1].IsObservable.ShouldBeFalse();
 
-                var vmSearch = semanticModel.ViewModels[2];
+                var vmSearch = semanticModel.ViewModels.Single(vm => vm.Name == "Search");
                 vmSearch.Properties[0].Name.ShouldBe("Query");
                 vmSearch.Properties[0].IsObservable.ShouldBeTrue();
             });
@@ -126,8 +141,8 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Then(() =>
             {
-                var vm = semanticModel.ViewModels.First();
-                var usernameProperty = vm.Properties[0];
+                var viewModel = semanticModel.ViewModels.Single(vm => vm.Name == "LoginViewModel");
+				var usernameProperty = viewModel.Properties[0];
 
                 usernameProperty.Attributes.ShouldHave(2);
                 usernameProperty.Attributes.Where(a => a == "[Required]").Count().ShouldBe(1);
@@ -141,11 +156,11 @@ namespace TinyMVVM.Tests.DSL.TextParser.ParserSpecs
         {
             Then(() =>
             {
-                var vm = semanticModel.ViewModels.First();
-                vm.Commands[0].Name.ShouldBe("Login");
-                vm.Commands[1].Name.ShouldBe("Cancel");
+                var viewModel = semanticModel.ViewModels.First(vm => vm.Name == "LoginViewModel");
+                viewModel.Commands[0].Name.ShouldBe("Login");
+                viewModel.Commands[1].Name.ShouldBe("Cancel");
 
-                var vmSearch = semanticModel.ViewModels[2];
+                var vmSearch = semanticModel.ViewModels.First(vm => vm.Name == "Search");
                 vmSearch.Commands[0].Name.ShouldBe("Search");
             });
         }

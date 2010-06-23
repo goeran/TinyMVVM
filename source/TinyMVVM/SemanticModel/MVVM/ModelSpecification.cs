@@ -10,17 +10,19 @@ namespace TinyMVVM.SemanticModel.MVVM
     {
         private List<ViewModel> viewModels = new List<ViewModel>();
 
-        public List<string> Usings { get; protected set; }
-
-        public ReadOnlyCollection<ViewModel> ViewModels
-        {
-            get { return viewModels.AsReadOnly(); }
-        }
 
         public ModelSpecification()
         {
             Usings = new List<string>();
         }
+
+    	public string Code { get; set; }
+		public List<string> Usings { get; protected set; }
+
+		public ReadOnlyCollection<ViewModel> ViewModels
+		{
+			get { return viewModels.AsReadOnly(); }
+		}
 
         public void AddViewModel(ViewModel viewModel)
         {

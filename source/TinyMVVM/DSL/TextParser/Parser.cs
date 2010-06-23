@@ -13,8 +13,9 @@ namespace TinyMVVM.DSL.TextParser
         private ILexicalAnalyzer scanner;
         private ModelSpecification modelSpecification;
         private ViewModel semanticModel;
-        private TokenEnumerator tokensEnumerator;
+        private IEnumerator<Token> tokensEnumerator;
         private string loadedCode;
+    	private Token currentNamespaceNameToken = Token.Name("NamespaceNotDefined");
 
         public Parser() : 
             this(new Scanner())
@@ -40,9 +41,10 @@ namespace TinyMVVM.DSL.TextParser
             if (loadedCode == null)
                 throw new InvalidOperationException("Code must be loaded before it's possible to parse");
 
-            tokensEnumerator = new TokenEnumerator(scanner.Scan(loadedCode));
+            tokensEnumerator = scanner.Scan(loadedCode).GetEnumerator();
 
             modelSpecification = new ModelSpecification();
+			modelSpecification.Code = loadedCode;
 
             ParseViewModels();
 
@@ -51,18 +53,23 @@ namespace TinyMVVM.DSL.TextParser
 
         private void ParseViewModels()
         {
-            while (CurrentToken() != Token.EOF)
-            {
-                if (CurrentToken() == Token.Using)
-                    ParseUsing();
-                else if (CurrentToken() == Token.ViewModel)
-                    ParseViewModel();
-                else
-                    NextToken();
-            }
+			if (tokensEnumerator.MoveNext())
+			{
+				while (CurrentToken() != Token.EOF)
+				{
+					if (CurrentToken() == Token.Using)
+						ParseUsing();
+					else if (CurrentToken() == Token.Namespace)
+						ParseNamespace();
+					else if (CurrentToken() == Token.ViewModel)
+						ParseViewModel();
+					else
+						NextToken();
+				}
+			}
         }
 
-        private Token NextToken()
+    	private Token NextToken()
         {
             tokensEnumerator.MoveNext();
             return tokensEnumerator.Current;
@@ -79,6 +86,13 @@ namespace TinyMVVM.DSL.TextParser
             NextToken();
         }
 
+		private void ParseNamespace()
+		{
+			currentNamespaceNameToken = NextToken();
+			
+			NextToken();
+		}
+
         private void ParseViewModel()
         {
             var nameToken = NextToken();
@@ -88,6 +102,8 @@ namespace TinyMVVM.DSL.TextParser
             ParseViewModelName();
             ParseViewModelParent();
             ParseViewModelBody();
+			if (currentNamespaceNameToken != null)
+				semanticModel.Namespace = currentNamespaceNameToken.Value;
         }
 
         private void ParseViewModelName()
@@ -110,15 +126,16 @@ namespace TinyMVVM.DSL.TextParser
         private void ParseViewModelBody()
         {
             while (CurrentToken() != Token.ViewModel &&
+				CurrentToken() != Token.Namespace &&
                 CurrentToken() != Token.EOF)
             {
                 var token = tokensEnumerator.Current;
-                if (token == Token.Property ||
-                    token == Token.OProperty ||
-                    token.Kind == Kind.attribute)
-                    ParseViewModelProperties();
-                else if (token == Token.Command)
-                    ParseViewModelCommand();
+				if (token == Token.Property ||
+					token == Token.OProperty ||
+					token.Kind == Kind.attribute)
+					ParseViewModelProperties();
+				else if (token == Token.Command)
+					ParseViewModelCommand();
 
                 NextToken();
             }
@@ -174,47 +191,6 @@ namespace TinyMVVM.DSL.TextParser
 
             semanticModel.AddCommand(
                 new ViewModelCommand(nameToken.Value));
-        }
-
-        private class TokenEnumerator : IEnumerator<Token>
-        {
-            private int index = 0;
-            private IEnumerable<Token> tokens;
-
-            public TokenEnumerator(IEnumerable<Token> tokens)
-            {
-                this.tokens = tokens;
-            }
-
-            public void Dispose()
-            {
-                tokens = null;  
-            }
-
-            public bool MoveNext()
-            {
-                if (index + 1 < tokens.Count())
-                {
-                    index++;
-                    return true;
-                }
-                return false;
-            }
-
-            public void Reset()
-            {
-                index = 0;
-            }
-
-            public Token Current
-            {
-                get { return tokens.ElementAt(index);} 
-            }
-
-            object IEnumerator.Current
-            {
-                get { return Current; }
-            }
         }
     }
 }

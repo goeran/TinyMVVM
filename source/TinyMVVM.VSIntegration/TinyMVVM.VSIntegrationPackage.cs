@@ -71,7 +71,7 @@ namespace TinyMVVM.VSIntegration
             //var statusbar = GetService(typeof (IVsStatusbar)) as IVsStatusbar;
             //statusbar.SetText("TinyMVVM");
 
-            dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
+            //dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
 
             //var factory = new VsIntegrationModelFactory(dte);
             //var solution = factory.NewSolution();
@@ -94,10 +94,10 @@ namespace TinyMVVM.VSIntegration
 			//});
         }
 
-        void TinyMVVM_VSIntegrationPackage_DocumentSaved(Document Document)
+        /*void TinyMVVM_VSIntegrationPackage_DocumentSaved(Document Document)
         {
             //MessageBox.Show("File saved!");
-        }
+        }*/
         #endregion
 
     }

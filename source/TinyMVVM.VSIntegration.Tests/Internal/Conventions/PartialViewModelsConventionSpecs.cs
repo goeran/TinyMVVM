@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Moq;
 using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
@@ -9,6 +10,9 @@ using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.Tests;
 using TinyMVVM.VSIntegration.Internal.Conventions;
 using TinyMVVM.VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
+using TinyMVVM.VSIntegration.Internal.Services;
+using TinyMVVM.VSIntegration.Internal.Templates;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 {
@@ -29,15 +33,28 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             }
 
             [Test]
-            public void assure_Partial_classes_for_ViewModels_are_created()
+            public void assure_files_for_partial_ViewModel_classes_are_added_to_the_dir_where_the_mvvmFile_is_located()
             {
                 Then(() =>
                 {
                     var viewModelFolder = project.GetSubFolder("ViewModel");
-                    viewModelFolder.Files.Where(f => f.Name == "Login.cs").Count().ShouldBe(1);
-                    viewModelFolder.Files.Where(f => f.Name == "MainScreen.cs").Count().ShouldBe(1);
+                    viewModelFolder.HasFile("Login.cs").ShouldBeTrue();
+					viewModelFolder.HasFile("MainScreen.cs").ShouldBeTrue();
                 });
             }
+
+        	[Test]
+        	public void assure_code_for_partial_classes_are_generated()
+        	{
+        		Then(() =>
+        		{
+        			var viewModelFolder = project.GetSubFolder("ViewModel");
+        			for (int i = 1; i < viewModelFolder.Files.Count(); i++)
+        			{
+						codeGenServiceFake.Verify(s => s.Generate(mvvmFile, viewModelFolder.Files.ElementAt(i), It.IsAny<CodeGeneratorArgs>()));        				
+        			}
+        		});
+        	}
         }
 
         [TestFixture]
@@ -61,12 +78,12 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             }
 
             [Test]
-            public void assure_more_partial_classes_are_not_added()
+            public void assure_more_partial_class_files_are_not_added()
             {
                 Then(() =>
                 {
                     var viewModelFolder = project.GetSubFolder("ViewModel");
-                    viewModelFolder.Files.Count().ShouldBe(3);
+                    viewModelFolder.Files.Count().ShouldBe(mvvmDefinition.ViewModels.Count + 1);
 
                 });
             }
@@ -74,6 +91,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
         public class TestScenario : NUnitScenarioClass
         {
+        	protected static Mock<ICodeGeneratorService> codeGenServiceFake;
             protected static PartialViewModelsConvention convention;
             protected static Solution solution;
             protected static Project project;
@@ -82,7 +100,8 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
             protected Context Convention_is_created = () =>
             {
-                convention = new PartialViewModelsConvention();
+				codeGenServiceFake = new Mock<ICodeGeneratorService>();
+                convention = new PartialViewModelsConvention(codeGenServiceFake.Object);
             };
 
             protected Context VisualStudio_Solution_exists = () =>

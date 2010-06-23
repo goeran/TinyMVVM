@@ -7,10 +7,11 @@ using System.Text;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell.Interop;
 using TinyMVVM.VSIntegration.Internal.Model;
-using File = TinyMVVM.VSIntegration.Internal.Model.File;
-using Project = TinyMVVM.VSIntegration.Internal.Model.Project;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
+using File = TinyMVVM.VSIntegration.Internal.Model.VsSolution.File;
+using Project = TinyMVVM.VSIntegration.Internal.Model.VsSolution.Project;
 using ProjectItem = EnvDTE.ProjectItem;
-using Solution = TinyMVVM.VSIntegration.Internal.Model.Solution;
+using Solution = TinyMVVM.VSIntegration.Internal.Model.VsSolution.Solution;
 
 namespace TinyMVVM.VSIntegration.Internal.Factories
 {
@@ -35,9 +36,10 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 
 				if (vsProject.FullName != null && vsProject.FullName != string.Empty)
 				{
-					var project = new ProjectProxy(vsProject.Name);
+					var project = new ProjectProxy(vsProject.Name, solution);
 					project.VsProject = vsProject;
 					project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
+					project.RootNamespace = ParseRootNamespace(vsProject);
 					solution.Projects.Add(project);
 
 					for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
@@ -47,14 +49,52 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 						{
 							AddSubFolderInProject(project, item);
 						}
+						else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+						{
+							AddFileToFolder(project, item);
+						}
 					}
 				}
             }
 
             return solution;
         }
+		
+		private string ParseRootNamespace(EnvDTE.Project vsProject)
+		{
+			string result = null;
 
-        private void AddSubFolderInProject(Project project, ProjectItem vsProjectItem)
+			foreach (EnvDTE.Property property in vsProject.Properties)
+			{
+				if (property.Name == "RootNamespace")
+				{
+					result = property.Value.ToString();
+					break;
+				}
+			}
+
+			return result;
+		}
+
+    	private File AddFileToFolder(Folder folder, ProjectItem item)
+    	{
+			var newFile = new FileProxy(folder);
+    		newFile.VsProjectItem = item;
+    		newFile.Name = item.Name;
+    		folder.Items.Add(newFile);
+
+			foreach (ProjectItem codeBehindItem in item.ProjectItems)
+			{
+				var codeBehindFile = new FileProxy(folder);
+				codeBehindFile.Name = codeBehindItem.Name;
+				codeBehindFile.VsProjectItem = codeBehindItem;
+				newFile.Items.Add(codeBehindFile);
+			}
+
+    		return newFile;
+    	}
+
+    	private void AddSubFolderInProject(Project project, ProjectItem vsProjectItem)
         {
             var newFolder = new FolderProxy(vsProjectItem.Name, project);
             newFolder.VsProjectItem = vsProjectItem;
@@ -86,20 +126,47 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
                 }
                 else if (vsItem.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
                 {
-                    var newFile = new FileProxy(parentFolder);
-                    newFile.VsProjectItem = vsItem;
-                    newFile.Name = vsItem.Name;
-                	newFile.Parent = parentFolder;
-					newFile.DirectoryPath = new System.IO.FileInfo(vsItem.get_FileNames(0)).Directory.FullName;
-
-
-                    parentFolder.Items.Add(newFile);
+                	var newFile = AddFileToFolder(parentFolder, vsItem);
                 }
             }
         }
+
+		public Folder NewFolder(string name, Folder parentFolder)
+		{
+			if (parentFolder is FolderProxy)
+			{
+				var parentFolderProxy = parentFolder as FolderProxy;
+				var newFolder = new FolderProxy(name, parentFolderProxy);
+				var newVsFolder = parentFolderProxy.VsProjectItem.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
+				newFolder.VsProjectItem = newVsFolder;
+				return newFolder;
+			}
+			else
+			{
+				var parentProjectProxy = parentFolder as ProjectProxy;
+				var newFolder = new FolderProxy(name, parentProjectProxy);
+				var newVsFolder = parentProjectProxy.VsProject.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
+				newFolder.VsProjectItem = newVsFolder;
+				return newFolder;				
+			}
+		}
+
+		public File NewFile(string name, Folder parentFolder)
+		{
+			var parentFolderProxy = parentFolder as FolderProxy;
+
+			var newFile = new FileProxy(parentFolder){ Name = name };
+
+			using (var f = newFile.NewFileStream()) ;
+			var newProjectItem = parentFolderProxy.VsProjectItem.ProjectItems.AddFromFile(newFile.Path);
+
+			newFile.VsProjectItem = newProjectItem;
+
+			return newFile;
+		}
     }
 
-    public class SolutionProxy : Solution
+    public class SolutionProxy : Model.VsSolution.Solution
     {
         public EnvDTE.Solution VsSolution { get; set; }
     
@@ -109,11 +176,11 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 		}
 	}
 
-    public class ProjectProxy : Project 
+    public class ProjectProxy : Model.VsSolution.Project 
     {
         public EnvDTE.Project VsProject { get; set; }
 
-		internal ProjectProxy(string name) : base(name)
+		internal ProjectProxy(string name, Solution solution) : base(name, solution)
 		{
 			
 		}
@@ -129,6 +196,16 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 
             return result;
         }
+
+		public override File NewFile(string name)
+		{
+			var result = base.NewFile(name);
+
+			using (var f = result.NewFileStream()) ;
+			VsProject.ProjectItems.AddFromFile(result.Path);
+
+			return result;
+		}
     }
 
     public class FolderProxy : Folder
@@ -144,7 +221,11 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
         {
             var result = base.NewFolder(name);
 
-            VsProjectItem.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
+
+			if (Directory.Exists(result.Path))
+				VsProjectItem.ProjectItems.AddFromDirectory(result.Path);
+			else
+				VsProjectItem.ProjectItems.AddFolder(name, EnvDTE.Constants.vsProjectItemKindPhysicalFolder);
 
             return result;
         }
@@ -160,7 +241,7 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 		}
     }
 
-    public class FileProxy : File
+    public class FileProxy : Model.VsSolution.File
     {
         public EnvDTE.ProjectItem VsProjectItem { get; set; }
 
@@ -169,13 +250,37 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
 			
 		}
 
-		public override void NewCodeBehindFile(string name)
+		public override File NewCodeBehindFile(string name)
 		{
-			base.NewCodeBehindFile(name);
+			var file = base.NewCodeBehindFile(name);
 
-			var file = CodeBehindFiles.Last();
 			using (var f = file.NewFileStream()) ;
 			VsProjectItem.ProjectItems.AddFromFile(file.Path);
+
+			return file;
+		}
+
+		public override File DeleteCodeBehindFile(string name)
+		{
+			var file = base.DeleteCodeBehindFile(name);
+
+			foreach (ProjectItem item in VsProjectItem.ProjectItems)
+			{
+				if (name == item.Name)
+					item.Delete();
+			}
+
+			return file;
+		}
+
+		public override void DeleteAllCodeBehindFiles()
+		{
+			base.DeleteAllCodeBehindFiles();
+
+			foreach (ProjectItem item in VsProjectItem.ProjectItems)
+			{
+				item.Delete();
+			}
 		}
     }
 }

@@ -1,5 +1,9 @@
 ﻿using TinyMVVM.SemanticModel.MVVM;
+using TinyMVVM.VSIntegration.Internal.Factories;
 using TinyMVVM.VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
+using TinyMVVM.VSIntegration.Internal.Services;
+using TinyMVVM.VSIntegration.Internal.Templates;
 
 namespace TinyMVVM.VSIntegration.Internal.Conventions
 {
@@ -11,22 +15,43 @@ namespace TinyMVVM.VSIntegration.Internal.Conventions
     /// </summary>
     public class ViewsConvention : IViewModelConvention
     {
-        private const string viewsFolderName = "Views";
+    	private ICodeGeneratorService codeGeneratorService;
+    	private const string Views = "Views";
+    	private readonly ITemplate viewCodeGenTemplate = new ViewTemplate();
+    	private readonly ITemplate viewCodeBehindCodeGenTemplate = new ViewCodeBehindTemplate();
+    	private IModelFactory factory;
 
-        public void Apply(ModelSpecification mvvmDefinition, File mvvmFile)
+    	public ViewsConvention(ICodeGeneratorService codeGeneratorService, IModelFactory factory)
+    	{
+    		this.factory = factory;
+    		this.codeGeneratorService = codeGeneratorService;
+    	}
+
+    	public void Apply(ModelSpecification mvvmDefinition, File mvvmFile)
         {
             var project = mvvmFile.Project;
-            if (!project.HasFolder(viewsFolderName))
+            if (!project.HasFolder(Views))
             {
-                project.NewFolder(viewsFolderName);
+                project.AddFolder(factory.NewFolder(Views, project));
             }
 
             foreach (var viewModel in mvvmDefinition.ViewModels)
             {
                 var fileName = string.Format("{0}.xaml", viewModel.Name);
-                var viewsFolder = project.GetSubFolder(viewsFolderName);
+            	var codeBehindFileName = string.Format("{0}.xaml.cs", viewModel.Name);
+
+                var viewsFolder = project.GetSubFolder(Views);
                 if (!viewsFolder.HasFile(fileName))
-                    viewsFolder.NewFile(fileName);
+                {
+					var viewFile = factory.NewFile(fileName, viewsFolder);
+                	viewsFolder.AddFile(viewFile);
+					codeGeneratorService.Generate(mvvmFile, viewFile, 
+						new CodeGeneratorArgs(mvvmDefinition, viewModel, viewCodeGenTemplate));
+
+                	var viewCodeBehindFile = viewFile.NewCodeBehindFile(codeBehindFileName);
+					codeGeneratorService.Generate(mvvmFile, viewCodeBehindFile, 
+						new CodeGeneratorArgs(mvvmDefinition, viewModel, viewCodeBehindCodeGenTemplate));
+                }
             }
         }
     }

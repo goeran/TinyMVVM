@@ -37,15 +37,20 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
+    <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK\VisualStudioIntegration\Common\Assemblies\v4.0\Microsoft.VisualStudio.Shell.10.0.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0" />
     <Reference Include="Microsoft.VisualStudio.TextManager.Interop" />
-    <Reference Include="Microsoft.VisualStudio.Shell.10.0">
-      <Private>false</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK\VisualStudioIntegration\Common\Assemblies\v4.0\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -163,19 +168,35 @@
       <Link>Internal\TinyMVVM\Specifications\Specification.cs</Link>
     </Compile>
     <Compile Include="Guids.cs" />
+    <Compile Include="Internal\Conventions\ControllersConvention.cs" />
     <Compile Include="Internal\Conventions\IViewModelConvention.cs" />
     <Compile Include="Internal\Conventions\PartialViewModelsConvention.cs" />
-    <Compile Include="Internal\Conventions\ViewModelsConvention.cs" />
+    <Compile Include="Internal\Conventions\GeneratedViewModelsConvention.cs" />
+    <Compile Include="Internal\Conventions\UnitTestsConvention.cs" />
     <Compile Include="Internal\Conventions\ViewsConvention.cs" />
     <Compile Include="Internal\Factories\IModelFactory.cs" />
     <Compile Include="Internal\Factories\ModelFactory.cs" />
     <Compile Include="Internal\Factories\VsIntegrationModelFactory.cs" />
-    <Compile Include="Internal\Model\File.cs" />
-    <Compile Include="Internal\Model\Folder.cs" />
-    <Compile Include="Internal\Model\Internal\TreeWalker.cs" />
-    <Compile Include="Internal\Model\Project.cs" />
-    <Compile Include="Internal\Model\ProjectItem.cs" />
-    <Compile Include="Internal\Model\Solution.cs" />
+    <Compile Include="Internal\Model\VsSolution\File.cs" />
+    <Compile Include="Internal\Model\VsSolution\Folder.cs" />
+    <Compile Include="Internal\Model\VsSolution\Internal\TreeWalker.cs" />
+    <Compile Include="Internal\Model\VsSolution\Project.cs" />
+    <Compile Include="Internal\Model\VsSolution\ProjectItem.cs" />
+    <Compile Include="Internal\Model\VsSolution\Solution.cs" />
+    <Compile Include="Internal\Services\CodeGeneratorArgs.cs" />
+    <Compile Include="Internal\Services\ICodeGeneratorService.cs" />
+    <Compile Include="Internal\Services\Impl\T4CodeGeneratorService.cs" />
+    <Compile Include="Internal\Services\Impl\VsStatusBarService.cs" />
+    <Compile Include="Internal\Services\IStatusBarService.cs" />
+    <Compile Include="Internal\Templates\ControllerTemplate.cs" />
+    <Compile Include="Internal\Templates\GeneratedViewModelTemplate.cs" />
+    <Compile Include="Internal\Templates\ITemplate.cs" />
+    <Compile Include="Internal\Templates\PartialViewModelTemplate.cs" />
+    <Compile Include="Internal\Templates\TestScenarioTemplate.cs" />
+    <Compile Include="Internal\Templates\UnitTestTemplate.cs" />
+    <Compile Include="Internal\Templates\ViewCodeBehindTemplate.cs" />
+    <Compile Include="Internal\Templates\ViewTemplate.cs" />
+    <Compile Include="Internal\Utils\Guard.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,7 +220,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ItemTemplates\mvvm\viewmodel.mvvm">
+    <None Include="CodeGen\CodeBehindViewModel.t4" />
+    <None Include="CodeGen\Controller.t4" />
+    <None Include="CodeGen\UnitTest.t4" />
+    <None Include="CodeGen\TestScenario.t4" />
+    <None Include="CodeGen\PartialViewModel.t4" />
+    <None Include="CodeGen\ViewCodeBehind.t4" />
+    <None Include="CodeGen\View.t4" />
+    <Content Include="ItemTemplates\Model-View-ViewModel\MVVM.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="ItemTemplates\Model-View-ViewModel\viewmodel.mvvm">
       <Generator>MVVMGenerator</Generator>
     </None>
     <None Include="source.extension.vsixmanifest">
@@ -210,14 +242,32 @@
     <None Include="Key.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ItemTemplates\mvvm\MVVMDslIcon.ico" />
-    <Content Include="ItemTemplates\mvvm\MyTemplate.vstemplate">
+    <Resource Include="ItemTemplates\Model-View-ViewModel\MVVMDslIcon.ico" />
+    <Content Include="ItemTemplates\Model-View-ViewModel\MyTemplate.vstemplate">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Internal\TinyMVVM\Framework\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\setup\TinyMVVM.Setup.CustomActions\TinyMVVM.Setup.CustomActions.csproj">
+      <Project>{5E35ADBC-59E3-4B71-B808-67A1667EB89F}</Project>
+      <Name>TinyMVVM.Setup.CustomActions</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\VsTemplates\TinyMVVM %28WPF4%29\TinyMVVM %28WPF4%29.csproj">
+      <Project>{0BC15FCC-CD7D-4479-80D3-2650066AD0BE}</Project>
+      <Name>TinyMVVM %28WPF4%29</Name>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <TemplateType>Project</TemplateType>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>

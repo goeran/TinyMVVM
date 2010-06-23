@@ -59,5 +59,157 @@ namespace TinyMVVM.VSIntegration {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///
+        ///&lt;# if (viewModel != nu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CodeBehindViewModelTemplateContent {
+            get {
+                return ResourceManager.GetString("CodeBehindViewModelTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///
+        ///&lt;# if (viewModel != nu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ControllerTemplateContent {
+            get {
+                return ResourceManager.GetString("ControllerTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///
+        ///&lt;# if (viewModel != nu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PartialViewModelTemplateContent {
+            get {
+                return ResourceManager.GetString("PartialViewModelTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///&lt;# if (viewModel != null [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string TestScenarioTemplateContent {
+            get {
+                return ResourceManager.GetString("TestScenarioTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///&lt;# if (viewModel != null [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UnitTestTemplateContent {
+            get {
+                return ResourceManager.GetString("UnitTestTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///
+        ///&lt;# if (viewModel != nu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ViewCodeBehindTemplateContent {
+            get {
+                return ResourceManager.GetString("ViewCodeBehindTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;#@ template language=&quot;C#&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;System.Core.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;System.Linq&quot; #&gt;
+        ///&lt;#@ assembly name=&quot;$(TinyMVVMDir)\TinyMVVM.dll&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.DSL.TextParser&quot; #&gt;
+        ///&lt;#@ import namespace=&quot;TinyMVVM.SemanticModel.MVVM&quot; #&gt;
+        ///&lt;#
+        ///	var mvvmFile = @&quot;$(MvvmFilePath)&quot;;
+        ///	var parser = new Parser();
+        ///	var modelSpec = parser.Parse(Code.FromFile(mvvmFile));
+        ///	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm =&gt; vm.Name == &quot;$(ViewModel)&quot;);
+        ///#&gt;
+        ///
+        ///&lt;# if (viewModel != nu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ViewTemplateContent {
+            get {
+                return ResourceManager.GetString("ViewTemplateContent", resourceCulture);
+            }
+        }
     }
 }

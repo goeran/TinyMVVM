@@ -19,12 +19,13 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
             Given(Scanner_is_created);
             And("simple viewmodel is described with the MVVM DSL", () =>
                 code = "using System.ComponentModel.Composition\n\n" +
-                "viewmodel LoginViewModel extends ViewModelBase:\n" +
-                "\t[Required]\n\r" +
-                "\t[Length(Max = 10, Min = 1)]\n" +
-                "\tproperty Username\n\r" +
-				"\tproperty Log ObservableCollection<string>\n" +
-                "\toproperty IsVisible\n" +
+				"namespace Client.ViewModel:\r\n" +
+                "\tviewmodel LoginViewModel extends ViewModelBase:\n" +
+                "\t\t[Required]\n\r" +
+                "\t\t[Length(Max = 10, Min = 1)]\n" +
+                "\t\tproperty Username\n\r" +
+				"\t\tproperty Log ObservableCollection<string>\n" +
+                "\t\toproperty IsVisible\n" +
                 "\t\t\r\ncommand Login");
 
             When("scan", () =>
@@ -57,6 +58,19 @@ namespace TinyMVVM.Tests.DSL.TextParser.ScannerSpecs
                  tokens.Where(t => t == Token.Name("System.ComponentModel.Composition")).Count().ShouldBe(1));
         }
 
+    	[Test]
+    	public void assure_Namespace_Token_is_found()
+    	{
+    		Then(() =>
+    		     tokens.Where(t => t == Token.Namespace).Count().ShouldBe(1));
+    	}
+
+    	[Test]
+    	public void assure_Namespace_Name_Token_is_found()
+    	{
+    		Then(() =>
+    		     tokens.Where(t => t == Token.Name("Client.ViewModel")).Count().ShouldBe(1));	
+    	}
 
         [Test]
         public void assure_ViewModel_Token_is_found()

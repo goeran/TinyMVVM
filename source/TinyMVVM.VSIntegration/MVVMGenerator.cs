@@ -5,15 +5,22 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextTemplating.VSHost;
 using TinyMVVM.DSL.TextParser;
 using TinyMVVM.VSIntegration.Internal.Conventions;
 using TinyMVVM.VSIntegration.Internal.Factories;
+using TinyMVVM.VSIntegration.Internal.Model.Internal;
+using TinyMVVM.VSIntegration.Internal.Services.Impl;
 using VSLangProj80;
+using File = TinyMVVM.VSIntegration.Internal.Model.VsSolution.File;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+using IVsGeneratorProgress = Microsoft.VisualStudio.Shell.Interop.IVsGeneratorProgress;
+using IVsSingleFileGenerator = Microsoft.VisualStudio.Shell.Interop.IVsSingleFileGenerator;
 
 namespace TinyMVVM.VSIntegration
 {
@@ -30,7 +37,8 @@ namespace TinyMVVM.VSIntegration
     {
         private Object site;
         private ServiceProvider serviceProvider;
-        private const string defaultExtension = ".mvvm.cs";
+        private const string defaultExtension = ".log";
+    	private const string statusBarStringTemplate = "Model-View-ViewModel DSL: {0}";
 
         public int DefaultExtension(out string pbstrDefaultExtension)
         {
@@ -41,82 +49,47 @@ namespace TinyMVVM.VSIntegration
 
         public int Generate(string wszInputFilePath, string bstrInputFileContents, string wszDefaultNamespace, IntPtr[] rgbOutputFileContents, out uint pcbOutput, IVsGeneratorProgress pGenerateProgress)
         {
-            pcbOutput = 1;
+            pcbOutput = 0;
+
+			var t4CodeGenerator = new T4CodeGeneratorService();
+			var statusBarService = new VsStatusBarService();
 
             var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
             var dte = projectItem.DTE;
-            //var dte = GetService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
 
             var factory = new VsIntegrationModelFactory(dte);
             var solution = factory.NewSolution(dte.FullName);
 
-        	var p = new Parser();
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Code generation begins"));
+
+			var p = new Parser();
 			var spec = p.Parse(Code.Inline(bstrInputFileContents));
 
-			//TODO: grab this file based on the path (wszInputFilePath)
-        	var mvvmFile = solution.Projects.First().GetSubFolder("ViewModel").GetFile("viewmodel.mvvm");
+        	var mvvmFile = TreeWalker.FindFileInSolution(solution, wszInputFilePath);
 
-			var viewModelsConvention = new ViewModelsConvention();
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating ViewModels"));
+			var viewModelsConvention = new GeneratedViewModelsConvention(t4CodeGenerator);
 			viewModelsConvention.Apply(spec, mvvmFile);
 
-			var viewsConvention = new ViewsConvention();
-			viewsConvention.Apply(spec, mvvmFile);
-
-        	var partialViewModelsConvention = new PartialViewModelsConvention();
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Partial classes for ViewModels"));
+			var partialViewModelsConvention = new PartialViewModelsConvention(t4CodeGenerator);
 			partialViewModelsConvention.Apply(spec, mvvmFile);
 
-			//TODO: create a controller convention
-            
-            /*var projectItem = GetService(typeof (EnvDTE.ProjectItem)) as EnvDTE.ProjectItem;
-            var project = projectItem.ContainingProject;
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Views for ViewModels"));
+			var viewsConvention = new ViewsConvention(t4CodeGenerator, factory);
+			viewsConvention.Apply(spec, mvvmFile);
 
-            var dir = new FileInfo(project.FullName).Directory.FullName;
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Controllers for ViewModels"));
+        	var controllersConvention = new ControllersConvention(t4CodeGenerator, factory);
+        	controllersConvention.Apply(spec, mvvmFile);
 
-            EnvDTE.ProjectItem item = null;
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Unit Tests for ViewModels"));
+        	var unitTestsConvention = new UnitTestsConvention(t4CodeGenerator, factory);
+			unitTestsConvention.Apply(spec, mvvmFile);
 
-            for (int i = 1; i <= project.ProjectItems.Count; i++)
-            {
-                var name = project.ProjectItems.Item(i).Name;
-                var fileName = project.ProjectItems.Item(i).get_FileNames(0);
-                
-                if (name == "viewmodel.mvvm")
-                {
-                    item = project.ProjectItems.Item(i);
-                    break;
-                }
-            }
+			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating ViewModels Completed :)"));
 
-            var files = new List<string>()
-            {
-                Path.Combine(dir, "1" + defaultExtension), 
-                Path.Combine(dir, "2" + defaultExtension) 
-            };
-
-            if (item != null)
-            {
-                files.ForEach(f =>
-                {
-                    using (var newFile = File.Create(f));
-                    item.ProjectItems.AddFromFile(f);
-                });
-            }*/
-            
-
-            /*byte[] data = null;
-            using (var sw = new StringWriter())
-            {
-                sw.WriteLine("hello world");
-
-                data = Encoding.UTF8.GetBytes(sw.ToString());
-            }
-
-            int outputLength = data.Length;
-            rgbOutputFileContents[0] = Marshal.AllocCoTaskMem(outputLength);
-            Marshal.Copy(data, 0, rgbOutputFileContents[0], outputLength);
-            Marshal.Copy(data, 0, rgbOutputFileContents[1], outputLength);
-            pcbOutput = (uint)outputLength;*/;
-            
-            return VSConstants.S_OK;
+			return VSConstants.S_OK;
         }
 
         public void SetSite(object pUnkSite)

@@ -1,5 +1,8 @@
 ﻿using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
+using TinyMVVM.VSIntegration.Internal.Services;
+using TinyMVVM.VSIntegration.Internal.Templates;
 
 namespace TinyMVVM.VSIntegration.Internal.Conventions
 {
@@ -9,7 +12,15 @@ namespace TinyMVVM.VSIntegration.Internal.Conventions
     /// </summary>
     public class PartialViewModelsConvention : IViewModelConvention
     {
-        public void Apply(ModelSpecification mvvmDefinition, File mvvmFile)
+    	private ICodeGeneratorService codeGeneratorService;
+    	private readonly ITemplate codeGeneratorTemplate = new PartialViewModelTemplate();
+
+    	public PartialViewModelsConvention(ICodeGeneratorService codeGeneratorService)
+    	{
+    		this.codeGeneratorService = codeGeneratorService;
+    	}
+
+    	public void Apply(ModelSpecification mvvmDefinition, File mvvmFile)
         {
             var viewModelFolder = mvvmFile.Parent;
 
@@ -17,7 +28,11 @@ namespace TinyMVVM.VSIntegration.Internal.Conventions
             {
                 var name = string.Format("{0}.cs", viewModel.Name);
                 if (!viewModelFolder.HasFile(name))
-                    viewModelFolder.NewFile(name);    
+                {
+					var newFile = viewModelFolder.NewFile(name);    
+
+					codeGeneratorService.Generate(mvvmFile, newFile, new CodeGeneratorArgs(mvvmDefinition, viewModel, codeGeneratorTemplate));
+                }
             }
         }
     }

@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Moq;
 using NUnit.Framework;
 using TinyBDD.Dsl.GivenWhenThen;
 using TinyBDD.Specification.NUnit;
 using TinyMVVM.SemanticModel.MVVM;
 using TinyMVVM.Tests;
 using TinyMVVM.VSIntegration.Internal.Conventions;
+using TinyMVVM.VSIntegration.Internal.Factories;
 using TinyMVVM.VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
+using TinyMVVM.VSIntegration.Internal.Services;
+using TinyMVVM.VSIntegration.Internal.Templates;
 
 namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 {
@@ -46,16 +51,50 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             }
 
             [Test]
-            public void assure_Views_for_each_ViewModel_are_created()
+            public void assure_Views_for_each_ViewModel_are_added_to_Views_Folder()
             {
                 Then(() =>
                 {
-                    var viewsFolder = project.Folders.Where(n => n.Name == "Views").SingleOrDefault();
+                    var viewsFolder = project.GetSubFolder("Views");
                     viewsFolder.Files.Count().ShouldBe(mvvmDefinition.ViewModels.Count);
-                    
-                    viewsFolder.Files.Where(f => f.Name == "Login.xaml").Count().ShouldBe(1);
+
+                	foreach (var viewModel in mvvmDefinition.ViewModels)
+                	{
+                		var file = viewsFolder.GetFile(viewModel.Name + ".xaml");
+						file.ShouldNotBeNull();
+                		file.HasCodeBehindFile(viewModel.Name + ".xaml.cs").ShouldBeTrue();
+                	}
+					
                 });
             }
+
+        	[Test]
+        	public void assure_code_for_each_View_is_generated()
+        	{
+        		Then(() =>
+        		{
+        			var viewsFolder = project.GetSubFolder("Views");
+
+        			for (int i = 0; i < viewsFolder.Files.Count(); i++)
+        			{
+						codeGenServiceFake.Verify(s => s.Generate(mvvmFile, viewsFolder.Files.ElementAt(i), It.IsAny<CodeGeneratorArgs>()));
+        			}
+        		});
+        	}
+
+        	[Test]
+        	public void assure_code_for_each_View_CodeBehind_file_is_generated()
+        	{
+				Then(() =>
+				{
+					var viewsFolder = project.GetSubFolder("Views");
+
+					for (int i = 0; i < viewsFolder.Files.Count(); i++)
+					{
+						codeGenServiceFake.Verify(s => s.Generate(mvvmFile, viewsFolder.Files.ElementAt(i).CodeBehindFiles.ElementAt(0), It.IsAny<CodeGeneratorArgs>()));
+					}
+				});
+        	}
         }
 
         [TestFixture]
@@ -97,11 +136,11 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
             }
 
             [Test]
-            public void assure_Views_for_each_ViewModel_are_not_duplicated()
+            public void assure_Views_for_each_ViewModel_are_not_duplicated_under_Views_folder()
             {
                 Then(() =>
                 {
-                    var viewsFolder = project.Folders.Where(n => n.Name == "Views").SingleOrDefault();
+                	var viewsFolder = project.GetSubFolder("Views");
                     viewsFolder.Files.Count().ShouldBe(mvvmDefinition.ViewModels.Count);
 
                     viewsFolder.Files.Where(f => f.Name == "Login.xaml").Count().ShouldBe(1);
@@ -113,6 +152,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
     public class ViewsConventionTestScenario : NUnitScenarioClass
     {
+    	protected static Mock<ICodeGeneratorService> codeGenServiceFake;
         protected static ViewsConvention viewsConvention;
         protected static Solution solution;
         protected static Project project;
@@ -121,10 +161,16 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
         protected Context ViewsConvention_is_created = () =>
         {
-            viewsConvention = new ViewsConvention();
+			NewViewsConvention();
         };
 
-        protected Context Solution_is_created = () =>
+    	private static void NewViewsConvention()
+    	{
+    		codeGenServiceFake = new Mock<ICodeGeneratorService>();
+    		viewsConvention = new ViewsConvention(codeGenServiceFake.Object, new ModelFactory());
+    	}
+
+    	protected Context Solution_is_created = () =>
         {
             solution = FakeData.VisualStudioSolution;
 
@@ -135,7 +181,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
         protected When ViewsConvention_is_spawned = () =>
         {
-            viewsConvention = new ViewsConvention();
+            NewViewsConvention();
         };
 
         protected When ApplyConvention = () =>

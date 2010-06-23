@@ -1,5 +1,6 @@
 ﻿using System;
 using TinyMVVM.VSIntegration.Internal.Model;
+using TinyMVVM.VSIntegration.Internal.Model.VsSolution;
 
 namespace TinyMVVM.VSIntegration.Internal.Factories
 {
@@ -9,5 +10,15 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
         {
             return new Solution(path);
         }
+
+		public Folder NewFolder(string name, Folder parentFolder)
+		{
+			return new Folder(name, parentFolder);
+		}
+
+		public File NewFile(string name, Folder parentFolder)
+		{
+			return new File(parentFolder){ Name = name };
+		}
     }
 }

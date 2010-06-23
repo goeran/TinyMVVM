@@ -8,6 +8,7 @@ namespace TinyMVVM.DSL.TextParser
     public enum Kind
     {
         Name,
+		Namespace,
         viewmodel,
         property,
         oproperty,
@@ -58,6 +59,11 @@ namespace TinyMVVM.DSL.TextParser
             _kind = kind;
             _value = value;
         }
+
+    	public static Token Namespace
+    	{
+    		get { return new Token(TextParser.Kind.Namespace); }
+    	}
 
         public static Token ViewModel
         {

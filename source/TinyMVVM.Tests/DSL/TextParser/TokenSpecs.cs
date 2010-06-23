@@ -133,6 +133,16 @@ namespace TinyMVVM.Tests.DSL.TextParser.TokenSpecs
     [TestFixture]
     public class When_spawning_a_predefined_Token : TokenContext
     {
+    	[Test]
+    	public void assure_its_a_Namespace_token()
+    	{
+			When("spawning namespace token", () =>
+				token = Token.Namespace);
+
+			Then(() =>
+				token.ShouldBe(Token.Keyword(Kind.Namespace)));
+    	}
+
         [Test]
         public void assure_its_a_ViewModel_token()
         {

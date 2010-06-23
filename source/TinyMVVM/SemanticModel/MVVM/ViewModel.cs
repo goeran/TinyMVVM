@@ -12,6 +12,7 @@ namespace TinyMVVM.SemanticModel.MVVM
         private List<ViewModelCommand> _commands;
 
         public string Name { get; protected set; }
+    	public string Namespace { get; set; }
         
         public ReadOnlyCollection<ViewModelProperty> Properties 
         {
