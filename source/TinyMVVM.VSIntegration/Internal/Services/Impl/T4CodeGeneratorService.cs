@@ -13,6 +13,7 @@ using File = TinyMVVM.VSIntegration.Internal.Model.VsSolution.File;
 namespace TinyMVVM.VSIntegration.Internal.Services.Impl
 {
 	public class T4CodeGeneratorService : ICodeGeneratorService
+
 	{
 		public void Generate(File inputFile, File outputFile, CodeGeneratorArgs args)
 		{
@@ -23,8 +24,8 @@ namespace TinyMVVM.VSIntegration.Internal.Services.Impl
 			//TODO: Find a more optimal solution than concat string like this
 			t4Template = t4Template.Replace("$(Code)", args.ModelSpecification.Code);
 			t4Template = t4Template.Replace("$(MvvmFilePath)", inputFile.Path);
-			//Todo: Removed hard coded path
-			t4Template = t4Template.Replace("$(TinyMVVMDir)", @"X:\Software Projects\git\TinyMVVM\source\TinyMVVM\bin\Debug\");
+
+			t4Template = t4Template.Replace("$(TinyMVVMDir)", GetTinyMVVMInstallDirPath());
 			t4Template = t4Template.Replace("$(ViewModel.Name)", args.ViewModel.Name);
 			t4Template = t4Template.Replace("$(CurrentNamespace)", outputFile.Parent.CurrentNamespace);
 			var content = iTextTemplating.ProcessTemplate(outputFile.Path, t4Template, null, null);
@@ -35,5 +36,14 @@ namespace TinyMVVM.VSIntegration.Internal.Services.Impl
 			}
 
 		}
+
+	    private string GetTinyMVVMInstallDirPath()
+	    {
+	        return Path.Combine(
+	            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+	            "TinyMVVM",
+	            "bin",
+	            ".net4");
+	    }
 	}
 }

@@ -5,7 +5,7 @@
     <Description></Description>
     <Icon>Model-view-ViewModel.ico</Icon>
     <TemplateID>f7d7b5d4-f361-45f3-b506-903d291b1762</TemplateID>
-    <ProjectType>CSharp</ProjectType>
+    <ProjectType>TinyMVVM</ProjectType>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <DefaultName>viewmodel.mvvm</DefaultName>
