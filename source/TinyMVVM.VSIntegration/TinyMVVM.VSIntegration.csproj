@@ -227,13 +227,6 @@
     <None Include="CodeGen\PartialViewModel.t4" />
     <None Include="CodeGen\ViewCodeBehind.t4" />
     <None Include="CodeGen\View.t4" />
-    <Content Include="ItemTemplates\Model-View-ViewModel\MVVM.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <None Include="ItemTemplates\Model-View-ViewModel\viewmodel.mvvm">
-      <Generator>MVVMGenerator</Generator>
-    </None>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -242,10 +235,6 @@
     <None Include="Key.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ItemTemplates\Model-View-ViewModel\MVVMDslIcon.ico" />
-    <Content Include="ItemTemplates\Model-View-ViewModel\MyTemplate.vstemplate">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +248,14 @@
       <Project>{5E35ADBC-59E3-4B71-B808-67A1667EB89F}</Project>
       <Name>TinyMVVM.Setup.CustomActions</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\VsTemplates\Model-View-ViewModel\Model-View-ViewModel.csproj">
+      <Project>{447FD380-4912-4EDF-8D15-859FCA82D33C}</Project>
+      <Name>Model-View-ViewModel</Name>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <TemplateType>Item</TemplateType>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\VsTemplates\TinyMVVM %28WPF4%29\TinyMVVM %28WPF4%29.csproj">
       <Project>{0BC15FCC-CD7D-4479-80D3-2650066AD0BE}</Project>
