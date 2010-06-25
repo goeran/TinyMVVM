@@ -1,0 +1,43 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ assembly name="$(TinyMVVMDir)\TinyMVVM.dll" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel.MVVM" #>
+<#
+	//var mvvmFile = @"$(MvvmFilePath)";
+	var code = @"$(Code)";
+	var parser = new Parser();
+	var modelSpec = parser.Parse(Code.Inline(code));
+	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm => vm.Name == "$(ViewModel.Name)");
+#>
+
+<# if (viewModel != null) { #>
+
+namespace <#= viewModel.Namespace #>
+{
+	public partial class <#= viewModel.Name#> : <#= viewModel.Parent#>
+	{
+		public void OnInitialize()
+		{
+			//Convention: called when ViewModel instance is created
+		}
+		
+<# foreach (ViewModelCommand command in viewModel.Commands) {#>
+		public void On<#= command.Name#>()
+		{
+			//Convention: called when <#= command.Name#> Command is executed
+		}
+
+		public bool Can<#= command.Name#>()
+		{
+			//Convention: called when <#= command.Name#> Command is evaluating if it can execute
+			// return true to enable the command
+
+			return false;
+		}
+
+<# }#>
+	}
+}
+<# } #>

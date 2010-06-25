@@ -1,0 +1,32 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ assembly name="$(TinyMVVMDir)\TinyMVVM.dll" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel.MVVM" #>
+<#
+	//var mvvmFile = @"$(MvvmFilePath)";
+	var code = @"$(Code)";
+	var parser = new Parser();
+	var modelSpec = parser.Parse(Code.Inline(code));
+	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm => vm.Name == "$(ViewModel.Name)");
+	var currentNamespace = @"$(CurrentNamespace)";
+#>
+<# if (viewModel != null) { #>
+using System;
+using NUnit.Framework;
+using Moq;
+//TODO: This should be resolved based on namespace dec in model specification
+using <#= viewModel.Namespace #>;
+<# foreach (string Using in modelSpec.Usings) {#>
+using <#= Using #>;
+<# }#>
+
+namespace <#= currentNamespace #>
+{
+	public class <#= viewModel.Name #>Tests
+	{
+	}
+}
+
+<# } #>

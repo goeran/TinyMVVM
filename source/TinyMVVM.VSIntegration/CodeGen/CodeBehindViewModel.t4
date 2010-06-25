@@ -1,0 +1,75 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ assembly name="$(TinyMVVMDir)\TinyMVVM.dll" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel.MVVM" #>
+<#
+	//var mvvmFile = @"$(MvvmFilePath)";
+	var code = @"$(Code)";
+	var parser = new Parser();
+	var modelSpec = parser.Parse(Code.Inline(code));
+	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm => vm.Name == "$(ViewModel.Name)");
+#>
+
+<# if (viewModel != null) { #>
+
+using TinyMVVM.Framework;
+using TinyMVVM.Framework.Services;
+<# foreach (string Using in modelSpec.Usings) {#>
+using <#= Using #>;
+<# }#>
+
+namespace <#= viewModel.Namespace #>
+{
+	public partial class <#= viewModel.Name#> : <#= viewModel.Parent#>
+	{
+		//State
+	<# foreach (ViewModelProperty property in viewModel.Properties) {#>
+<# foreach (string attribute in property.Attributes) {#>
+	<#= attribute #>
+	<# }#>
+	<# if (property.IsObservable) {#>
+public <#= property.Type#> <#= property.Name#>
+		{
+			get { return _<#= property.Name#>; }
+			set
+			{
+				if (value != _<#= property.Name#>)
+				{
+					_<#= property.Name#> = value;
+					TriggerPropertyChanged("<#= property.Name#>");
+				}
+			}
+		}
+		private <#= property.Type#> _<#= property.Name#>;
+
+	<# }#>
+<# if (!property.IsObservable){#>
+public <#= property.Type#> <#= property.Name#> { get; set; } 
+	<# }#>
+<# }#>
+
+		
+		//Commands
+	<# foreach (ViewModelCommand command in viewModel.Commands) {#>
+	public DelegateCommand <#= command.Name#> { get; set; }
+	<# }#>
+	
+		public <#= viewModel.Name#>()
+		{
+	<# foreach (ViewModelProperty property in viewModel.Properties) {#>
+	<# if (!property.IsPrimitiveType) {#>
+	<#= property.Name#> = new <#= property.Type#>();
+	<# }#>
+<# }#>
+
+	<# foreach (ViewModelCommand command in viewModel.Commands) {#>
+		<#= command.Name#> = new DelegateCommand();
+	<# }#>
+	
+			ApplyDefaultConventions();
+		}
+	}
+}
+<# } #>

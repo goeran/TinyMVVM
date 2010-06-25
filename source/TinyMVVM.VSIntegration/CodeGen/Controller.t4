@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ assembly name="$(TinyMVVMDir)\TinyMVVM.dll" #>
+<#@ import namespace="TinyMVVM.DSL.TextParser" #>
+<#@ import namespace="TinyMVVM.SemanticModel.MVVM" #>
+<#
+	//var mvvmFile = @"$(MvvmFilePath)";
+	var code = @"$(Code)";
+	var parser = new Parser();
+	var modelSpec = parser.Parse(Code.Inline(code));
+	var viewModel = modelSpec.ViewModels.SingleOrDefault(vm => vm.Name == "$(ViewModel.Name)");
+	var currentNamespace = @"$(CurrentNamespace)";
+#>
+
+<# if (viewModel != null) { #>
+using <#= viewModel.Namespace #>;
+
+namespace <#= currentNamespace #>  
+{
+	public class <#= viewModel.Name#>Controller
+	{
+		private <#= viewModel.Name#> viewModel;
+
+		public <#= viewModel.Name#>Controller(<#= viewModel.Name #> viewModel)
+		{
+			this.viewModel = viewModel;
+		}
+	}
+}
+<# } #>
