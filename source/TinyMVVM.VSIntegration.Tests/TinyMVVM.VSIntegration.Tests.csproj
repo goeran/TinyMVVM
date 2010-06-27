@@ -37,8 +37,17 @@
     <AssemblyOriginatorKeyFile>..\TinyMVVM.VSIntegration\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronRuby">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.Libraries.dll</HintPath>
+    </Reference>
     <Reference Include="LinFu.Core">
       <HintPath>..\..\tools\LinFu-2.2.0.0\LinFu.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +83,7 @@
     <Compile Include="Internal\Model\VsSolution\FolderSpecs.cs" />
     <Compile Include="Internal\Model\VsSolution\ProjectSpecs.cs" />
     <Compile Include="Internal\Model\VsSolution\SolutionSpecs.cs" />
+    <Compile Include="Learning\HostIronRubyTests.cs" />
     <Compile Include="Learning\LinFuLearningTests.cs" />
     <Compile Include="Learning\SerializationLearningTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,7 +99,11 @@
       <Name>TinyMVVM.VSIntegration</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Learning\Script\config.rb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

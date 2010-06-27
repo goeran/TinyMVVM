@@ -35,6 +35,9 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronRuby">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
     <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -239,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Internal\TinyMVVM\Framework\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
