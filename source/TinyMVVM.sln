@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM (WPF4)", "VsTempla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model-View-ViewModel", "VsTemplates\Model-View-ViewModel\Model-View-ViewModel.csproj", "{447FD380-4912-4EDF-8D15-859FCA82D33C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMVVM (Class Library)", "VsTemplates\TinyMVVM (Class Library)\TinyMVVM (Class Library).csproj", "{431AD2B4-7B71-4DD4-A19A-3BC91C433066}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,16 @@ Global
 		{447FD380-4912-4EDF-8D15-859FCA82D33C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{447FD380-4912-4EDF-8D15-859FCA82D33C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{447FD380-4912-4EDF-8D15-859FCA82D33C}.Release|x86.ActiveCfg = Release|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,5 +144,6 @@ Global
 		{5E35ADBC-59E3-4B71-B808-67A1667EB89F} = {8455ED09-A331-4F48-AC77-A9A0361B3AD0}
 		{0BC15FCC-CD7D-4479-80D3-2650066AD0BE} = {AAC6C50E-0E01-43E8-9767-C2FD7178D29E}
 		{447FD380-4912-4EDF-8D15-859FCA82D33C} = {AAC6C50E-0E01-43E8-9767-C2FD7178D29E}
+		{431AD2B4-7B71-4DD4-A19A-3BC91C433066} = {AAC6C50E-0E01-43E8-9767-C2FD7178D29E}
 	EndGlobalSection
 EndGlobal

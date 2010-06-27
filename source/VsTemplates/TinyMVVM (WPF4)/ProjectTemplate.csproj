@@ -47,7 +47,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="TinyMVVM">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TinyMVVM\bin\.net4\TinyMVVM.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\TinyMVVM\bin\.net4\TinyMVVM.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
