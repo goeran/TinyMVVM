@@ -27,8 +27,9 @@ namespace TinyMVVM.VSIntegration.Internal.Model.Internal
 		{
 			foreach (var project in solution.Projects)
 			{
-				return FindFile(project, path);
-			}
+				var result = FindFile(project, path);
+                if (result != null) return result;
+            }
 
 			return null;
 		}
