@@ -16,7 +16,6 @@
 using System;
 using NUnit.Framework;
 using Moq;
-//TODO: This should be resolved based on namespace dec in model specification
 using <#= viewModel.Namespace #>;
 <# foreach (string Using in modelSpec.Usings) {#>
 using <#= Using #>;
