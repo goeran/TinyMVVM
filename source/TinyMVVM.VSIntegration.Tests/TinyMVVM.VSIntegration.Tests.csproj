@@ -37,17 +37,20 @@
     <AssemblyOriginatorKeyFile>..\TinyMVVM.VSIntegration\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronRuby">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.dll</HintPath>
+    <Reference Include="IronRuby, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\IronRuby 1.0v4\IronRuby.dll</HintPath>
     </Reference>
-    <Reference Include="IronRuby.Libraries">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.Libraries.dll</HintPath>
+    <Reference Include="IronRuby.Libraries, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\IronRuby 1.0v4\IronRuby.Libraries.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.Core">
       <HintPath>..\..\tools\LinFu-2.2.0.0\LinFu.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Scripting">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\Microsoft.Scripting.dll</HintPath>
+    <Reference Include="Microsoft.Scripting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\IronRuby 1.0v4\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -101,6 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Learning\Script\config.rb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Learning\Script\config2.rb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

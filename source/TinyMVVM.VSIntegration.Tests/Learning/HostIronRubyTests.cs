@@ -14,8 +14,9 @@ namespace TinyMVVM.VSIntegration.Tests.Learning
     {
         private ScriptEngine scriptEngine;
         private ScriptScope scope;
+    	private string scriptPath;
 
-        [SetUp]
+    	[SetUp]
         public void Setup()
         {
             scriptEngine = IronRuby.Ruby.CreateEngine();
@@ -47,8 +48,9 @@ namespace TinyMVVM.VSIntegration.Tests.Learning
         [Test]
         public void How_to_load_script_from_file()
         {
-            var scriptPath = Path.Combine(Environment.CurrentDirectory, "Learning", "Script", "config.rb");
-            var script = scriptEngine.CreateScriptSourceFromFile(scriptPath).Compile();
+        	scriptPath = Path.Combine(Environment.CurrentDirectory, "Learning", "Script", "config.rb");
+
+        	var script = scriptEngine.CreateScriptSourceFromFile(scriptPath).Compile();
 
             var config = script.Execute() as Hash;
 
@@ -62,5 +64,30 @@ namespace TinyMVVM.VSIntegration.Tests.Learning
                 }
             }
         }
+
+    	[Test]
+    	public void How_to_share_object_between_host_and_script()
+    	{
+    		scriptPath = Path.Combine(Environment.CurrentDirectory, "Learning", "Script", "config2.rb");
+
+			scope.SetVariable("config", new CodeGeneratorConfig());
+
+    		var script = scriptEngine.CreateScriptSourceFromFile(scriptPath);
+    		
+			var config = script.Execute(scope) as CodeGeneratorConfig;
+
+			Assert.AreEqual(true, config.GenerateViews);
+			Assert.AreEqual(true, config.GenerateControllers);
+			Assert.AreEqual(true, config.GenerateUnitTests);
+			Assert.AreEqual(true, config.GeneratePartialViewModels);
+    	}
+
+		public class CodeGeneratorConfig
+		{
+			public bool GenerateViews { get; set; }
+			public bool GenerateControllers { get; set; }
+			public bool GenerateUnitTests { get; set; }
+			public bool GeneratePartialViewModels { get; set; }
+		}
     }
 }
