@@ -1,32 +1,36 @@
-﻿flag = true
+﻿a = ""
+
+@flag = true
 
 @result = {
-	"views" => true,
-	"controllers" => true,
-	"partial ViewModels" => true,
-	"unit tests" => true
+	"views" => @flag,
+	"controllers" => @flag,
+	"partial ViewModels" => @flag,
+	"unit tests" => @flag
 }
 
 def configure
 	yield
 end
 
-def not
-	yield
+def not()
+	yield("views", false)
 end
 
-def generate(what)
+def generate(*args)
+	what = args[1]
+	flag = args[2]
 	item = @result.find do |k,v| k == what end
 	if item != nil
-		@result[what] = false
+		@result[what] = flag
 	end
 end
 
 configure do
 	not generate "views"
 	not generate "controllers"
-	generate "partial ViewModels"
-	generate "unit tests"
+	generate "partial ViewModels", true
+	generate "unit tests", true
 end
 
 @result
