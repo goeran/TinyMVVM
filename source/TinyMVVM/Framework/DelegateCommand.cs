@@ -117,7 +117,23 @@ namespace TinyMVVM.Framework
         public void Execute(object parameter)
         {
             if (CanExecute(parameter))
+            {
+                TriggerBeforeExecuteEvent();
                 ExecuteDelegate();
+                TriggerAfterExecuteEvent();
+            }
+        }
+
+        private void TriggerBeforeExecuteEvent()
+        {
+            if (BeforeExecute != null)
+                BeforeExecute(this, EventArgs.Empty);
+        }
+
+        private void TriggerAfterExecuteEvent()
+        {
+            if (AfterExecute != null)
+                AfterExecute(this, EventArgs.Empty);
         }
 
         public bool CanExecute()
@@ -138,6 +154,8 @@ namespace TinyMVVM.Framework
 
         public event EventHandler CanExecuteChanged;
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler BeforeExecute;
+        public event EventHandler AfterExecute;
 
         private void TriggerPropertyChanged(string propertyName)
         {

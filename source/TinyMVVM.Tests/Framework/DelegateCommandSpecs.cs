@@ -186,6 +186,60 @@ namespace TinyMVVM.Tests.Framework
 
                 Then(() => executeDelegateIsCalled.ShouldBeFalse());
             }
+
+            [Test]
+            public void assure_BeforeExecute_event_is_triggered()
+            {
+                Given(DelegateCommand_is_created);
+                And("observers has subscribed to the BeforeExecute event", () =>
+                    delegateCommand.BeforeExecute += (o, e) => beforeExecuteEventIsTriggered = true);
+
+                When("Execute", () =>
+                    delegateCommand.Execute());
+
+                Then(() =>
+                     beforeExecuteEventIsTriggered.ShouldBeTrue());
+            }
+
+            [Test]
+            public void assure_AfterExecute_event_is_triggered()
+            {
+                Given(DelegateCommand_is_created);
+                And("observers has subscribed to the AfterExecute event", () =>
+                    delegateCommand.AfterExecute += (o, e) => afterExecuteEventIsTriggered = true);
+
+                When("Execute", () =>
+                    delegateCommand.Execute());
+
+                Then(() =>
+                    afterExecuteEventIsTriggered.ShouldBeTrue());
+            }
+
+            [Test]
+            public void assure_Before_and_AfterExecute_events_are_fired_in_the_right_order()
+            {
+                Given("Log is created", () =>
+                    log = new List<string>());
+                And("DelegateCommand is created", () =>
+                {
+                    delegateCommand = new DelegateCommand(() => log.Add("Execute"));
+                });
+                And("Observers has subscribed to Before and AfterExecute events", () =>
+                {
+                    delegateCommand.BeforeExecute += (o, e) => log.Add("Before");
+                    delegateCommand.AfterExecute += (o, e) => log.Add("After");
+                });
+
+                When("Execute", () =>
+                    delegateCommand.Execute());
+
+                Then(() =>
+                {
+                    log[0].ShouldBe("Before");
+                    log[1].ShouldBe("Execute");
+                    log[2].ShouldBe("After");
+                });
+            }
         }
 
         [TestFixture]
