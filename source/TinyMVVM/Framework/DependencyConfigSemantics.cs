@@ -25,6 +25,12 @@ namespace TinyMVVM.Framework
 
             return new DependencyConfigToSemantics(dependencyBinding);
         }
+
+		public bool MergeInGlobalDependenciesConfig
+		{
+			set { semanticModel.MergeInGlobalDependenciesConfig = value; }
+			get { return semanticModel.MergeInGlobalDependenciesConfig; }
+		}
     }
 
     public class DependencyConfigToSemantics

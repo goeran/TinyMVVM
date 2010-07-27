@@ -30,7 +30,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using Ninject;
+using Ninject.Activation;
 using Ninject.Planning.Bindings;
 using TinyMVVM.Framework.Conventions;
 using System.Collections.Generic;
@@ -131,10 +133,32 @@ namespace TinyMVVM.Framework
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected virtual T GetDependency<T>() where T: class
+		protected virtual void TriggerPropertyChanged<T>(Expression<Func<T, Object>> exp)
+		{
+			string propertyName;
+			if (exp.Body is UnaryExpression)
+				propertyName = ((MemberExpression)((UnaryExpression)exp.Body).Operand).Member.Name;
+			else
+				propertyName = ((MemberExpression)exp.Body).Member.Name;
+
+			if (PropertyChanged != null)
+			{
+				if (PropertyChanged != null)
+					PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+        public virtual T GetDependency<T>() where T: class
         {
-            return instanceKernel.Get<T>();
+        	var instance = TryGetFromInstanceKernel(typeof (T));
+			if (instance == null) instance = TryGetFromGlobalKernel(typeof (T));
+        	return instance as T;
         }
+
+		public virtual T GetInstance<T>() where T: class
+		{
+			return GetDependency<T>();
+		}
 
         /// <summary>
         /// Create a new instance of the specified Controller inside the ViewModel. 
@@ -151,7 +175,7 @@ namespace TinyMVVM.Framework
         /// automatically configured as a dependency.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public void CreateController<T>()
+        public T CreateController<T>()
         {
             try
             {
@@ -160,6 +184,8 @@ namespace TinyMVVM.Framework
                 if (controller == null) throw activationException;
 
                 controllers.Add(controller);
+
+            	return (T) controller;
             }
             catch (Exception ex)
             {
@@ -211,39 +237,43 @@ namespace TinyMVVM.Framework
         {
             configAction.Invoke(new DependencyConfigSemantics(instanceDependenciesConfig));
 
-            foreach (var dependencyBinding in instanceDependenciesConfig.Bindings)
-            {
-                if (dependencyBinding.ToInstance != null)
-                    instanceKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance);
-                else
-                    instanceKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType);
-            }
+			ConfigureKernel(instanceKernel, instanceDependenciesConfig);
+
+			if (instanceDependenciesConfig.MergeInGlobalDependenciesConfig)
+			{
+				ConfigureKernel(instanceKernel, globalDependenciesConfig);
+			}
         }
 
         public static void ConfigureGlobalDependencies(Action<DependencyConfigSemantics> configAction)
         {
-            configAction.Invoke(new DependencyConfigSemantics(globalDependenciesConfig));
+        	configAction.Invoke(new DependencyConfigSemantics(globalDependenciesConfig));
 
-            foreach (var dependencyBinding in globalDependenciesConfig.Bindings)
-            {
-                if (dependencyBinding.ToInstance != null)
-                {
-                    if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
-                        globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
-                    else
-                        globalKernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InTransientScope();
-                }
-                else
-                {
-                    if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
-                        globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType).InSingletonScope();
-                    else
-                        globalKernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType);
-                }
-            }
+        	ConfigureKernel(globalKernel, globalDependenciesConfig);
         }
 
-        public static void RemoveAllGlobalDependencies()
+    	private static void ConfigureKernel(IKernel kernel, Configuration configuration)
+    	{
+    		foreach (var dependencyBinding in configuration.Bindings)
+    		{
+    			if (dependencyBinding.ToInstance != null)
+    			{
+    				if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
+    					kernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InSingletonScope();
+    				else
+    					kernel.Bind(dependencyBinding.FromType).ToConstant(dependencyBinding.ToInstance).InTransientScope();
+    			}
+    			else
+    			{
+    				if (dependencyBinding.ObjectScope == ObjectScopeEnum.Singleton)
+    					kernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType).InSingletonScope();
+    				else
+    					kernel.Bind(dependencyBinding.FromType).To(dependencyBinding.ToType);
+    			}
+    		}
+    	}
+
+    	public static void RemoveAllGlobalDependencies()
         {
             globalDependenciesConfig.Bindings.Clear();
             globalKernel.Dispose();

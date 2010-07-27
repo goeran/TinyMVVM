@@ -8,6 +8,7 @@ namespace TinyMVVM.SemanticModel.DependencyConfig
     public class Configuration
     {
         public List<DependencyBinding> Bindings { get; private set; }
+    	public bool MergeInGlobalDependenciesConfig { get; set; }
 
         public Configuration()
         {

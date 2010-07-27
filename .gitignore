@@ -4,3 +4,4 @@ bin
 *.suo
 *ReSharper.user
 _ReSharper.*
+Debug

@@ -9,6 +9,7 @@ using TinyBDD.Specification.NUnit;
 using TinyMVVM.Framework;
 using TinyMVVM.Framework.Conventions;
 using TinyMVVM.Framework.Services;
+using TinyMVVM.Framework.Services.Impl;
 using TinyMVVM.Tests.Framework.TestContext;
 using System.ComponentModel;
 using Moq;
@@ -307,6 +308,39 @@ namespace TinyMVVM.Tests.Framework
 	        }
 	    }
 
+		[TestFixture]
+		public class When_MergeInGlobalDependenciesConfig : ViewModelBaseContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ClassThatImplments_ViewModelBase_is_created);
+				And("All Global Dependencies for ViewModel is removed", () =>
+					ViewModelBase.RemoveAllGlobalDependencies());
+				And("Global dependencies are configured", () =>
+					ViewModelBase.ConfigureGlobalDependencies(config =>
+						config.Bind<IBackgroundWorker>().ToInstance(customBackgroundWorkerInstance)));
+				When("dependencies are configured to merge in Global dependencies", () =>
+					viewModel.ConfigureDependencies(config =>
+					{
+						config.MergeInGlobalDependenciesConfig = true;
+						config.Bind<IUIInvoker>().ToInstance(customUIInvokerInstance);
+						config.Bind<int>().ToInstance(15);
+					}));
+			}
+
+			[Test]
+			public void assure_Global_dependencies_configuration_are_merged_in_to_local_dependencies()
+			{
+				Then(() =>
+				{
+					var controller = viewModel.CreateController<AControllerThatFetchData>();
+					//This controller can't be created without the IBackgroundWorker. The background worker
+					//is configured globally in this test case.
+				});
+			}
+		}
+
 
 	    [TestFixture]
 	    public class When_global_dependencies_are_configured : ViewModelBaseContext
@@ -365,6 +399,48 @@ namespace TinyMVVM.Tests.Framework
                 });
 	        }
 	    }
+
+		[TestFixture]
+		public class When_GetDependency : ViewModelBaseContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ClassThatImplments_ViewModelBase_is_created);
+				And("No instance dependencies are configured");
+				And("Global dependencies are configured", () =>
+					ViewModelBase.ConfigureGlobalDependencies(config =>
+						config.Bind<IUIInvoker>().To<UIInvoker>()));
+
+				When("GetDependency");
+			}
+
+			[Test]
+			public void assure_GlobalDependency_is_used()
+			{
+				Then(() => viewModel.PublicGetDependency<IUIInvoker>().ShouldNotBeNull());
+			}
+		}
+
+		[TestFixture]
+		public class When_TriggerPropertyChanged : ViewModelBaseContext
+		{
+			[SetUp]
+			public void Setup()
+			{
+				Given(ClassThatImplments_ViewModelBase_is_created);
+				And(Recorder_has_been_started);
+
+				When("TriggerPropertyChanged", () =>
+					viewModel.PublicTriggerPropertyChanged<CustomViewModel>(vm => vm.Name));
+			}
+
+			[Test]
+			public void assure_Observers_has_been_notified()
+			{
+				Then(() => viewModel.PropertyChangeRecorder.Data.Any(r => r.PropertyName == "Name").ShouldBeTrue());
+			}
+		}
 
 	}
 }
