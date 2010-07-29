@@ -59,7 +59,7 @@ namespace TinyMVVM.Framework
         protected ViewModelBase()
         {
             PropertyChangeRecorder = new PropertyChangeRecorder(this);
-            CmdStateChangeRecorder = new object();
+            CmdStateChangeRecorder = new CommandStateChangeRecorder(this);
 
             instanceKernel.Bind(this.GetType()).ToConstant(this);
             globalKernel.Bind(this.GetType()).ToConstant(this);
@@ -94,7 +94,7 @@ namespace TinyMVVM.Framework
 
         [Display(AutoGenerateField = false)]
         [Editable(false)]
-        public Object CmdStateChangeRecorder { get; protected set; }
+        public CommandStateChangeRecorder CmdStateChangeRecorder { get; protected set; }
 
         [Display(AutoGenerateField = false)]
         [Editable(false)]
