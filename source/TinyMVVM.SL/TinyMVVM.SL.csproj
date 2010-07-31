@@ -62,6 +62,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TinyMVVM\ExtensionMethods\ViewModelBaseExtensions.cs">
+      <Link>ExtensionMethods\ViewModelBaseExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\Framework\CommandStateChangeRecorder.cs">
       <Link>Framework\CommandStateChangeRecorder.cs</Link>
     </Compile>

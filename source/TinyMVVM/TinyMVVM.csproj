@@ -101,6 +101,7 @@
     <Compile Include="DataBuilder\Internal\Repositories\FemaleNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\HumanNameRepository.cs" />
     <Compile Include="DataBuilder\Internal\Repositories\WordRepository.cs" />
+    <Compile Include="ExtensionMethods\ViewModelBaseExtensions.cs" />
     <Compile Include="Framework\DependencyConfigSemantics.cs" />
     <Compile Include="Framework\ViewModelException.cs" />
     <Compile Include="Repositories\IRepository.cs" />

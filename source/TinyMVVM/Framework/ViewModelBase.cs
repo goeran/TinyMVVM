@@ -148,17 +148,12 @@ namespace TinyMVVM.Framework
 			}
 		}
 
-        public virtual T GetDependency<T>() where T: class
+        internal virtual T GetDependency<T>() where T: class
         {
         	var instance = TryGetFromInstanceKernel(typeof (T));
 			if (instance == null) instance = TryGetFromGlobalKernel(typeof (T));
         	return instance as T;
         }
-
-		public virtual T GetInstance<T>() where T: class
-		{
-			return GetDependency<T>();
-		}
 
         /// <summary>
         /// Create a new instance of the specified Controller inside the ViewModel. 
@@ -175,7 +170,7 @@ namespace TinyMVVM.Framework
         /// automatically configured as a dependency.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public T CreateController<T>()
+        internal T CreateController<T>()
         {
             try
             {
@@ -233,7 +228,7 @@ namespace TinyMVVM.Framework
             return TryGetObjectFromKernel(typeToBeCreated, globalKernel);
         }
 
-        public void ConfigureDependencies(Action<DependencyConfigSemantics> configAction)
+        internal void ConfigureDependencies(Action<DependencyConfigSemantics> configAction)
         {
             configAction.Invoke(new DependencyConfigSemantics(instanceDependenciesConfig));
 
@@ -245,7 +240,7 @@ namespace TinyMVVM.Framework
 			}
         }
 
-        public static void ConfigureGlobalDependencies(Action<DependencyConfigSemantics> configAction)
+        internal static void ConfigureGlobalDependencies(Action<DependencyConfigSemantics> configAction)
         {
         	configAction.Invoke(new DependencyConfigSemantics(globalDependenciesConfig));
 
@@ -273,7 +268,7 @@ namespace TinyMVVM.Framework
     		}
     	}
 
-    	public static void RemoveAllGlobalDependencies()
+    	internal static void RemoveAllGlobalDependencies()
         {
             globalDependenciesConfig.Bindings.Clear();
             globalKernel.Dispose();
