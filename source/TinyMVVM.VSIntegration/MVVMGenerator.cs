@@ -22,6 +22,7 @@ using File = TinyMVVM.VSIntegration.Internal.Model.VsSolution.File;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using IVsGeneratorProgress = Microsoft.VisualStudio.Shell.Interop.IVsGeneratorProgress;
 using IVsSingleFileGenerator = Microsoft.VisualStudio.Shell.Interop.IVsSingleFileGenerator;
+using CodeGeneratorConfig = TinyMVVM.DSL.CodeGeneratorConfig;
 
 namespace TinyMVVM.VSIntegration
 {
@@ -63,30 +64,51 @@ namespace TinyMVVM.VSIntegration
 
 			statusBarService.SetText(string.Format(statusBarStringTemplate, "Code generation begins"));
 
-			var p = new Parser();
-			var spec = p.Parse(Code.Inline(bstrInputFileContents));
+			var mvvmParser = new Parser();
+			var mvvmSpec = mvvmParser.Parse(Code.Inline(bstrInputFileContents));
 
         	var mvvmFile = TreeWalker.FindFileInSolution(solution, wszInputFilePath);
 
+            var mvvmConfig = new HashSet<string>();
+
+            var mvvmConfigFileName = string.Format("{0}.conf", mvvmFile.Name);
+            if (mvvmFile.Parent.HasFile(mvvmConfigFileName))
+            {
+                var codeGenConfigDslParser = new CodeGeneratorConfig.Parser();
+                mvvmConfig = codeGenConfigDslParser.Parse(Code.FromFile(Path.Combine(mvvmFile.DirectoryPath, mvvmConfigFileName)));
+            }
+
 			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating ViewModels"));
 			var viewModelsConvention = new GeneratedViewModelsConvention(t4CodeGenerator);
-			viewModelsConvention.Apply(spec, mvvmFile);
+			viewModelsConvention.Apply(mvvmSpec, mvvmFile);
 
-			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Partial classes for ViewModels"));
-			var partialViewModelsConvention = new PartialViewModelsConvention(t4CodeGenerator);
-			partialViewModelsConvention.Apply(spec, mvvmFile);
+            if (mvvmConfig.Contains("partial viewmodels"))
+            {
+                statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Partial classes for ViewModels"));
+                var partialViewModelsConvention = new PartialViewModelsConvention(t4CodeGenerator);
+                partialViewModelsConvention.Apply(mvvmSpec, mvvmFile);
+            }
 
-			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Views for ViewModels"));
-			var viewsConvention = new ViewsConvention(t4CodeGenerator, factory);
-			viewsConvention.Apply(spec, mvvmFile);
+            if (mvvmConfig.Contains("views"))
+            {
+                statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Views for ViewModels"));
+                var viewsConvention = new ViewsConvention(t4CodeGenerator, factory);
+                viewsConvention.Apply(mvvmSpec, mvvmFile);
+            }
 
-			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Controllers for ViewModels"));
-        	var controllersConvention = new ControllersConvention(t4CodeGenerator, factory);
-        	controllersConvention.Apply(spec, mvvmFile);
+            if (mvvmConfig.Contains("controllers"))
+            {
+                statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Controllers for ViewModels"));
+                var controllersConvention = new ControllersConvention(t4CodeGenerator, factory);
+                controllersConvention.Apply(mvvmSpec, mvvmFile);
+            }
 
-			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Unit Tests for ViewModels"));
-        	var unitTestsConvention = new UnitTestsConvention(t4CodeGenerator, factory);
-			unitTestsConvention.Apply(spec, mvvmFile);
+            if (mvvmConfig.Contains("tests"))
+            {
+                statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating Unit Tests for ViewModels"));
+                var unitTestsConvention = new UnitTestsConvention(t4CodeGenerator, factory);
+                unitTestsConvention.Apply(mvvmSpec, mvvmFile);
+            }
 
 			statusBarService.SetText(string.Format(statusBarStringTemplate, "Generating ViewModels Completed :)"));
 

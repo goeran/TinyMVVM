@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Resources.Designer.cs" />
     <None Include="Settings.Designer.cs" />
+    <None Include="viewmodel.mvvm.conf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Settings.settings" />

@@ -36,9 +36,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronRuby">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\IronRuby 1.0v4\bin\IronRuby.dll</HintPath>
+      <HintPath>..\..\tools\IronRuby 1.0v4\IronRuby.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries">
+      <HintPath>..\..\tools\IronRuby 1.0v4\IronRuby.Libraries.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\IronRuby 1.0v4\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\tools\IronRuby 1.0v4\Microsoft.Scripting.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
     <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -119,6 +129,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TinyMVVM\DSL\CodeGeneratorConfig\Parser.cs">
+      <Link>Internal\TinyMVVM\DSL\CodeGeneratorConfig\Parser.cs</Link>
+    </Compile>
     <Compile Include="..\TinyMVVM\DSL\Framework\Code.cs">
       <Link>Internal\TinyMVVM\DSL\Framework\Code.cs</Link>
     </Compile>
@@ -256,9 +269,9 @@
     <ProjectReference Include="..\VsTemplates\Model-View-ViewModel\Model-View-ViewModel.csproj">
       <Project>{447FD380-4912-4EDF-8D15-859FCA82D33C}</Project>
       <Name>Model-View-ViewModel</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <TemplateType>Item</TemplateType>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <VSIXSubPath>ItemTemplates</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\VsTemplates\TinyMVVM %28Class Library%29\TinyMVVM %28Class Library%29.csproj">
@@ -272,9 +285,9 @@
     <ProjectReference Include="..\VsTemplates\TinyMVVM %28WPF4%29\TinyMVVM %28WPF4%29.csproj">
       <Project>{0BC15FCC-CD7D-4479-80D3-2650066AD0BE}</Project>
       <Name>TinyMVVM %28WPF4%29</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <TemplateType>Project</TemplateType>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
     </ProjectReference>
   </ItemGroup>
