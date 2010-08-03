@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using TinyMVVM.DSL.Framework;
 using TinyMVVM.SemanticModel.MVVM;
 
 namespace TinyMVVM.DSL.TextParser

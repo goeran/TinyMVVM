@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TinyBDD.Specification.NUnit;
+using TinyMVVM.DSL.Framework;
 using TinyMVVM.DSL.TextParser;
 using TinyMVVM.Tests.DSL.TextParser.TestContext;
 using Moq;

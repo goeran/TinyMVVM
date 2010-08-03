@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using TinyBDD.Dsl.GivenWhenThen;
+using TinyMVVM.DSL.Framework;
 using TinyMVVM.DSL.TextParser;
 
 namespace TinyMVVM.Tests.DSL.TextParser.TestContext

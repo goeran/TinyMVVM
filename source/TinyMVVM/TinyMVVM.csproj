@@ -111,11 +111,11 @@
     <Compile Include="DataBuilder\Internal\Repositories\SurnameRepository.cs" />
     <Compile Include="DataBuilder\ObjectBuilder.cs" />
     <Compile Include="DataBuilder\Repositories\DSL\All.cs" />
-    <Compile Include="DSL\TextParser\Code.cs" />
-    <Compile Include="DSL\TextParser\CodeFile.cs" />
-    <Compile Include="DSL\TextParser\ICodeLoader.cs" />
+    <Compile Include="DSL\Framework\Code.cs" />
+    <Compile Include="DSL\Framework\CodeFile.cs" />
+    <Compile Include="DSL\Framework\ICodeLoader.cs" />
     <Compile Include="DSL\TextParser\ILexicalAnalyzer.cs" />
-    <Compile Include="DSL\TextParser\InlineCode.cs" />
+    <Compile Include="DSL\Framework\InlineCode.cs" />
     <Compile Include="DSL\TextParser\InvalidSyntaxException.cs" />
     <Compile Include="DSL\TextParser\Parser.cs" />
     <Compile Include="DSL\TextParser\Scanner.cs" />

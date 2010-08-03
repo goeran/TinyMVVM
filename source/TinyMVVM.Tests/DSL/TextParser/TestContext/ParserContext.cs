@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Moq;
 using TinyBDD.Dsl.GivenWhenThen;
+using TinyMVVM.DSL.Framework;
 using TinyMVVM.DSL.TextParser;
 using TinyMVVM.SemanticModel.MVVM;
 

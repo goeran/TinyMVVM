@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
+using TinyMVVM.DSL.Framework;
 using TinyMVVM.DSL.TextParser;
 using TinyMVVM.VSIntegration.Internal.Conventions;
 using TinyMVVM.VSIntegration.Internal.Factories;
