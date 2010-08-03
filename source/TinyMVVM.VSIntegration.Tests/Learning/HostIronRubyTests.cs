@@ -74,13 +74,24 @@ namespace TinyMVVM.VSIntegration.Tests.Learning
 
     		var script = scriptEngine.CreateScriptSourceFromFile(scriptPath);
     		
-			var config = script.Execute(scope) as CodeGeneratorConfig;
+			var config = script.Execute(scope) as Hash;
 
-			Assert.AreEqual(true, config.GenerateViews);
-			Assert.AreEqual(true, config.GenerateControllers);
-			Assert.AreEqual(true, config.GenerateUnitTests);
-			Assert.AreEqual(true, config.GeneratePartialViewModels);
+            
+    	    foreach (var row in config)
+    	    {
+    	        Console.WriteLine("{0} = {1}", row.Key, row.Value);
+    	    }
+
+			Assert.AreEqual(true, config[ToMutableString("views")]);
+			Assert.AreEqual(true, config[ToMutableString("controllers")]);
+			Assert.AreEqual(true, config[ToMutableString("partial ViewModels")]);
+            Assert.AreEqual(false, config[ToMutableString("unit tests")]);
     	}
+
+        private static MutableString ToMutableString(string value)
+        {
+            return new MutableString().Append(value);
+        }
 
 		public class CodeGeneratorConfig
 		{
@@ -89,5 +100,29 @@ namespace TinyMVVM.VSIntegration.Tests.Learning
 			public bool GenerateUnitTests { get; set; }
 			public bool GeneratePartialViewModels { get; set; }
 		}
+
+        [Test]
+        public void How_blocks_works_in_Ruby()
+        {
+            var scriptPath = Path.Combine(Environment.CurrentDirectory, "Learning", "Script", "blocks.rb");
+            var script = scriptEngine.CreateScriptSourceFromFile(scriptPath);
+
+            var result = script.Execute(scope) as RubyArray;
+
+            Assert.IsNotNull(result);
+
+            foreach (var row in result)
+            {
+                Console.WriteLine("{0}", row);
+            }
+
+            Assert.AreEqual("configure", result[0].ToString());
+            Assert.AreEqual("generate", result[1].ToString());
+            
+            
+            //Assert.AreEqual("not", result[2].ToString());
+            //Assert.AreEqual("not", result[4].ToString());
+            //Assert.AreEqual("generate", result[5].ToString());
+        }
     }
 }
