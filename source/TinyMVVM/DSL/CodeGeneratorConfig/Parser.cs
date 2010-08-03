@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IronRuby.Builtins;
+using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using TinyMVVM.DSL.Framework;
 using TinyMVVM.DSL.TextParser;
@@ -29,6 +30,10 @@ namespace TinyMVVM.DSL.CodeGeneratorConfig
             catch (MissingMethodException ex)
             {
                 throw new InvalidSyntaxException(string.Format("Invalid syntax. {0}", ex.Message), ex);
+            }
+            catch (SyntaxErrorException ex)
+            {
+                throw new InvalidSyntaxException(string.Format("INvalid syntax. {0}", ex.Message), ex);
             }
 
             return ConvertResultToSemanticModel(result);
