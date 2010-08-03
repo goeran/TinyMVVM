@@ -12,5 +12,11 @@ namespace TinyMVVM.DSL.TextParser
         {
             
         }
+
+        public InvalidSyntaxException(string message, Exception inner) :
+            base(message, inner)
+        {
+            
+        }
     }
 }
