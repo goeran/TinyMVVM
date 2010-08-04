@@ -58,6 +58,7 @@
   <ItemGroup>
     <VSTemplate Include="Model-View-ViewModel.vstemplate">
       <OutputSubPath>TinyMVVM</OutputSubPath>
+      <SubType>Designer</SubType>
     </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

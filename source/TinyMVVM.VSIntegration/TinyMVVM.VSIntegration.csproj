@@ -266,6 +266,14 @@
       <Name>TinyMVVM.Setup.CustomActions</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\VsTemplates\Items\MvvmConf\MvvmConf.csproj">
+      <Project>{E306BBEB-F8FD-499B-AD59-411F11064EE3}</Project>
+      <Name>MvvmConf</Name>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <TemplateType>Item</TemplateType>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+    </ProjectReference>
     <ProjectReference Include="..\VsTemplates\Model-View-ViewModel\Model-View-ViewModel.csproj">
       <Project>{447FD380-4912-4EDF-8D15-859FCA82D33C}</Project>
       <Name>Model-View-ViewModel</Name>

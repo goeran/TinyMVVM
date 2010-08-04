@@ -20,7 +20,7 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ViewModel\viewmodel.mvvm">viewmodel.mvvm</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="ViewModel\viewmodel.mvvm.conf">viewmodel.mvvm.conf</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ViewModel\viewmodel.mvvmconf">viewmodel.mvvmconf</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="MainWindow.xaml">MainWindow.xaml</ProjectItem>

@@ -97,7 +97,7 @@
     <None Include="ViewModel\viewmodel.mvvm">
       <Generator>MVVMGenerator</Generator>
     </None>
-    <None Include="ViewModel\viewmodel.mvvm.conf"/>
+    <None Include="ViewModel\viewmodel.mvvmconf"/>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

@@ -71,7 +71,7 @@ namespace TinyMVVM.VSIntegration
 
             var mvvmConfig = new HashSet<string>();
 
-            var mvvmConfigFileName = string.Format("{0}.conf", mvvmFile.Name);
+            var mvvmConfigFileName = string.Format("{0}conf", mvvmFile.Name);
             if (mvvmFile.Parent.HasFile(mvvmConfigFileName))
             {
                 var codeGenConfigDslParser = new CodeGeneratorConfig.Parser();
