@@ -56,7 +56,9 @@
     <None Include="viewmodel.mvvm" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="Model-View-ViewModel.vstemplate" />
+    <VSTemplate Include="Model-View-ViewModel.vstemplate">
+      <OutputSubPath>TinyMVVM</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />

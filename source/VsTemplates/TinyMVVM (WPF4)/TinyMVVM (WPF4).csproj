@@ -71,7 +71,9 @@
     <None Include="viewmodel.mvvm" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="TinyMVVM (WPF4).vstemplate" />
+    <VSTemplate Include="TinyMVVM (WPF4).vstemplate">
+      <OutputSubPath>Windows</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <Page Include="App.xaml">

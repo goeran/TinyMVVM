@@ -4,7 +4,7 @@
     <Name>TinyMVVM (Class Library)</Name>
     <Description>&lt;No description available&gt;</Description>
     <Icon>TinyMVVM (Class Library).ico</Icon>
-    <ProjectType>TinyMVVM</ProjectType>
+    <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>2604f402-d7df-42b0-beb6-f8bc69cf1cd1</TemplateID>

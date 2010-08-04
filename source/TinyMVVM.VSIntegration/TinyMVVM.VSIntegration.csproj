@@ -277,9 +277,9 @@
     <ProjectReference Include="..\VsTemplates\TinyMVVM %28Class Library%29\TinyMVVM %28Class Library%29.csproj">
       <Project>{431AD2B4-7B71-4DD4-A19A-3BC91C433066}</Project>
       <Name>TinyMVVM %28Class Library%29</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <TemplateType>Project</TemplateType>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\VsTemplates\TinyMVVM %28WPF4%29\TinyMVVM %28WPF4%29.csproj">
