@@ -2,6 +2,7 @@
 <#@ assembly name="System.Core.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ assembly name="$(TinyMVVMDir)\TinyMVVM.dll" #>
+<#@ import namespace="TinyMVVM.DSL.Framework" #>
 <#@ import namespace="TinyMVVM.DSL.TextParser" #>
 <#@ import namespace="TinyMVVM.SemanticModel.MVVM" #>
 <#
