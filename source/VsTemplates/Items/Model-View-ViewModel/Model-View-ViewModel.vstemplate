@@ -17,6 +17,6 @@
 			</Reference>
 		</References>
 
-    <ProjectItem ReplaceParameters="true">viewmodel.mvvm</ProjectItem>
+    <ProjectItem ReplaceParameters="true" CustomTool="MVVMGenerator">viewmodel.mvvm</ProjectItem>
   </TemplateContent>
 </VSTemplate>
