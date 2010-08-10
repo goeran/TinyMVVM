@@ -62,7 +62,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 			{
 				Then(() =>
 				{
-					var folder = solution.Projects.Last().GetSubFolder("ViewModel").GetSubFolder("TestScenarios");
+					var folder = testProject.GetSubFolder("ViewModel").GetSubFolder("TestScenarios");
 
 					for (int i = 0; i < mvvmDefinition.ViewModels.Count; i++)
 					{
@@ -199,6 +199,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 			protected static File mvvmFile;
 			protected static ModelSpecification mvvmDefinition;
 			protected static Mock<ICodeGeneratorService> codeGenServiceFake;
+		    protected static Project testProject;
 
 			protected Context VisualStudio_Solution_exists = () =>
 			{
@@ -209,7 +210,7 @@ namespace TinyMVVM.VSIntegration.Tests.Internal.Conventions
 
 			protected Context Solution_has_a_UnitTest_Project = () =>
 			{
-				solution.NewProject(solution.Name + ".Tests");
+				testProject = solution.NewProject(project.Name + ".Tests");
 			};
 
 

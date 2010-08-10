@@ -29,9 +29,8 @@ namespace TinyMVVM.VSIntegration.Internal.Conventions
 			var project = mvvmFile.Project;
 			var solution = project.Solution;
 
-			var testProject = solution.Projects.SingleOrDefault(p => p.Name.StartsWith(project.Name) &&
-				p.Name.EndsWith("Test") ||
-				p.Name.EndsWith("Tests"));
+			var testProject = solution.Projects.Where(p => p.Name == string.Format("{0}.Tests", project.Name) ||
+                p.Name == string.Format("{0}Tests", project.Name)).FirstOrDefault();
 
 			if (testProject != null)
 			{
