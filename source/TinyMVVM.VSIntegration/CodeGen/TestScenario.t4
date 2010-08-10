@@ -24,6 +24,7 @@ using TinyMVVM.Repositories;
 using TinyMVVM.Framework.Testing;
 using TinyMVVM.Framework.Testing.Services;
 using TinyMVVM.Framework.Services;
+using TinyMVVM.IoC;
 <# foreach (string Using in modelSpec.Usings) {#>
 using <#= Using #>;
 <# }#>
@@ -46,8 +47,8 @@ namespace <#= currentNamespace #>
 		[SetUp]
 		public void Setup()
 		{
-			<#= viewModel.Name#>.RemoveAllGlobalDependencies();
-			<#= viewModel.Name#>.ConfigureGlobalDependencies(config =>
+			RemoveAllGlobalDependencies.ForAllViewModels();
+			ConfigureGlobalDependencies.ForAllViewModels(config =>
 			{
 				config.Bind<IUIInvoker>().To<UIInvokerForTesting>();
 
@@ -68,7 +69,7 @@ namespace <#= currentNamespace #>
 		public void TearDown()
 		{
 			After();
-			<#= viewModel.Name#>.RemoveAllGlobalDependencies();
+			RemoveAllGlobalDependencies.ForAllViewModels();
 		}
 
 		protected virtual void After()
@@ -78,7 +79,7 @@ namespace <#= currentNamespace #>
 		//Given
 		public void dependencies_are_configured(Action<DependencyConfigSemantics> configAction)
 		{
-			<#= viewModel.Name#>.ConfigureGlobalDependencies(configAction);
+			ConfigureGlobalDependencies.ForAllViewModels(configAction);
 		}
 
 		//Given & And
