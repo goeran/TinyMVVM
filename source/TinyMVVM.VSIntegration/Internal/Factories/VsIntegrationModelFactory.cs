@@ -34,33 +34,66 @@ namespace TinyMVVM.VSIntegration.Internal.Factories
             {
                 var vsProject = dte.Solution.Projects.Item(i);
 
-				if (vsProject.FullName != null && vsProject.FullName != string.Empty)
+                if (IsVirtualFolder(vsProject.Kind))                 
+                {
+                    FindAndAddProjects(vsProject, solution);
+                }
+                else if (vsProject.FullName != null && vsProject.FullName != string.Empty)
 				{
-					var project = new ProjectProxy(vsProject.Name, solution);
-					project.VsProject = vsProject;
-					project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
-					project.RootNamespace = ParseRootNamespace(vsProject);
-					solution.Projects.Add(project);
-
-					for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
-					{
-						var item = vsProject.ProjectItems.Item(x);
-						if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
-						{
-							AddSubFolderInProject(project, item);
-						}
-						else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
-						{
-							AddFileToFolder(project, item);
-						}
-					}
+					AddProject(solution, vsProject);
 				}
             }
 
             return solution;
         }
-		
-		private string ParseRootNamespace(EnvDTE.Project vsProject)
+
+        private bool IsVirtualFolder(string kind)
+        {
+            return kind == EnvDTE80.ProjectKinds.vsProjectKindSolutionFolder;
+        }
+
+        private void FindAndAddProjects(EnvDTE.Project vsProject, SolutionProxy solution)
+        {
+            for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
+            {
+                var item = vsProject.ProjectItems.Item(x);
+                if (item.SubProject != null)
+                {
+                    if (IsVirtualFolder(item.SubProject.Kind))
+                    {
+                        FindAndAddProjects(item.SubProject, solution);
+                    }
+                    else 
+                    {
+                        AddProject(solution, item.SubProject);
+                    }
+                }
+            }
+        }
+
+        private void AddProject(SolutionProxy solution, EnvDTE.Project vsProject)
+        {
+            var project = new ProjectProxy(vsProject.Name, solution);
+            project.VsProject = vsProject;
+            project.DirectoryPath = new System.IO.FileInfo(vsProject.FullName).Directory.FullName;
+            project.RootNamespace = ParseRootNamespace(vsProject);
+            solution.Projects.Add(project);
+
+            for (int x = 1; x <= vsProject.ProjectItems.Count; x++)
+            {
+                var item = vsProject.ProjectItems.Item(x);
+                if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFolder)
+                {
+                    AddSubFolderInProject(project, item);
+                }
+                else if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
+                {
+                    AddFileToFolder(project, item);
+                }
+            }
+        }
+
+        private string ParseRootNamespace(EnvDTE.Project vsProject)
 		{
 			string result = null;
 
